@@ -1,0 +1,73 @@
+apply plugin: 'com.android.library'
+
+def ext = rootProject.ext
+def config = rootProject.ext.android // 配置
+def support = rootProject.ext.support // 依赖
+android {
+
+    compileSdkVersion config.compileSdkVersion
+    defaultConfig {
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    packagingOptions {
+//        exclude 'META-INF/NOTICE' // will not include NOTICE file
+//        exclude 'META-INF/LICENSE' // will not include LICENSE file
+        exclude 'META-INF/rxjava.properties'
+
+    }
+    dexOptions {
+        preDexLibraries true
+        javaMaxHeapSize "6g"
+        //Warning:The `android.dexOptions.incremental` property is deprecated and it has no effect on the build process.
+        //incremental true
+        dexInProcess = true
+    }
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
+        disable 'MissingTranslation'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    testImplementation 'junit:junit:4.12'
+    implementation support.multidex
+    //Rx家族
+    implementation ext.rxAndroid
+    implementation ext.rxJava
+    implementation ext.rxLife
+    implementation ext.rxBinding
+    //网络组件
+    implementation ext.retrofit
+    implementation ext.retrofitConverterGson
+    implementation ext.rxJavaForRetrofit
+    implementation ext.okhttp
+    implementation ext.okhttpLoggingInterceptor
+    implementation ext.volley
+    //Converter
+    implementation ext.retrofitConverterGson
+    implementation ext.retrofitAdapter
+    //项目组件
+    implementation ext.bravh
+    implementation ext.hiPermission
+    implementation ext.glide
+    implementation ext.picasso
+    implementation ext.leakCanary
+    implementation ext.logger
+    implementation ext.easyPermissions
+    implementation ext.fastjson
+}

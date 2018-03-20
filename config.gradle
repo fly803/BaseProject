@@ -1,0 +1,178 @@
+def supportVersion = "27.1.0"
+def rxBindingVersion = "2.0.0"
+def retrofitVersion = "2.3.0"
+def stethoVersion = "1.5.0"
+def butterKnifeVersion = "8.5.1"
+def leakCanaryVersion = "1.5.4"
+def blockCanaryVersion = "1.5.0"
+def dagger2Version = "2.14.1"
+def okHttpVersion = "3.10.0"
+def glideVersion = "4.5.0"
+
+ext {
+    android = [
+            compileSdkVersion: 26,
+            applicationId    : "com.ivy.baseproject.test",
+            minSdkVersion    : 17,
+            targetSdkVersion : 26,
+            versionCode      : 1,
+            versionName      : "1.0"
+    ]
+
+    /**
+     * support官方库
+     */
+    support = [
+            constraintLayout      : "com.android.support.constraint:constraint-layout:1.0.2",
+            multidex    : "com.android.support:multidex:1.0.1",
+            supportAppcompatV7   : "com.android.support:appcompat-v7:${supportVersion}",//得到宏定义字符串，要用双引号
+            supportV4   : "com.android.support:support-v4:${supportVersion}",
+            design      : "com.android.support:design:${supportVersion}",
+            recyclerview: "com.android.support:recyclerview-v7:${supportVersion}",
+            cardview: "com.android.support:cardview-v7:${supportVersion}",
+            gridlayout: "com.android.support:gridlayout-v7:${supportVersion}",
+            annotations: "com.android.support:support-annotations:${supportVersion}",
+            vectorDrawable: "com.android.support:support-vector-drawable:${supportVersion}",
+            animatedVectorDrawable: "com.android.support:animated-vector-drawable:${supportVersion}",
+    ]
+
+    /**
+     * Google开源库
+     */
+    //google开源的一款新布局,综合了LinearLayout 和 RelativeLayout特性,及功能扩展
+    flexboxLayout = "com.google.android:flexbox:0.3.2"
+    agera = "com.google.android.agera:agera:1.3.0"
+    easyPermissions = "pub.devrel:easypermissions:1.2.0"
+    //    implementation group: 'com.android.volley', name: 'volley', version: '1.1.0'
+    volley = "com.android.volley:volley:1.1.0"//等效写法
+
+    /**
+     *项目必备库
+     */
+    butterknife = "com.jakewharton:butterknife:${butterKnifeVersion}"
+    butterknifeCompiler = "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
+    butterknifePlugin = "com.jakewharton:butterknife-gradle-plugin:${butterKnifeVersion}"
+    gson = "com.google.code.gson:gson:2.8.0"
+    fastjson = "com.alibaba:fastjson:1.1.65.android"
+    indicator = "com.romandanylyk:pageindicatorview:1.0.0"
+    bravh = "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.9"
+    //通用适配器
+    commonAdapter = "com.classic.adapter:commonadapter:1.9"
+    //方便的切换到：加载中视图、错误视图、空数据视图、网络异常视图、内容视图。
+    mutipleStatusView = "com.classic.common:multiple-status-view:1.4"
+    hiPermission = "me.weyye.hipermission:library:1.0.7"
+
+    //检测内存泄漏
+    leakCanary = "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+    leakCanaryDebug = "com.squareup.leakcanary:leakcanary-android:${leakCanaryVersion}"
+    leakCanaryRelease = "com.squareup.leakcanary:leakcanary-android-no-op:${leakCanaryVersion}"
+    //检测UI卡顿
+    blockCanaryDebug = "com.github.markzhai:blockcanary-android:${blockCanaryVersion}"
+    blockCanaryRelease = "com.github.markzhai:blockcanary-no-op:${blockCanaryVersion}"
+    //Crash 
+    customActivityOnCrash = "cat.ereza:customactivityoncrash:2.2.0"//https://github.com/Ereza/CustomActivityOnCrash
+
+    //基础项目，通用工具类
+    baseProject = "com.classic.android:core:1.5"
+    utils = "com.classic.android:utils:1.1"
+    rxTools = "com.github.vondear:RxTools:v1.7.6.4"//https://github.com/vondear/RxTools
+    logger = "com.orhanobut:logger:2.1.1"//https://github.com/orhanobut/logger
+
+    //缓存
+    //http://mvnrepository.com/artifact/com.google.guava/guava/24.0-android
+    guava = "com.google.guava:guava:24.0-android" //compile group: 'com.google.guava', name: 'guava', version: '24.0-android'
+    store = ""
+    //数据库
+    /*compile "android.arch.persistence.room:runtime:1.0.0"
+    compile "android.arch.persistence.room:rxjava2:1.0.0"
+    annotationProcessor "android.arch.persistence.room:compiler:1.0.0"
+    https://www.imooc.com/article/22000?block_id=tuijian_wz
+    */
+    roomRuntime = "android.arch.persistence.room:runtime:1.0.0"
+    roomRx = "android.arch.persistence.room:rxjava2:1.0.0"
+    roomAnnotationProcessorCompiler = "android.arch.persistence.room:compiler:1.0.0"
+    sqlbrite = "com.squareup.sqlbrite3:sqlbrite:3.1.0"
+    greenDAO = "org.greenrobot:greendao:3.2.2"
+
+    /**
+     * Rx家族，响应式编程
+     */
+    rxbus = "com.github.anadea:rxbus:1.0.1"//https://github.com/Anadea/RxBus
+    rxJava = "io.reactivex.rxjava2:rxjava:2.1.8"
+    rxAndroid = "io.reactivex.rxjava2:rxandroid:2.0.1"
+    rxLife = "com.trello.rxlifecycle2:rxlifecycle:2.2.1"
+    retrofit = "com.squareup.retrofit2:retrofit:${retrofitVersion}"
+    rxJavaForRetrofit = "com.squareup.retrofit2:adapter-rxjava2:${retrofitVersion}"
+    okhttp = "com.squareup.okhttp3:okhttp:${okHttpVersion}"
+    okhttpLoggingInterceptor = "com.squareup.okhttp3:logging-interceptor:${okHttpVersion}"
+    rxBinding = "com.jakewharton.rxbinding2:rxbinding:${rxBindingVersion}"
+    //Converter
+    retrofitConverterGson = "com.squareup.retrofit2:converter-gson:${retrofitVersion}"
+    retrofitAdapter = "com.squareup.retrofit2:adapter-rxjava:${retrofitVersion}"
+    rxBindingSupportV4 = "com.jakewharton.rxbinding2:rxbinding-support-v4:${rxBindingVersion}"
+    rxBindingSupportAppcompatV7 = "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:${rxBindingVersion}"
+    rxBindingSupportDesign = "com.jakewharton.rxbinding2:rxbinding-design:${rxBindingVersion}"
+    rxBindingSupportRecyclerView = "com.jakewharton.rxbinding2:rxbinding-recyclerview-v7:${rxBindingVersion}"
+    rxBindingLeanbackV17 = "com.jakewharton.rxbinding2:rxbinding-leanback-v17:${rxBindingVersion}"
+    //网库请求库
+    okio = "com.squareup.okio:okio:1.13.0"
+
+    //图片加载
+    glide = "com.github.bumptech.glide:glide:${glideVersion}"
+    glideCompiler = "com.github.bumptech.glide:compiler:${glideVersion}"
+    fresco = "com.facebook.fresco:fresco:1.7.1"
+    picasso = "com.squareup.picasso:picasso:2.5.2"
+    universalimageloader =  "com.nostra13.universalimageloader:universal-image-loader:1.9.3"
+
+    //https://github.com/google/dagger
+    dagger2 = "com.google.dagger:dagger:${dagger2Version}"
+    dagger2Compiler = "com.google.dagger:dagger-compiler:${dagger2Version}"
+    
+    //facebook出品的网络调试神器
+    stetho = "com.facebook.stetho:stetho:${stethoVersion}"
+    stethoOkhttp = "com.facebook.stetho:stetho-okhttp3:${stethoVersion}"
+    stethoUrlConnection = "com.facebook.stetho:stetho-urlconnection:${stethoVersion}"
+    stethoJsRhino = "com.facebook.stetho:stetho-js-rhino:${stethoVersion}"
+
+    /**
+     * UI相关库
+     */
+    flycoDialog = "com.flyco.dialog:FlycoDialog_Lib:1.3.2@aar"
+    flycoTabLayout = "com.flyco.tablayout:FlycoTabLayout_Lib:2.1.2@aar"
+    shineButton = "com.sackcentury:shinebutton:0.2.0"
+    dragSlopLayout = "com.github.Rukey7:DragSlopLayout:1.0.5-blur"//一个辅助开发的UI库，适用于某些特殊场景，如固定范围拖拽、动画、模糊效果等
+    spinKit = "com.github.ybq:Android-SpinKit:1.1.0"
+    styleableToast = "com.muddzdev:styleabletoast:2.0.1"
+    toasty = "com.github.GrenderG:Toasty:1.2.8"
+    //https://github.com/Shashank02051997/FancyToast-Android
+    fancyToast = "com.github.Shashank02051997:FancyToast-Android:0.1.3"
+    //下拉刷新
+    smartFresh = "com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7"
+    //广告库
+    adDialog = ""
+    //loading
+    //二维码扫描
+    zxing = "com.google.zxing:core:3.3.2"
+    QRCode = "cn.bingoogolapple:bga-qrcode-zxing:1.2.1"//https://github.com/bingoogolapple/BGAQRCode-Android
+    //圆形ImageView
+    circleImageView = "de.hdodenhof:circleimageview:2.2.0"
+    //Android流式布局，支持单选、多选等，适合用于产品标签等
+    flowLayout = "com.zhy:flowlayout-lib:1.1.2"
+    //日历控件
+    pickerView = "com.contrarywind:Android-PickerView:3.2.7"
+    //图表控件
+    mpAndroidChart = "com.github.PhilJay:MPAndroidChart:v3.0.3"
+    helloCharts = "com.github.lecho:hellocharts-library:1.5.8@aar"
+    williamChart = "com.diogobernardino:williamchart:2.5.0"
+    //Switch开关
+    switchButton = "com.kyleduo.switchbutton:library:2.0.0"
+    iosSwitchButton = "com.github.zcweng:switch-button:0.0.3@aar"
+    androidSwitchIcon = "com.github.zagum:Android-SwitchIcon:1.3.6"
+    //可高度自定义的Dialog
+    materialDialog = "com.afollestad.material-dialogs:core:0.9.6.0"
+    xLog = "com.elvishew:xlog:1.4.0"
+    avLoading = "com.wang.avi:library:2.1.3"
+    //热修复／插件化框架
+    //动画
+    nineoldandroids = "com.nineoldandroids:library:2.4.0"
+}

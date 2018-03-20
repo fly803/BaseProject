@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+三星s8 5.8英寸(568ppi)
+config: mcc460-mnc1-zh-rCN-sHans-ldltr-sw411dp-w411dp-h773dp-normal-long-notround-port-notnight-xxxhdpi-
+init=1440x2960 560dpi base=1080x2220 420dpi cur=1080x2220 app=1080x2094 rng=1080x1017-2094x2031
+-->
+<resources>
+    <dimen name="airclean_para_height">160.33dp</dimen>
+</resources>

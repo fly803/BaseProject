@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btn_get"
+        android:layout_width="89dp"
+        android:layout_height="46dp"
+        android:layout_marginTop="8dp"
+        android:text="Get请求"
+        app:layout_constraintEnd_toStartOf="@+id/btn_post"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <Button
+        android:id="@+id/btn_post"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Post请求"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_get"
+        app:layout_constraintEnd_toStartOf="@+id/btn_netimage"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_get"
+        app:layout_constraintTop_toTopOf="@+id/btn_get"/>
+
+    <Button
+        android:id="@+id/btn_netimage"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="网络图片"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_post"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/btn_post"
+        app:layout_constraintTop_toTopOf="@+id/btn_post"
+        app:layout_constraintVertical_bias="0.0"/>
+
+    <Button
+        android:id="@+id/btn_rxget"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:layout_marginStart="8dp"
+        android:text="Rx_Get"
+        app:layout_constraintEnd_toStartOf="@+id/btn_rxpost"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_get"/>
+
+    <Button
+        android:id="@+id/btn_rxpost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="31dp"
+        android:text="Rx_Post"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_rxget"
+        app:layout_constraintEnd_toStartOf="@+id/btn_switch_baseurl"
+        app:layout_constraintTop_toTopOf="@+id/btn_rxget"/>
+
+    <Button
+        android:id="@+id/btn_switch_baseurl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="切换Baseurl"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_rxpost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btn_rxpost"/>
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,77 @@
+apply plugin: 'com.android.application'
+apply plugin: 'com.jakewharton.butterknife'
+
+def ext = rootProject.ext
+def config = rootProject.ext.android // 配置
+def support = rootProject.ext.support // 依赖
+
+android {
+    compileSdkVersion config.compileSdkVersion
+    defaultConfig {
+        applicationId config.applicationId
+        minSdkVersion config.minSdkVersion
+        targetSdkVersion config.targetSdkVersion
+        versionCode config.versionCode
+        versionName config.versionName
+        //        vectorDrawables.useSupportLibrary = true
+    }
+    dexOptions {
+        preDexLibraries true
+        javaMaxHeapSize "6g"
+        //Warning:The `android.dexOptions.incremental` property is deprecated and it has no effect on the build process.
+        //incremental true
+        dexInProcess = true
+    }
+    lintOptions {
+        abortOnError false
+        checkReleaseBuilds false
+        // 防止在发布的时候出现因MissingTranslation导致Build Failed!
+        disable 'MissingTranslation'
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.1'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    compile project(path: ':baseproject')
+
+    //support官方库
+    implementation support.constraintLayout
+    implementation support.multidex
+    implementation support.supportAppcompatV7
+    implementation support.design
+    implementation support.recyclerview
+    implementation support.cardview
+    implementation support.gridlayout
+    implementation support.annotations
+    implementation support.vectorDrawable
+//    println ''
+    implementation ext.butterknife
+    annotationProcessor ext.butterknifeCompiler
+    //项目必备
+    implementation ext.styleableToast
+    implementation ext.zxing
+    implementation ext.volley
+    implementation ext.gson
+    //网络组件
+    implementation ext.retrofit
+    implementation ext.okhttp
+    implementation ext.okhttpLoggingInterceptor
+    //Rx家族
+    implementation ext.rxAndroid
+    implementation ext.rxJava
+    implementation ext.rxLife
+    implementation ext.rxBinding
+    implementation ext.universalimageloader
+
+}
