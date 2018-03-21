@@ -1,4 +1,7 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group='com.github.fly803'
 
 def ext = rootProject.ext
 def config = rootProject.ext.android // 配置
