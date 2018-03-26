@@ -61,6 +61,9 @@ public class ResolutionAdaptationUtils {
 		return scale;
 	}
 
+	public static String getResolutionInfo(Context context){
+	    return context.getResources().getDisplayMetrics().toString();
+    }
 	/**
 	 * 获取屏幕密度，每英寸的像素数
 	 * 

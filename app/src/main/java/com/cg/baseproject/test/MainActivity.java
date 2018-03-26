@@ -1,5 +1,6 @@
 package com.cg.baseproject.test;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -15,6 +16,7 @@ import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
 import com.cg.baseproject.test.activity.NetImageActivity;
 import com.cg.baseproject.test.api.RequestBusiness;
+import com.cg.baseproject.utils.ResolutionAdaptationUtils;
 import com.cg.baseproject.utils.ToastUtils;
 
 import java.util.List;
@@ -49,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        testResolution(this);
         //        Log.d("cg", "onCreate: AndroidSystemUtil:"+ AndroidSystemUtil.getMaxAspect(this));
         //        Log.d("cg", "onCreate: "+ NullUtils.isEmptyList(list));
         //        testResolution();
@@ -101,7 +104,8 @@ public class MainActivity extends AppCompatActivity {
                 });*/
     }
 
-    public void testResolution() {
+    public void testResolution(Context context) {
+        Log.d("cg", "testResolution: "+ ResolutionAdaptationUtils.getResolutionInfo(context));
         //        Log.d("cg", "getBottomStatusHeight: "+ResolutionAdaptationUtils.getBottomStatusHeight(this));
         //        Log.d("cg", "getNavigationBarHeight: "+ResolutionAdaptationUtils.getNavigationBarHeight(this));
         Log.d("cg", "xxxvalues: " + getResources().getDimension(R.dimen.xxxvalues));
