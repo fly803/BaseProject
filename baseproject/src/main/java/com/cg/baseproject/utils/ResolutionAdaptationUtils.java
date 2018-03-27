@@ -19,7 +19,7 @@ public class ResolutionAdaptationUtils {
 	 * h567dp 480dp nrml port finger -keyb/v/h -nav/h s.5}
 	 */
 	private static String TAG = "ResolutionAdaptationUtils";
-	private static final String[] drawableDPI = { "ldpi", "mdpi", "hdpi",
+	private static final String[] getDpi = { "ldpi", "mdpi", "hdpi",
 			"xhdpi", "xxhdpi", "xxxhdpi" };
 
 	enum DrawableDPIIndex {
@@ -106,7 +106,7 @@ public class ResolutionAdaptationUtils {
 		return (int) (Math.sqrt(height * height + width * width) / getScreenSizeInch(context));
 	}
 
-    public static int getPPI(int height,int width,int inch) {
+    public static int getDpi(int height,int width,int inch) {
         return (int) (Math.sqrt(height * height + width * width) / inch);
     }
 
@@ -114,7 +114,6 @@ public class ResolutionAdaptationUtils {
 	 * 得到该手机的drawable文件夹密码
 	 * 
 	 * @param context
-	 * @return
 	 */
 	public static String getDensityString(Context context) {
 		final float density = getDipScale(context);

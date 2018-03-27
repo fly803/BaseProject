@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
-Google pixsel xl 5.5英寸 (534ppi )
-config: mcc310-mnc260-en-rUS-ldltr-sw411dp-w411dp-h659dp-normal-notlong-notround-port-notnight-xxxhdpi
-init=1440x2560 560dpi cur=1440x2560 app=1440x2392 rng=1440x1356-2413x2308
--->
-<resources>
-    <!--<dimen name="px1">1000.3052500121295452dp</dimen>-->
-</resources>
