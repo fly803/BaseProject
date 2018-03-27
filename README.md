@@ -62,7 +62,8 @@ https://github.com/fly803/BaseProject/blob/master/doc/%E5%B7%A5%E5%85%B7%E9%9B%8
 所有效果图宽度x横坐标方向的标注比如10px，那对应的标注应该是x10；所有效果图高y纵坐标方向的标注比如10px，那对应的标注应该是y10；
 
 
-
+## 常用Utils方法
+#### 仿ios对话框
 #### 效果图  
 ![log](https://github.com/devzwy/KUtils/raw/master/images/dialog_2.png)  
 #### 3. 展示仿iOS对话框(底部)
