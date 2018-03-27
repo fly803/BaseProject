@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="xxxvalues">1dp</dimen>
+    <dimen name="xxxXdpi">@dimen/x10</dimen>
+    <dimen name="xxxYdpi">@dimen/y10</dimen>
+    <dimen name="dp1">1dp</dimen>
+    <dimen name="pick_pxX1">@dimen/x1</dimen>
+    <dimen name="pick_pxY1">@dimen/y1</dimen>
+    <dimen name="pick_dp1">@dimen/dp1</dimen>
+    <dimen name="pick_1dp">1dp</dimen>
+    <dimen name="pick_1px">1px</dimen>
+
+    <dimen name="screen_width">1920px</dimen>
+    <dimen name="screen_height">1080px</dimen>
+    <dimen name="dimen_values">@dimen/y1</dimen>
     <dimen name="x1">0.25dp</dimen>
     <dimen name="x2">0.5dp</dimen>
     <dimen name="x3">0.75dp</dimen>
