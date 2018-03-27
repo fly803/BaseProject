@@ -1,41 +1,5 @@
 <resources>
-    <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="xxxvalues">1dp</dimen>
-    <dimen name="hxxxdp">@dimen/px10</dimen>
-    <dimen name="dp1">1dp</dimen>
-    <dimen name="pick_px1">@dimen/px1</dimen>
-    <dimen name="pick_dp1">@dimen/dp1</dimen>
-    <dimen name="pick_1dp">1dp</dimen>
-    <dimen name="pick_1px">1px</dimen>
-    <dimen name="screen_width">1920px</dimen>
-    <dimen name="screen_height">1080px</dimen>
-    <dimen name="dimen_values">@dimen/px1</dimen>
-    <!--
-    mdpi 	120dp~160dp 	48×48px
-    hdpi 	160dp~240dp 	72×72px
-    xhdpi 	240dp~320dp 	96×96px
-    xxhdpi 	320dp~480dp 	144×144px
-    xxxhdpi 480dp~640dp 	192×192px
-    mdpi：hdpi：xhdpi：xxhdpi：xxxhdpi=1：1.5：2：3：4
-    屏幕尺寸：4.95inch、分辨率：1920×1080，屏幕像素密度：445
-    例如，一个图标的大小为48×48dp，表示在mdpi上，实际大小为48×48px，
-    在hdpi像素密度上，实际尺寸为mdpi上的1.5倍，即72×72px，以此类推。
-    mdpi  hdpi  xhdpi xxhdpi  xxxhdpi
-    1x   1.5x   2x    3x      4x
-    | screen size  |
-	| 1184 x 720   |
-	| 1280 x 720   |无虚拟键720p手机
-	| 1812 x 1080  |华为手机，其他手机
-	| 1776 x 1080  |谷歌系手机，nexus，pixsel
-	| 1920 x 1080  |无虚拟键1080p手机
-	| 2392 x 1440  |谷歌系手机pixsel系列
-	| 2560 x 1440  |无虚拟键2k手机
-	|2960 x 1440   |三星s8，s9长宽比18.5:9
-	/*4k电视分辨率*/
-	3840x2160 UHD3840×2160 (16:9)主流
-	4096×2160 4K Ultra HD4096×2160 (256:135 大约17:9)
-	非主流分辨率，需要单独适配dimens
-    -->
+    
     <dimen name="px1">0.33dp</dimen>
     <dimen name="px2">0.67dp</dimen>
     <dimen name="px3">1.0dp</dimen>
