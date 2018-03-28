@@ -11,7 +11,7 @@ def glideVersion = "4.5.0"
 
 ext {
     android = [
-            compileSdkVersion: 26,
+            compileSdkVersion: 27,
             applicationId    : "com.ivy.baseproject.test",
             minSdkVersion    : 17,
             targetSdkVersion : 26,
