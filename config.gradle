@@ -7,7 +7,7 @@ def leakCanaryVersion = "1.5.4"
 def blockCanaryVersion = "1.5.0"
 def dagger2Version = "2.14.1"
 def okHttpVersion = "3.10.0"
-def glideVersion = "4.5.0"
+def glideVersion = "3.8.0"
 
 ext {
     android = [
