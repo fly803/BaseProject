@@ -24,7 +24,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="178dp">
+        tools:layout_editor_absoluteY="250dp">
 
         <ImageView
             android:id="@+id/iv_more_1"
@@ -80,9 +80,10 @@
     </android.support.constraint.ConstraintLayout>
 
     <android.support.constraint.ConstraintLayout
-        android:layout_width="344dp"
+        android:layout_width="match_parent"
         android:layout_height="112dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include2">
 
@@ -91,7 +92,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/vic_me_qrcode"
-            tools:layout_editor_absoluteX="259dp"
+            tools:layout_editor_absoluteX="453dp"
             tools:layout_editor_absoluteY="44dp"/>
 
         <ImageView
@@ -99,8 +100,40 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/vbtn_arrow_more"
-            tools:layout_editor_absoluteX="293dp"
-            tools:layout_editor_absoluteY="39dp"/>
+            tools:layout_editor_absoluteX="477dp"
+            tools:layout_editor_absoluteY="21dp"/>
+
+        <ImageView
+            android:id="@+id/imageView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/vic_portrait_github_cat"
+            tools:layout_editor_absoluteX="27dp"
+            tools:layout_editor_absoluteY="6dp"/>
+
+        <TextView
+            android:id="@+id/tv_nickname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="章鱼猫"
+            app:layout_constraintStart_toStartOf="@+id/tv_username_tip"
+            tools:layout_editor_absoluteY="8dp"/>
+
+        <TextView
+            android:id="@+id/tv_username_tip"
+            android:layout_width="wrap_content"
+            android:layout_height="18dp"
+            android:text="用户名："
+            app:layout_constraintBaseline_toBaselineOf="@+id/tv_username"
+            tools:layout_editor_absoluteX="158dp"/>
+
+        <TextView
+            android:id="@+id/tv_username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="cg"
+            tools:layout_editor_absoluteX="236dp"
+            tools:layout_editor_absoluteY="67dp"/>
 
     </android.support.constraint.ConstraintLayout>
 
