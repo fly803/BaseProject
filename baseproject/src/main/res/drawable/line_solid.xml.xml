@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 实线 -->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="line"
+       android:useLevel="true">
+
+    <stroke
+        android:width="2dp"
+        android:color="#ffff0000" />
+
+</shape>

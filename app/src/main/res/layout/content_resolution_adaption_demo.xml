@@ -8,16 +8,100 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.cg.baseproject.test.activity.ResolutionAdaptionDemoActivity"
     tools:showIn="@layout/activity_resolution_adaption_demo">
-    <android.support.v7.widget.Toolbar
-        android:id="@+id/toolbar"
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/top_title_bar"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <android.support.constraint.ConstraintLayout
+        android:id="@+id/cl_item1"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="?attr/colorPrimary"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:title="用戶信息"
-        app:titleTextColor="@android:color/white"
-        app:navigationIcon="@drawable/ic_arrow_back_white_24dp"
-        />
+        android:layout_height="@dimen/y300"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="178dp">
+
+        <ImageView
+            android:id="@+id/iv_more_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="28dp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_name_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv_name_1"
+            app:layout_constraintVertical_bias="0.461"
+            app:srcCompat="@drawable/vbtn_arrow_more"/>
+
+        <ImageView
+            android:id="@+id/iv_line_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/vic_h_line"/>
+
+        <TextView
+            android:id="@+id/tv_name_1"
+            android:layout_width="wrap_content"
+            android:layout_height="22dp"
+            android:layout_marginStart="56dp"
+            android:text="指标1"
+            app:layout_constraintBottom_toBottomOf="@+id/iv_icon_1"
+            app:layout_constraintStart_toEndOf="@+id/iv_icon_1"
+            app:layout_constraintTop_toTopOf="@+id/iv_icon_1"
+            app:layout_constraintVertical_bias="1.0"/>
+
+        <ImageView
+            android:id="@+id/iv_icon_1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="36dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/vic_github_1"/>
+
+        <ImageView
+            android:id="@+id/imageView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/iv_line_1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/line_h_gray"/>
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="344dp"
+        android:layout_height="112dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include2">
+
+        <ImageView
+            android:id="@+id/imageView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/vic_me_qrcode"
+            tools:layout_editor_absoluteX="259dp"
+            tools:layout_editor_absoluteY="44dp"/>
+
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:srcCompat="@drawable/vbtn_arrow_more"
+            tools:layout_editor_absoluteX="293dp"
+            tools:layout_editor_absoluteY="39dp"/>
+
+    </android.support.constraint.ConstraintLayout>
+
 </android.support.constraint.ConstraintLayout>

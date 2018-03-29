@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--虚线
+    设置类型会line
+    需要关闭硬件加速虚线才能绘制出来，布局文件中使用的时候需要设置android:layerType="software"
+    android:width 线宽，布局文件中的View的高度需要比这个值大才可以绘制出来
+    android:dashWidth 每段破折线的长度
+    android:dashGap="5dp"每段破折线之间的间隔-->
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+       android:shape="line"
+       android:useLevel="true">
+
+    <stroke
+        android:width="2dp"
+        android:dashGap="5dp"
+        android:dashWidth="10dp"
+        android:color="#ffff0000" />
+
+</shape>

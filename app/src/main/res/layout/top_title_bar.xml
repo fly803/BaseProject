@@ -5,7 +5,7 @@
                                              android:layout_width="match_parent"
                                              android:layout_height="@dimen/y200"
                                              android:background="#49c4fa"
-                                             tools:layout_editor_absoluteY="81dp">
+                                             >
 
     <ImageView
         android:id="@+id/imageView"
@@ -15,7 +15,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
-        app:srcCompat="@drawable/ic_arrow_back_white_24dp"/>
+        app:srcCompat="@drawable/vbtn_arrow_back"/>
 
     <TextView
         android:id="@+id/tv_title"
@@ -23,7 +23,8 @@
         android:layout_height="wrap_content"
         android:text="用戶信息"
         android:textColor="@color/permissionColorWhite"
-        android:textSize="@dimen/y74"
+        android:textSize="@dimen/sp90"
+        android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -37,7 +38,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:layout_constraintEnd_toStartOf="@+id/imageView5"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
-        app:srcCompat="@mipmap/topbar_share_normal"/>
+        app:srcCompat="@drawable/vbtn_titlebar_share"/>
 
     <ImageView
         android:id="@+id/imageView5"
@@ -47,5 +48,7 @@
         app:layout_constraintBottom_toBottomOf="@+id/imageView4"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="@+id/imageView4"
-        app:srcCompat="@mipmap/ren_nor"/>
+        app:srcCompat="@drawable/vbtn_titlebar_me"/>
+
+
 </android.support.constraint.ConstraintLayout>
