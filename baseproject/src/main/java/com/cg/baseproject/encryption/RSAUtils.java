@@ -1,5 +1,7 @@
 package com.cg.baseproject.encryption;
 
+import com.cg.baseproject.utils.RadixCoversion;
+
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
 import java.security.PrivateKey;
@@ -32,15 +34,15 @@ public class RSAUtils {
 
         //获取公钥，并以base64格式打印出来  
         PublicKey publicKey=keyPair.getPublic();
-//        System.out.println("公钥："+new String(Base64.encode(publicKey.getEncoded(),0)));
+        System.out.println("公钥："+new String(RadixCoversion.binaryToHexString((publicKey.getEncoded()))));
 
         //获取私钥，并以base64格式打印出来  
         PrivateKey privateKey=keyPair.getPrivate();
-//        System.out.println("私钥："+new String(Base64.encode(privateKey.getEncoded(),0)));
+        System.out.println("私钥："+new String(RadixCoversion.binaryToHexString((privateKey.getEncoded()))));
 
         //公钥加密  
         byte[] encryptedBytes=encrypt(data.getBytes(), publicKey);
-        System.out.println("加密后："+new String(encryptedBytes));
+        System.out.println("加密后："+new String(RadixCoversion.binaryToHexString((encryptedBytes))));
 
         //私钥解密  
         byte[] decryptedBytes=decrypt(encryptedBytes, privateKey);

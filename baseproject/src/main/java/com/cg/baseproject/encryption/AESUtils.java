@@ -1,20 +1,28 @@
 package com.cg.baseproject.encryption;
 
-import java.util.Base64;
+
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
+
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.security.NoSuchAlgorithmException;
 import java.security.Key;
-import javax.crypto.Cipher;
+import java.security.SecureRandom;
+
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
 
 /**
  * http://desert3.iteye.com/blog/743713
+ * https://blog.csdn.net/elim168/article/details/73456866
  * 对称加密算法:对称加密算法是应用较早的加密算法，技术成熟。在对称加密算法中，数据发信方将明文（原始数据）和加密密钥一起经过特殊加密算法处理后，
  * 使其变成复杂的加密密文发送出去。收信方收到密文后，若想解读原文，则需要使用加密用过的密钥及相同算法的逆算法对密文进行解密，才能使其恢复成可
  * 读明文。在对称加密算法中，使用的密钥只有一个，发收信双方都使用这个密钥对数据进行加密和解密，这就要求解密方事先必须知道加密密钥。对称加密算
@@ -36,8 +44,8 @@ import javax.crypto.spec.IvParameterSpec;
 public class AESUtils {
     public static void main(String[] args) throws Exception {
         // TODO Auto-generated method stub  
-        System.out.println("加密后："+encode("哇嘎嘎嘎嘎嘎"));
-        System.out.println("解密后："+decode(encode("哇嘎嘎嘎嘎嘎")));
+//        System.out.println("加密后："+encode("哇嘎嘎嘎嘎嘎"));
+//        System.out.println("解密后："+decode(encode("哇嘎嘎嘎嘎嘎")));
     }
     // 密钥
     private final static String secretKey = "com.huisuoping.v4.uV252QkRe05ehplS";
@@ -46,63 +54,58 @@ public class AESUtils {
     // 加解密统一使用的编码方式
     private final static String encoding = "utf-8";
 
-    /**
-     * 3DES加密
-     *
-     * @param plainText
-     *            普通文本
-     * @return
-     * @throws Exception
-     */
-    public static String encode(String plainText) throws Exception {
-        Key deskey = null;
-        DESedeKeySpec spec = new DESedeKeySpec(secretKey.getBytes());
-        SecretKeyFactory keyfactory = SecretKeyFactory.getInstance("desede");
-        deskey = keyfactory.generateSecret(spec);
-
-        Cipher cipher = Cipher.getInstance("desede/CBC/PKCS5Padding");
-        IvParameterSpec ips = new IvParameterSpec(iv.getBytes());
-        cipher.init(Cipher.ENCRYPT_MODE, deskey, ips);
-        byte[] encryptData = cipher.doFinal(plainText.getBytes(encoding));
-        return String.valueOf(Base64Utils.encode(encryptData));
-    }
-
-    /**
-     * 3DES解密
-     *
-     * @param encryptText
-     *            加密文本
-     * @return
-     * @throws Exception
-     */
-    public static String decode(String encryptText) throws Exception {
-        Key deskey = null;
-        DESedeKeySpec spec = new DESedeKeySpec(secretKey.getBytes());
-        SecretKeyFactory keyfactory = SecretKeyFactory.getInstance("desede");
-        deskey = keyfactory.generateSecret(spec);
-        Cipher cipher = Cipher.getInstance("desede/CBC/PKCS5Padding");
-        IvParameterSpec ips = new IvParameterSpec(iv.getBytes());
-        cipher.init(Cipher.DECRYPT_MODE, deskey, ips);
-
-        byte[] decryptData = cipher.doFinal(Base64Utils.decode(encryptText));
-
-        return new String(decryptData, encoding);
-    }
-
     private AESUtils() {
         throw new UnsupportedOperationException("cannot be instantiated");
     }
 
-    /*
-     * 生成密钥
-     */
-    public static byte[] initKey() throws NoSuchAlgorithmException {
-        KeyGenerator keyGen = KeyGenerator.getInstance("AES");
-        keyGen.init(256);  //192 256
-        SecretKey secretKey = keyGen.generateKey();
-        return secretKey.getEncoded();
+    private SecretKey generateKey() throws Exception {
+        //获取一个密钥生成器实例  
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+        SecureRandom random = new SecureRandom();
+        random.setSeed("123456".getBytes());//设置加密用的种子，密钥  
+        keyGenerator.init(random);
+        SecretKey secretKey = keyGenerator.generateKey();
+        return secretKey;
     }
 
+    /**
+     * 上述生成密钥的过程中指定了固定的种子，每次生成出来的密钥都是一样的。还有一种形式，我们可以通过不指定SecureRandom对象的种子，
+     * 即不调用其setSeed方法，这样每次生成出来的密钥都可能是不一样的。
+     * @return
+     * @throws Exception
+     */
+    private SecretKey generateRadomKey() throws Exception {
+        //获取一个密钥生成器实例  
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+        SecureRandom random = new SecureRandom();
+        keyGenerator.init(random);
+        SecretKey secretKey = keyGenerator.generateKey();
+        return secretKey;
+    }
+
+    /**
+     *
+     通过KeyGenerator的init(keySize)方法进行初始化，而不是通过传递SecureRandom对象进行初始化也可以达到上面的效果，每次生成的密钥都
+     可能是不一样的。但是对应的keySize的指定一定要正确，AES算法的keySize是128。
+
+     但是这种每次生成出来的密钥都是不同的情况下，我们需要把加密用的密钥存储起来，以供解密的时候使用，不然就没法进行解密了。
+     * @return
+     * @throws Exception
+     */
+    private SecretKey geneKey() throws Exception {
+        //获取一个密钥生成器实例  
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+        keyGenerator.init(128);
+        SecretKey secretKey = keyGenerator.generateKey();
+        return secretKey;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.O)
+    private void saveKey(String path){
+        //把上面的密钥存起来  
+        Path keyPath = Paths.get("D:/aes.key");
+//        Files.write(keyPath, geneKey());
+    }
     /*
      * AES 加密
      */
