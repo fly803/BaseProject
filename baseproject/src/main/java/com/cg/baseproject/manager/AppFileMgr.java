@@ -1,12 +1,11 @@
 package com.cg.baseproject.manager;
 
 
-import Decoder.BASE64Decoder;
-import Decoder.BASE64Encoder;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.os.Environment;
 import android.os.StatFs;
+import android.util.Base64;
 
 import java.io.*;
 import java.net.MalformedURLException;
@@ -643,53 +642,9 @@ public class AppFileMgr {
 		 	return inputStream;
 	}
 	
-	
-	/**
-	 * 将文件转成base64 字符串
-	 * @param path 文件路径 
-	 * @return String  base64字符串
-	 */
-    public static String getEncodeBase64File(String path) {
-    	String strings = null;
-		try {
-			File  file = new File(path);
-			FileInputStream inputFile = new FileInputStream(file);
-			byte[] buffer = new byte[(int)file.length()];
-		    inputFile.read(buffer);
-		    inputFile.close();
-		    strings = new BASE64Encoder().encode(buffer);
-		    AppLogMessageMgr.i("AppFileMgr-->>getEncodeBase64File", "文件转换base64字符串成功！"  + strings);
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-			AppLogMessageMgr.e("AppFileMgr-->>getEncodeBase64File", "文件转换base64字符串失败！"  + e.getMessage());
-		} catch(IOException e){
-			e.printStackTrace();
-			AppLogMessageMgr.e("AppFileMgr-->>getEncodeBase64File", "文件转换base64字符串失败！"  + e.getMessage());
-		}
-			return strings;
-    }
 
-    
-    /**
-     * 将base64字符解码保存文件
-     * @param base64Code base64字符串
-     * @param targetPath 输出目录 
-     * @return void   
-     */
-    public static void getDecoderBase64File(String base64Code, String targetPath) {
-        byte[] buffer;
-		try {
-			buffer = new BASE64Decoder().decodeBuffer(base64Code);
-	        FileOutputStream out = new FileOutputStream(targetPath);
-	        out.write(buffer);
-	        out.close();
-	        AppLogMessageMgr.i("AppFileMgr-->>getDecoderBase64File", "base64字符解码保存文件成功！");
-		} catch (IOException e) {
-			e.printStackTrace();
-			AppLogMessageMgr.i("AppFileMgr-->>getDecoderBase64File", "base64字符解码保存文件失败！" + e.getMessage());
-		}
-    }
-    
+
+
 
 	
 	/***

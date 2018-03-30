@@ -1,6 +1,6 @@
 package com.cg.baseproject.encryption;
 
-import android.util.Base64;
+import java.util.Base64;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -36,7 +36,8 @@ import javax.crypto.spec.IvParameterSpec;
 public class AESUtils {
     public static void main(String[] args) throws Exception {
         // TODO Auto-generated method stub  
-        System.out.println("加密后："+encode("cg"));
+        System.out.println("加密后："+encode("哇嘎嘎嘎嘎嘎"));
+        System.out.println("解密后："+decode(encode("哇嘎嘎嘎嘎嘎")));
     }
     // 密钥
     private final static String secretKey = "com.huisuoping.v4.uV252QkRe05ehplS";
@@ -63,7 +64,7 @@ public class AESUtils {
         IvParameterSpec ips = new IvParameterSpec(iv.getBytes());
         cipher.init(Cipher.ENCRYPT_MODE, deskey, ips);
         byte[] encryptData = cipher.doFinal(plainText.getBytes(encoding));
-        return String.valueOf(Base64.encode(encryptData,0));
+        return String.valueOf(Base64Utils.encode(encryptData));
     }
 
     /**
@@ -83,7 +84,7 @@ public class AESUtils {
         IvParameterSpec ips = new IvParameterSpec(iv.getBytes());
         cipher.init(Cipher.DECRYPT_MODE, deskey, ips);
 
-        byte[] decryptData = cipher.doFinal(Base64.decode(encryptText,0));
+        byte[] decryptData = cipher.doFinal(Base64Utils.decode(encryptText));
 
         return new String(decryptData, encoding);
     }
