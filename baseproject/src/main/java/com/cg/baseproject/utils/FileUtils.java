@@ -15,7 +15,6 @@ import com.cg.baseproject.BaseApplication;
 import com.cg.baseproject.service.DownloadService;
 
 import java.io.*;
-import java.nio.channels.FileChannel;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
@@ -888,26 +887,7 @@ public class FileUtils {
         }
     }
 
-    /**
-     *快速复制
-     * @param in
-     * @param out
-     */
-    public static void copyFileFast(File in, File out) {
-        FileChannel filein = null;
-        FileChannel fileout = null;
-        try {
-            filein = new FileInputStream(in).getChannel();
-            fileout = new FileOutputStream(out).getChannel();
-            filein.transferTo(0, filein.size(), fileout);
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-//            closeIO(filein, fileout);
-        }
-    }
+   
 
     /**
      *分享文件

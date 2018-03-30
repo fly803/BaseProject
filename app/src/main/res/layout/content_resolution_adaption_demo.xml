@@ -108,8 +108,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@drawable/vic_portrait_github_cat"
-            tools:layout_editor_absoluteX="27dp"
-            tools:layout_editor_absoluteY="6dp"/>
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="31dp"/>
 
         <TextView
             android:id="@+id/tv_nickname"

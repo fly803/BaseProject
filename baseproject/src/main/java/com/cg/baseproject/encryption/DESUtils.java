@@ -6,6 +6,7 @@ import javax.crypto.SecretKey;
 import javax.crypto.spec.SecretKeySpec;
 
 /**
+ * 已经逐渐被更先进的AES算法代替
  * @Description:主要功能:DES对称加密（Data Encryption Standard，数据加密标准，对称加密算法）
  * @Prject: CommonUtilLibrary
  * @Package: com.jingewenku.abrahamcaijin.commonutil.encryption
