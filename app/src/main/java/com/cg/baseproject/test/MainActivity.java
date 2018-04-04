@@ -16,6 +16,7 @@ import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
 import com.cg.baseproject.test.activity.NetImageActivity;
 import com.cg.baseproject.test.api.RequestBusiness;
+import com.cg.baseproject.utils.AdbUtils;
 import com.cg.baseproject.utils.ResolutionAdaptationUtils;
 import com.cg.baseproject.utils.ToastUtils;
 
@@ -41,6 +42,10 @@ public class MainActivity extends AppCompatActivity {
     Button mBtnRxpost;
     @BindView(R.id.btn_switch_baseurl)
     Button mBtnSwitchBaseurl;
+    @BindView(R.id.btn_dimens)
+    Button mBtnDimens;
+    @BindView(R.id.btn_resolution_test)
+    Button mBtnResolutionTest;
     private String str = null;
     private List list = null;
     private int start = 0;
@@ -51,6 +56,12 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
+        ResolutionAdaptationUtils.getScreenSizeOfDevice(this,this);
+        try {
+            AdbUtils.doCmds("adb shell dumpsys");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         testResolution(this);
         //        Log.d("cg", "onCreate: AndroidSystemUtil:"+ AndroidSystemUtil.getMaxAspect(this));
         //        Log.d("cg", "onCreate: "+ NullUtils.isEmptyList(list));
@@ -211,6 +222,12 @@ public class MainActivity extends AppCompatActivity {
             case R.id.btn_rxpost:
                 break;
             case R.id.btn_switch_baseurl:
+                break;
+            case R.id.btn_dimens:
+                break;
+            case R.id.btn_resolution_test:
+                Intent intentResolutionTest = new Intent(MainActivity.this, NetImageActivity.class);
+                startActivity(intentResolutionTest);
                 break;
             default:
                 break;

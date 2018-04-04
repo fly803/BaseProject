@@ -80,8 +80,8 @@
         android:layout_marginEnd="10dp"
         android:layout_marginTop="8dp"
         android:text="分辨率适配"
-        app:layout_constraintBottom_toBottomOf="@+id/button8"
-        app:layout_constraintEnd_toStartOf="@+id/button8"
+        app:layout_constraintBottom_toBottomOf="@+id/btn_resolution_test"
+        app:layout_constraintEnd_toStartOf="@+id/btn_resolution_test"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintHorizontal_chainStyle="spread"
         app:layout_constraintStart_toStartOf="parent"
@@ -89,11 +89,11 @@
         app:layout_constraintVertical_bias="1.0"/>
 
     <Button
-        android:id="@+id/button8"
+        android:id="@+id/btn_resolution_test"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:text="Button"
+        android:text="分辨率测试"
         app:layout_constraintBottom_toBottomOf="@+id/button9"
         app:layout_constraintEnd_toStartOf="@+id/button9"
         app:layout_constraintHorizontal_bias="0.5"
@@ -108,7 +108,7 @@
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button8"
+        app:layout_constraintStart_toEndOf="@+id/btn_resolution_test"
         tools:layout_editor_absoluteY="121dp"/>
 
 </android.support.constraint.ConstraintLayout>

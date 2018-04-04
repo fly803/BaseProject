@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="xxxvalues">1dp</dimen>
+    <dimen name="xxxvalues">22dp</dimen>
     <dimen name="xxxXdpi">@dimen/x10</dimen>
     <dimen name="xxxYdpi">@dimen/y10</dimen>
     <dimen name="dp1">1dp</dimen>

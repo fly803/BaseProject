@@ -85,9 +85,9 @@ public class ResolutionAdaptationUtils {
 	/**
 	 * 根据手机的分辨率从 px(像素) 的单位 转成为 dp
 	 */
-	public static int px2dip(Context context, float pxValue) {
+	public static float px2dip(Context context, float pxValue) {
 		final float scale = context.getResources().getDisplayMetrics().density;
-		return (int) (pxValue / scale + 0.5f);
+		return  pxValue/scale ;
 	}
 
 	/**
@@ -155,13 +155,20 @@ public class ResolutionAdaptationUtils {
 		Log.d(TAG, "the screen size is " + point.toString());
 	}
 
-	// public void getRealSize(Point outSize) {
-	// synchronized (this) {
-	// updateDisplayInfoLocked();
-	// outSize.x = mDisplayInfo.logicalWidth;
-	// outSize.y = mDisplayInfo.logicalHeight;
-	// }
-	// }
+    //不包含虚拟键在内的屏幕高度
+    public static int getScreenHeightWithoutVirtualBar(Activity activity) {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        activity.getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        return displayMetrics.heightPixels;
+    }
+
+    /**
+     * 获取虚拟按键的高度，无关虚拟按键是否显示
+     */
+    public static int getNavigationBarHeight(Activity activity) {
+        int resourceId = activity.getResources().getIdentifier("navigation_bar_height", "dimen", "android");
+        return activity.getResources().getDimensionPixelSize(resourceId);
+    }
 
 	/**
 	 * 得到设备屏幕尺寸 http://blog.csdn.net/lincyang/article/details/42679589
@@ -190,12 +197,18 @@ public class ResolutionAdaptationUtils {
 	 * 
 	 * @param context
 	 */
-	public static void getScreenSizeOfDevice(Context context) {
+	public static void getScreenSizeOfDevice(Context context,Activity activity) {
 		Point point = new Point();
 		WindowManager windowManager = (WindowManager) context
 				.getSystemService(Context.WINDOW_SERVICE);
 		windowManager.getDefaultDisplay().getRealSize(point);
+        DisplayMetrics mDisplayMetrics = new DisplayMetrics();//屏幕分辨率容器  
+        activity.getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
+        int width = mDisplayMetrics.widthPixels;
+        int height = mDisplayMetrics.heightPixels;
 		Log.d(TAG, "当前设备---分辨率： " + point.toString());
+        Log.d(TAG, "当前设备---app分辨率： " + +width+"x"+height);
+        Log.d(TAG, "当前设备---虚拟键高度： " + getNavigationBarHeight(context));
 		DisplayMetrics dm = context.getResources().getDisplayMetrics();
 		Log.d(TAG, "当前设备---屏幕像素密度(PPI) dm.xdpi == ： " + dm.xdpi);
 		Log.d(TAG, "当前设备---屏幕像素密度(PPI) dm.ydpi == ： " + dm.ydpi);
@@ -418,5 +431,29 @@ public class ResolutionAdaptationUtils {
 		int contentHeight = getScreenHeight(context);
 		return totalHeight - contentHeight;
 	}
+
+    //获得手机的宽度和高度像素单位为px  
+    // 通过WindowManager获取    
+    public static void getScreenDensity_ByWindowManager(Activity activity){
+        DisplayMetrics mDisplayMetrics = new DisplayMetrics();//屏幕分辨率容器  
+        activity.getWindowManager().getDefaultDisplay().getMetrics(mDisplayMetrics);
+        int width = mDisplayMetrics.widthPixels;
+        int height = mDisplayMetrics.heightPixels;
+        float density = mDisplayMetrics.density;
+        int densityDpi = mDisplayMetrics.densityDpi;
+        Log.d(TAG,"Screen Ratio: ["+width+"x"+height+"],density="+density+",densityDpi="+densityDpi);
+        Log.d(TAG,"Screen mDisplayMetrics: "+mDisplayMetrics);
+    }
+    // 通过Resources获取    
+    public static void getScreenDensity_ByResources(Context activity){
+        DisplayMetrics mDisplayMetrics = activity.getResources().getDisplayMetrics();
+        int width = mDisplayMetrics.widthPixels;
+        int height = mDisplayMetrics.heightPixels;
+        float density = mDisplayMetrics.density;
+        int densityDpi = mDisplayMetrics.densityDpi;
+        Log.d(TAG,"Screen Ratio: ["+width+"x"+height+"],density="+density+",densityDpi="+densityDpi);
+        Log.d(TAG,"Screen mDisplayMetrics: "+mDisplayMetrics);
+
+    }
 
 }

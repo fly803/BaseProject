@@ -6,4 +6,6 @@
     <string name="title_activity_movie_list">MovieListActivity</string>
     <string name="title_activity_girl_list">GirlListActivity</string>
     <string name="title_activity_resolution_adaption_demo">ResolutionAdaptionDemoActivity</string>
+    <string name="title_activity_screen_info">ScreenInfoActivity</string>
+    <string name="title_activity_resolution_test">ResolutionTestActivity</string>
 </resources>

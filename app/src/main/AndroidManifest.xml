@@ -44,6 +44,16 @@
             android:label="@string/title_activity_resolution_adaption_demo"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
+        <activity
+            android:name=".activity.ScreenInfoActivity"
+            android:label="@string/title_activity_screen_info"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity
+            android:name=".activity.ResolutionTestActivity"
+            android:label="@string/title_activity_resolution_test"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
     </application>
 
 </manifest>

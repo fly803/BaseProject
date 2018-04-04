@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:gravity="center"
+              android:orientation="vertical">
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getTotalScreenHeight"
+        android:text="返回包括虚拟键在内的总的屏幕高度" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getScreenWidth"
+        android:text="返回屏幕的宽度" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getAvailableScreenHeight"
+        android:text="返回屏幕可用高度" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getStatusBarHeight"
+        android:text="状态栏高度" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getVirtualBarHeightIfRoom"
+        android:text="获取虚拟按键的高度，会根据当前是否有显示虚拟按键来返回相应的值" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getVirtualBarHeight"
+        android:text="获取虚拟按键的高度，不论虚拟按键是否显示都会返回其固定高度" />
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="getTitleHeight"
+        android:text="标题栏高度，如果隐藏了标题栏则返回零" />
+
+</LinearLayout>
