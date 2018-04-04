@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.cg.baseproject.test.activity.ResolutionAdaptionDemoActivity">
+    tools:context="com.ivy.baseproject.test.activity.ResolutionAdaptionDemoActivity">
     <include layout="@layout/content_resolution_adaption_demo"/>
     
 

@@ -1,34 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.cg.baseproject.test.activity.ResolutionTestActivity">
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            xmlns:tools="http://schemas.android.com/tools"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            >
 
-    <android.support.design.widget.AppBarLayout
+    <LinearLayout
+        android:id="@+id/linear"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:orientation="vertical"
+        android:paddingTop="@dimen/x15">
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbar"
+        <TextView
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/AppTheme.PopupOverlay"/>
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x15"
+            android:gravity="center"
+            android:lineSpacingExtra="@dimen/x3"
+            android:text="@string/description" />
 
-    </android.support.design.widget.AppBarLayout>
+        <TextView
+            android:id="@+id/metrics_argus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x15"
+            android:layout_marginLeft="@dimen/x15"
+            android:lineSpacingExtra="@dimen/x3" />
 
-    <include layout="@layout/content_resolution_test"/>
 
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fab"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom|end"
-        android:layout_margin="@dimen/fab_margin"
-        app:srcCompat="@android:drawable/ic_dialog_email"/>
+        <TextView
+            android:id="@+id/view_match"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x15"
+            android:background="#8891FFCA"
+            android:gravity="center"
+            android:text="match" />
 
-</android.support.design.widget.CoordinatorLayout>
+        <TextView
+            android:id="@+id/view_xmatch"
+            android:layout_width="@dimen/x360"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x15"
+            android:background="#8891FFCA"
+            android:gravity="center"
+            android:text="360dp" />
+
+        <TextView
+            android:layout_width="@dimen/x180"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/x15"
+            android:background="#8891FFCA"
+            android:gravity="center"
+            android:text="180dp" />
+
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/x150">
+
+            <View
+                android:id="@+id/middle_guide_line"
+                android:layout_width="1dp"
+                android:layout_height="match_parent"
+                android:layout_centerHorizontal="true"
+                android:background="@android:color/black" />
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_toLeftOf="@id/middle_guide_line">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="toCalculatePage"
+                    android:text="基准参数计算方式"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/sp_12" />
+
+            </FrameLayout>
+
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentRight="true"
+                android:layout_toRightOf="@id/middle_guide_line">
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:onClick="toImmersivePage"
+                    android:text="-v19文件夹的作用"
+                    android:textColor="#333333"
+                    android:textSize="@dimen/sp_12" />
+
+            </FrameLayout>
+
+        </RelativeLayout>
+
+
+    </LinearLayout>
+
+</ScrollView>
+
+
+
+

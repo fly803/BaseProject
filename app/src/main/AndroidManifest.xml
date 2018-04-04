@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest package="com.cg.baseproject.test"
+<manifest package="com.ivy.baseproject.test"
           xmlns:android="http://schemas.android.com/apk/res/android">
 
     <meta-data
