@@ -73,4 +73,5 @@ dependencies {
     implementation ext.logger
     implementation ext.easyPermissions
     implementation ext.fastjson
+    implementation ext.jjwt
 }

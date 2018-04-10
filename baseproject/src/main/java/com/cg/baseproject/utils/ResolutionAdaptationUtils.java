@@ -10,6 +10,8 @@ import android.view.Display;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.cg.baseproject.R;
+
 import java.lang.reflect.Method;
 
 public class ResolutionAdaptationUtils {
@@ -438,7 +440,7 @@ public class ResolutionAdaptationUtils {
      * Android机顶盒信息
      * @param activity
      */
-    public static void getAndriodTvResolutionInfo(Activity activity) {
+    public static void getAndriodTvResolutionInfo(Context context,Activity activity) {
         DisplayMetrics metric = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(metric);
         // 屏幕宽度（像素） 
@@ -449,17 +451,10 @@ public class ResolutionAdaptationUtils {
         float density = metric.density;
         // 屏幕密度DPI（160 / 240 / 320） 
         int densityDpi = metric.densityDpi;
-        String info = "机顶盒型号: " 
-                + android.os.Build.MODEL 
-                + ",\nSDK版本:" 
-                + android.os.Build.VERSION.SDK + ",\n系统版本:" 
-                + android.os.Build.VERSION.RELEASE 
-                + "\n屏幕宽度（像素）: " 
-                + width + "\n屏幕高度（像素）: " 
-                + height + "\n屏幕密度: " 
-                + density + "\n屏幕密度DPI: " 
-                + densityDpi;
-        Log.d("System INFO", info);
+        String info = "机顶盒型号: " + android.os.Build.MODEL + ",\nSDK版本:" + android.os.Build.VERSION.SDK + ",\n系统版本:" 
+                + android.os.Build.VERSION.RELEASE + "\n屏幕宽度（像素）: " + width + "\n屏幕高度（像素）: " + height + "\n屏幕密度: " 
+                + density + "\n屏幕密度DPI: " + densityDpi +"\n1dp像素: "+context.getResources().getDimension(R.dimen.xxxvalues);
+        Log.d(TAG, info);
     }
 
 }

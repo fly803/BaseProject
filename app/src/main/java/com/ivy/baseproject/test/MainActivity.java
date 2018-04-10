@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
-        ResolutionAdaptationUtils.getScreenSizeOfDevice(this,this);
+        ResolutionAdaptationUtils.getAndriodTvResolutionInfo(this,this);
         try {
             AdbUtils.doCmds("adb shell dumpsys");
         } catch (Exception e) {
