@@ -13,7 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:background="@drawable/bg_list_item"
-        android:text="ADD"
+        android:text="分辨率测试dimens"
         android:gravity="center"
         android:textColor="@color/main_black_third"
         android:textSize="16sp" />

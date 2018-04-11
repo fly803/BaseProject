@@ -1,5 +1,6 @@
 package com.ivy.baseproject.test;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
@@ -24,6 +25,7 @@ import com.cg.baseproject.interfaces.SubscriberOnNextListener;
 import com.cg.baseproject.request.data.pojo.IpResult;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
+import com.cg.baseproject.utils.ResolutionAdaptationUtils;
 import com.cg.baseproject.utils.SharedPreferencesUtils;
 import com.ivy.baseproject.test.activity.NetImageActivity;
 import com.ivy.baseproject.test.activity.ResolutionTestActivity;
@@ -149,11 +151,24 @@ public class MainActivity extends AppCompatActivity {
                 resolutionTest();
                 break;
             default:
+                testResolution(this);
                 Snackbar.make(mRecyclerView, "没有方法执行", Snackbar.LENGTH_SHORT).show();
                 break;
         }
     }
 
+    public void testResolution(Context context) {
+        Log.d("cg", "testResolution: "+ ResolutionAdaptationUtils.getResolutionInfo(context));
+        //        Log.d("cg", "getBottomStatusHeight: "+ResolutionAdaptationUtils.getBottomStatusHeight(this));
+        //        Log.d("cg", "getNavigationBarHeight: "+ResolutionAdaptationUtils.getNavigationBarHeight(this));
+        Log.d("cg", "xxxvalues: " + getResources().getDimension(R.dimen.xxxvalues));
+        Log.d("cg", "dimen_values: " + getResources().getDimension(R.dimen.dimen_values));
+        //        Log.d("cg", "px1: "+getResources().getDimension(R.dimen.px1));
+        //        Log.d("cg", "testResolution getPPI: "+ResolutionAdaptationUtils.getPPI(3840,2160,65));
+        //        Log.d("cg", "witch values dimens pick_values:"+getResources().getDimension(R.dimen.pick_values)/ ResolutionAdaptationUtils.getDipScale(this));
+        //        Log.d("cg", "witch values dimens dp:"+getResources().getDimension(R.dimen.witch_values)/ResolutionAdaptationUtils.getDipScale(this));
+    }
+    
     private void resolutionTest(){
         Intent intentResolutionTest = new Intent(MainActivity.this, ResolutionTestActivity.class);
         startActivity(intentResolutionTest);
@@ -275,7 +290,8 @@ public class MainActivity extends AppCompatActivity {
         public void onClick(View v) {
             Item item = (Item) v.getTag();
             if (item == null) {
-                Snackbar.make(mRecyclerView, "ADD", Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(mRecyclerView, "测试分辨率Dimens", Snackbar.LENGTH_SHORT).show();
+                testResolution(MainActivity.this);
             } else {
                 runMethod(item.getMethod());
             }
