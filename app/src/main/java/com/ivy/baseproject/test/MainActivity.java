@@ -2,9 +2,11 @@ package com.ivy.baseproject.test;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.ColorInt;
 import android.support.annotation.DrawableRes;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
@@ -14,6 +16,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -127,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
         return records;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void runMethod(String methodName){
         switch (methodName) {
             case "getRequest":
@@ -152,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 break;
             default:
                 testResolution(this);
+                ResolutionAdaptationUtils.showNavBar(MainActivity.this);
                 Snackbar.make(mRecyclerView, "没有方法执行", Snackbar.LENGTH_SHORT).show();
                 break;
         }
@@ -285,18 +290,23 @@ public class MainActivity extends AppCompatActivity {
         updateMode();
     }
 
+    int isShow = 0;
     private View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onClick(View v) {
             Item item = (Item) v.getTag();
             if (item == null) {
                 Snackbar.make(mRecyclerView, "测试分辨率Dimens", Snackbar.LENGTH_SHORT).show();
                 testResolution(MainActivity.this);
+                ResolutionAdaptationUtils.hideNavBar(MainActivity.this);
+                isShow = 1;
             } else {
                 runMethod(item.getMethod());
             }
         }
     };
+
     
     private int getBgColor(int position) {
         int index = position % BG_COLORS.length;

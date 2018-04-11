@@ -4,9 +4,12 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
+import android.os.Build;
+import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
+import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
@@ -455,6 +458,28 @@ public class ResolutionAdaptationUtils {
                 + android.os.Build.VERSION.RELEASE + "\n屏幕宽度（像素）: " + width + "\n屏幕高度（像素）: " + height + "\n屏幕密度: " 
                 + density + "\n屏幕密度DPI: " + densityDpi +"\n1dp像素: "+context.getResources().getDimension(R.dimen.xxxvalues);
         Log.d(TAG, info);
+    }
+
+    /**
+     * 隐藏虚拟键
+     * @param activity
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void hideNavBar(Activity activity) {
+        int flag = View.SYSTEM_UI_FLAG_HIDE_NAVIGATION ;// hide
+        // 获取属性
+        activity.getWindow().getDecorView().setSystemUiVisibility(flag);
+    }
+
+    /**
+     * 显示虚拟键
+     * @param activity
+     */
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+    public static void showNavBar(Activity activity) {
+        int flag = View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR; // show
+        // 获取属性
+        activity.getWindow().getDecorView().setSystemUiVisibility(flag);
     }
 
 }
