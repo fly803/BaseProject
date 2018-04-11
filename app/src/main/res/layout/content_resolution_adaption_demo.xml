@@ -20,7 +20,7 @@
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_item1"
         android:layout_width="0dp"
-        android:layout_height="@dimen/y300"
+        android:layout_height="@dimen/px300"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

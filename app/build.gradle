@@ -14,7 +14,7 @@ android {
         versionCode config.versionCode
         versionName config.versionName
         vectorDrawables.useSupportLibrary = true
-//        multiDexEnabled true
+        multiDexEnabled true
     }
     dexOptions {
         preDexLibraries true

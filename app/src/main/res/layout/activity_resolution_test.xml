@@ -10,47 +10,47 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:paddingTop="@dimen/x15">
+        android:paddingTop="@dimen/px15">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/x15"
+            android:layout_marginBottom="@dimen/px15"
             android:gravity="center"
-            android:lineSpacingExtra="@dimen/x3"
+            android:lineSpacingExtra="@dimen/px3"
             android:text="@string/description" />
 
         <TextView
             android:id="@+id/metrics_argus"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/x15"
-            android:layout_marginLeft="@dimen/x15"
-            android:lineSpacingExtra="@dimen/x3" />
+            android:layout_marginBottom="@dimen/px15"
+            android:layout_marginLeft="@dimen/px15"
+            android:lineSpacingExtra="@dimen/px3" />
 
 
         <TextView
             android:id="@+id/view_match"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/x15"
+            android:layout_marginBottom="@dimen/px15"
             android:background="#8891FFCA"
             android:gravity="center"
             android:text="match" />
 
         <TextView
             android:id="@+id/view_xmatch"
-            android:layout_width="@dimen/x360"
+            android:layout_width="@dimen/px360"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/x15"
+            android:layout_marginBottom="@dimen/px15"
             android:background="#8891FFCA"
             android:gravity="center"
             android:text="360dp" />
 
         <TextView
-            android:layout_width="@dimen/x180"
+            android:layout_width="@dimen/px180"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/x15"
+            android:layout_marginBottom="@dimen/px15"
             android:background="#8891FFCA"
             android:gravity="center"
             android:text="180dp" />
@@ -58,7 +58,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="@dimen/x150">
+            android:layout_height="@dimen/px150">
 
             <View
                 android:id="@+id/middle_guide_line"
