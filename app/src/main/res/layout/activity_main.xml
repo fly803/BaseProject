@@ -7,108 +7,22 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/btn_get"
-        android:layout_width="89dp"
-        android:layout_height="46dp"
-        android:layout_marginTop="8dp"
-        android:text="Get请求"
-        app:layout_constraintEnd_toStartOf="@+id/btn_post"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread"
+    <com.ivy.baseproject.test.view.decoration.swtichgridlist.AutoFitRecyclerView
+        android:id="@+id/recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:clipToPadding="false"
+        android:gravity="center_horizontal"
+        android:layoutAnimation="@anim/grid_layout_animation"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:paddingTop="16dp"
+        android:scrollbars="none"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"/>
-
-    <Button
-        android:id="@+id/btn_post"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post请求"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_get"
-        app:layout_constraintEnd_toStartOf="@+id/btn_netimage"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_get"
-        app:layout_constraintTop_toTopOf="@+id/btn_get"/>
-
-    <Button
-        android:id="@+id/btn_netimage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="网络图片"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_post"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_post"
-        app:layout_constraintTop_toTopOf="@+id/btn_post"
-        app:layout_constraintVertical_bias="0.0"/>
-
-    <Button
-        android:id="@+id/btn_rxget"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:layout_marginStart="8dp"
-        android:text="Rx_Get"
-        app:layout_constraintEnd_toStartOf="@+id/btn_rxpost"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btn_get"/>
-
-    <Button
-        android:id="@+id/btn_rxpost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="31dp"
-        android:text="Rx_Post"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_rxget"
-        app:layout_constraintEnd_toStartOf="@+id/btn_switch_baseurl"
-        app:layout_constraintTop_toTopOf="@+id/btn_rxget"/>
-
-    <Button
-        android:id="@+id/btn_switch_baseurl"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:text="切换Baseurl"
-        app:layout_constraintBottom_toBottomOf="@+id/btn_rxpost"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/btn_rxpost"/>
-
-    <Button
-        android:id="@+id/btn_dimens"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:text="分辨率适配"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/btn_resolution_test"
-        app:layout_constraintHorizontal_chainStyle="spread"
-        app:layout_constraintTop_toBottomOf="@+id/btn_rxget"
-        app:layout_constraintVertical_bias="1.0"/>
-
-    <Button
-        android:id="@+id/btn_resolution_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="10dp"
-        android:text="分辨率测试"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button9"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_dimens"
-        app:layout_constraintTop_toTopOf="@+id/button9"
-        app:layout_constraintVertical_bias="1.0"/>
-
-    <Button
-        android:id="@+id/button9"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/btn_resolution_test"/>
 
 </android.support.constraint.ConstraintLayout>

@@ -25,7 +25,7 @@ import io.jsonwebtoken.SignatureException;
  性。否则黑客还可以在JWT字符串还没有过期的时间段内，修改请求中的参数，达到攻击的目的。
     另外还要防止重复式攻击，黑客还可以在JWT字符串还没有过期的时间段内，重复提交请求，达到攻击的目的。比如说新增订单的API，如果被黑客采用重
  复式攻击的方式，就会生成多个订单。
- * @author
+ * @author sam
  * @version 1.0
  * @date 2018/4/10
  */

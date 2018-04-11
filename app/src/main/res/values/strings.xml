@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">BaseProject</string>
+    <string name="app_name">BaseProject库测试</string>
     <string name="title_activity_net_image">NetImageActivity</string>
     <string name="movie_list">电影列表</string>
     <string name="award_list">福利列表</string>

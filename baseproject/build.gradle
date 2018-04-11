@@ -49,6 +49,8 @@ dependencies {
 
     testImplementation 'junit:junit:4.12'
     implementation support.multidex
+    implementation support.supportAppcompatV7
+    
     //Rx家族
     implementation ext.rxAndroid
     implementation ext.rxJava

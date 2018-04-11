@@ -176,6 +176,8 @@ ext {
     //热修复／插件化框架
     //动画
     nineoldandroids = "com.nineoldandroids:library:2.4.0"
+    //RecybleView
+    
     /**
      * 权限认证机制
      */
