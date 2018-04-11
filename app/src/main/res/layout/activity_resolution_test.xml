@@ -3,7 +3,7 @@
             xmlns:tools="http://schemas.android.com/tools"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            >
+    >
 
     <LinearLayout
         android:id="@+id/linear"
@@ -18,7 +18,7 @@
             android:layout_marginBottom="@dimen/px15"
             android:gravity="center"
             android:lineSpacingExtra="@dimen/px3"
-            android:text="@string/description" />
+            android:text="@string/description"/>
 
         <TextView
             android:id="@+id/metrics_argus"
@@ -26,7 +26,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/px15"
             android:layout_marginLeft="@dimen/px15"
-            android:lineSpacingExtra="@dimen/px3" />
+            android:lineSpacingExtra="@dimen/px3"/>
 
 
         <TextView
@@ -36,24 +36,24 @@
             android:layout_marginBottom="@dimen/px15"
             android:background="#8891FFCA"
             android:gravity="center"
-            android:text="match" />
+            android:text="match"/>
 
         <TextView
             android:id="@+id/view_xmatch"
-            android:layout_width="@dimen/px360"
+            android:layout_width="@dimen/px1080"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/px15"
             android:background="#8891FFCA"
             android:gravity="center"
-            android:text="360dp" />
+            android:text="px360"/>
 
         <TextView
-            android:layout_width="@dimen/px180"
+            android:layout_width="@dimen/px540"
             android:layout_height="wrap_content"
             android:layout_marginBottom="@dimen/px15"
             android:background="#8891FFCA"
             android:gravity="center"
-            android:text="180dp" />
+            android:text="px180"/>
 
 
         <RelativeLayout
@@ -62,10 +62,10 @@
 
             <View
                 android:id="@+id/middle_guide_line"
-                android:layout_width="1dp"
+                android:layout_width="@dimen/px3"
                 android:layout_height="match_parent"
                 android:layout_centerHorizontal="true"
-                android:background="@android:color/black" />
+                android:background="@android:color/black"/>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -79,7 +79,7 @@
                     android:onClick="toCalculatePage"
                     android:text="基准参数计算方式"
                     android:textColor="#333333"
-                    android:textSize="@dimen/sp_12" />
+                    android:textSize="@dimen/sp50"/>
 
             </FrameLayout>
 
@@ -97,7 +97,7 @@
                     android:onClick="toImmersivePage"
                     android:text="-v19文件夹的作用"
                     android:textColor="#333333"
-                    android:textSize="@dimen/sp_12" />
+                    android:textSize="@dimen/sp50"/>
 
             </FrameLayout>
 
