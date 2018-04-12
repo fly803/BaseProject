@@ -347,20 +347,20 @@ allprojects {
         maven { url "https://jitpack.io" }//加入这一行代码
     }
 }
-```
+
 ##### 在APP的build.gradle dependencies节点下加入
-```Java
+
 implementation 'com.github.fly803:BaseProject:vXXX'
-```
+
 #### 2.clone项目到本地，将BaseProject库直接依赖到项目。
 
 compile project(':BaseProject')
-```
+
 #### 3.aar方式依赖
 ##### 在项目根目录下新建aars文件夹，将BaseProject目录build/outputs下的kutils-release.aar文件copy进aars文件夹  在app的build.gradle 最外层节点加入
-```xml
+
 repositories { flatDir { dirs '../aars' } }
-```
+
 #####   在dependencies节点下加入对aar的依赖
 
 compile(name: 'BaseProject-release', ext: 'aar')
