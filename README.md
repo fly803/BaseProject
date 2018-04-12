@@ -107,31 +107,7 @@ https://github.com/fly803/BaseProject/blob/master/doc/%E5%B7%A5%E5%85%B7%E9%9B%8
  [ValidateUtils](https://github.com/fly803/BaseProject/tree/master/baseproject/src/main/java/com/cg/baseproject/utils/ValidateUtils.java)| 验证工具类
  [ZipUtils](https://github.com/fly803/BaseProject/tree/master/baseproject/src/main/java/com/cg/baseproject/utils/ZipUtils.java)| ZipUtils
 
-#### 仿ios对话框
-#### 效果图  
-![log](https://github.com/devzwy/KUtils/raw/master/images/dialog_2.png)  
-#### 3. 展示仿iOS对话框(底部)
-```Java
-new ActionSheetDialog(mContext)
-                    .builder()
-                    .setCancelable(false)
-                    .setCanceledOnTouchOutside(false)
-                    .setTitle("提示")
-                    .addSheetItem("删除", ActionSheetDialog.SheetItemColor.Red, new ActionSheetDialog.OnSheetItemClickListener() {
-                        @Override
-                        public void onClick(int which) {
 
-                        }
-                    })
-                    .addSheetItem("进入", ActionSheetDialog.SheetItemColor.Blue, new ActionSheetDialog.OnSheetItemClickListener() {
-                        @Override
-                        public void onClick(int which) {
-                            readyGoThenKill(MainActivity.class);
-                        }
-                    }).show();
-```
-#### 效果图  
-![log](https://github.com/devzwy/KUtils/raw/master/images/dialog_3.png)  
 
 ## 基类封装
 --------------------
@@ -295,30 +271,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
 }
 ```
-## 圆角图片及图片加载
--------------------
-
-#### 使用和系统Image相同
-```xml
-<!--border_color  边框的颜色    border_width边框的宽度-->
-<com.zwy.kutils.widget.customview.circleimageview.CircleImageView
-            android:id="@+id/cv"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            app:border_color="@color/blue_3682"
-            app:border_width="2dp"
-            android:layout_alignParentLeft="true"
-            android:layout_centerVertical="true"
-            android:layout_marginLeft="15dp"/>
-```
-
-#### Glide图片加载的简单使用
-```Java
-Glide.with(mContext).load("http://img14.poco.cn/mypoco/myphoto/20130410/14/173420773201304101425203047950463653_010.jpg")
-                .asBitmap().placeholder(R.drawable.nullimg).into(mCv);
-```
-#### 效果图  
-![circleimageview](https://github.com/devzwy/KUtils/raw/master/images/circleimageview.png)  
 
 ## 四、事件总线RxBus
 ### 使用方法
