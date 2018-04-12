@@ -195,6 +195,7 @@ APIWrapper.getInstance().login("username", "password")
 
 
 所以整个逻辑是这样的： 
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/project_res.png) 
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/RetrofitExceptionHandle.png) 
 请求接口和数据解析都可能出错，所以在这两层进行错误处理。为了更好的解耦，我们通过拦截器拦截错误，然后根据错误类型分发信息。
 
