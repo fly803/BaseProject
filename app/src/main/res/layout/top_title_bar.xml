@@ -4,7 +4,7 @@
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
                                              android:layout_height="@dimen/px200"
-                                             android:background="#49c4fa"
+                                             android:background="#38373c"
                                              >
 
     <ImageView
@@ -23,7 +23,7 @@
         android:layout_height="wrap_content"
         android:text="我"
         android:textColor="@color/permissionColorWhite"
-        android:textSize="@dimen/sp90"
+        android:textSize="@dimen/sp70"
         android:textStyle="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
