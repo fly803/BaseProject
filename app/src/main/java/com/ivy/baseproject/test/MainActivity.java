@@ -31,6 +31,7 @@ import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
 import com.cg.baseproject.utils.ResolutionAdaptationUtils;
 import com.cg.baseproject.utils.SharedPreferencesUtils;
 import com.ivy.baseproject.test.activity.NetImageActivity;
+import com.ivy.baseproject.test.activity.ResolutionAdaptionDemoActivity;
 import com.ivy.baseproject.test.activity.ResolutionTestActivity;
 import com.ivy.baseproject.test.api.AppConfig;
 import com.ivy.baseproject.test.api.RequestBusiness;
@@ -180,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resolution(){
-        Intent intentResolutionTest = new Intent(MainActivity.this, ResolutionTestActivity.class);
+        Intent intentResolutionTest = new Intent(MainActivity.this, ResolutionAdaptionDemoActivity.class);
         startActivity(intentResolutionTest);
     }
     

@@ -5,6 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="com.ivy.baseproject.test.activity.ResolutionAdaptionDemoActivity"
     tools:showIn="@layout/activity_resolution_adaption_demo">
@@ -19,18 +20,19 @@
 
     <android.support.constraint.ConstraintLayout
         android:id="@+id/cl_item1"
+        android:background="#FFFFFF"
         android:layout_width="0dp"
-        android:layout_height="@dimen/px300"
+        android:layout_height="@dimen/px160"
+        app:layout_constraintBottom_toTopOf="@+id/imageView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="250dp">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:id="@+id/iv_more_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginEnd="28dp"
+            android:layout_marginEnd="@dimen/px30"
             app:layout_constraintBottom_toBottomOf="@+id/tv_name_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_name_1"
@@ -49,26 +51,27 @@
         <TextView
             android:id="@+id/tv_name_1"
             android:layout_width="wrap_content"
-            android:layout_height="22dp"
-            android:layout_marginStart="56dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/px50"
             android:text="指标1"
+            android:textSize="@dimen/sp50"
             app:layout_constraintBottom_toBottomOf="@+id/iv_icon_1"
             app:layout_constraintStart_toEndOf="@+id/iv_icon_1"
             app:layout_constraintTop_toTopOf="@+id/iv_icon_1"
-            app:layout_constraintVertical_bias="1.0"/>
+            />
 
         <ImageView
             android:id="@+id/iv_icon_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="36dp"
+            android:layout_marginStart="@dimen/px60"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:srcCompat="@drawable/vic_github_1"/>
 
         <ImageView
-            android:id="@+id/imageView7"
+            android:id="@+id/iv_item_line1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintBottom_toTopOf="@+id/iv_line_1"
@@ -78,63 +81,51 @@
 
 
     </android.support.constraint.ConstraintLayout>
+    <![CDATA[
 
-    <android.support.constraint.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="112dp"
+    />
+
+    ]]>
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:srcCompat="@drawable/line_v_grey"/>
+
+    <TextView
+        android:id="@+id/tv_match"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="#ff2fcc87"
+        android:text="match"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView10"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/include2">
+        app:layout_constraintStart_toStartOf="parent"/>
 
-        <ImageView
-            android:id="@+id/imageView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/vic_me_qrcode"
-            tools:layout_editor_absoluteX="453dp"
-            tools:layout_editor_absoluteY="44dp"/>
+    <TextView
+        android:id="@+id/tv_px1080"
+        android:layout_width="@dimen/px1080"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px9"
+        android:background="#fffb7f77"
+        android:text="px1080"
+        app:layout_constraintBottom_toTopOf="@+id/tv_match"
+        app:layout_constraintStart_toStartOf="@+id/tv_match"/>
 
-        <ImageView
-            android:id="@+id/imageView8"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/vbtn_arrow_more"
-            tools:layout_editor_absoluteX="477dp"
-            tools:layout_editor_absoluteY="21dp"/>
+    <TextView
+        android:id="@+id/tv_px540"
+        android:layout_width="@dimen/px540"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/px9"
+        android:background="#fff25f8c"
+        android:text="px540"
+        app:layout_constraintBottom_toTopOf="@+id/tv_px1080"
+        app:layout_constraintStart_toStartOf="@+id/tv_px1080"/>
 
-        <ImageView
-            android:id="@+id/imageView9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:srcCompat="@drawable/vic_portrait_github_cat"
-            tools:layout_editor_absoluteX="16dp"
-            tools:layout_editor_absoluteY="31dp"/>
-
-        <TextView
-            android:id="@+id/tv_nickname"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="章鱼猫"
-            app:layout_constraintStart_toStartOf="@+id/tv_username_tip"
-            tools:layout_editor_absoluteY="8dp"/>
-
-        <TextView
-            android:id="@+id/tv_username_tip"
-            android:layout_width="wrap_content"
-            android:layout_height="18dp"
-            android:text="用户名："
-            app:layout_constraintBaseline_toBaselineOf="@+id/tv_username"
-            tools:layout_editor_absoluteX="158dp"/>
-
-        <TextView
-            android:id="@+id/tv_username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="cg"
-            tools:layout_editor_absoluteX="236dp"
-            tools:layout_editor_absoluteY="67dp"/>
-
-    </android.support.constraint.ConstraintLayout>
 
 </android.support.constraint.ConstraintLayout>
