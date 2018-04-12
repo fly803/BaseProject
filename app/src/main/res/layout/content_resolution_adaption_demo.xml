@@ -30,7 +30,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_name_3"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_name_3"
-            app:layout_constraintVertical_bias="0.461"
+            app:layout_constraintVertical_bias="0.5"
             app:srcCompat="@drawable/vbtn_arrow_more"/>
 
         <ImageView
@@ -62,7 +62,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.482"
+            app:layout_constraintVertical_bias="0.5"
             app:srcCompat="@drawable/vic_github_cat3"/>
 
         <ImageView
@@ -96,7 +96,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_name_2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_name_2"
-            app:layout_constraintVertical_bias="0.461"
+            app:layout_constraintVertical_bias="0.5"
             app:srcCompat="@drawable/vbtn_arrow_more"/>
 
         <ImageView
@@ -128,7 +128,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.482"
+            app:layout_constraintVertical_bias="0.5"
             app:srcCompat="@drawable/vic_github_cat2"/>
 
         <ImageView
@@ -170,7 +170,7 @@
             app:layout_constraintBottom_toBottomOf="@+id/tv_name_1"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/tv_name_1"
-            app:layout_constraintVertical_bias="0.461"
+            app:layout_constraintVertical_bias="0.5"
             app:srcCompat="@drawable/vbtn_arrow_more"/>
 
         <ImageView
@@ -215,11 +215,6 @@
 
 
     </android.support.constraint.ConstraintLayout>
-    <![CDATA[
-
-    />
-
-    ]]>
 
     <ImageView
         android:id="@+id/imageView10"
@@ -263,9 +258,9 @@
 
     <android.support.v7.widget.CardView
         android:id="@+id/cardView"
-        android:layout_marginTop="@dimen/px30"
         android:layout_width="match_parent"
         android:layout_height="@dimen/px400"
+        android:layout_marginTop="@dimen/px30"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/include2">
@@ -342,9 +337,9 @@
             </android.support.constraint.ConstraintLayout>
 
             <ImageView
-                android:id="@+id/imageView8"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/iv_qr_code"
+                android:layout_width="@dimen/px120"
+                android:layout_height="@dimen/px120"
                 app:layout_constraintBottom_toBottomOf="@+id/imageView7"
                 app:layout_constraintEnd_toStartOf="@+id/imageView7"
                 app:layout_constraintTop_toTopOf="@+id/imageView7"
