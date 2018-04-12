@@ -68,6 +68,12 @@ https://github.com/fly803/BaseProject/blob/master/doc/%E5%B7%A5%E5%85%B7%E9%9B%8
 #####工程中使用方法：
 所有效果图宽度标注比如10px，那对应的标注应该是px10
 
+## 二、网络请求框架Retrofit2封装 
+###  Retrofit+RxJava 优雅的处理服务器返回异常、错误 
+异常&错误
+
+实际开发经常有这种情况，比如登录请求，接口返回的
+信息包括请求返回的状态：失败还是成功，错误码，User对象等等。如果网络等原因引起的登录失败可以归结为异常，如果是用户信息输入错误导致的登录失败算是错误。
 
 ## 三、Android基类封装和常用Utils方法
 ### 1.Android常用工具栏
@@ -322,7 +328,6 @@ bus.post(new SomeEvent("Message"));
 
 #### 1.通过jitpack.io仓库方式依赖
 ##### 项目根目录下的build.gradle 中加入
-```Java
 buildscript {
     repositories {
         jcenter()
@@ -348,7 +353,7 @@ allprojects {
 implementation 'com.github.fly803:BaseProject:vXXX'
 ```
 #### 2.clone项目到本地，将BaseProject库直接依赖到项目。
-```Java
+
 compile project(':BaseProject')
 ```
 #### 3.aar方式依赖
@@ -357,9 +362,9 @@ compile project(':BaseProject')
 repositories { flatDir { dirs '../aars' } }
 ```
 #####   在dependencies节点下加入对aar的依赖
-```xml
-compile(name: 'BaseProject-release', ext: 'aar') 
-```
+
+compile(name: 'BaseProject-release', ext: 'aar')
+
 
 ****
 集成过程出现问题可联系本人QQ：356576318(注明来自github)
