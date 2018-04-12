@@ -6,7 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.cg.baseproject.utils.LogUtils;
 import com.cg.baseproject.utils.SPUtils;
 
 

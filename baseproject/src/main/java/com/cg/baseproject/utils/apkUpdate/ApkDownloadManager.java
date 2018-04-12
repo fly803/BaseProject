@@ -8,7 +8,6 @@ import android.os.Environment;
 
 import com.cg.baseproject.BaseApplication;
 import com.cg.baseproject.utils.AppUtils;
-import com.cg.baseproject.utils.LogUtils;
 
 
 /**
