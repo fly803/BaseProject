@@ -284,12 +284,12 @@ Glide.with(mContext).load("http://img14.poco.cn/mypoco/myphoto/20130410/14/17342
 ![circleimageview](https://github.com/devzwy/KUtils/raw/master/images/circleimageview.png)  
 
 ## 四、事件总线RxBus
-# 使用方法
+### 使用方法
 我们推荐获取一个RxBus的单例：
 
 Bus bus = BusProvider.getInstance();
 
-# 订阅Subscribing
+### 订阅Subscribing
 
 为了订阅事件，声明和注解使用 @Subscribe。这方法应该是public和使用only一个single参数
 @Subscribe
@@ -313,16 +313,16 @@ CustomSubscriber<SomeEvent> customSubscriber = bus.obtainSubscriber(SomeEvent.cl
     })
     .withScheduler(Schedulers.trampoline());
 
-# 注册和注销你的观察者，为了收到事件，一个类实例应该注册使用RxBus
+### 注册和注销你的观察者，为了收到事件，一个类实例应该注册使用RxBus
 bus.register(this);
 
-# 这定制的订阅器也需要注册使用RxBus
+这定制的订阅器也需要注册使用RxBus
 bus.registerSubscriber(this, customSubscriber);
 
 请也记得注销RxBus当适当的时候
 bus.unregister(this);
 
-发布事件
+### 发布事件
 
 为了发布一个事件，调用post方法
 bus.post(new SomeEvent("Message"));
