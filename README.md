@@ -69,11 +69,134 @@ https://github.com/fly803/BaseProject/blob/master/doc/%E5%B7%A5%E5%85%B7%E9%9B%8
 所有效果图宽度标注比如10px，那对应的标注应该是px10
 
 ## 二、网络请求框架Retrofit2封装 
-###  Retrofit+RxJava 优雅的处理服务器返回异常、错误 
+###  1.Retrofit+RxJava 优雅的处理服务器返回异常、错误 
 异常&错误
 
 实际开发经常有这种情况，比如登录请求，接口返回的
 信息包括请求返回的状态：失败还是成功，错误码，User对象等等。如果网络等原因引起的登录失败可以归结为异常，如果是用户信息输入错误导致的登录失败算是错误。
+
+假如服务器返回的是统一数据格式：
+
+/**
+ * 标准数据格式
+ * @param <T>
+ */
+public class Response<T> {
+    public int state;
+    public String message;
+    public T data;
+}
+
+    网络异常导致的登录失败，在使用Retrofit+RxJava请求时都会直接调用subscribe的onError事件；
+    密码错误导致的登录失败，在使用Retrofit+RxJava请求时都会调用subscribe的onNext事件；
+
+无论是异常还是错误，都要在subscribe里面处理异常信息，如下代码：
+
+APIWrapper.getInstance().login("username", "password")
+                .subscribe(new Observer<Response<User>>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(Response<User> data) {
+                        if(data.state == 1001){
+                            //.....
+                        }else if(data.state == 1002){
+
+                        }
+                    }
+                });
+
+
+现在我希望在发生任何错误的情况下，都会调用onError事件，并且由model来处理错误信息。那么，此时我们就应该有一个ExceptionEngine来处理事件流中的错误信息了。
+在工作流中处理异常
+
+在正常情况下，我们获取网络数据的流程通常如下：
+
+请求接口->解析数据->更新ＵＩ
+
+整个数据请求过程都是发生在Rx中的工作流之中。当有异常产生的时候，我们要尽量不在ui层里面进行判断，换句话说，我们没有必要去告诉ui层具体的错误信息，只需要让他弹出一个信息（Toast或者Dialog）展示我们给它的信息就行。
+
+统一封装，拦截异常错误
+
+统一封装拦截异常错误主要是为了获取具体的错误信息，分发给上层的UI，给用户以提示，增强用户体验。
+/**
+     * 所以调研接口，统一调用这个方法
+     * @param ob
+     * @param subscriber
+     */
+  public void toSubscribe(Observable ob, final ProgressSubscriber subscriber) {
+    //数据预处理
+    ObservableTransformer<BaseResponse<Object>, Object> result = handleResult();
+    Observable observable = ob.compose(result);
+    observable.subscribeWith(subscriber);
+  }
+
+    /**
+     * 默认情况下,发送者和接收者都运行在主线程,但是这显然是不符合实际需求的,我们在日常使用中,
+     * 通常用的最多的就是在子线程进行各种耗时操作,然后发送到主线程进行,难道我们就没有办法继续
+     * 用这个优秀的库了?想多了你,一个优秀的库如果连这都想不到,怎么能被称为优秀呢,RxJava中有线
+     * 程调度器,通过线程调度器,
+     * 
+     * Transformer的变化:RxJava1.X为rx.Observable.Transformer接口, 继承自
+     * Func1<Observable<T>, Observable<R>>, RxJava2.X为io.reactivex.ObservableTransformer<Upstream, Downstream>,是一个独立的接口。
+     * Flowable则是FlowableTransformer，如果你使用Flowable，以下ObservableTransformer
+     * 替换FlowableTransformer即可。
+     * @param <T>
+     * @return
+     */
+  public static <T> ObservableTransformer<BaseResponse<T>, T> handleResult() {
+    return new ObservableTransformer<BaseResponse<T>, T>() {
+      @Override public Observable<T> apply(Observable<BaseResponse<T>> tObservable) {
+        return tObservable.flatMap(new Function<BaseResponse<T>, ObservableSource<T>>() {
+          @Override public Observable<T> apply(BaseResponse<T> result) {
+            //成功后交给界面处理
+            if (result.getCode() == BaseProjectConfig.SUCCESS_CODE) {
+                return createData(result.getData());
+            } else {
+                //统一处理服务器返回值非正常结果
+                Log.d(BaseProjectConfig.TAG, "统一处理服务器返回值非正常结果apply: " + ServerReturnCode.getReasonByCode(result.getCode()));
+                return Observable.error(new ApiException(ServerReturnCode.getReasonByCode(0)));
+            }
+          }
+        })
+         /*
+          - Schedulers.io()      io操作的线程, 通常io操作,如文件读写,读写数据库、网络信息交互等.
+          - Schedulers.computation()      计算线程,适合高计算,数据量高的操作.
+          - Schedulers.newThread()      创建一个新线程,适合子线程操作.
+          - AndroidSchedulers.mainThread()      Android的主线程,主线程       
+         */
+        .subscribeOn(Schedulers.io()) //线程调度器,将发送者运行在子线程,subscribeOn(),只有在第一次调用的时候生效,之后不管调用多少次,只会以第一次为准.
+        .unsubscribeOn(Schedulers.io())//解除订阅
+//        .subscribeOn(AndroidSchedulers.mainThread())//
+        .observeOn(AndroidSchedulers.mainThread());//接受者运行在主线程 observeOn(),可以被调用多次,每次调用都会更改线程.
+      }
+    };
+  }
+
+  /**
+   * 创建成功的数据,观察者模式,这里产生事件,事件产生后发送给接受者
+   */
+  private static <T> Observable<T> createData(final T data) {
+    return Observable.create(new ObservableOnSubscribe<T>() {
+      @Override public void subscribe(ObservableEmitter<T> e) throws Exception {
+          e.onNext(data);
+          e.onComplete();
+      }
+    });
+  }
+
+
+所以整个逻辑是这样的： 
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/RetrofitExceptionHandle.png) 
+请求接口和数据解析都可能出错，所以在这两层进行错误处理。为了更好的解耦，我们通过拦截器拦截错误，然后根据错误类型分发信息。
 
 ## 三、Android基类封装和常用Utils方法
 ### 1.Android常用工具栏
@@ -333,7 +456,7 @@ buildscript {
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:2.3.3'
+        classpath 'com.android.tools.build:gradle:3.1.0'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
