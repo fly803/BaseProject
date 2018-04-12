@@ -195,9 +195,28 @@ APIWrapper.getInstance().login("username", "password")
 
 
 所以整个逻辑是这样的： 
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/project_res.png) 
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/RetrofitExceptionHandle.png) 
 请求接口和数据解析都可能出错，所以在这两层进行错误处理。为了更好的解耦，我们通过拦截器拦截错误，然后根据错误类型分发信息。
+
+###  2.集成Retrofit封装使用方法
+BaseProject测试工程app工程中的api文件夹拷贝到自己的工程目录下，包含四个文件：
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/api.png) 
+
+在AppConfig里面进行相应的baseurl的设置。
+在RequestApiInterface进行相应的接口设置。
+UrlConstants用来拼接接口字符串。
+
+进行如上操作好，就可以调用相应的接口了，调用方式如下所示。
+ RequestBusiness.getInstance()
+                .toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"),
+                        new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
+                            @Override
+                            public void onNext(IpResult ipResult) {
+                                Log.d(AppConfig.TAG, "!!!onNext: "+ipResult.getCity());
+                                Snackbar.make(mRecyclerView, "postRequest:" + ipResult.getCity(), Snackbar.LENGTH_SHORT).show();
+                            }
+                        }, this));
+由于统一对异常和错误进行了封装，所以只写onNext方法就可以了。
 
 ## 三、Android基类封装和常用Utils方法
 ### 1.Android常用工具栏
