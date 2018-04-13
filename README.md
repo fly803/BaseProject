@@ -82,6 +82,7 @@ https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.j
 
 ##### 项目中具体使用方法：
 拿到效果图:
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/Mark.png) 
 
 ## 二、网络请求框架Retrofit2封装 
 ###  1.Retrofit+RxJava 优雅的处理服务器返回异常、错误 

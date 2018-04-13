@@ -19,7 +19,7 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
@@ -32,7 +32,7 @@
         <activity
             android:name=".activity.MovieListActivity"
             android:label="@string/title_activity_movie_list"
-            android:theme="@style/AppTheme.NoActionBar">
+            >
         </activity>
         <activity
             android:name=".activity.GirlListActivity"
@@ -42,17 +42,17 @@
         <activity
             android:name=".activity.ResolutionAdaptionDemoActivity"
             android:label="@string/title_activity_resolution_adaption_demo"
-            android:theme="@style/AppTheme.NoActionBar">
+            >
         </activity>
         <activity
             android:name=".activity.ScreenInfoActivity"
             android:label="@string/title_activity_screen_info"
-            android:theme="@style/AppTheme.NoActionBar">
+            >
         </activity>
         <activity
             android:name=".activity.ResolutionTestActivity"
             android:label="@string/title_activity_resolution_test"
-            android:theme="@style/AppTheme.NoActionBar">
+            >
         </activity>
     </application>
 
