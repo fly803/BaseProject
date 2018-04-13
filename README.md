@@ -36,7 +36,7 @@ Android项目基础库，包含四大部分：一、分辨率适配 二、网络
 
 ## 一、屏幕分辨率适配
 ### 分辨率适配概述
-该方案参考的了Android适配领域做得比较好的方案，参考了郭霖，Stormzhang，鸿洋和凯子的方案，可以说综合了各家之所长。
+该方案参考的了Android适配领域做得比较好的方案，如郭霖，Stormzhang，鸿洋和凯子的方案，可以说综合了各家之所长。
 以最小的代价，实现最好的适配效果。
 
 #### 基本原理
@@ -62,20 +62,22 @@ App在运行的时候，会在Res下读取对应的dimens文件，BaseProject已
 | 2960 x 1440  | 常见型号三星s9等，dimens实际文件夹 长宽比18.5:9
 
 
-### 使用
-### 有2种使用方法 
-
-### 方法1：
-集成BaseProject，就对默认分辨率都进行了支持。其他分辨率通过doc/工具集/分配率适配dimens工具.jar手动添加
-https://github.com/fly803/BaseProject/blob/master/doc/%E5%B7%A5%E5%85%B7%E9%9B%86/%E5%88%86%E9%85%8D%E7%8E%87%E9%80%82%E9%85%8Ddimens%E5%B7%A5%E5%85%B7.jar
+### 集成分辨率适配
+#### 使用概述 
+有两种集成分辨率适配的方式。
+###### 1.通过Gradle集成BaseProject。集成BaseProject，就对默认分辨率都进行了支持。
+###### 其他分辨率通过doc/工具集/分配率适配dimens工具.jar手动添加，如图所示：
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionTools.png) 
-加需要额外支持的dimens拷贝到自己的工程res下,注意输入的名字是values+xxxdpi+分辨率的形式，如values-xhdpi-960x640
+##### 加需要额外支持的dimens拷贝到自己的工程res下,注意输入的名字是values+xxxdpi+分辨率的形式，如values-xhdpi-960x640
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/dimens.png) 
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/project_res.png) 
-### 方法2：
-分配率适配dimens工具生成dimens，将所有的dimens和相应的文件夹拷贝到自己工程的res文件夹
 
-#####工程中使用方法：
+###### 2.通过BaseProject提供的工具手动集成，利用工具生成dimens，将所有的dimens和相应的文件夹拷贝到自己工程的res文件夹
+###### 分辨率适配工具下载地址：
+https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.jar
+
+
+##### 项目中具体使用方法：
 所有效果图宽度标注比如10px，那对应的标注应该是px10
 
 ## 二、网络请求框架Retrofit2封装 
