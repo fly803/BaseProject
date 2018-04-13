@@ -55,7 +55,7 @@ public class FileUtils {
      * @param context 上下文
      */
     public static void init(Context context) {
-        LogUtils.d(TAG, "Root path is " + ROOT_PATH);
+//        LogUtils.d(TAG, "Root path is " + ROOT_PATH);
         createFileDir(context, CACHE);
     }
     
@@ -1135,7 +1135,7 @@ public class FileUtils {
      * @return
      */
     public static String getInternalPath(Context context) {
-        LogUtils.d(TAG, "internal path is " + context.getFilesDir().getPath());
+//        LogUtils.d(TAG, "internal path is " + context.getFilesDir().getPath());
         return context.getFilesDir().getPath() + context.getPackageName();
     }
 

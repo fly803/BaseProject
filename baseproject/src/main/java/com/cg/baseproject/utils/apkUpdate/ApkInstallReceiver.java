@@ -35,12 +35,12 @@ public class ApkInstallReceiver extends BroadcastReceiver {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         Uri fileUri = downloadManager.getUriForDownloadedFile(downloadId);
         if (null != fileUri) {
-            LogUtils.d(TAG, fileUri.toString());
+//            LogUtils.d(TAG, fileUri.toString());
             intent.setDataAndType(fileUri, "application/vnd.android.package-archive");
             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(intent);
         } else {
-            LogUtils.d(TAG, "无APK，下载失败");
+//            LogUtils.d(TAG, "无APK，下载失败");
         }
     }
 }

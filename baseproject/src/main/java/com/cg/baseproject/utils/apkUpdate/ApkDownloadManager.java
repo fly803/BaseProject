@@ -62,7 +62,7 @@ public class ApkDownloadManager {
         //设置下载文件保存的位置
         //这种保存的形式为file:///storage/emulated/0/Android/data/your-package/files/Download/packageName.apk
         request.setDestinationInExternalFilesDir(context, Environment.DIRECTORY_DOWNLOADS, AppUtils.getPackageName(BaseApplication.getContext()));
-        LogUtils.d(TAG, "APK save path is : " + Environment.DIRECTORY_DOWNLOADS);
+//        LogUtils.d(TAG, "APK save path is : " + Environment.DIRECTORY_DOWNLOADS);
 
         //保存路径还可以自定义
         //request.setDestinationUri();

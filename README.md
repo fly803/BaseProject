@@ -481,19 +481,6 @@ bus.post(new SomeEvent("Message"));
 
 #### 1.通过jitpack.io仓库方式依赖
 ##### 项目根目录下的build.gradle 中加入
-buildscript {
-    repositories {
-        jcenter()
-    }
-    dependencies {
-        classpath 'com.android.tools.build:gradle:3.1.0'
-
-        // NOTE: Do not place your application dependencies here; they belong
-        // in the individual module build.gradle files
-        //greenDao
-        classpath 'org.greenrobot:greendao-gradle-plugin:3.2.1'//加入这一行代码
-    }
-}
 
 allprojects {
     repositories {
