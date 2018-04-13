@@ -278,7 +278,7 @@
                 app:layout_constraintBottom_toBottomOf="@+id/cl_userinfo"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/cl_userinfo"
-                app:srcCompat="@drawable/vic_portrait_github_cat"
+                app:srcCompat="@mipmap/github_cat"
                 />
 
             <ImageView

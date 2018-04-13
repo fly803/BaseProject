@@ -3,15 +3,16 @@
                                              xmlns:app="http://schemas.android.com/apk/res-auto"
                                              xmlns:tools="http://schemas.android.com/tools"
                                              android:layout_width="match_parent"
-                                             android:layout_height="@dimen/px200"
+                                             android:layout_height="@dimen/px120"
                                              android:background="#38373c"
                                              >
 
     <ImageView
-        android:id="@+id/imageView"
+        android:id="@+id/iv_back"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/px24"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/tv_title"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
@@ -31,23 +32,25 @@
         app:layout_constraintTop_toTopOf="parent"/>
 
     <ImageView
-        android:id="@+id/imageView4"
+        android:id="@+id/iv_share"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/px24"
+        android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="@+id/tv_title"
-        app:layout_constraintEnd_toStartOf="@+id/imageView5"
+        app:layout_constraintEnd_toStartOf="@+id/iv_me"
         app:layout_constraintTop_toTopOf="@+id/tv_title"
         app:srcCompat="@drawable/vbtn_titlebar_share"/>
 
     <ImageView
-        android:id="@+id/imageView5"
+        android:id="@+id/iv_me"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/px24"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView4"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_share"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="@+id/iv_share"
         app:srcCompat="@drawable/vbtn_titlebar_me"/>
 
 

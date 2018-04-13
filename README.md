@@ -37,11 +37,12 @@ Android项目基础库，包含四大部分：一、分辨率适配 二、网络
 ## 一、屏幕分辨率适配
 ### 分辨率适配概述
 该方案参考的了Android适配领域做得比较好的方案，如郭霖，Stormzhang，鸿洋和凯子的方案，可以说综合了各家之所长。
-以最小的代价，实现最好的适配效果。
+以最小的代价，实现最好的适配效果。我们都希望分辨率适配是这样。拿到效果图，不需要额外计算，布局直接抄设计图上的尺寸。
+我的适配方案就可以达到这样的效果，你说爽不爽。
 
 #### 基本原理
 App在运行的时候，会在Res下读取对应的dimens文件，BaseProject已经在Res里面对主流的手机的常用分辨率建立的所有的对应关系，
-无需用户额外操作，就可以完美适配主流手机。亲测可以适配市面主流手机的95%。用户如果想适配其他分辨率，也提供了相应的获取方法。
+无需用户额外操作，就可以完美适配主流手机。亲测可以适配市面主流手机的95%，即使默认不能适配的手机，也可以通过本文的工具进行适配（ResolutionTools.png）。用户如果想适配其他分辨率，也提供了相应的获取方法。
 介于低于1280x720的低端手机已经很少，所有960x640,480x320等低分辨率手机没有提供默认支持，如需支持，请手动添加。
 
 #### 默认支持的分辨率：
@@ -71,6 +72,8 @@ App在运行的时候，会在Res下读取对应的dimens文件，BaseProject已
 ##### 加需要额外支持的dimens拷贝到自己的工程res下,注意输入的名字是values+xxxdpi+分辨率的形式，如values-xhdpi-960x640
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/dimens.png) 
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/project_res.png) 
+###### 分辨率适配工具下载地址：
+https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.jar
 
 ###### 2.通过BaseProject提供的工具手动集成，利用工具生成dimens，将所有的dimens和相应的文件夹拷贝到自己工程的res文件夹
 ###### 分辨率适配工具下载地址：
@@ -78,7 +81,7 @@ https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.j
 
 
 ##### 项目中具体使用方法：
-所有效果图宽度标注比如10px，那对应的标注应该是px10
+拿到效果图:
 
 ## 二、网络请求框架Retrofit2封装 
 ###  1.Retrofit+RxJava 优雅的处理服务器返回异常、错误 
@@ -492,7 +495,10 @@ allprojects {
 
 ##### 在APP的build.gradle dependencies节点下加入
 
-implementation 'com.github.fly803:BaseProject:vXXX'
+implementation 'com.github.fly803:BaseProject:v+相应的版本号：例如v1.0'
+
+###### 当前可以下载版本
+implementation 'com.github.fly803:BaseProject:v1.0'
 
 #### 2.clone项目到本地，将BaseProject库直接依赖到项目。
 

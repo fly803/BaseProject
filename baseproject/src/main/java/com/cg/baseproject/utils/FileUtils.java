@@ -59,7 +59,7 @@ public class FileUtils {
         createFileDir(context, CACHE);
     }
     
-    /**
+    /*
      * 创建目录
      *
      * @param context
