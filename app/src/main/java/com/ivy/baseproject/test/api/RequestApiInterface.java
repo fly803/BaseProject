@@ -1,6 +1,6 @@
 package com.ivy.baseproject.test.api;
 
-import com.cg.baseproject.base.BaseResponse;
+import com.cg.baseproject.request.data.BaseResponse;
 import com.cg.baseproject.request.data.bean.GirlsBean;
 import com.cg.baseproject.request.data.entity.HttpResult;
 import com.cg.baseproject.request.data.entity.Subject;

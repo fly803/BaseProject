@@ -1,6 +1,6 @@
 package com.cg.baseproject.request.retrofit.converter;
 
-import com.cg.baseproject.base.BaseResponse;
+import com.cg.baseproject.request.data.BaseResponse;
 import com.cg.baseproject.request.exception.ServerException;
 import com.google.gson.Gson;
 

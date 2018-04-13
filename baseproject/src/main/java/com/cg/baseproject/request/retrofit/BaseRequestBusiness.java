@@ -1,7 +1,7 @@
 package com.cg.baseproject.request.retrofit;
 
 import android.util.Log;
-import com.cg.baseproject.base.BaseResponse;
+import com.cg.baseproject.request.data.BaseResponse;
 import com.cg.baseproject.common.ServerReturnCode;
 import com.cg.baseproject.configs.BaseProjectConfig;
 import com.cg.baseproject.request.exception.ApiException;
