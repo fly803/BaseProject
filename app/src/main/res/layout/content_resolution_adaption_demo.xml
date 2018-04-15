@@ -304,6 +304,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="用户名："
+                    android:textSize="@dimen/sp46"
                     app:layout_constraintBottom_toTopOf="@+id/tv_userid_tip"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"/>
@@ -313,6 +314,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="用户ID："
+                    android:textSize="@dimen/sp46"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="@+id/tv_usename_tip"
                     app:layout_constraintTop_toBottomOf="@+id/tv_usename_tip"/>
@@ -323,6 +325,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/px24"
                     android:text="cg"
+                    android:textSize="@dimen/sp46"
                     app:layout_constraintBaseline_toBaselineOf="@+id/tv_usename_tip"
                     app:layout_constraintStart_toEndOf="@+id/tv_usename_tip"/>
 
@@ -332,6 +335,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/px24"
                     android:text="fly803"
+                    android:textSize="@dimen/sp46"
                     app:layout_constraintBaseline_toBaselineOf="@+id/tv_userid_tip"
                     app:layout_constraintStart_toEndOf="@+id/tv_userid_tip"/>
             </android.support.constraint.ConstraintLayout>
