@@ -196,8 +196,8 @@
 
         <ImageView
             android:id="@+id/iv_icon_1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/px72"
+            android:layout_height="@dimen/px72"
             android:layout_marginStart="@dimen/px60"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -271,9 +271,9 @@
             android:layout_height="match_parent">
 
             <ImageView
-                android:id="@+id/imageView6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/iv_portrait"
+                android:layout_width="@dimen/px210"
+                android:layout_height="@dimen/px183"
                 android:layout_marginStart="@dimen/px24"
                 app:layout_constraintBottom_toBottomOf="@+id/cl_userinfo"
                 app:layout_constraintStart_toStartOf="parent"
@@ -282,7 +282,7 @@
                 />
 
             <ImageView
-                android:id="@+id/imageView7"
+                android:id="@+id/iv_userinfo_more"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="@dimen/px30"
@@ -296,7 +296,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/px220"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/imageView6"
+                app:layout_constraintStart_toEndOf="@+id/iv_portrait"
                 app:layout_constraintTop_toTopOf="parent">
 
                 <TextView
@@ -344,9 +344,9 @@
                 android:id="@+id/iv_qr_code"
                 android:layout_width="@dimen/px120"
                 android:layout_height="@dimen/px120"
-                app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-                app:layout_constraintEnd_toStartOf="@+id/imageView7"
-                app:layout_constraintTop_toTopOf="@+id/imageView7"
+                app:layout_constraintBottom_toBottomOf="@+id/iv_userinfo_more"
+                app:layout_constraintEnd_toStartOf="@+id/iv_userinfo_more"
+                app:layout_constraintTop_toTopOf="@+id/iv_userinfo_more"
                 app:layout_constraintVertical_bias="0.5"
                 app:srcCompat="@mipmap/qr_code"/>
 

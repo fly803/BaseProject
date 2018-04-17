@@ -80,10 +80,45 @@ https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.j
 https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.jar
 
 
-##### 项目中具体使用方法：
+###### 项目中具体使用方法：
 拿到效果图:
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/Mark.png) 
-直接根据效果图输入相应的尺寸，只是写法上，如果是1px，改成px1就可以了
+
+##### 按照我们的思想：
+
+    布局直接抄设计图上的尺寸
+
+##### 布局文库应该这么写：
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/mark_layout.png) 
+
+##### 来张组合图，直接根据效果图输入相应的尺寸，只是写法上，如果是1px，改成px1就可以了，感受一下：
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/mark_compare.png) 
+##### 感受完了，想一想，按照这种方式去写布局你说爽不爽。
+
+##### 首先说一下：这个px并不代表px1像素，我在内部会进行dp处理，转成相应手机对应的尺寸。这就是本库适配的原理。
+
+##### 接下来：看下不同手机，不同分辨率下的效果：
+三星S7 分辨率:2560x1440
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/S7.png) 
+
+Google pixsel XL 分辨率：2560x1440 带虚拟键
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/Pixsel_XL.png) 
+
+Google pixsel2 分辨率：1920x1080 带虚拟键
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/Pixcel2.png) 
+
+华为P9 分辨率：1920x1080
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/P9.png) 
+
+
+联想手机 分辨率：1280x720
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/720.png)
+
+上述若干不同分辨率的手机，完美实现了适配，最为重要的是：
+
+    再也不用拿着设计稿去想这控件的宽高到底取多少dp
+    再也不用去计算百分比了（如果使用百分比控件完成适配）
+    再也不用去跟UI MM去解释什么是dp了
 
 ## 二、网络请求框架Retrofit2封装 
 ###  1.Retrofit+RxJava 优雅的处理服务器返回异常、错误 
@@ -224,6 +259,7 @@ BaseProject测试工程app工程中的api文件夹拷贝到自己的工程目录
 UrlConstants用来拼接接口字符串。
 
 进行如上操作好，就可以调用相应的接口了，调用方式如下所示。
+```Java
  RequestBusiness.getInstance()
                 .toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"),
                         new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
@@ -233,6 +269,7 @@ UrlConstants用来拼接接口字符串。
                                 Snackbar.make(mRecyclerView, "postRequest:" + ipResult.getCity(), Snackbar.LENGTH_SHORT).show();
                             }
                         }, this));
+```
 由于统一对异常和错误进行了封装，所以只写onNext方法就可以了。
 
 ## 三、Android基类封装和常用Utils方法
@@ -517,6 +554,7 @@ compile(name: 'BaseProject-release', ext: 'aar')
 
 
 ****
+项目地址：https://github.com/fly803/BaseProject
 集成过程出现问题可联系本人QQ：356576318(注明来自github)
 ****
 
@@ -535,4 +573,5 @@ compile(name: 'BaseProject-release', ext: 'aar')
     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
     See the License for the specific language governing permissions and
     limitations under the License.
+    Project location：https://github.com/fly803/BaseProject
 [点我回到顶部](#readme)
