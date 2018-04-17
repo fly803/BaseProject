@@ -92,7 +92,7 @@ https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.j
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/mark_layout.png) 
 
 ##### 来张组合图，直接根据效果图输入相应的尺寸，只是写法上，如果是1px，改成px1就可以了，感受一下：
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/mark_compare.png) 
+![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/mark_compare.jpg) 
 ##### 感受完了，想一想，按照这种方式去写布局你说爽不爽。
 
 ##### 首先说一下：这个px并不代表px1像素，我在内部会进行dp处理，转成相应手机对应的尺寸。这就是本库适配的原理。
