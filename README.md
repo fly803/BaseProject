@@ -145,14 +145,12 @@ public class Response<T> {
     密码错误导致的登录失败，在使用Retrofit+RxJava请求时都会调用subscribe的onNext事件；
 
 无论是异常还是错误，都要在subscribe里面处理异常信息，如下代码：
-
+```Java
 APIWrapper.getInstance().login("username", "password")
                 .subscribe(new Observer<Response<User>>() {
                     @Override
                     public void onCompleted() {
-
                     }
-
                     @Override
                     public void onError(Throwable e) {
 
@@ -167,6 +165,8 @@ APIWrapper.getInstance().login("username", "password")
                         }
                     }
                 });
+```
+
 
 
 现在我希望在发生任何错误的情况下，都会调用onError事件，并且由model来处理错误信息。那么，此时我们就应该有一个ExceptionEngine来处理事件流中的错误信息了。
@@ -264,14 +264,14 @@ UrlConstants用来拼接接口字符串。
 进行如上操作好，就可以调用相应的接口了，调用方式如下所示。
 ```Java
  RequestBusiness.getInstance()
-                .toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"),
-                        new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
-                            @Override
-                            public void onNext(IpResult ipResult) {
-                                Log.d(AppConfig.TAG, "!!!onNext: "+ipResult.getCity());
-                                Snackbar.make(mRecyclerView, "postRequest:" + ipResult.getCity(), Snackbar.LENGTH_SHORT).show();
-                            }
-                        }, this));
+.toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"),
+        new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
+            @Override
+            public void onNext(IpResult ipResult) {
+                Log.d(AppConfig.TAG, "!!!onNext: "+ipResult.getCity());
+                Snackbar.make(mRecyclerView, "postRequest:" + ipResult.getCity(), Snackbar.LENGTH_SHORT).show();
+            }
+        }, this));
 ```
 由于统一对异常和错误进行了封装，所以只写onNext方法就可以了。
 
@@ -487,12 +487,14 @@ Bus bus = BusProvider.getInstance();
 ### 订阅Subscribing
 
 为了订阅事件，声明和注解使用 @Subscribe。这方法应该是public和使用only一个single参数
+```Java
 @Subscribe
 public void onEvent(SomeEvent event) {
     // TODO: Do something
 }
-
+```
 你应该也创建订阅像下面这样：
+```Java
 CustomSubscriber<SomeEvent> customSubscriber = bus.obtainSubscriber(SomeEvent.class,
     new Consumer<SomeEvent>() {
         @Override
@@ -507,7 +509,7 @@ CustomSubscriber<SomeEvent> customSubscriber = bus.obtainSubscriber(SomeEvent.cl
         }
     })
     .withScheduler(Schedulers.trampoline());
-
+```
 ### 注册和注销你的观察者，为了收到事件，一个类实例应该注册使用RxBus
 bus.register(this);
 
