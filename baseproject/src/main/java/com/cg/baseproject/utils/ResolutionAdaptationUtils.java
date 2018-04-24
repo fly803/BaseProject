@@ -95,6 +95,16 @@ public class ResolutionAdaptationUtils {
         return pxValue / scale;
     }
 
+    public static float convertPixelsToDp(float px, Context context){
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        return px / (metrics.densityDpi / 160f);
+    }
+
+    public static float convertDpToPixel(float dp, Context context){
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        return dp * (metrics.densityDpi / 160f);
+    }
+    
     /**
      * 手动计算设备的屏幕像素密度
      *
