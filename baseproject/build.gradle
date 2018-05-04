@@ -1,7 +1,7 @@
 apply plugin: 'com.android.library'
 apply plugin: 'com.github.dcendents.android-maven'
 
-group='com.github.fly803'
+group = 'com.github.fly803'
 
 def ext = rootProject.ext
 def config = rootProject.ext.android // 配置
@@ -47,10 +47,12 @@ android {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
+    implementation 'com.android.support:support-v4:27.1.1'
     testImplementation 'junit:junit:4.12'
     implementation support.multidex
     implementation support.supportAppcompatV7
-    
+    implementation support.design
+
     //Rx家族
     implementation ext.rxAndroid
     implementation ext.rxJava

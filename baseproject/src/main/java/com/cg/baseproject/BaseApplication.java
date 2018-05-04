@@ -40,6 +40,10 @@ public class BaseApplication extends MultiDexApplication {
 //        crashHandler.init(this);
     }
 
+    private void initFragmentation() {
+
+    }
+
     /**
      * 得到登录用户id
      * @return
