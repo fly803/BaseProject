@@ -7,8 +7,17 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.KeyEvent;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.LinearLayout;
+import android.widget.Toast;
+
+import com.cg.baseproject.R;
 import com.cg.baseproject.manager.ActivityStackManager;
 import com.cg.baseproject.manager.ScreenManager;
+
+import java.security.KeyStore;
 
 /**
  * @author sam
@@ -18,6 +27,9 @@ import com.cg.baseproject.manager.ScreenManager;
  */
 public abstract class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
+    protected LinearLayout badnetworkLayout,
+            loadingLayout;
+    protected LayoutInflater inflater;
     /**
      * 是否沉浸状态栏
      **/
@@ -40,6 +52,12 @@ public abstract class BaseActivity extends AppCompatActivity {
      **/
     private boolean isDebug;
 
+    private boolean isBackExit = true;
+
+    //布局中Fragment的ID
+    protected abstract int getFragmentContentId();
+
+
     /**
      * 初始化界面
      **/
@@ -61,7 +79,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "--->onCreate()");
+        setContentView(R.layout.activity_base);
         initView();
+        initBaseActivityView(true);
+        inflater = LayoutInflater.from(this);
         initData();
         setEvent();
         ctx = this;
@@ -72,6 +93,10 @@ public abstract class BaseActivity extends AppCompatActivity {
         screenManager.setFullScreen(isFullScreen, this);
     }
 
+    private void initBaseActivityView(boolean isShow){
+        badnetworkLayout = (LinearLayout) findViewById(R.id.baseactivity_badnetworkLayout);
+        loadingLayout = (LinearLayout) findViewById(R.id.baseactivity_loadingLayout);
+    }
     /**
      * 跳转Activity
      * skip Another Activity
@@ -94,6 +119,8 @@ public abstract class BaseActivity extends AppCompatActivity {
         ActivityStackManager.getActivityStackManager().popAllActivity();//remove all activity.
         System.exit(0);//system exit.
     }
+    
+    
     /**
      * [是否设置沉浸状态栏]
      * @param statusBar
@@ -118,6 +145,84 @@ public abstract class BaseActivity extends AppCompatActivity {
         isScreenRoate = screenRoate;
     }
 
+    /**
+     * [是否连续两次返回退出]
+     *
+     */
+    public void setBackExit(boolean isBackExit) {
+        this.isBackExit = isBackExit;
+    }
+
+    private long exitTime;
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (keyCode == KeyEvent.KEYCODE_BACK
+                && event.getAction() == KeyEvent.ACTION_DOWN) {
+            if (isBackExit) {
+                if ((System.currentTimeMillis() - exitTime) > 2000) {
+                    Toast.makeText(getApplicationContext(), "再按一次退出程序",
+                            Toast.LENGTH_SHORT).show();
+                    exitTime = System.currentTimeMillis();
+                } else {
+                    System.exit(0);
+                }
+            }
+            return true;
+        }
+        return super.onKeyDown(keyCode, event);
+    }
+
+    /*
+     * 显示加载前的动画
+     */
+    protected void showLoadingLayout() {
+        loadingLayout.setVisibility(View.VISIBLE);
+        badnetworkLayout.setVisibility(View.GONE);
+        // ImageView loading_imageView = (ImageView) loadingLayout
+        // .findViewById(R.id.loading_imageView);
+        // loading_imageView.setBackgroundResource(R.anim.loading);
+        // AnimationDrawable animationDrawable = (AnimationDrawable)
+        // loading_imageView
+        // .getBackground();
+        // animationDrawable.start();
+    }
+
+    /*
+     * 加载失败或没网络
+     */
+    protected void showBadnetworkLayout() {
+        loadingLayout.setVisibility(View.GONE);
+        badnetworkLayout.setVisibility(View.VISIBLE);
+    }
+
+    /**
+     * 加载完
+     */
+    protected void showContextLayout() {
+        loadingLayout.setVisibility(View.GONE);
+        badnetworkLayout.setVisibility(View.GONE);
+    }
+
+    //添加fragment
+    protected void addFragment(BaseFragment fragment) {
+        if (fragment != null) {
+            getSupportFragmentManager().beginTransaction()
+                    .replace(getFragmentContentId(), fragment, fragment.getClass().getSimpleName())
+                    .addToBackStack(fragment.getClass().getSimpleName())
+                    .commitAllowingStateLoss();
+        }
+    }
+
+    //移除fragment
+    protected void removeFragment() {
+        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
+            getSupportFragmentManager().popBackStack();
+        } else {
+            finish();
+        }
+    }
+    
     @Override
     protected void onStart() {
         super.onStart();

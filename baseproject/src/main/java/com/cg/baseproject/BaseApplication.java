@@ -1,10 +1,17 @@
 package com.cg.baseproject;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
 import com.cg.baseproject.crash.CrashHandler;
+import com.cg.baseproject.manager.FragmentManage;
 import com.squareup.leakcanary.LeakCanary;
+
+import java.util.Set;
+
+import me.yokeyword.fragmentation.Fragmentation;
+import me.yokeyword.fragmentation.helper.ExceptionHandler;
 
 /**
  * @author
@@ -14,7 +21,8 @@ import com.squareup.leakcanary.LeakCanary;
 public class BaseApplication extends MultiDexApplication {
     private static Context mContext;
     private static String uid ="10001";//用户id，用户唯一标识
-
+    private Set<Activity> allActivities;
+    
     @Override
     public void onCreate() {
         super.onCreate();
@@ -38,12 +46,43 @@ public class BaseApplication extends MultiDexApplication {
         LeakCanary.install(this);
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(this);
+        initFragmentation();
     }
 
     private void initFragmentation() {
-
+        Fragmentation.builder()
+                // 设置 栈视图 模式为 （默认）悬浮球模式   SHAKE: 摇一摇唤出  NONE：隐藏， 仅在Debug环境生效
+                .stackViewMode(Fragmentation.BUBBLE)
+                .debug(true) // 实际场景建议.debug(BuildConfig.DEBUG)
+                /**
+                 * 可以获取到{@link me.yokeyword.fragmentation.exception.AfterSaveStateTransactionWarning}
+                 * 在遇到After onSaveInstanceState时，不会抛出异常，会回调到下面的ExceptionHandler
+                 */
+                .handleException(new ExceptionHandler() {
+                    @Override
+                    public void onException(Exception e) {
+                        // 以Bugtags为例子: 把捕获到的 Exception 传到 Bugtags 后台。
+                        // Bugtags.sendException(e);
+                    }
+                })
+                .install();
     }
 
+    /**
+     * 退出app
+     */
+    public void exitApp() {
+        if (allActivities != null) {
+            synchronized (allActivities) {
+                for (Activity act : allActivities) {
+                    act.finish();
+                }
+            }
+        }
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
+    }
+    
     /**
      * 得到登录用户id
      * @return

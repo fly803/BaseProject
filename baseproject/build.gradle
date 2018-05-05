@@ -65,6 +65,9 @@ dependencies {
     implementation ext.okhttp
     implementation ext.okhttpLoggingInterceptor
     implementation ext.volley
+    //项目基础库
+    implementation ext.fragmentation
+    implementation ext.fragmentationSwipeback
     //Converter
     implementation ext.retrofitConverterGson
     implementation ext.retrofitAdapter
@@ -78,4 +81,6 @@ dependencies {
     implementation ext.easyPermissions
     implementation ext.fastjson
     implementation ext.jjwt
+    //UI
+    implementation ext.shapeLoadingView
 }

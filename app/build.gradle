@@ -64,9 +64,6 @@ dependencies {
     implementation ext.zxing
     implementation ext.volley
     implementation ext.gson
-    //项目基础库
-    implementation ext.fragmentation
-    implementation ext.fragmentationSwipeback
     //网络组件
     implementation ext.retrofit
     implementation ext.okhttp
