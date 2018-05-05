@@ -68,6 +68,8 @@ dependencies {
     //项目基础库
     implementation ext.fragmentation
     implementation ext.fragmentationSwipeback
+    implementation ext.butterknife
+    annotationProcessor ext.butterknifeCompiler
     //Converter
     implementation ext.retrofitConverterGson
     implementation ext.retrofitAdapter

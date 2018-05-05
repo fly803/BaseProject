@@ -8,5 +8,6 @@
     <string name="title_activity_resolution_adaption_demo">ResolutionAdaptionDemoActivity</string>
     <string name="title_activity_screen_info">ScreenInfoActivity</string>
     <string name="title_activity_resolution_test">ResolutionTestActivity</string>
+    <string name="title_activity_sample">SampleActivity</string>
     <string name="description">app</string>
 </resources>

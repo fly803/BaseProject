@@ -17,7 +17,9 @@ import com.cg.baseproject.R;
 import com.cg.baseproject.manager.ActivityStackManager;
 import com.cg.baseproject.manager.ScreenManager;
 
-import java.security.KeyStore;
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 /**
  * @author sam
@@ -27,8 +29,7 @@ import java.security.KeyStore;
  */
 public abstract class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
-    protected LinearLayout badnetworkLayout,
-            loadingLayout;
+    protected LinearLayout badnetworkLayout, loadingLayout;
     protected LayoutInflater inflater;
     /**
      * 是否沉浸状态栏
@@ -55,36 +56,39 @@ public abstract class BaseActivity extends AppCompatActivity {
     private boolean isBackExit = true;
 
     //布局中Fragment的ID
-    protected abstract int getFragmentContentId();
-
-
+//    protected abstract int getFragmentContentId();
+    protected abstract int getActivityLayoutId();
     /**
      * 初始化界面
      **/
     protected abstract void initView();
 
     /**
+     * 绑定事件
+     */
+    protected abstract void registerListener();
+
+    /**
      * 初始化数据
      */
     protected abstract void initData();
 
-    /**
-     * 绑定事件
-     */
-    protected abstract void setEvent();
 
     private ScreenManager screenManager;
+
+    Unbinder unbinder;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Log.i(TAG, "--->onCreate()");
-        setContentView(R.layout.activity_base);
+        setContentView(getActivityLayoutId());
         initView();
         initBaseActivityView(true);
         inflater = LayoutInflater.from(this);
+        unbinder = ButterKnife.bind(this);
         initData();
-        setEvent();
+        registerListener();
         ctx = this;
         ActivityStackManager.getActivityStackManager().pushActivity(this);
         screenManager = ScreenManager.getInstance();
@@ -93,10 +97,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         screenManager.setFullScreen(isFullScreen, this);
     }
 
-    private void initBaseActivityView(boolean isShow){
+    private void initBaseActivityView(boolean isShow) {
         badnetworkLayout = (LinearLayout) findViewById(R.id.baseactivity_badnetworkLayout);
         loadingLayout = (LinearLayout) findViewById(R.id.baseactivity_loadingLayout);
     }
+
     /**
      * 跳转Activity
      * skip Another Activity
@@ -104,8 +109,7 @@ public abstract class BaseActivity extends AppCompatActivity {
      * @param activity
      * @param cls
      */
-    public static void skipAnotherActivity(Activity activity,
-                                           Class<? extends Activity> cls) {
+    public static void skipAnotherActivity(Activity activity, Class<? extends Activity> cls) {
         Intent intent = new Intent(activity, cls);
         activity.startActivity(intent);
         activity.finish();
@@ -119,10 +123,11 @@ public abstract class BaseActivity extends AppCompatActivity {
         ActivityStackManager.getActivityStackManager().popAllActivity();//remove all activity.
         System.exit(0);//system exit.
     }
-    
-    
+
+
     /**
      * [是否设置沉浸状态栏]
+     *
      * @param statusBar
      */
     public void setStatusBar(boolean statusBar) {
@@ -131,6 +136,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * [是否设置全屏]
+     *
      * @param fullScreen
      */
     public void setFullScreen(boolean fullScreen) {
@@ -139,6 +145,7 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * [是否设置旋转屏幕]
+     *
      * @param screenRoate
      */
     public void setScreenRoate(boolean screenRoate) {
@@ -147,7 +154,6 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     /**
      * [是否连续两次返回退出]
-     *
      */
     public void setBackExit(boolean isBackExit) {
         this.isBackExit = isBackExit;
@@ -157,12 +163,10 @@ public abstract class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK
-                && event.getAction() == KeyEvent.ACTION_DOWN) {
+        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
             if (isBackExit) {
                 if ((System.currentTimeMillis() - exitTime) > 2000) {
-                    Toast.makeText(getApplicationContext(), "再按一次退出程序",
-                            Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
                     exitTime = System.currentTimeMillis();
                 } else {
                     System.exit(0);
@@ -205,24 +209,21 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     //添加fragment
-    protected void addFragment(BaseFragment fragment) {
+   /* protected void addFragment(BaseFragment fragment) {
         if (fragment != null) {
-            getSupportFragmentManager().beginTransaction()
-                    .replace(getFragmentContentId(), fragment, fragment.getClass().getSimpleName())
-                    .addToBackStack(fragment.getClass().getSimpleName())
-                    .commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(getFragmentContentId(), fragment, fragment.getClass().getSimpleName()).addToBackStack(fragment.getClass().getSimpleName()).commitAllowingStateLoss();
         }
-    }
+    }*/
 
     //移除fragment
-    protected void removeFragment() {
+    /*protected void removeFragment() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
             getSupportFragmentManager().popBackStack();
         } else {
             finish();
         }
-    }
-    
+    }*/
+
     @Override
     protected void onStart() {
         super.onStart();
@@ -258,5 +259,6 @@ public abstract class BaseActivity extends AppCompatActivity {
         super.onDestroy();
         Log.i(TAG, "--->onDestroy()");
         ActivityStackManager.getActivityStackManager().popActivity(this);
+        unbinder.unbind();
     }
 }

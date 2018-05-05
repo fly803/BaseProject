@@ -32,6 +32,7 @@ import com.ivy.baseproject.test.activity.ResolutionAdaptionDemoActivity;
 import com.ivy.baseproject.test.activity.ResolutionTestActivity;
 import com.ivy.baseproject.test.api.AppConfig;
 import com.ivy.baseproject.test.api.RequestBusiness;
+import com.ivy.baseproject.test.sample.SampleActivity;
 import com.ivy.baseproject.test.view.decoration.swtichgridlist.AutoFitRecyclerView;
 import com.ivy.baseproject.test.view.decoration.swtichgridlist.Item;
 
@@ -118,7 +119,12 @@ public class MainActivity extends AppCompatActivity {
         record6.setMethod("resolutionTest");
         records.add(record6);
 
-        for (int i = 7; i < 18; i++) {
+        Item record7 = new Item();
+        record7.setName("继承BaseActivity");
+        record7.setMethod("sampleActivity");
+        records.add(record7);
+
+        for (int i = 8; i < 18; i++) {
             Item record = new Item();
             record.setName("待添加操作" + i);
             record.setMethod("");
@@ -152,6 +158,9 @@ public class MainActivity extends AppCompatActivity {
             case "resolutionTest":
                 resolutionTest();
                 break;
+            case "sampleActivity":
+                sampleActivity();
+                break;
             default:
                 testResolution(this);
                 ResolutionAdaptationUtils.showNavBar(MainActivity.this);
@@ -160,6 +169,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void sampleActivity(){
+        Intent intentResolutionTest = new Intent(MainActivity.this, SampleActivity.class);
+        startActivity(intentResolutionTest);
+    }
+    
     public void testResolution(Context context) {
         Log.d("cg", "testResolution: "+ ResolutionAdaptationUtils.getResolutionInfo(context));
         //        Log.d("cg", "getBottomStatusHeight: "+ResolutionAdaptationUtils.getBottomStatusHeight(this));

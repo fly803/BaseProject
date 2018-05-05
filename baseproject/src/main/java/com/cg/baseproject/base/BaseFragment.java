@@ -21,6 +21,9 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import butterknife.ButterKnife;
+import butterknife.Unbinder;
+
 public abstract class BaseFragment extends Fragment {
     protected BaseActivity mActivity;
     protected View mRootView;//根view
@@ -30,6 +33,9 @@ public abstract class BaseFragment extends Fragment {
     private boolean isVisible = false;//是否对用户可见
     private boolean isInitView;//是否初始化控件
     private SparseArray<View> mViews;//管理View的集合
+
+    Unbinder unbinder;
+    
     /**
      * 记录是否已经创建了,防止重复创建
      */
@@ -39,9 +45,10 @@ public abstract class BaseFragment extends Fragment {
      * 当执行完oncreatview,View的初始化方法后方法后即为true
      */
     protected abstract int getFragmentLayoutId();//获得布局资源ID
-    protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
+    protected abstract void initViews();//强制子类重写,实现子类不同的UI效果,使用BufferKnife
     protected abstract void registerListener();//注册监听事件
-    protected abstract void initViews();//强制子类重写,实现子类不同的UI效果
+    protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
+    
 
     
     @TargetApi(Build.VERSION_CODES.M)
@@ -74,6 +81,7 @@ public abstract class BaseFragment extends Fragment {
             int layoutResId = getFragmentLayoutId();
             if (layoutResId > 0) {
                 mRootView = inflater.inflate(getFragmentLayoutId(), container, false);
+                unbinder = ButterKnife.bind(this, mRootView);
             }
             // 解决点击穿透问题,或者在每个fragment布局的根节点加一条android:clickable="true"。
 //            mRootView.setOnTouchListener((View.OnTouchListener) this);
@@ -130,6 +138,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
+        unbinder.unbind();
     }
 
     @Override
@@ -172,16 +181,16 @@ public abstract class BaseFragment extends Fragment {
     }
 
     //添加fragment
-    protected void addFragment(BaseFragment fragment) {
+    /*protected void addFragment(BaseFragment fragment) {
         if (null != fragment) {
             getHoldingActivity().addFragment(fragment);
         }
-    }
+    }*/
 
     //移除fragment
-    protected void removeFragment() {
+   /* protected void removeFragment() {
         getHoldingActivity().removeFragment();
-    }
+    }*/
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
