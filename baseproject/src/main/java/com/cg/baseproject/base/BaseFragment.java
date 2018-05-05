@@ -7,33 +7,41 @@ package com.cg.baseproject.base;
  * https://blog.csdn.net/xx244488877/article/details/66144690?locationNum=3&fps=1
  */
 
+import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
 public abstract class BaseFragment extends Fragment {
     protected BaseActivity mActivity;
     protected View mRootView;//根view
+    private boolean isRequestPORTRAIT;//强制竖屏
     protected boolean isLazyLoad = true;//是否懒加载
-    private boolean isFirstLoad;//是否是第一次加载
-    private boolean isVisible;//是否对用户可见
+    private boolean isFirstLoad = true;//是否是第一次加载
+    private boolean isVisible = false;//是否对用户可见
     private boolean isInitView;//是否初始化控件
     private SparseArray<View> mViews;//管理View的集合
+    /**
+     * 记录是否已经创建了,防止重复创建
+     */
+    private boolean viewCreated;
     /**
      * 是否加载完成
      * 当执行完oncreatview,View的初始化方法后方法后即为true
      */
-    protected abstract int getFragmentLayoutId();
+    protected abstract int getFragmentLayoutId();//获得布局资源ID
     protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
     protected abstract void registerListener();//注册监听事件
-    protected abstract void initViews();//初始化控件
+    protected abstract void initViews();//强制子类重写,实现子类不同的UI效果
 
     
     @TargetApi(Build.VERSION_CODES.M)
@@ -46,17 +54,36 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 防止重复调用onCreate方法，造成在initData方法中adapter重复初始化问题
+        if (!viewCreated) {
+            viewCreated = true;
+        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 //        return inflater.inflate(getFragmentLayoutId(), container, false);
 //        mViews = new SparseArray<View>();//初始化集合
-        mRootView = inflater.inflate(getFragmentLayoutId(), container, false);//用布局填充器填充布局
-        initViews();//初始化控件
-        isInitView = true;//已经初始化
-        if(!isLazyLoad){//是否懒加载，懒加载在用户可见时候才加载数据
-            initData(savedInstanceState);
+        if (null == mRootView) {
+            // 强制竖屏显示
+            if(isRequestPORTRAIT){
+                mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+            }else {
+                mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            }
+            int layoutResId = getFragmentLayoutId();
+            if (layoutResId > 0) {
+                mRootView = inflater.inflate(getFragmentLayoutId(), container, false);
+            }
+            // 解决点击穿透问题,或者在每个fragment布局的根节点加一条android:clickable="true"。
+//            mRootView.setOnTouchListener((View.OnTouchListener) this);
+            mRootView.setOnTouchListener(new View.OnTouchListener() {
+                @SuppressLint("ClickableViewAccessibility")
+                @Override
+                public boolean onTouch(View v, MotionEvent event) {
+                    return true;
+                }
+            });
         }
         return mRootView;
     }
@@ -64,6 +91,14 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        if (viewCreated) {
+            initViews();//初始化控件
+            isInitView = true;//已经初始化
+            if(!isLazyLoad){//是否懒加载，懒加载在用户可见时候才加载数据
+                registerListener();//注册监听事件
+                initData(savedInstanceState);
+            }
+        }
     }
 
     @Override
@@ -163,7 +198,7 @@ public abstract class BaseFragment extends Fragment {
      */
     protected void onVisibleToUser(boolean isLazyLoad) {
         if (isInitView && isVisible) {
-            if(isLazyLoad){
+            if(isLazyLoad && isFirstLoad){
                 onLazyLoadData();
             }
         }
@@ -174,6 +209,7 @@ public abstract class BaseFragment extends Fragment {
      * @date 2016-5-26 下午4:10:20
      */
     protected void onLazyLoadData() {
+        registerListener();//注册监听事件
         initData(getArguments());;//初始化数据
         isFirstLoad = false;//已经不是第一次加载
     }
