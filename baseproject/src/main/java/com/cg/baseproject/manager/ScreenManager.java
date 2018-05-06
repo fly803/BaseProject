@@ -61,11 +61,11 @@ public class ScreenManager {
     /**
      * 旋转屏幕
      **/
-    public void setScreenRoate(boolean isChange, BaseActivity mActivity) {
-        if (!isChange) {
-            mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-        } else {
+    public void setScreenRoate(boolean isPortrait, BaseActivity mActivity) {
+        if (isPortrait) {
             mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
+        } else {
+            mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         }
     }
 }

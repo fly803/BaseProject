@@ -28,7 +28,7 @@ public class SampleActivity extends BaseActivity {
 
     @Override
     protected void initView() {
-
+//        showLoadingLayout();
     }
 
     @Override
