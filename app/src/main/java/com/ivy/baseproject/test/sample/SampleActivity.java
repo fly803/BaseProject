@@ -12,7 +12,7 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
- * @author
+ * @author sam
  * @version 1.0
  * @date 2018/5/5
  */
@@ -44,6 +44,6 @@ public class SampleActivity extends BaseActivity {
 
     @OnClick(R.id.tvActivitySample)
     public void onViewClicked() {
-        ToastUtils.showShort("tvActivitySample");
+        ToastUtils.showShort("ActivitySample");
     }
 }

@@ -36,11 +36,10 @@ public abstract class BaseActivity extends AppCompatActivity {
     private boolean isScreenRoate = true;//是否禁止旋转屏幕
     protected Context ctx;//Context
     private boolean isDebug;// 是否输出日志信息
-    private boolean isBackExit = true;
     protected abstract int getActivityLayoutId();////布局中Fragment的ID
     protected abstract void initView();//初始化界面
     protected abstract void registerListener();//绑定事件
-    protected abstract void initData();// 初始化数据
+    protected abstract void initData();// 初始化数据,请求网络数据等
     private ScreenManager screenManager;
     Unbinder unbinder;
 
@@ -92,44 +91,13 @@ public abstract class BaseActivity extends AppCompatActivity {
         System.exit(0);//system exit.
     }
     
-    /**
-     * [是否连续两次返回退出]
-     */
-    public void setBackExit(boolean isBackExit) {
-        this.isBackExit = isBackExit;
-    }
-
-    private long exitTime;
-
-    @Override
-    public boolean onKeyDown(int keyCode, KeyEvent event) {
-        if (keyCode == KeyEvent.KEYCODE_BACK && event.getAction() == KeyEvent.ACTION_DOWN) {
-            if (isBackExit) {
-                if ((System.currentTimeMillis() - exitTime) > 2000) {
-                    Toast.makeText(getApplicationContext(), "再按一次退出程序", Toast.LENGTH_SHORT).show();
-                    exitTime = System.currentTimeMillis();
-                } else {
-                    System.exit(0);
-                }
-            }
-            return true;
-        }
-        return super.onKeyDown(keyCode, event);
-    }
-
+   
     /*
      * 显示加载前的动画
      */
     protected void showLoadingLayout() {
         loadingLayout.setVisibility(View.VISIBLE);
         badnetworkLayout.setVisibility(View.GONE);
-        // ImageView loading_imageView = (ImageView) loadingLayout
-        // .findViewById(R.id.loading_imageView);
-        // loading_imageView.setBackgroundResource(R.anim.loading);
-        // AnimationDrawable animationDrawable = (AnimationDrawable)
-        // loading_imageView
-        // .getBackground();
-        // animationDrawable.start();
     }
 
     /*
