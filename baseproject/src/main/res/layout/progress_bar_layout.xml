@@ -21,7 +21,7 @@
         android:layout_marginTop="10dp"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
-        android:text="加载中..."
+        android:text="拼命加载中..."
         android:textColor="#a3a3a3"
         android:textSize="15sp" />
 

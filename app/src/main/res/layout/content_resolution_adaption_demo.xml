@@ -145,7 +145,7 @@
 
     <include
         android:id="@+id/include2"
-        layout="@layout/top_title_bar"
+        layout="@layout/top_titlebar_base"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:id="@+id/clTitlebar"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="@dimen/px120"
+                                             android:background="#38373c"
+                                             >
+
+    <ImageView
+        android:id="@+id/ivTitlebarLeft"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/px24"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTitlebarTitle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tvTitlebarTitle"
+        app:srcCompat="@drawable/vbtn_arrow_back"/>
+
+    <TextView
+        android:id="@+id/tvTitlebarTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="标题栏"
+        android:textColor="@color/permissionColorWhite"
+        android:textSize="@dimen/sp70"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivTitlebarShare"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/px24"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTitlebarTitle"
+        app:layout_constraintEnd_toStartOf="@+id/ivTitlebarRight"
+        app:layout_constraintTop_toTopOf="@+id/tvTitlebarTitle"
+        app:srcCompat="@drawable/vbtn_titlebar_share"/>
+
+    <ImageView
+        android:id="@+id/ivTitlebarRight"
+        android:visibility="gone"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/px24"
+        app:layout_constraintBottom_toBottomOf="@+id/ivTitlebarShare"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/ivTitlebarShare"
+        app:srcCompat="@drawable/vbtn_titlebar_me"/>
+
+
+</android.support.constraint.ConstraintLayout>

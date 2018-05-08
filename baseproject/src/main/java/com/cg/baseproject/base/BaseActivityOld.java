@@ -49,9 +49,9 @@ public abstract class BaseActivityOld extends AppCompatActivity {
         Log.i(TAG, "--->onCreate()");
         ActivityStackManager.getActivityStackManager().pushActivity(this);
         screenManager = ScreenManager.getInstance();
-        screenManager.setStatusBar(isStatusBar, this);
-        screenManager.setScreenRoate(isScreenRoate, this);
-        screenManager.setFullScreen(isFullScreen, this);
+//        screenManager.setStatusBar(isStatusBar, this);
+//        screenManager.setScreenRoate(isScreenRoate, this);
+//        screenManager.setFullScreen(isFullScreen, this);
         setContentView(getActivityLayoutId());
 //        setContentView(R.layout.activity_base);
         inflater = LayoutInflater.from(this);

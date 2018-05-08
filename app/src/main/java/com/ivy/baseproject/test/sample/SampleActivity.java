@@ -10,7 +10,6 @@ import com.cg.baseproject.base.BaseActivity;
 import com.ivy.baseproject.test.R;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 /**
@@ -42,39 +41,44 @@ public class SampleActivity extends BaseActivity {
     private Context mContext;
 
     @Override
+    protected void setScreenManager() {
+        super.isScreenPortrait = true;
+        super.isFullScreen = true;
+        super.isScreenPortrait = true;
+    }
+
+    @Override
     protected int getActivityLayoutId() {
         return R.layout.activity_second;
+    }
+
+    @Override
+    protected void initData() {
+        
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(getActivityLayoutId());
+        //因为BaseActivity的BufferKnife已经做过绑定view，因此子类不需要再进行绑定unbinder = ButterKnife.bind(this);
         setModuleTitle("第二页");
         mContext = this;
     }
 
     @Override
-    protected void onClickReal(View v) {
-        
-    }
-
-
-    @Override
-    protected void onClickedResetButton(View view) {
-        super.onClickedResetButton(view);
+    protected void onClickFailureResetButton(View view) {
+        super.onClickFailureResetButton(view);
         Toast.makeText(mContext, "点击重新加载", Toast.LENGTH_SHORT).show();
     }
 
     @Override
-    protected void onClickToprightImg(View view) {
-        super.onClickToprightImg(view);
+    protected void onClickTitlebarRight(View view) {
+        super.onClickTitlebarRight(view);
+        Toast.makeText(mContext, "点击标题栏右侧图标", Toast.LENGTH_SHORT).show();
     }
 
-    @Override
-    protected void onClickTopRightText(View view) {
-        super.onClickTopRightText(view);
-    }
+
 
     @OnClick({R.id.btnHideHead, R.id.btnShowHead, R.id.btnSetTitle, R.id.btnTopLeft, R.id.btnTopRight, R.id.btnShowLoadDialog, R.id.btnShowLoadDialogCancle, R.id.btnShowLoad, R.id.btnShowEror, R.id.btnShowEmpty})
     public void onViewClicked(View view) {
@@ -98,7 +102,7 @@ public class SampleActivity extends BaseActivity {
                 break;
             case R.id.btnTopRight:
                 //设置文字
-                showTopRightText("右上方");
+                showTopRightImg(R.drawable.vbtn_titlebar_me);
                 //图片
                 //            showTopRightImg(R.mipmap.share);
                 break;

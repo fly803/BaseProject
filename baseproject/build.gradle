@@ -15,6 +15,7 @@ android {
         versionCode config.versionCode
         versionName config.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        vectorDrawables.useSupportLibrary = true
     }
     packagingOptions {
 //        exclude 'META-INF/NOTICE' // will not include NOTICE file

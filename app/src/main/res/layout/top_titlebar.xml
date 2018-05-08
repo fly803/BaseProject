@@ -13,9 +13,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/px24"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTitlebarTitle"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:layout_constraintTop_toTopOf="@+id/tvTitlebarTitle"
         app:srcCompat="@drawable/vbtn_arrow_back"/>
 
     <TextView
@@ -37,9 +37,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/px24"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/tv_title"
-        app:layout_constraintEnd_toStartOf="@+id/iv_me"
-        app:layout_constraintTop_toTopOf="@+id/tv_title"
+        app:layout_constraintBottom_toBottomOf="@+id/tvTitlebarTitle"
+        app:layout_constraintEnd_toStartOf="@+id/ivTitlebarRight"
+        app:layout_constraintTop_toTopOf="@+id/tvTitlebarTitle"
         app:srcCompat="@drawable/vbtn_titlebar_share"/>
 
     <ImageView
@@ -48,9 +48,9 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/px24"
         android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/iv_share"
+        app:layout_constraintBottom_toBottomOf="@+id/ivTitlebarShare"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_share"
+        app:layout_constraintTop_toTopOf="@+id/ivTitlebarShare"
         app:srcCompat="@drawable/vbtn_titlebar_me"/>
 
 
