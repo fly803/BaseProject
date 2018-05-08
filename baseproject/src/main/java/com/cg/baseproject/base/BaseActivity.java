@@ -1,136 +1,365 @@
 package com.cg.baseproject.base;
 
-import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
+import android.app.Dialog;
+import android.graphics.Color;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.LinearLayout;
-import android.widget.Toast;
+import android.view.View.OnClickListener;
+import android.view.ViewGroup.LayoutParams;
+import android.widget.Button;
+import android.widget.FrameLayout;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.cg.baseproject.R;
 import com.cg.baseproject.manager.ActivityStackManager;
-import com.cg.baseproject.manager.ScreenManager;
+import com.cg.baseproject.utils.DialogUtils;
+import com.cg.baseproject.utils.StringUtils;
+import com.cg.baseproject.view.view.progress.ProgressBarLayout;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 /**
- * @author sam
- * @version 1.0
- * @date 2018/5/4
- * https://blog.csdn.net/xx244488877/article/details/65937778
+ * 功能：activity基类
+ *
+ * @author by lee
+ * @Version :
+ * @date :
  */
-public abstract class BaseActivity extends AppCompatActivity {
+public abstract class BaseActivity extends AppCompatActivity implements OnClickListener {
     private static final String TAG = "BaseActivity";
-    protected LinearLayout badnetworkLayout, loadingLayout,baseactivityLayout;
-    protected LayoutInflater inflater;
-    private boolean isStatusBar = true;//是否沉浸状态栏
-    private boolean isFullScreen = true;//是否允许全屏
-    private boolean isScreenRoate = true;//是否禁止旋转屏幕
-    protected Context ctx;//Context
-    private boolean isDebug;// 是否输出日志信息
-    protected abstract int getActivityLayoutId();////布局中Fragment的ID
-    protected abstract void initView();//初始化界面
-    protected abstract void registerListener();//绑定事件
-    protected abstract void initData();// 初始化数据,请求网络数据等
-    private ScreenManager screenManager;
+    private RelativeLayout relTitleBar;// 顶部导航栏
+    private TextView moduleTextView;
+    private Button topLeftButton;
+    private TextView topRightText;
+    private ImageView topRightImg;
+    private FrameLayout mFraLayoutContent;
+    private FrameLayout mFraLayoutHeadView;
+    private RelativeLayout mRelLayoutBase;
+    private ProgressBarLayout mLoadingBar;
+    private RelativeLayout errorLayout;
+    private RelativeLayout emptyLayout;
+    private TextView tvEmtyHit;
+    private TextView mResetButton;
+    private Dialog mProgressDialog;//不可取消框
+    private Dialog mProgressDialogCancle;//可取消加载框
+    private int headViewResId = R.layout.layout_header_base;
     Unbinder unbinder;
+    protected abstract int getActivityLayoutId();////布局中Fragment的ID
+    
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.i(TAG, "--->onCreate()");
-        ActivityStackManager.getActivityStackManager().pushActivity(this);
-        screenManager = ScreenManager.getInstance();
-        screenManager.setStatusBar(isStatusBar, this);
-        screenManager.setScreenRoate(isScreenRoate, this);
-        screenManager.setFullScreen(isFullScreen, this);
-        setContentView(getActivityLayoutId());
-//        setContentView(R.layout.activity_base);
-        initBaseActivityView(true);
-        inflater = LayoutInflater.from(this);
-        initView();
+    public void setContentView(int layoutResID) {
+        super.setContentView(R.layout.activity_base);
+        mRelLayoutBase = (RelativeLayout) findViewById(R.id.relLayoutBase);
+        mFraLayoutContent = (FrameLayout) findViewById(R.id.fraLayoutContent);
+        mFraLayoutHeadView = (FrameLayout) findViewById(R.id.fraLayoutHeadView);
+
+        LayoutInflater.from(this).inflate(layoutResID, mFraLayoutContent, true);
+        LayoutInflater.from(this).inflate(headViewResId, mFraLayoutHeadView, true);
+        mLoadingBar = (ProgressBarLayout) findViewById(R.id.load_bar_layout);
+        errorLayout = (RelativeLayout) findViewById(R.id.errorLayout);
+        emptyLayout = (RelativeLayout) findViewById(R.id.emptyLayout);
+        mResetButton = (TextView) findViewById(R.id.reset_button);
+        mResetButton.setOnClickListener(this);
+
+        //如果有使用黄油刀，请在这边加入即可
         unbinder = ButterKnife.bind(this);
-        registerListener();
-        initData();
-        ctx = this;
     }
 
-    private void initBaseActivityView(boolean isShow) {
-        badnetworkLayout = (LinearLayout) findViewById(R.id.baseactivity_badnetworkLayout);
-        loadingLayout = (LinearLayout) findViewById(R.id.baseactivity_loadingLayout);
-        baseactivityLayout = (LinearLayout) findViewById(R.id.baseactivity_contextLayout);
+    @Override
+    public void setContentView(View view, LayoutParams params) {
+        super.setContentView(view, params);
+        //如果有使用黄油刀，请在这边加入即可
+        unbinder = ButterKnife.bind(this);
+
+    }
+
+    @Override
+    public void setContentView(View view) {
+        super.setContentView(view);
+        //如果有使用黄油刀，请在这边加入即可
+        unbinder = ButterKnife.bind(this);
     }
 
     /**
-     * 跳转Activity
-     * skip Another Activity
+     * 功能：如果自定义headview,一定要在setContentView前调用,否则无效
      *
-     * @param activity
-     * @param cls
+     * @param layoutResID
+     * @author:
      */
-    public static void skipAnotherActivity(Activity activity, Class<? extends Activity> cls) {
-        Intent intent = new Intent(activity, cls);
-        activity.startActivity(intent);
-        activity.finish();
+    protected void setHeadView(int layoutResID) {
+        this.headViewResId = layoutResID;
     }
 
-    /**
-     * 退出应用
-     * called while exit app.
-     */
-    public void exitLogic() {
-        ActivityStackManager.getActivityStackManager().popAllActivity();//remove all activity.
-        System.exit(0);//system exit.
-    }
-    
-   
-    /*
-     * 显示加载前的动画
-     */
-    protected void showLoadingLayout() {
-        loadingLayout.setVisibility(View.VISIBLE);
-        badnetworkLayout.setVisibility(View.GONE);
+    //隐藏头部
+    protected void hideHeadView() {
+        mFraLayoutHeadView.setVisibility(View.GONE);
     }
 
-    /*
-     * 加载失败或没网络
-     */
-    protected void showBadnetworkLayout() {
-        loadingLayout.setVisibility(View.GONE);
-        badnetworkLayout.setVisibility(View.VISIBLE);
+    //显示头部
+    protected void showHeadView() {
+        mFraLayoutHeadView.setVisibility(View.VISIBLE);
     }
 
-    /**
-     * 加载完
-     */
-    protected void showContextLayout() {
-        loadingLayout.setVisibility(View.GONE);
-        badnetworkLayout.setVisibility(View.GONE);
+    //显示加载布局
+    protected void showLoadingBar() {
+        showLoadingBar(false);
     }
 
-    //添加fragment
-   /* protected void addFragment(BaseFragment fragment) {
-        if (fragment != null) {
-            getSupportFragmentManager().beginTransaction().replace(getFragmentContentId(), fragment, fragment.getClass().getSimpleName()).addToBackStack(fragment.getClass().getSimpleName()).commitAllowingStateLoss();
+    //隐藏加载布局
+    public void hideLoadingBar() {
+        mLoadingBar.hide();
+    }
+
+    public void showLoadingBar(boolean transparent) {
+        mLoadingBar.setBackgroundColor(transparent ? Color.TRANSPARENT : getResources().getColor(R.color.main_bg));
+        mLoadingBar.show();
+    }
+
+    //加载布局是否显示
+    public boolean isLoadingBarShow() {
+        return mLoadingBar.getVisibility() == View.VISIBLE;
+    }
+    //显示无网络布局
+    protected void showErrorLayout() {
+        errorLayout.setVisibility(View.VISIBLE);
+    }
+    //隐藏无网络布局
+    protected void hideErrorLayout() {
+        errorLayout.setVisibility(View.GONE);
+    }
+
+    //显示空页面
+    public void showEmptyLayout(String emptyHit) {
+        emptyLayout.setVisibility(View.VISIBLE);
+        if (tvEmtyHit == null) {
+            tvEmtyHit = (TextView) findViewById(R.id.tvEmtyHit);
         }
-    }*/
+        tvEmtyHit.setText(emptyHit);
+    }
 
-    //移除fragment
-    /*protected void removeFragment() {
-        if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
-            getSupportFragmentManager().popBackStack();
+    //隐藏空页面
+    public void hideEmptyLayout() {
+        emptyLayout.setVisibility(View.GONE);
+    }
+    protected RelativeLayout getErrorLayout() {
+        return errorLayout;
+    }
+    //设置头部颜色
+    protected void setTitleBarBackgroundColor(int color) {
+        if (relTitleBar == null) {
+            relTitleBar = (RelativeLayout) findViewById(R.id.relTitleBar);
+        }
+        relTitleBar.setBackgroundColor(getResources().getColor(color));
+    }
+    //设置头部文字颜色
+    protected void setModuleTitleColor(int resourceId) {
+        if (moduleTextView == null) {
+            moduleTextView = (TextView) findViewById(R.id.module_title_text_view);
+        }
+        moduleTextView.setTextColor(getResources().getColor(resourceId));
+    }
+    //设置头部局部
+    protected void setModuleTitle(int resourceId) {
+        if (moduleTextView == null) {
+            moduleTextView = (TextView) findViewById(R.id.module_title_text_view);
+        }
+        moduleTextView.setText(resourceId);
+    }
+    //设置头部文字
+    protected void setModuleTitle(String text) {
+        if (moduleTextView == null) {
+            moduleTextView = (TextView) findViewById(R.id.module_title_text_view);
+        }
+        moduleTextView.setVisibility(View.VISIBLE);
+        moduleTextView.setText(text);
+    }
+    //设置头部图片
+    protected void setModuleTitleImg(int resId) {
+        if (moduleTextView == null) {
+            moduleTextView = (TextView) findViewById(R.id.module_title_text_view);
+        }
+        moduleTextView.setVisibility(View.VISIBLE);
+        moduleTextView.setText("");
+        moduleTextView.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
+    }
+    //隐藏头部文字
+    protected void hideModuleTitle() {
+        if (moduleTextView == null) {
+            moduleTextView = (TextView) findViewById(R.id.module_title_text_view);
+        }
+        moduleTextView.setVisibility(View.GONE);
+    }
+    //隐藏左上
+    protected void hideTopLeftButton() {
+        if (topLeftButton == null) {
+            topLeftButton = (Button) findViewById(R.id.top_left_button);
+        }
+        topLeftButton.setVisibility(View.GONE);
+    }
+    //显示左上，默认为箭头
+    protected void showTopLeftButton() {
+        showTopLeftButton("", R.drawable.btn_back);
+    }
+    //显示左上，可添加文字 +箭头
+    protected void showTopLeftButton(String text) {
+        showTopLeftButton(text, R.drawable.btn_back);
+    }
+    //显示左上，无箭头
+    protected void showTopLeftText(String text) {
+        showTopLeftButton(text, 0);
+    }
+
+    protected void showTopLeftButton(String text, int resId) {
+
+        if (topLeftButton == null) {
+            topLeftButton = (Button) findViewById(R.id.top_left_button);
+            topLeftButton.setOnClickListener(this);
+        }
+        topLeftButton.setVisibility(View.VISIBLE);
+        topLeftButton.setText(StringUtils.isEmpty(text) ? "" : text);
+        topLeftButton.setCompoundDrawablesWithIntrinsicBounds(resId, 0, 0, 0);
+    }
+
+    protected RelativeLayout getlayoutBase() {
+        return mRelLayoutBase;
+    }
+
+    protected View getHeadView() {
+        return mFraLayoutHeadView;
+    }
+
+    protected Button getTopLeftButton() {
+
+        if (topLeftButton == null) {
+            topLeftButton = (Button) findViewById(R.id.top_left_button);
+        }
+        return topLeftButton;
+    }
+
+    //显示右上文字
+    protected void showTopRightText(String string) {
+        if (topRightText == null) {
+            topRightText = (TextView) findViewById(R.id.top_right_text);
+            topRightText.setOnClickListener(this);
+        }
+        topRightText.setVisibility(View.VISIBLE);
+        topRightText.setText(string);
+    }
+
+    //隐藏右上文字
+    protected void hideTopRightText() {
+        if (topRightText == null) {
+            topRightText = (TextView) findViewById(R.id.top_right_text);
+        }
+        topRightText.setVisibility(View.INVISIBLE);
+    }
+
+    //显示右上图片，只有图片 不含文字
+    protected void showTopRightImg(int img) {
+        if (topRightImg == null) {
+            topRightImg = (ImageView) findViewById(R.id.top_right_img);
+            topRightImg.setOnClickListener(this);
+        }
+        topRightImg.setVisibility(View.VISIBLE);
+        topRightImg.setImageResource(img);
+    }
+
+    //隐藏右上图片，只有图片 不含文字
+    protected void hideTopRightImg() {
+        if (topRightImg == null) {
+            topRightImg = (ImageView) findViewById(R.id.top_right_img);
+        }
+        topRightImg.setVisibility(View.INVISIBLE);
+    }
+
+    protected void showLoadingDialogCancle() {
+        if (mProgressDialogCancle == null) {
+            mProgressDialogCancle = DialogUtils.createProgressDiaolg(this, "加载中...", true);
+        }
+        if (!mProgressDialogCancle.isShowing()) {
+            mProgressDialogCancle.show();
+        }
+    }
+
+    protected void hideLoadingDialogCancle() {
+        if (mProgressDialogCancle == null) {
+            mProgressDialogCancle = DialogUtils.createProgressDiaolg(this, "加载中...", true);
+        }
+        if (mProgressDialogCancle.isShowing()) {
+            mProgressDialogCancle.dismiss();
+        }
+    }
+
+    protected void showLoadingDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = DialogUtils.createProgressDiaolg(this, "加载中...", false);
+        }
+        if (!mProgressDialog.isShowing()) {
+            mProgressDialog.show();
+        }
+    }
+
+    protected void hideLoadingDialog() {
+        if (mProgressDialog == null) {
+            mProgressDialog = DialogUtils.createProgressDiaolg(this, "加载中...", false);
+        }
+        if (mProgressDialog.isShowing()) {
+            mProgressDialog.dismiss();
+        }
+    }
+
+    public View getmFraLayoutContent() {
+        return mFraLayoutContent;
+    }
+
+    @Override
+    public final void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.top_left_button) {
+            onClickedTopLeftButtton(v);
+        } else if (i == R.id.top_right_text) {
+            onClickTopRightText(v);
+        } else if (i == R.id.top_right_img) {
+            onClickToprightImg(v);
+        } else if (i == R.id.reset_button) {
+            onClickedResetButton(v);
+            //如果使用黄油刀，请注释掉这里
         } else {
-            finish();
+            onClickReal(v);
+
         }
-    }*/
+    }
+
+    //如果使用黄油刀，请注释掉这里
+    protected abstract void onClickReal(View v);
+
+    protected void onClickedTopLeftButtton(View view) {
+        finish();
+    }
+
+
+    protected void onClickedResetButton(View view) {
+
+    }
+
+    protected void onClickTopRightText(View view) {
+
+    }
+
+    protected void onClickToprightImg(View view) {
+
+    }
 
     @Override
     protected void onStart() {

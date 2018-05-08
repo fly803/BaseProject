@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <color name="main_bg">#FFFFFF</color>
+
+    <color name="transparent">#00000000</color><!--透明色 -->
+    <color name="twentyalpha">#33000000</color>
+    <color name="alpha">#00000000</color>
+    <color name="as_z6">#8b8b8b</color>
     <color name="black">#000000</color><!--黑色 -->
     <color name="white">#FFFFFF</color><!--白色-->
     <color name="snow">#fffafa</color><!--雪白色 -->
@@ -138,5 +144,5 @@
     <color name="mediumvioletred">#c71585</color><!--中紫罗兰色 -->
     <color name="palevioletred">#db7093</color><!--苍紫罗兰色 -->
     <color name="darkviolet">#9400d3</color><!--暗紫罗兰色 -->
-    <color name="mediumorchid">#ba55d3</color><!--中粉紫色 -->
+    <color name="mediumorchid">#ba55d3</color>
 </resources>

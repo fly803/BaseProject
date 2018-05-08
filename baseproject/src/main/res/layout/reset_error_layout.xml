@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/resetLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#eaeaea"
+    android:clickable="true"
+    android:descendantFocusability="blocksDescendants"
+    android:gravity="center_vertical|center_horizontal" >
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/reset_textView"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="25dp"
+        android:src="@mipmap/icon_no_net" />
+
+    <TextView
+        android:id="@+id/reset_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/reset_button"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:text="当前网络有点不稳定噢，请重新加载"
+        android:textColor="#c0c6c9"
+        android:textSize="14sp" />
+
+    <TextView
+        android:textColor="#808080"
+        android:gravity="center"
+        android:id="@+id/reset_button"
+        android:layout_width="130dp"
+        android:layout_height="40dp"
+        android:layout_centerInParent="true"
+        android:text="重新加载"
+        android:textSize="14sp"
+        />
+
+</RelativeLayout>

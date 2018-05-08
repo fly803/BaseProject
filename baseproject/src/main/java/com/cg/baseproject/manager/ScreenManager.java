@@ -10,7 +10,7 @@ import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
 
-import com.cg.baseproject.base.BaseActivity;
+import com.cg.baseproject.base.BaseActivityOld;
 
 /**
  * 屏幕管理类
@@ -31,7 +31,7 @@ public class ScreenManager {
     /**
      * 窗口全屏
      */
-    public void setFullScreen(boolean isChange,BaseActivity mActivity) {
+    public void setFullScreen(boolean isChange,BaseActivityOld mActivity) {
         if(!isChange){
             return;
         }
@@ -44,7 +44,7 @@ public class ScreenManager {
     /**
      * [沉浸状态栏]
      */
-    public void setStatusBar(boolean isChange,BaseActivity mActivity) {
+    public void setStatusBar(boolean isChange,BaseActivityOld mActivity) {
         if (!isChange){
             return;
         }
@@ -61,7 +61,7 @@ public class ScreenManager {
     /**
      * 旋转屏幕
      **/
-    public void setScreenRoate(boolean isPortrait, BaseActivity mActivity) {
+    public void setScreenRoate(boolean isPortrait, BaseActivityOld mActivity) {
         if (isPortrait) {
             mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
         } else {

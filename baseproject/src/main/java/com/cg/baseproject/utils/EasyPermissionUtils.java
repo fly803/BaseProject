@@ -20,7 +20,7 @@ import pub.devrel.easypermissions.EasyPermissions;
  * @date 2018/3/17
  */
 
-public class EasyPermissionUtil {
+public class EasyPermissionUtils {
     private static final String TAG = "EasyPermissions";
 
     public interface PermissionCallbacks extends ActivityCompat.OnRequestPermissionsResultCallback {

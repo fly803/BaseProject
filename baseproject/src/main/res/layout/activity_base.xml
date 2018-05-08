@@ -1,26 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-              android:layout_width="match_parent"
-              android:layout_height="match_parent"
-              android:background="@color/white"
-              android:orientation="vertical" >
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/relLayoutBase"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@color/main_bg" >
 
 
-    <include
-        android:id="@+id/baseactivity_loadingLayout"
-        layout="@layout/loading"
-        android:visibility="gone" />
+    <FrameLayout
+        android:id="@+id/fraLayoutHeadView"
+        android:layout_width="match_parent"
+        android:layout_height="44dp"
+        android:layout_alignParentTop="true" >
+    </FrameLayout>
 
-    <include
-        android:id="@+id/baseactivity_badnetworkLayout"
-        layout="@layout/bad_network"
-        android:visibility="gone" />
-
-    <LinearLayout
-        android:id="@+id/baseactivity_contextLayout"
+    <FrameLayout
+        android:id="@+id/fraLayoutContent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical" >
-    </LinearLayout>
+        android:layout_below="@+id/fraLayoutHeadView" >
+    </FrameLayout>
 
-</LinearLayout>
+
+    <com.cg.baseproject.view.view.progress.ProgressBarLayout
+        android:id="@+id/load_bar_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/fraLayoutHeadView"
+        android:gravity="center"
+        android:visibility="gone" >
+    </com.cg.baseproject.view.view.progress.ProgressBarLayout>
+
+    <include
+        android:id="@+id/errorLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fraLayoutHeadView"
+        layout="@layout/reset_error_layout"
+        android:visibility="gone" />
+    <include
+        android:id="@+id/emptyLayout"
+        layout="@layout/view_empty_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/fraLayoutHeadView"
+        android:visibility="gone" />
+    <FrameLayout
+        android:id="@+id/backgroud_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#25000000"
+        android:visibility="gone" >
+    </FrameLayout>
+
+</RelativeLayout>

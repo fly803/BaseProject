@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/emptyLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:clickable="true"
+    android:descendantFocusability="blocksDescendants">
+
+    <ImageView
+        android:id="@+id/imgEmpty"
+        android:layout_width="75dp"
+        android:layout_height="75dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="75dp"
+        android:src="@mipmap/no_result" />
+
+    <TextView
+        android:id="@+id/tvEmtyHit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/imgEmpty"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:text="暂无任何消息"
+        android:textColor="@color/pink"
+        android:textSize="13sp" />
+
+
+</RelativeLayout>

@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
-    protected BaseActivity mActivity;
+    protected BaseActivityOld mActivity;
     protected View mRootView;//根view
     private boolean isRequestPORTRAIT;//强制竖屏
     protected boolean isLazyLoad = true;//是否懒加载
@@ -55,7 +55,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onAttach(Context activity) {
         super.onAttach(activity);
-        mActivity = (BaseActivity) activity;
+        mActivity = (BaseActivityOld) activity;
     }
 
     @Override
@@ -163,7 +163,7 @@ public abstract class BaseFragment extends Fragment {
         super.onAttach(activity);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // Code here
-            mActivity = (BaseActivity) activity;
+            mActivity = (BaseActivityOld) activity;
         }
     }
 
@@ -176,7 +176,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     //获取宿主Activity
-    protected BaseActivity getHoldingActivity() {
+    protected BaseActivityOld getHoldingActivity() {
         return mActivity;
     }
 

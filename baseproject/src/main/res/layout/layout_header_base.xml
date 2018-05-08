@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/relTitleBar"
+    android:layout_width="match_parent"
+    android:layout_height="44dp"
+    android:background="#13b3ef" >
+
+    <Button
+        android:id="@+id/top_left_button"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:drawableLeft="@drawable/btn_back"
+        android:drawablePadding="5dp"
+        android:gravity="center"
+        android:paddingLeft="8dp"
+        android:paddingRight="8dp"
+        android:background="@drawable/bg_alpha_twenty"
+        android:text=""
+        android:textColor="@color/color_bt_top_right"
+        android:textSize="15sp"
+        android:visibility="gone"
+        />
+
+    <TextView
+        android:id="@+id/module_title_text_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:layout_gravity="center_vertical"
+        android:ellipsize="end"
+        android:maxWidth="200dp"
+        android:singleLine="true"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:textColor="@color/white"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/top_right_text"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:gravity="center"
+        android:paddingLeft="8dp"
+        android:paddingRight="15dp"
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        android:visibility="invisible"
+        />
+    <ImageView
+        android:id="@+id/top_right_img"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_alignParentRight="true"
+        android:paddingRight="15dp"
+        android:visibility="invisible" />
+    <View
+        android:id="@+id/headBottomLine"
+        style="@style/lineHead"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>
