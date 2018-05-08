@@ -25,7 +25,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 public abstract class BaseFragment extends Fragment {
-    protected BaseActivityOld mActivity;
+    protected BaseActivity mActivity;
     protected View mRootView;//根view
     private boolean isRequestPORTRAIT;//强制竖屏
     protected boolean isLazyLoad = true;//是否懒加载
@@ -35,11 +35,6 @@ public abstract class BaseFragment extends Fragment {
     private SparseArray<View> mViews;//管理View的集合
 
     Unbinder unbinder;
-    
-    /**
-     * 记录是否已经创建了,防止重复创建
-     */
-    private boolean viewCreated;
     /**
      * 是否加载完成
      * 当执行完oncreatview,View的初始化方法后方法后即为true
@@ -48,14 +43,24 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initViews();//强制子类重写,实现子类不同的UI效果,使用BufferKnife
     protected abstract void registerListener();//注册监听事件
     protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
-    
+    /**
+     * 记录是否已经创建了,防止重复创建
+     */
+    private boolean viewCreated;
 
-    
-    @TargetApi(Build.VERSION_CODES.M)
+    /*
+    SDK API<23时，onAttach(Context)不执行，需要使用onAttach(Activity)。Fragment自身的Bug，v4的没有此问题
+    https://blog.csdn.net/ChrisPan99/article/details/53173825
+    https://www.jianshu.com/p/91e9538631f9
+    */
+    @SuppressWarnings("deprecation")
     @Override
-    public void onAttach(Context activity) {
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mActivity = (BaseActivityOld) activity;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            // Code here
+            mActivity = (BaseActivity) activity;
+        }
     }
 
     @Override
@@ -151,20 +156,11 @@ public abstract class BaseFragment extends Fragment {
         super.onDetach();
     }
 
-
-    /*
-    SDK API<23时，onAttach(Context)不执行，需要使用onAttach(Activity)。Fragment自身的Bug，v4的没有此问题
-    https://blog.csdn.net/ChrisPan99/article/details/53173825
-    https://www.jianshu.com/p/91e9538631f9
-    */
-    @SuppressWarnings("deprecation")
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            // Code here
-            mActivity = (BaseActivityOld) activity;
-        }
+        mActivity = (BaseActivity) activity;
     }
 
 
@@ -176,7 +172,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     //获取宿主Activity
-    protected BaseActivityOld getHoldingActivity() {
+    protected BaseActivity getHoldingActivity() {
         return mActivity;
     }
 
