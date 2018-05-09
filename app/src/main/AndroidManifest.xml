@@ -57,6 +57,10 @@
             android:name=".sample.SampleActivity"
             android:label="@string/title_activity_resolution_test">
         </activity>
+        <activity
+            android:name=".sample.SampleFragmentActivity"
+            android:label="@string/title_activity_resolution_test">
+        </activity>
     </application>
 
 </manifest>

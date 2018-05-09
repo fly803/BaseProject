@@ -1,0 +1,8 @@
+<fragment android:id="@+id/fragment"
+          android:name="com.ivy.baseproject.test.sample.SampleFragment"
+          xmlns:android="http://schemas.android.com/apk/res/android"
+          xmlns:app="http://schemas.android.com/apk/res-auto"
+          xmlns:tools="http://schemas.android.com/tools"
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          tools:layout="@layout/activity_fragmentmain"/>

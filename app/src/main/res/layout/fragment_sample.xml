@@ -8,5 +8,6 @@
         android:id="@+id/tvFragmentSample"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="tvFragmentSample"/>
+        android:textColor="@color/blue"
+        android:text="SampleFragmentSample"/>
 </LinearLayout>

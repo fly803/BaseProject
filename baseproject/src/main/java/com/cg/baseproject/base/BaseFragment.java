@@ -10,6 +10,7 @@ package com.cg.baseproject.base;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
@@ -21,12 +22,20 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cg.baseproject.utils.ViewUtils;
+
+import java.util.ArrayList;
+
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import rx.Subscriber;
 
 public abstract class BaseFragment extends Fragment {
     protected BaseActivity mActivity;
     protected View mRootView;//根view
+    public ContentPage contentPage;
+    public ProgressDialog pdLoading;
+    private ArrayList<Subscriber> subscribers;
     private boolean isRequestPORTRAIT;//强制竖屏
     protected boolean isLazyLoad = true;//是否懒加载
     private boolean isFirstLoad = true;//是否是第一次加载
@@ -43,6 +52,13 @@ public abstract class BaseFragment extends Fragment {
     protected abstract void initViews();//强制子类重写,实现子类不同的UI效果,使用BufferKnife
     protected abstract void registerListener();//注册监听事件
     protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
+    protected abstract View getSuccessView();//返回据的fragment填充的具体View
+    protected abstract Object requestData();//返回请求服务器的数据
+
+    public void refreshPage(Object o) {
+        contentPage.refreshPage(o);
+    }
+    
     /**
      * 记录是否已经创建了,防止重复创建
      */
@@ -85,7 +101,8 @@ public abstract class BaseFragment extends Fragment {
             }
             int layoutResId = getFragmentLayoutId();
             if (layoutResId > 0) {
-                mRootView = inflater.inflate(getFragmentLayoutId(), container, false);
+                mRootView = createSubscriber();
+//                mRootView = inflater.inflate(getFragmentLayoutId(), container, false);
                 unbinder = ButterKnife.bind(this, mRootView);
             }
             // 解决点击穿透问题,或者在每个fragment布局的根节点加一条android:clickable="true"。
@@ -99,6 +116,37 @@ public abstract class BaseFragment extends Fragment {
             });
         }
         return mRootView;
+    }
+    
+    private View createSubscriber(){
+        /**
+         * 初始化pdLoading
+         */
+        pdLoading = new ProgressDialog(getActivity());
+        pdLoading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pdLoading.setMessage("拼命加载中...");
+        pdLoading.setCanceledOnTouchOutside(false);
+        pdLoading.setCancelable(true);
+        /**
+         * 创建Subscriber容器
+         */
+        subscribers  = new ArrayList<>();
+        if (contentPage == null) {
+            contentPage = new ContentPage(getActivity()) {
+                @Override
+                protected Object loadData() {
+                    return requestData();
+                }
+
+                @Override
+                protected View createSuccessView() {
+                    return getSuccessView();
+                }
+            };
+        } else {
+            ViewUtils.removeSelfFromParent(contentPage);
+        }
+        return contentPage;
     }
 
     @Override
@@ -149,8 +197,18 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
+        for(Subscriber subscriber:subscribers){
+            if(!subscriber.isUnsubscribed()){
+                subscriber.unsubscribe();
+            }
+        }
     }
 
+    public <T> Subscriber<T> addSubscriber(Subscriber<T> subscriber) {
+        subscribers.add(subscriber);
+        return subscriber;
+    }
+    
     @Override
     public void onDetach() {
         super.onDetach();

@@ -33,6 +33,7 @@ import com.ivy.baseproject.test.activity.ResolutionTestActivity;
 import com.ivy.baseproject.test.api.AppConfig;
 import com.ivy.baseproject.test.api.RequestBusiness;
 import com.ivy.baseproject.test.sample.SampleActivity;
+import com.ivy.baseproject.test.sample.SampleFragmentActivity;
 import com.ivy.baseproject.test.view.decoration.swtichgridlist.AutoFitRecyclerView;
 import com.ivy.baseproject.test.view.decoration.swtichgridlist.Item;
 
@@ -124,7 +125,12 @@ public class MainActivity extends AppCompatActivity {
         record7.setMethod("sampleActivity");
         records.add(record7);
 
-        for (int i = 8; i < 18; i++) {
+        Item record8 = new Item();
+        record8.setName("继承BaseFragment");
+        record8.setMethod("sampleFragment");
+        records.add(record8);
+
+        for (int i = 9; i < 18; i++) {
             Item record = new Item();
             record.setName("待添加操作" + i);
             record.setMethod("");
@@ -161,6 +167,9 @@ public class MainActivity extends AppCompatActivity {
             case "sampleActivity":
                 sampleActivity();
                 break;
+            case "sampleFragment":
+                sampleFragment();
+                break;
             default:
                 testResolution(this);
                 ResolutionAdaptationUtils.showNavBar(MainActivity.this);
@@ -169,6 +178,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void sampleFragment(){
+        Intent intentResolutionTest = new Intent(MainActivity.this, SampleFragmentActivity.class);
+        startActivity(intentResolutionTest);
+    }
+    
     private void sampleActivity(){
         Intent intentResolutionTest = new Intent(MainActivity.this, SampleActivity.class);
         startActivity(intentResolutionTest);

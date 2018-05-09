@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cg.baseproject.base.BaseFragment;
+import com.cg.baseproject.configs.IConstants;
 import com.ivy.baseproject.test.R;
 
 import butterknife.BindView;
@@ -20,12 +21,9 @@ import butterknife.Unbinder;
 
 public class SampleFragment extends BaseFragment {
 
-//    @BindView(R.id.tvFragmentSample)
-//    TextView mTvFragmentSample;
-
     @Override
     protected int getFragmentLayoutId() {
-        return R.layout.fragment_sample;
+        return 0;
     }
 
     @Override
@@ -43,9 +41,17 @@ public class SampleFragment extends BaseFragment {
 
     }
 
+    @Override
+    protected View getSuccessView() {
+        View view = View.inflate(getActivity(), R.layout.fragment_sample, null);
+        return view;
+    }
 
-//    @OnClick(R.id.tvFragmentSample)
-//    public void onViewClicked() {
-//        
-//    }
+
+    @Override
+    protected Object requestData() {
+        return IConstants.STATE_SUCCESSED;
+    }
+
+
 }
