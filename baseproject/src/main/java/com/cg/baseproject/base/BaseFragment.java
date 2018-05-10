@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cg.baseproject.R;
+import com.cg.baseproject.configs.IConstants;
 import com.cg.baseproject.utils.ViewUtils;
 
 import java.util.ArrayList;
@@ -21,6 +22,7 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public ProgressDialog pdLoading;
     private ArrayList<Subscriber> subscribers;
     private TextView mResetButton;
+    private String contentPageType;
 
     protected void onClickFailureResetButton(View view) {
     }
@@ -44,17 +46,18 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
             contentPage = new ContentPage(getActivity()) {
                 @Override
                 protected Object loadData() {
+                    contentPageType = (String) requestData();
                     return requestData();
                 }
-
                 @Override
                 protected View createSuccessView() {
                     return getSuccessView();
                 }
             };
-
-            mResetButton = (TextView) contentPage.findViewById(R.id.reset_button);
-            mResetButton.setOnClickListener(this);
+            if (contentPageType == IConstants.STATE_FAILED) {
+                mResetButton = (TextView) contentPage.findViewById(R.id.reset_button);
+                mResetButton.setOnClickListener(BaseFragment.this);
+            }
         } else {
             ViewUtils.removeSelfFromParent(contentPage);
         }

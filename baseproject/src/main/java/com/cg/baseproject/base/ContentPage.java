@@ -99,10 +99,9 @@ public abstract class ContentPage extends FrameLayout {
      * @return
      */
     private PageState checkData(Object data) {
-        if (data == null) {
+        if (data == IConstants.STATE_FAILED) {
             //说明木有数据，那么对应的state应该是error
             return PageState.STATE_ERROR;
-
         } else if (data == IConstants.STATE_LOADING) {
             return PageState.STATE_LOADING;
         } else {

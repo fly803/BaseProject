@@ -4,9 +4,9 @@ public interface IConstants {
     /**
      * 加载界面的三种状态
      */
-    String STATE_LOADING = "zs";
-    String STATE_SUCCESSED = "shanyao";
-    String STATE_FAILED = null;
+    String STATE_LOADING = "loading";
+    String STATE_SUCCESSED = "success";
+    String STATE_FAILED = "failed";
     /**
      * 根据资源id跳转的界面
      */
