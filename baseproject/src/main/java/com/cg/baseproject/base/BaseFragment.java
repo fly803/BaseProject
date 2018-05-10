@@ -31,7 +31,7 @@ import butterknife.Unbinder;
 import rx.Subscriber;
 
 public abstract class BaseFragment extends Fragment {
-    protected BaseActivity mActivity;
+    protected BaseSupportActivity mActivity;
     protected View mRootView;//根view
     public ContentPage contentPage;
     public ProgressDialog pdLoading;
@@ -75,7 +75,7 @@ public abstract class BaseFragment extends Fragment {
         super.onAttach(activity);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // Code here
-            mActivity = (BaseActivity) activity;
+            mActivity = (BaseSupportActivity) activity;
         }
     }
 
@@ -218,7 +218,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onAttach(Context activity) {
         super.onAttach(activity);
-        mActivity = (BaseActivity) activity;
+        mActivity = (BaseSupportActivity) activity;
     }
 
 
@@ -230,7 +230,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     //获取宿主Activity
-    protected BaseActivity getHoldingActivity() {
+    protected BaseSupportActivity getHoldingActivity() {
         return mActivity;
     }
 

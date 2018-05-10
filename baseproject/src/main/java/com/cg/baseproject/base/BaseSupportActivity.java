@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.cg.baseproject.R;
 import com.cg.baseproject.manager.ActivityStackManager;
 import com.cg.baseproject.manager.ScreenManager;
+import com.cg.baseproject.manager.ScreenManagerSupportActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,53 +28,46 @@ import butterknife.Unbinder;
  * @date 2018/5/4
  * https://blog.csdn.net/xx244488877/article/details/65937778
  */
-public abstract class BaseActivityOld extends AppCompatActivity {
+public abstract class BaseSupportActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
     protected LinearLayout badnetworkLayout, loadingLayout,baseactivityLayout;
     protected LayoutInflater inflater;
-    private boolean isStatusBar = true;//是否沉浸状态栏
-    private boolean isFullScreen = true;//是否允许全屏
-    private boolean isScreenRoate = true;//是否禁止旋转屏幕
+    protected boolean isStatusBar = false;//是否沉浸状态栏
+    protected boolean isFullScreen = false;//是否允许全屏
+    protected boolean isScreenPortrait = true;//是否禁止旋转屏幕
     protected Context ctx;//Context
     private boolean isDebug;// 是否输出日志信息
     protected abstract int getActivityLayoutId();////布局中Fragment的ID
     protected abstract void initView();//初始化界面
     protected abstract void registerListener();//绑定事件
     protected abstract void initData();// 初始化数据,请求网络数据等
-    private ScreenManager screenManager;
+    protected abstract void setScreenManager();
+    private ScreenManagerSupportActivity screenManager;
     Unbinder unbinder;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        Log.i(TAG, "--->onCreate()");
         ActivityStackManager.getActivityStackManager().pushActivity(this);
-        screenManager = ScreenManager.getInstance();
-//        screenManager.setStatusBar(isStatusBar, this);
-//        screenManager.setScreenRoate(isScreenRoate, this);
-//        screenManager.setFullScreen(isFullScreen, this);
+        initScreenManage();
         setContentView(getActivityLayoutId());
-//        setContentView(R.layout.activity_base);
         inflater = LayoutInflater.from(this);
-        initView();
+//        initView();
         unbinder = ButterKnife.bind(this);
         registerListener();
         initData();
         ctx = this;
     }
+    
 
-    @Override
-    public void setContentView(int layoutResID) {
-        super.setContentView(R.layout.activity_base);
-        initBaseActivityView(true);
+    private void initScreenManage(){
+        setScreenManager();
+        screenManager = ScreenManagerSupportActivity.getInstance();
+        screenManager.setStatusBar(isStatusBar, this);
+        screenManager.setScreenRoate(isScreenPortrait, this);
+        screenManager.setFullScreen(isFullScreen, this);
     }
     
-    private void initBaseActivityView(boolean isShow) {
-//        badnetworkLayout = (LinearLayout) findViewById(R.id.baseactivity_badnetworkLayout);
-//        loadingLayout = (LinearLayout) findViewById(R.id.baseactivity_loadingLayout);
-//        baseactivityLayout = (LinearLayout) findViewById(R.id.baseactivity_contextLayout);
-    }
-
     /**
      * 跳转Activity
      * skip Another Activity
@@ -96,30 +90,6 @@ public abstract class BaseActivityOld extends AppCompatActivity {
         System.exit(0);//system exit.
     }
     
-   
-    /*
-     * 显示加载前的动画
-     */
-    protected void showLoadingLayout() {
-        loadingLayout.setVisibility(View.VISIBLE);
-        badnetworkLayout.setVisibility(View.GONE);
-    }
-
-    /*
-     * 加载失败或没网络
-     */
-    protected void showBadnetworkLayout() {
-        loadingLayout.setVisibility(View.GONE);
-        badnetworkLayout.setVisibility(View.VISIBLE);
-    }
-
-    /**
-     * 加载完
-     */
-    protected void showContextLayout() {
-        loadingLayout.setVisibility(View.GONE);
-        badnetworkLayout.setVisibility(View.GONE);
-    }
 
     //添加fragment
    /* protected void addFragment(BaseFragment fragment) {
