@@ -61,7 +61,7 @@ public class SampleFragment extends BaseSupportFragment {
 
     @Override
     protected Object requestData() {
-        return IConstants.STATE_SUCCESSED;
+        return IConstants.STATE_FAILED;
     }
 
     @OnClick(R.id.tvFragmentSample)

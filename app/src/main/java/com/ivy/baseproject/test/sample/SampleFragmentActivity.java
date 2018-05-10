@@ -11,13 +11,32 @@ import com.ivy.baseproject.test.R;
 
 import butterknife.ButterKnife;
 
-public class SampleFragmentActivity extends BaseTempActivity {
+public class SampleFragmentActivity extends BaseSupportActivity {
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_samplefragment_main);
-        ButterKnife.bind(this);
+    protected int getActivityLayoutId() {
+        return R.layout.activity_samplefragment_main;
     }
+
+    @Override
+    protected void initView() {
+
+    }
+
+    @Override
+    protected void registerListener() {
+
+    }
+
+    @Override
+    protected void initData() {
+
+    }
+
+    @Override
+    protected void setScreenManager() {
+
+    }
+
     
 }
