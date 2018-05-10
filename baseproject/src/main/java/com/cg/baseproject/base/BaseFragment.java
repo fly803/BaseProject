@@ -6,7 +6,9 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.cg.baseproject.R;
 import com.cg.baseproject.utils.ViewUtils;
 
 import java.util.ArrayList;
@@ -18,6 +20,10 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public ContentPage contentPage;
     public ProgressDialog pdLoading;
     private ArrayList<Subscriber> subscribers;
+    private TextView mResetButton;
+
+    protected void onClickFailureResetButton(View view) {
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -46,6 +52,9 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
                     return getSuccessView();
                 }
             };
+
+            mResetButton = (TextView) contentPage.findViewById(R.id.reset_button);
+            mResetButton.setOnClickListener(this);
         } else {
             ViewUtils.removeSelfFromParent(contentPage);
         }
@@ -79,6 +88,19 @@ public abstract class BaseFragment extends Fragment implements View.OnClickListe
     public <T> Subscriber<T> addSubscriber(Subscriber<T> subscriber) {
         subscribers.add(subscriber);
         return subscriber;
+    }
+
+    @Override
+    public final void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.ivTitlebarLeft) {
+            
+        } else if (i == R.id.reset_button) {
+            onClickFailureResetButton(v);
+            //如果使用黄油刀，请注释掉这里
+        } else {
+
+        }
     }
 }
 
