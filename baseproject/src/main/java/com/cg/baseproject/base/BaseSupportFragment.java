@@ -21,7 +21,10 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.cg.baseproject.R;
+import com.cg.baseproject.configs.IConstants;
 import com.cg.baseproject.utils.ViewUtils;
 
 import java.util.ArrayList;
@@ -30,8 +33,8 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import rx.Subscriber;
 
-public abstract class BaseSupportFragment extends Fragment {
-    protected BaseSupportActivity mActivity;
+public abstract class BaseSupportFragment extends Fragment implements View.OnClickListener {
+//    protected BaseSupportActivity mActivity;
     protected View mRootView;//根view
     public ContentPage contentPage;
     public ProgressDialog pdLoading;
@@ -42,41 +45,19 @@ public abstract class BaseSupportFragment extends Fragment {
     private boolean isVisible = false;//是否对用户可见
     private boolean isInitView;//是否初始化控件
     private SparseArray<View> mViews;//管理View的集合
-
+    private String contentPageType;
     Unbinder unbinder;
-    /**
-     * 是否加载完成
-     * 当执行完oncreatview,View的初始化方法后方法后即为true
-     */
-    protected abstract int getFragmentLayoutId();//获得布局资源ID
-    protected abstract void initViews();//强制子类重写,实现子类不同的UI效果,使用BufferKnife
-    protected abstract void registerListener();//注册监听事件
-    protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
-    protected abstract View getSuccessView();//返回据的fragment填充的具体View
-    protected abstract Object requestData();//返回请求服务器的数据
+    private TextView mResetButton;
 
-    public void refreshPage(Object o) {
-        contentPage.refreshPage(o);
+    protected void onClickFailureResetButton(View view) {
     }
-    
-    /**
-     * 记录是否已经创建了,防止重复创建
-     */
-    private boolean viewCreated;
 
-    /*
-    SDK API<23时，onAttach(Context)不执行，需要使用onAttach(Activity)。Fragment自身的Bug，v4的没有此问题
-    https://blog.csdn.net/ChrisPan99/article/details/53173825
-    https://www.jianshu.com/p/91e9538631f9
-    */
-    @SuppressWarnings("deprecation")
+
+    @TargetApi(Build.VERSION_CODES.M)
     @Override
-    public void onAttach(Activity activity) {
+    public void onAttach(Context activity) {
         super.onAttach(activity);
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
-            // Code here
-            mActivity = (BaseSupportActivity) activity;
-        }
+//        mActivity = (BaseSupportActivity) activity;
     }
 
     @Override
@@ -90,65 +71,29 @@ public abstract class BaseSupportFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        return inflater.inflate(getFragmentLayoutId(), container, false);
-//        mViews = new SparseArray<View>();//初始化集合
+        mViews = new SparseArray<View>();//初始化集合
         if (null == mRootView) {
-            // 强制竖屏显示
-            if(isRequestPORTRAIT){
-                mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_PORTRAIT);
-            }else {
-                mActivity.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
-            }
-            int layoutResId = getFragmentLayoutId();
+//            int layoutResId = createSubscriber();
+            int layoutResId=1;
             if (layoutResId > 0) {
                 mRootView = createSubscriber();
 //                mRootView = inflater.inflate(getFragmentLayoutId(), container, false);
-                unbinder = ButterKnife.bind(this, mRootView);
             }
             // 解决点击穿透问题,或者在每个fragment布局的根节点加一条android:clickable="true"。
 //            mRootView.setOnTouchListener((View.OnTouchListener) this);
-            /*mRootView.setOnTouchListener(new View.OnTouchListener() {
+            mRootView.setOnTouchListener(new View.OnTouchListener() {
                 @SuppressLint("ClickableViewAccessibility")
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     return true;
                 }
-            });*/
+            });
         }
         return mRootView;
     }
+
+
     
-    private View createSubscriber(){
-        /**
-         * 初始化pdLoading
-         */
-        pdLoading = new ProgressDialog(getActivity());
-        pdLoading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        pdLoading.setMessage("拼命加载中...");
-        pdLoading.setCanceledOnTouchOutside(false);
-        pdLoading.setCancelable(true);
-        /**
-         * 创建Subscriber容器
-         */
-        subscribers  = new ArrayList<>();
-        if (contentPage == null) {
-            contentPage = new ContentPage(getActivity()) {
-                @Override
-                protected Object loadData() {
-                    return requestData();
-                }
-
-                @Override
-                protected View createSuccessView() {
-                    return getSuccessView();
-                }
-            };
-        } else {
-            ViewUtils.removeSelfFromParent(contentPage);
-        }
-        return contentPage;
-    }
-
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -204,21 +149,87 @@ public abstract class BaseSupportFragment extends Fragment {
         }
     }
 
-    public <T> Subscriber<T> addSubscriber(Subscriber<T> subscriber) {
-        subscribers.add(subscriber);
-        return subscriber;
-    }
-    
     @Override
     public void onDetach() {
         super.onDetach();
     }
 
-    @TargetApi(Build.VERSION_CODES.M)
+    /**
+     * 是否加载完成
+     * 当执行完oncreatview,View的初始化方法后方法后即为true
+     */
+    protected abstract int getFragmentLayoutId();//获得布局资源ID
+    protected abstract void initViews();//强制子类重写,实现子类不同的UI效果,使用BufferKnife
+    protected abstract void registerListener();//注册监听事件
+    protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
+    protected abstract View getSuccessView();//返回据的fragment填充的具体View
+    protected abstract Object requestData();//返回请求服务器的数据
+
+    public void refreshPage(Object o) {
+        contentPage.refreshPage(o);
+    }
+    
+    /**
+     * 记录是否已经创建了,防止重复创建
+     */
+    private boolean viewCreated;
+
+    /*
+    SDK API<23时，onAttach(Context)不执行，需要使用onAttach(Activity)。Fragment自身的Bug，v4的没有此问题
+    https://blog.csdn.net/ChrisPan99/article/details/53173825
+    https://www.jianshu.com/p/91e9538631f9
+    */
+    @SuppressWarnings("deprecation")
     @Override
-    public void onAttach(Context activity) {
+    public void onAttach(Activity activity) {
         super.onAttach(activity);
-        mActivity = (BaseSupportActivity) activity;
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
+            // Code here
+//            mActivity = (BaseSupportActivity) activity;
+        }
+    }
+
+    private View createSubscriber(){
+        /**
+         * 初始化pdLoading
+         */
+        pdLoading = new ProgressDialog(getActivity());
+        pdLoading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pdLoading.setMessage("拼命加载中...");
+        pdLoading.setCanceledOnTouchOutside(false);
+        pdLoading.setCancelable(true);
+        /**
+         * 创建Subscriber容器
+         */
+        subscribers  = new ArrayList<>();
+        if (contentPage == null) {
+            contentPage = new ContentPage(getActivity()) {
+                @Override
+                protected Object loadData() {
+                    contentPageType = (String) requestData();
+                    return requestData();
+                }
+                @Override
+                protected View createSuccessView() {
+                    return getSuccessView();
+                }
+            };
+            if (contentPageType == IConstants.STATE_FAILED) {
+                mResetButton = (TextView) contentPage.findViewById(R.id.reset_button);
+                mResetButton.setOnClickListener(BaseSupportFragment.this);
+            }else if (contentPageType == IConstants.STATE_SUCCESSED) {
+                unbinder = ButterKnife.bind(this, contentPage);
+            }else if (contentPageType == IConstants.STATE_LOADING) {
+            }
+        } else {
+            ViewUtils.removeSelfFromParent(contentPage);
+        }
+        return contentPage;
+    }
+
+    public <T> Subscriber<T> addSubscriber(Subscriber<T> subscriber) {
+        subscribers.add(subscriber);
+        return subscriber;
     }
 
 
@@ -230,9 +241,9 @@ public abstract class BaseSupportFragment extends Fragment {
     }
 
     //获取宿主Activity
-    protected BaseSupportActivity getHoldingActivity() {
-        return mActivity;
-    }
+//    protected BaseSupportActivity getHoldingActivity() {
+//        return mActivity;
+//    }
 
     //添加fragment
     /*protected void addFragment(BaseFragment fragment) {
@@ -298,4 +309,16 @@ public abstract class BaseSupportFragment extends Fragment {
         return (T) mRootView.findViewById(id);
     }*/
 
+    @Override
+    public final void onClick(View v) {
+        int i = v.getId();
+        if (i == R.id.ivTitlebarLeft) {
+
+        } else if (i == R.id.reset_button) {
+            onClickFailureResetButton(v);
+            //如果使用黄油刀，请注释掉这里
+        } else {
+
+        }
+    }
 }
