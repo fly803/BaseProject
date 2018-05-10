@@ -2,45 +2,22 @@ package com.ivy.baseproject.test.sample;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 
 import com.cg.baseproject.base.BaseActivity;
 import com.cg.baseproject.base.BaseSupportActivity;
+import com.cg.baseproject.base.BaseTempActivity;
 import com.ivy.baseproject.test.R;
 
-public class SampleFragmentActivity extends BaseSupportActivity {
+import butterknife.ButterKnife;
+
+public class SampleFragmentActivity extends BaseTempActivity {
 
     @Override
-    protected int getActivityLayoutId() {
-        return R.layout.activity_samplefragment_main;
-    }
-
-    @Override
-    protected void initView() {
-        
-    }
-
-    @Override
-    protected void registerListener() {
-
-    }
-
-    @Override
-    protected void initData() {
-
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(getActivityLayoutId());
-        //因为BaseActivity的BufferKnife已经做过绑定view，因此子类不需要再进行绑定unbinder = ButterKnife.bind(this);
+        setContentView(R.layout.activity_samplefragment_main);
+        ButterKnife.bind(this);
     }
-
-    @Override
-    protected void setScreenManager() {
-        super.isScreenPortrait = true;
-        super.isFullScreen = true;
-        super.isScreenPortrait = true;
-    }
-
+    
 }

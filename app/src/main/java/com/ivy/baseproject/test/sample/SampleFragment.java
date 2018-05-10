@@ -24,7 +24,7 @@ public class SampleFragment extends BaseFragment {
 
     @Override
     protected Object requestData() {
-        return IConstants.STATE_SUCCESSED;
+        return IConstants.STATE_FAILED;
     }
 
 

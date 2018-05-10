@@ -5,6 +5,7 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.TextView;
 
 import com.cg.baseproject.R;
 import com.cg.baseproject.configs.IConstants;
@@ -134,7 +135,7 @@ public abstract class ContentPage extends FrameLayout {
             case 2://加载失败的状态
                 if (errorView == null) {
                     errorView = View.inflate(getContext(), R.layout.reset_error_layout, null);
-                    Button btn_reload = (Button) errorView.findViewById(R.id.reset_button);
+                    TextView btn_reload = (TextView) errorView.findViewById(R.id.reset_button);
                     btn_reload.setOnClickListener(new OnClickListener() {
                         @Override
                         public void onClick(View v) {
