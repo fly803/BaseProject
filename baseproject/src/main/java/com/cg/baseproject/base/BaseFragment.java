@@ -107,13 +107,13 @@ public abstract class BaseFragment extends Fragment {
             }
             // 解决点击穿透问题,或者在每个fragment布局的根节点加一条android:clickable="true"。
 //            mRootView.setOnTouchListener((View.OnTouchListener) this);
-            mRootView.setOnTouchListener(new View.OnTouchListener() {
+            /*mRootView.setOnTouchListener(new View.OnTouchListener() {
                 @SuppressLint("ClickableViewAccessibility")
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
                     return true;
                 }
-            });
+            });*/
         }
         return mRootView;
     }
