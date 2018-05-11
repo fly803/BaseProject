@@ -82,7 +82,7 @@ public abstract class ContentPage extends FrameLayout {
     }
 
     public void refreshPage(Object o) {
-        if (o == null) {
+        if (o == PageState.STATE_ERROR) {
             //说明木有数据，那么对应的state应该是error
             mState = PageState.STATE_ERROR;
         } else {

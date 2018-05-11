@@ -34,6 +34,11 @@ public class SampleFragmentActivity extends BaseSupportActivity {
     }
 
     @Override
+    protected int getFragmentContentId() {
+        return 0;
+    }
+
+    @Override
     protected void setScreenManager() {
 
     }

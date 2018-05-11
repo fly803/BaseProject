@@ -1,6 +1,7 @@
 package com.ivy.baseproject.test.sample;
 
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,10 +48,6 @@ public class SampleFragment extends BaseSupportFragment {
 
     }
 
-    @Override
-    protected void initData(Bundle savedInstanceState) {
-
-    }
 
     @Override
     protected View getSuccessView() {
@@ -58,10 +55,20 @@ public class SampleFragment extends BaseSupportFragment {
         return view;
     }
 
+    @Override
+    protected void initData(Bundle savedInstanceState) {
+        
+    }
 
     @Override
     protected Object requestData() {
-        return IConstants.STATE_FAILED;
+        new Handler().postDelayed(new Runnable(){
+            public void run() {
+                //execute the task   
+                refreshPage(IConstants.STATE_FAILED);
+            }
+        }, 3000);
+        return IConstants.STATE_LOADING;
     }
 
     @OnClick(R.id.tvFragmentSample)

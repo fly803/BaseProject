@@ -15,6 +15,7 @@ import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -34,7 +35,7 @@ import butterknife.Unbinder;
 import rx.Subscriber;
 
 public abstract class BaseSupportFragment extends Fragment implements View.OnClickListener {
-//    protected BaseSupportActivity mActivity;
+    protected BaseSupportActivity mActivity;
     protected View mRootView;//根view
     public ContentPage contentPage;
     public ProgressDialog pdLoading;
@@ -57,7 +58,7 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
     @Override
     public void onAttach(Context activity) {
         super.onAttach(activity);
-//        mActivity = (BaseSupportActivity) activity;
+        mActivity = (BaseSupportActivity) activity;
     }
 
     @Override
@@ -136,7 +137,7 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+//        unbinder.unbind();
     }
 
     @Override
@@ -185,19 +186,12 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
         super.onAttach(activity);
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // Code here
-//            mActivity = (BaseSupportActivity) activity;
+            mActivity = (BaseSupportActivity) activity;
         }
     }
 
     private View createSubscriber(){
-        /**
-         * 初始化pdLoading
-         */
-        pdLoading = new ProgressDialog(getActivity());
-        pdLoading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
-        pdLoading.setMessage("拼命加载中...");
-        pdLoading.setCanceledOnTouchOutside(false);
-        pdLoading.setCancelable(true);
+//        initLoading();采用ContentPage的loading
         /**
          * 创建Subscriber容器
          */
@@ -211,6 +205,12 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
                 }
                 @Override
                 protected View createSuccessView() {
+//                    new Handler().postDelayed(new Runnable(){
+//                        public void run() {
+//                            //execute the task   
+//                            pdLoading.cancel();
+//                        }
+//                    }, 3000);
                     return getSuccessView();
                 }
             };
@@ -220,6 +220,7 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
             }else if (contentPageType == IConstants.STATE_SUCCESSED) {
                 unbinder = ButterKnife.bind(this, contentPage);
             }else if (contentPageType == IConstants.STATE_LOADING) {
+                
             }
         } else {
             ViewUtils.removeSelfFromParent(contentPage);
@@ -227,6 +228,19 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
         return contentPage;
     }
 
+    
+    private void initLoading(){
+        /**
+         * 初始化pdLoading
+         */
+        pdLoading = new ProgressDialog(getActivity());
+        pdLoading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        pdLoading.setMessage("拼命加载中...");
+        pdLoading.show();
+        pdLoading.setCanceledOnTouchOutside(false);
+        pdLoading.setCancelable(true);
+    }
+    
     public <T> Subscriber<T> addSubscriber(Subscriber<T> subscriber) {
         subscribers.add(subscriber);
         return subscriber;
@@ -241,21 +255,21 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
     }
 
     //获取宿主Activity
-//    protected BaseSupportActivity getHoldingActivity() {
-//        return mActivity;
-//    }
+    protected BaseSupportActivity getHoldingActivity() {
+        return mActivity;
+    }
 
     //添加fragment
-    /*protected void addFragment(BaseFragment fragment) {
+    protected void addFragment(BaseSupportFragment fragment) {
         if (null != fragment) {
             getHoldingActivity().addFragment(fragment);
         }
-    }*/
+    }
 
     //移除fragment
-   /* protected void removeFragment() {
+    protected void removeFragment() {
         getHoldingActivity().removeFragment();
-    }*/
+    }
 
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {

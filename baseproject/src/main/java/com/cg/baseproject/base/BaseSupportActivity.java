@@ -29,7 +29,7 @@ import butterknife.Unbinder;
  * https://blog.csdn.net/xx244488877/article/details/65937778
  */
 public abstract class BaseSupportActivity extends AppCompatActivity {
-    private static final String TAG = "BaseActivity";
+    private static final String TAG = "BaseSupportActivity";
     protected LinearLayout badnetworkLayout, loadingLayout,baseactivityLayout;
     protected LayoutInflater inflater;
     protected boolean isStatusBar = false;//是否沉浸状态栏
@@ -41,6 +41,8 @@ public abstract class BaseSupportActivity extends AppCompatActivity {
     protected abstract void initView();//初始化界面
     protected abstract void registerListener();//绑定事件
     protected abstract void initData();// 初始化数据,请求网络数据等
+    //布局中Fragment的ID
+    protected abstract int getFragmentContentId();
     protected abstract void setScreenManager();
     private ScreenManagerSupportActivity screenManager;
     Unbinder unbinder;
@@ -92,20 +94,23 @@ public abstract class BaseSupportActivity extends AppCompatActivity {
     
 
     //添加fragment
-   /* protected void addFragment(BaseFragment fragment) {
+    protected void addFragment(BaseSupportFragment fragment) {
         if (fragment != null) {
-            getSupportFragmentManager().beginTransaction().replace(getFragmentContentId(), fragment, fragment.getClass().getSimpleName()).addToBackStack(fragment.getClass().getSimpleName()).commitAllowingStateLoss();
+            getSupportFragmentManager().beginTransaction().replace(getFragmentContentId(),
+                    fragment, fragment.getClass().getSimpleName())
+                    .addToBackStack(fragment.getClass().getSimpleName())
+                    .commitAllowingStateLoss();
         }
-    }*/
+    }
 
     //移除fragment
-    /*protected void removeFragment() {
+    protected void removeFragment() {
         if (getSupportFragmentManager().getBackStackEntryCount() > 1) {
             getSupportFragmentManager().popBackStack();
         } else {
             finish();
         }
-    }*/
+    }
 
     @Override
     protected void onStart() {
