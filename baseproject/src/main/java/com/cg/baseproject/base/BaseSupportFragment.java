@@ -1,21 +1,12 @@
 package com.cg.baseproject.base;
 
-/**
- * @author sam
- * @version 1.0
- * @date 2018/3/2
- * https://blog.csdn.net/xx244488877/article/details/66144690?locationNum=3&fps=1
- */
-
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
@@ -36,17 +27,28 @@ import rx.Subscriber;
 
 public abstract class BaseSupportFragment extends Fragment implements View.OnClickListener {
     protected BaseSupportActivity mActivity;
-    protected View mRootView;//根view
+    /** 根view. */
+    protected View mRootView;
+    /** 显示内容View. */
     public ContentPage contentPage;
+    /** 加载弹窗. */
     public ProgressDialog pdLoading;
+    /** 订阅列表. */
     private ArrayList<Subscriber> subscribers;
-    private boolean isRequestPORTRAIT;//强制竖屏
-    protected boolean isLazyLoad = true;//是否懒加载
-    private boolean isFirstLoad = true;//是否是第一次加载
-    private boolean isVisible = false;//是否对用户可见
-    private boolean isInitView;//是否初始化控件
-    private SparseArray<View> mViews;//管理View的集合
+    /** 强制竖屏. */
+    private boolean isRequestPORTRAIT;
+    /** 是否懒加载. */
+    protected boolean isLazyLoad = true;
+    /** 是否是第一次加载. */
+    private boolean isFirstLoad = true;
+    /** 是否对用户可见. */
+    private boolean isVisible = false;
+    /** 是否初始化控件. */
+    private boolean isInitView;
+    /** 管理View的集合. */
+    private SparseArray<View> mViews;
     private String contentPageType;
+    // 目前没有生效的binder.
     Unbinder unbinder;
     private TextView mResetButton;
 
@@ -76,10 +78,10 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
         if (null == mRootView) {
 //            int layoutResId = createSubscriber();
             int layoutResId=1;
-            if (layoutResId > 0) {
+//            if (layoutResId > 0) {
                 mRootView = createSubscriber();
 //                mRootView = inflater.inflate(getFragmentLayoutId(), container, false);
-            }
+//            }
             // 解决点击穿透问题,或者在每个fragment布局的根节点加一条android:clickable="true"。
 //            mRootView.setOnTouchListener((View.OnTouchListener) this);
             mRootView.setOnTouchListener(new View.OnTouchListener() {
@@ -156,23 +158,38 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
     }
 
     /**
-     * 是否加载完成
-     * 当执行完oncreatview,View的初始化方法后方法后即为true
+     * 获得布局资源ID. 是否加载完成 当执行完oncreatview,View的初始化方法后方法后即为true
      */
-    protected abstract int getFragmentLayoutId();//获得布局资源ID
-    protected abstract void initViews();//强制子类重写,实现子类不同的UI效果,使用BufferKnife
-    protected abstract void registerListener();//注册监听事件
-    protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
-    protected abstract View getSuccessView();//返回据的fragment填充的具体View
-    protected abstract Object requestData();//返回请求服务器的数据
+    protected abstract int getFragmentLayoutId();
+    /**
+     * 强制子类重写,实现子类不同的UI效果,使用BufferKnife
+     */
+    protected abstract void initViews();
+    /**
+     * 注册监听事件.
+     */
+    protected abstract void registerListener();
+    /**
+     * 初始化数据，如：网络请求获取数据.
+     * @param savedInstanceState
+     */
+    protected abstract void initData(Bundle savedInstanceState);
+    /**
+     * 返回据的fragment填充的具体View.
+     * @return
+     */
+    protected abstract View getSuccessView();
+    /**
+     * 返回请求服务器的数据.
+     * @return
+     */
+    protected abstract Object requestData();
 
     public void refreshPage(Object o) {
         contentPage.refreshPage(o);
     }
     
-    /**
-     * 记录是否已经创建了,防止重复创建
-     */
+    /** 记录是否已经创建了,防止重复创建 */
     private boolean viewCreated;
 
     /*
@@ -200,8 +217,10 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
             contentPage = new ContentPage(getActivity()) {
                 @Override
                 protected Object loadData() {
-                    contentPageType = (String) requestData();
-                    return requestData();
+                    // wixche 修复重复加载问题.
+                    final Object requestObj = requestData();
+                    contentPageType = (String) requestObj;
+                    return requestObj;
                 }
                 @Override
                 protected View createSuccessView() {
@@ -214,13 +233,13 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
                     return getSuccessView();
                 }
             };
-            if (contentPageType == IConstants.STATE_FAILED) {
+            if (contentPageType.equals(IConstants.STATE_FAILED)) {
                 mResetButton = (TextView) contentPage.findViewById(R.id.reset_button);
                 mResetButton.setOnClickListener(BaseSupportFragment.this);
-            }else if (contentPageType == IConstants.STATE_SUCCESSED) {
+            } else if (contentPageType.equals(IConstants.STATE_SUCCESSED)) {
                 unbinder = ButterKnife.bind(this, contentPage);
-            }else if (contentPageType == IConstants.STATE_LOADING) {
-                
+            } else if (contentPageType.equals(IConstants.STATE_LOADING)) {
+
             }
         } else {
             ViewUtils.removeSelfFromParent(contentPage);
@@ -297,9 +316,9 @@ public abstract class BaseSupportFragment extends Fragment implements View.OnCli
      * @date 2016-5-26 下午4:10:20
      */
     protected void onLazyLoadData() {
-        registerListener();//注册监听事件
-        initData(getArguments());;//初始化数据
-        isFirstLoad = false;//已经不是第一次加载
+        registerListener();
+        initData(getArguments());;
+        isFirstLoad = false;
     }
     
     /**
