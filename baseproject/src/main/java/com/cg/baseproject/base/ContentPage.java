@@ -3,7 +3,6 @@ package com.cg.baseproject.base;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.TextView;
 
@@ -32,12 +31,16 @@ public abstract class ContentPage extends FrameLayout {
         initContentPage();
     }
 
-    // 定义加载状态常量
+    /**
+     * 定义加载状态常量,给枚举传入自定义的int值.
+     */
     enum PageState {
-        // 给枚举传入自定义的int值
-        STATE_LOADING(0), // 加载中的状态
-        STATE_SUCCESS(1), // 加载成功的状态
-        STATE_ERROR(2);// 加载数据失败的状态
+        /** 加载中的状态. */
+        STATE_LOADING(0),
+        /** 加载成功的状态. */
+        STATE_SUCCESS(1),
+        /** 加载数据失败的状态. */
+        STATE_ERROR(2);
 
         private int value;
 
@@ -50,11 +53,14 @@ public abstract class ContentPage extends FrameLayout {
         }
     }
 
-    // mState表示当前的状态
-    private PageState mState = PageState.STATE_LOADING;// 每个界面默认是加载中的状态
-    private View loadingView;// 加载中对应的View
-    private View errorView;// 加载数据失败的View
-    private View successView;// 加载数据成功的View
+    /** 表示当前的状态,默认是加载中的状态. */
+    private PageState mState = PageState.STATE_LOADING;
+    /** 加载中对应的View. */
+    private View loadingView;
+    /** 加载数据失败的View. */
+    private View errorView;
+    /** 加载数据成功的View. */
+    private View successView;
 
     /**
      * 初始化ContentPage
@@ -82,13 +88,7 @@ public abstract class ContentPage extends FrameLayout {
     }
 
     public void refreshPage(Object o) {
-        if (o == PageState.STATE_ERROR) {
-            //说明木有数据，那么对应的state应该是error
-            mState = PageState.STATE_ERROR;
-        } else {
-            //说明请求回来的有数据，那么对应的state应该是success
-            mState = PageState.STATE_SUCCESS;
-        }
+        mState = checkData(o);
         showPage();
     }
 
@@ -99,10 +99,11 @@ public abstract class ContentPage extends FrameLayout {
      * @return
      */
     private PageState checkData(Object data) {
-        if (data == IConstants.STATE_FAILED) {
+        final String status = (String) data;
+        if (IConstants.STATE_FAILED.equals(status)) {
             //说明木有数据，那么对应的state应该是error
             return PageState.STATE_ERROR;
-        } else if (data == IConstants.STATE_LOADING) {
+        } else if (IConstants.STATE_LOADING.equals(status)) {
             return PageState.STATE_LOADING;
         } else {
             //说明请求回来的有数据，那么对应的state应该是success
@@ -118,7 +119,8 @@ public abstract class ContentPage extends FrameLayout {
                 LayoutParams.MATCH_PARENT);
 
         switch (mState.getValue()) {
-            case 0://加载中的状态:
+            //加载中的状态:
+            case 0:
                 if (loadingView == null) {
                     loadingView = View.inflate(getContext(), R.layout.content_page_loading,
                             null);
@@ -126,12 +128,16 @@ public abstract class ContentPage extends FrameLayout {
                 removeAllViews();
                 addView(loadingView, params);
                 break;
-            case 1://加载成功的状态
+
+            //加载成功的状态
+            case 1:
                 removeAllViews();
                 successView = createSuccessView();
                 addView(successView, params);
                 break;
-            case 2://加载失败的状态
+
+            //加载失败的状态
+            case 2:
                 if (errorView == null) {
                     errorView = View.inflate(getContext(), R.layout.reset_error_layout, null);
                     TextView btn_reload = (TextView) errorView.findViewById(R.id.reset_button);
@@ -140,14 +146,16 @@ public abstract class ContentPage extends FrameLayout {
                         public void onClick(View v) {
                             //1.先显示loadingView
                             mState = PageState.STATE_LOADING;
-                            showPage();
                             //2.重新请求数据，然后刷新page
-                            loadDataAndRefreshPage();
+                            initContentPage();
                         }
                     });
                 }
                 removeAllViews();
                 addView(errorView, params);
+                break;
+
+            default:
                 break;
         }
     }
