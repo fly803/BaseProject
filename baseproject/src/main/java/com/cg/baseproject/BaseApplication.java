@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
+import com.cg.baseproject.configs.BaseProjectConfig;
 import com.cg.baseproject.crash.CrashHandler;
 import com.cg.baseproject.manager.FragmentManage;
 import com.squareup.leakcanary.LeakCanary;
@@ -43,7 +44,9 @@ public class BaseApplication extends MultiDexApplication {
      * 初始化话app信息
      */
     private void init() {
-        LeakCanary.install(this);
+        if(BaseProjectConfig.isLeakCanary){
+            LeakCanary.install(this);
+        }
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(this);
         initFragmentation();
