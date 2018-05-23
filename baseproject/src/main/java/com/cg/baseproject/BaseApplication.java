@@ -45,7 +45,7 @@ public class BaseApplication extends MultiDexApplication {
      */
     private void init() {
         if(BaseProjectConfig.ISLEAKCANARY){
-            LeakCanary.install(this);
+//            LeakCanary.install(this);
         }
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(this);
