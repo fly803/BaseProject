@@ -44,14 +44,17 @@ public class BaseApplication extends MultiDexApplication {
      * 初始化话app信息
      */
     private void init() {
-        if(BaseProjectConfig.ISLEAKCANARY){
-//            LeakCanary.install(this);
-        }
 //        CrashHandler crashHandler = CrashHandler.getInstance();
 //        crashHandler.init(this);
         initFragmentation();
     }
 
+    public void setLeakCanary(boolean isLeakCanary){
+        if(isLeakCanary){
+            LeakCanary.install(this);
+        }
+    }
+    
     private void initFragmentation() {
         Fragmentation.builder()
                 // 设置 栈视图 模式为 （默认）悬浮球模式   SHAKE: 摇一摇唤出  NONE：隐藏， 仅在Debug环境生效

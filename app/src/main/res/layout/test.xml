@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout android:id="@+id/container"
               xmlns:android="http://schemas.android.com/apk/res/android"
-              xmlns:tools="http://schemas.android.com/tools"
               xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:background="#fff"
@@ -84,17 +84,29 @@
 
         <ImageView
             android:id="@+id/iv_popsuggest"
-            android:visibility="invisible"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginBottom="8dp"
             android:layout_marginEnd="8dp"
+            android:visibility="invisible"
             app:layout_constraintBottom_toBottomOf="@+id/iv_noxy"
             app:layout_constraintEnd_toStartOf="@+id/iv_noxy"
             app:layout_constraintTop_toTopOf="@+id/iv_noxy"
             app:layout_constraintVertical_bias="0.0"
             app:srcCompat="@drawable/leak_canary_icon"/>
     </android.support.constraint.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="TextView"/>
 
 
 </LinearLayout>

@@ -14,6 +14,7 @@ public class BaseProjectConfig {
     public static  String TAG = "retrofit";
     public static final String DOUBAN_BASE_URL = "https://api.douban.com/";
     public static final String GANK_BASE_URL = "https://gank.io/";
+    
     public static void init(boolean isLeakCanary,boolean debug,String baseurl,int successcode,String tag){
         ISLEAKCANARY = isLeakCanary;
         DEBUG = debug;
