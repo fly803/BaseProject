@@ -20,7 +20,7 @@ public class BaseProjectConfig {
     public static final String GANK_BASE_URL = "https://gank.io/";
     public static void init(Application application, boolean isLeakCanary,boolean isCrashHandel, boolean debug, String baseurl, int successcode, String tag){
         if(isLeakCanary){
-//            LeakCanary.install(application);
+            LeakCanary.install(application);
         }
         if(isCrashHandel){
             CrashHandler crashHandler = CrashHandler.getInstance();
