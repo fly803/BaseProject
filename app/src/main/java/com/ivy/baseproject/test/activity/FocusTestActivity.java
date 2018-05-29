@@ -5,9 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
-import com.cg.baseproject.utils.FocusUtils;
-import com.ivy.baseproject.test.R;
-
 
 /**
  * Created by Administrator on 2018/4/8.

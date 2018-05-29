@@ -64,6 +64,10 @@ dependencies {
     implementation ext.zxing
     implementation ext.volley
     implementation ext.gson
+    implementation ext.bottomNavigationViewEx
+    implementation ext.smartFresh
+    implementation ext.hiPermission
+    implementation ext.easyPermissions
     //网络组件
     implementation ext.retrofit
     implementation ext.okhttp

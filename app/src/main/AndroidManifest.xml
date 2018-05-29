@@ -15,9 +15,8 @@
     <application
         android:name=".AppApplication"
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@mipmap/logo"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme.NoActionBar">
         <activity android:name=".MainActivity">
@@ -31,8 +30,7 @@
         </activity>
         <activity
             android:name=".activity.MovieListActivity"
-            android:label="@string/title_activity_movie_list"
-            >
+            android:label="@string/title_activity_movie_list">
         </activity>
         <activity
             android:name=".activity.GirlListActivity"
@@ -41,13 +39,11 @@
         </activity>
         <activity
             android:name=".activity.ResolutionAdaptionDemoActivity"
-            android:label="@string/title_activity_resolution_adaption_demo"
-            >
+            android:label="@string/title_activity_resolution_adaption_demo">
         </activity>
         <activity
             android:name=".activity.ScreenInfoActivity"
-            android:label="@string/title_activity_screen_info"
-            >
+            android:label="@string/title_activity_screen_info">
         </activity>
         <activity
             android:name=".activity.ResolutionTestActivity"
@@ -60,6 +56,11 @@
         <activity
             android:name=".sample.SampleFragmentActivity"
             android:label="@string/title_activity_resolution_test">
+        </activity>
+        <activity
+            android:name=".activity.PermissionActivity"
+            android:label="@string/title_activity_permission"
+            >
         </activity>
     </application>
 

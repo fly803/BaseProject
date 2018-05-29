@@ -1,6 +1,7 @@
-package com.cg.baseproject.utils;
+package com.cg.baseproject.utils.android;
 
 import com.cg.baseproject.BaseApplication;
+import com.cg.baseproject.utils.SharedPreferencesUtils;
 
 /**
  * @author

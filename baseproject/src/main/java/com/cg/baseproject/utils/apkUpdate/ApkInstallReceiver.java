@@ -6,8 +6,6 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.cg.baseproject.utils.SPUtils;
-
 
 /**
  * Created by sam on 2017/6/1.

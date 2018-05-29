@@ -1,7 +1,9 @@
-package com.cg.baseproject.utils;
+package com.cg.baseproject.utils.android;
 
 import android.content.Context;
 import android.content.res.AssetManager;
+
+import com.cg.baseproject.utils.JsonUtils;
 
 import java.io.BufferedReader;
 import java.io.IOException;

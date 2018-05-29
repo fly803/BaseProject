@@ -1,4 +1,4 @@
-package com.cg.baseproject.utils;
+package com.cg.baseproject.utils.android;
 
 import android.content.Context;
 import android.graphics.*;

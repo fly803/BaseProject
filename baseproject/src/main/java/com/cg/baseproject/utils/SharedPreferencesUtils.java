@@ -37,7 +37,7 @@ public class SharedPreferencesUtils {
     /**
      * 保存在手机里面的文件名
      */
-    private static final String FILE_NAME = "share_date";
+    private static final String SharedFILE_NAME = "share_date";
     // SD卡路径
     public final static String SDCARDPATH = Environment.getExternalStorageDirectory().getAbsolutePath();
     // SD卡目录路径
@@ -46,13 +46,13 @@ public class SharedPreferencesUtils {
     public String PHONEPATH;// eg.PHONEPATH:/data/data/com.example.androidtest/cache
     // 手机内存目录路径
     public String PHONEDIR;//
-    private SharedPreferences sharedPreferences;
+    private SharedPreferences mSharedPreferences;
     private static SharedPreferencesUtils preferenceUtils = null;
     private SharedPreferences.Editor editor;
 
     protected SharedPreferencesUtils() {
-        sharedPreferences = BaseApplication.getContext().getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
-        editor = sharedPreferences.edit();
+        mSharedPreferences = BaseApplication.getContext().getSharedPreferences(SharedFILE_NAME, Context.MODE_PRIVATE);
+        editor = mSharedPreferences.edit();
     }
 
 
@@ -73,8 +73,8 @@ public class SharedPreferencesUtils {
      * @param key
      * @param value
      */
-    public void put(String key, Object value) {
-        SharedPreferences sharedPreferences = BaseApplication.getContext().getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+    public void setParam(String key, Object value) {
+        SharedPreferences sharedPreferences = BaseApplication.getContext().getSharedPreferences(SharedFILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (value instanceof String) {
             editor.putString(key, (String) value);
@@ -97,8 +97,8 @@ public class SharedPreferencesUtils {
      * @param defValue
      * @return
      */
-    public Object get(String key, Object defValue) {
-        SharedPreferences sharedPreferences = BaseApplication.getContext().getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+    public Object getParam(String key, Object defValue) {
+        SharedPreferences sharedPreferences = BaseApplication.getContext().getSharedPreferences(SharedFILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor edit = sharedPreferences.edit();
         if (defValue instanceof String) {
             return sharedPreferences.getString(key, (String) defValue);
@@ -114,36 +114,6 @@ public class SharedPreferencesUtils {
         return null;
     }
 
-    public Object getParam(String key, Object defValue) {
-        if (defValue instanceof String) {
-            return sharedPreferences.getString(key, (String) defValue);
-        } else if (defValue instanceof Integer) {
-            return sharedPreferences.getInt(key, (Integer) defValue);
-        } else if (defValue instanceof Boolean) {
-            return sharedPreferences.getBoolean(key, (Boolean) defValue);
-        } else if (defValue instanceof Float) {
-            return sharedPreferences.getFloat(key, (Float) defValue);
-        } else if (defValue instanceof Long) {
-            return sharedPreferences.getLong(key, (Long) defValue);
-        }
-        return null;
-    }
-
-    public void setParam(String key, Object value) {
-        if (value instanceof String) {
-            editor.putString(key, (String) value);
-        } else if (value instanceof Integer) {
-            editor.putInt(key, (Integer) value);
-        } else if (value instanceof Boolean) {
-            editor.putBoolean(key, (Boolean) value);
-        } else if (value instanceof Float) {
-            editor.putFloat(key, (Float) value);
-        } else if (value instanceof Long) {
-            editor.putLong(key, (Long) value);
-        }
-        editor.apply();
-    }
-
     /**
      * 保存数据的方法，我们需要拿到保存数据的具体类型，然后根据类型调用不同的保存方法
      *
@@ -153,7 +123,7 @@ public class SharedPreferencesUtils {
      */
     public static void setParam(Context context, String key, Object object) {
         String type = object.getClass().getSimpleName();
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(SharedFILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
 
         if ("String".equals(type)) {
@@ -182,7 +152,7 @@ public class SharedPreferencesUtils {
      */
     public static Object getParam(Context context, String key, Object defaultObject) {
         String type = defaultObject.getClass().getSimpleName();
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(SharedFILE_NAME, Context.MODE_PRIVATE);
         if ("String".equals(type)) {
             return sp.getString(key, (String) defaultObject);
         } else if ("Integer".equals(type)) {
@@ -197,6 +167,35 @@ public class SharedPreferencesUtils {
         return null;
     }
 
+    public Object get(String key, Object defValue) {
+        if (defValue instanceof String) {
+            return mSharedPreferences.getString(key, (String) defValue);
+        } else if (defValue instanceof Integer) {
+            return mSharedPreferences.getInt(key, (Integer) defValue);
+        } else if (defValue instanceof Boolean) {
+            return mSharedPreferences.getBoolean(key, (Boolean) defValue);
+        } else if (defValue instanceof Float) {
+            return mSharedPreferences.getFloat(key, (Float) defValue);
+        } else if (defValue instanceof Long) {
+            return mSharedPreferences.getLong(key, (Long) defValue);
+        }
+        return null;
+    }
+
+    public void set(String key, Object value) {
+        if (value instanceof String) {
+            editor.putString(key, (String) value);
+        } else if (value instanceof Integer) {
+            editor.putInt(key, (Integer) value);
+        } else if (value instanceof Boolean) {
+            editor.putBoolean(key, (Boolean) value);
+        } else if (value instanceof Float) {
+            editor.putFloat(key, (Float) value);
+        } else if (value instanceof Long) {
+            editor.putLong(key, (Long) value);
+        }
+        editor.apply();
+    }
     public static boolean isHaveSD() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
@@ -282,7 +281,7 @@ public class SharedPreferencesUtils {
      * @param key
      */
     public static void remove(Context context, String key) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(SharedFILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.remove(key);
         SharedPreferencesCompat.apply(editor);
@@ -294,7 +293,7 @@ public class SharedPreferencesUtils {
      * @param context
      */
     public static void clear(Context context) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(SharedFILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sp.edit();
         editor.clear();
         SharedPreferencesCompat.apply(editor);
@@ -308,7 +307,7 @@ public class SharedPreferencesUtils {
      * @return
      */
     public static boolean contains(Context context, String key) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(SharedFILE_NAME, Context.MODE_PRIVATE);
         return sp.contains(key);
     }
 
@@ -319,7 +318,7 @@ public class SharedPreferencesUtils {
      * @return
      */
     public static Map<String, ?> getAll(Context context) {
-        SharedPreferences sp = context.getSharedPreferences(FILE_NAME, Context.MODE_PRIVATE);
+        SharedPreferences sp = context.getSharedPreferences(SharedFILE_NAME, Context.MODE_PRIVATE);
         return sp.getAll();
     }
 

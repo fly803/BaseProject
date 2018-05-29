@@ -25,9 +25,10 @@ import com.cg.baseproject.interfaces.SubscriberOnNextListener;
 import com.cg.baseproject.request.data.pojo.IpResult;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
-import com.cg.baseproject.utils.ResolutionAdaptationUtils;
+import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 import com.cg.baseproject.utils.SharedPreferencesUtils;
 import com.ivy.baseproject.test.activity.NetImageActivity;
+import com.ivy.baseproject.test.activity.PermissionActivity;
 import com.ivy.baseproject.test.activity.ResolutionAdaptionDemoActivity;
 import com.ivy.baseproject.test.activity.ResolutionTestActivity;
 import com.ivy.baseproject.test.api.AppConfig;
@@ -130,7 +131,12 @@ public class MainActivity extends AppCompatActivity {
         record8.setMethod("sampleFragment");
         records.add(record8);
 
-        for (int i = 9; i < 18; i++) {
+        Item record9 = new Item();
+        record9.setName("运行时权限请求");
+        record9.setMethod("runtimePermission");
+        records.add(record9);
+
+        for (int i = 10; i < 18; i++) {
             Item record = new Item();
             record.setName("待添加操作" + i);
             record.setMethod("");
@@ -170,6 +176,9 @@ public class MainActivity extends AppCompatActivity {
             case "sampleFragment":
                 sampleFragment();
                 break;
+            case "runtimePermission":
+                runtimePermission();
+                break;
             default:
                 testResolution(this);
                 ResolutionAdaptationUtils.showNavBar(MainActivity.this);
@@ -178,6 +187,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void runtimePermission(){
+        Intent intentResolutionTest = new Intent(MainActivity.this, PermissionActivity.class);
+        startActivity(intentResolutionTest);
+    }
+    
     private void sampleFragment(){
         Intent intentResolutionTest = new Intent(MainActivity.this, SampleFragmentActivity.class);
         startActivity(intentResolutionTest);

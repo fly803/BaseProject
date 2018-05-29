@@ -1,4 +1,4 @@
-package com.cg.baseproject.utils;
+package com.cg.baseproject.utils.android;
 
 import android.content.pm.PackageManager;
 import android.content.Context;

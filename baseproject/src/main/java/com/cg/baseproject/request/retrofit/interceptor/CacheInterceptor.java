@@ -1,20 +1,11 @@
 package com.cg.baseproject.request.retrofit.interceptor;
 
 
-import com.cg.baseproject.utils.NetworkUtils;
+import com.cg.baseproject.utils.android.NetworkUtils;
 
 import java.io.IOException;
 
 import okhttp3.CacheControl;
-import okhttp3.HttpUrl;
-import okhttp3.Interceptor;
-import okhttp3.Request;
-import okhttp3.Response;
-
-
-import java.io.IOException;
-
-import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;

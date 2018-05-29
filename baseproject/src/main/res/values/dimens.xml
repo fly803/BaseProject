@@ -48,6 +48,12 @@
 	4096×2160 4K Ultra HD4096×2160 (256:135 大约17:9)
 	部分厂家（夏普，索尼）出了8k电视，分辨率：7680x4320 
 	非主流分辨率，需要单独适配dimens
+	屏幕密度 	程序logo图标尺寸
+    mdpi 	48x48px
+    hdpi 	72x72px
+    xhdpi 	96x96px
+    xxhdpi 	144x144px
+    xxxhdpi 	192x192px
     -->
     <dimen name="px1">0.33dp</dimen>
     <dimen name="px2">0.67dp</dimen>

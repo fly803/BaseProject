@@ -18,7 +18,7 @@ import java.util.Map;
  * @version: 1.0.0
  */
 
-public class IDCardUtil {
+public class IDCardUtils {
     public static final int power[] = {7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2};
     private static final int CHINA_ID_MAX_LENGTH = 18;
     public static final int CHINA_ID_MIN_LENGTH = 15;

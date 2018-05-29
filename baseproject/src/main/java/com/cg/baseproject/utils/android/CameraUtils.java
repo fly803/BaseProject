@@ -1,4 +1,4 @@
-package com.cg.baseproject.utils;
+package com.cg.baseproject.utils.android;
 
 import android.annotation.TargetApi;
 import android.app.Activity;

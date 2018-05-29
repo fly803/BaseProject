@@ -1,4 +1,4 @@
-package com.cg.baseproject.utils;
+package com.cg.baseproject.utils.android;
 
 import android.app.Dialog;
 import android.content.Context;
@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.cg.baseproject.R;
+import com.cg.baseproject.utils.StringUtils;
 import com.cg.baseproject.view.view.progress.ProgressBarLayout;
 
 /**

@@ -10,7 +10,7 @@ import android.widget.TextView;
 
 import com.cg.baseproject.R;
 import com.cg.baseproject.configs.IConstants;
-import com.cg.baseproject.utils.ViewUtils;
+import com.cg.baseproject.utils.android.ViewUtils;
 
 import java.util.ArrayList;
 

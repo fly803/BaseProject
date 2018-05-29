@@ -18,7 +18,7 @@ import android.widget.TextView;
 import com.cg.baseproject.R;
 import com.cg.baseproject.manager.ActivityStackManager;
 import com.cg.baseproject.manager.ScreenManager;
-import com.cg.baseproject.utils.DialogUtils;
+import com.cg.baseproject.utils.android.DialogUtils;
 import com.cg.baseproject.view.view.progress.ProgressBarLayout;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;

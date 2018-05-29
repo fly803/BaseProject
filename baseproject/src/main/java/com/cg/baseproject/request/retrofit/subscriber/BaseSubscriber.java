@@ -1,20 +1,16 @@
 package com.cg.baseproject.request.retrofit.subscriber;
 
 import android.content.Context;
-import android.text.TextUtils;
 import android.util.Log;
 
 import com.cg.baseproject.BaseApplication;
 import com.cg.baseproject.request.exception.ERROR;
 import com.cg.baseproject.request.exception.ExceptionHandle;
-import com.cg.baseproject.utils.NetworkUtils;
+import com.cg.baseproject.utils.android.NetworkUtils;
 import com.cg.baseproject.utils.ToastUtils;
 
 import org.reactivestreams.Subscriber;
 import org.reactivestreams.Subscription;
-
-import java.net.SocketTimeoutException;
-import retrofit2.adapter.rxjava.HttpException;
 
 
 /**

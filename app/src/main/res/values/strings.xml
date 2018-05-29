@@ -10,4 +10,5 @@
     <string name="title_activity_resolution_test">ResolutionTestActivity</string>
     <string name="title_activity_sample">SampleActivity</string>
     <string name="description">app</string>
+    <string name="title_activity_permission">PermissionActivity</string>
 </resources>

@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * @version: 1.0.0
  */
 
-public class SdCardUtils {
+public class SDCardUtils {
     /**
      * is sd card available.
      * @return true if available

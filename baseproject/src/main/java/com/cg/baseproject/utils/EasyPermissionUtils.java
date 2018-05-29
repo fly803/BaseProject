@@ -1,5 +1,6 @@
 package com.cg.baseproject.utils;
 
+import android.Manifest;
 import android.app.Activity;
 import android.content.Context;
 import android.content.pm.PackageManager;
@@ -8,20 +9,29 @@ import android.support.annotation.NonNull;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.ActivityCompat;
 import android.util.Log;
+import android.widget.Toast;
 
 import java.util.List;
 
+import me.weyye.hipermission.HiPermission;
+import me.weyye.hipermission.PermissionCallback;
 import pub.devrel.easypermissions.AfterPermissionGranted;
 import pub.devrel.easypermissions.EasyPermissions;
 
 /**
- * @author
+ * @author sam
  * @version 1.0
  * @date 2018/3/17
  */
 
 public class EasyPermissionUtils {
     private static final String TAG = "EasyPermissions";
+    public static String[] perms = {
+            // 把你想要申请的权限放进这里就行，注意用逗号隔开
+            Manifest.permission.WRITE_EXTERNAL_STORAGE,
+            Manifest.permission.READ_EXTERNAL_STORAGE,
+            Manifest.permission.ACCESS_NETWORK_STATE,
+    };
 
     public interface PermissionCallbacks extends ActivityCompat.OnRequestPermissionsResultCallback {
         void onPermissionsGranted(int requestCode, List<String> perms);
@@ -73,8 +83,53 @@ public class EasyPermissionUtils {
         EasyPermissions.requestPermissions(context, tip,requestCode,perms);
     }
 
-//    @AfterPermissionGranted(Constance.WRITE_PERMISSION_CODE) 
-//    public void onPermissionsSuccess() {
-//        ToastUtils.showToast(getApplicationContext(), "用户授权成功");
-//    }
+    /*private static final int num = 23;//用于验证获取的权
+    @AfterPermissionGranted(num)*/
+    public static void requireSomePermission(Activity context, String tip, int requestCode, String[] perms) {
+        if (EasyPermissions.hasPermissions(context, perms)) {
+            // Already have permission, do the thing
+            // ...
+            Toast.makeText(context, "已授权!", Toast.LENGTH_LONG).show();
+        } else {
+            // Do not have permissions, request them now
+            Toast.makeText(context, "授权被拒绝，请从新点击确认允许授权!", Toast.LENGTH_LONG).show();
+            EasyPermissions.requestPermissions(context, tip,requestCode, perms);
+        }
+    }
+
+/*    //在请求权限回调中
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);      
+        EasyPermissions.onRequestPermissionsResult(requestCode,permissions,grantResults,this);
+    }*/
+
+
+    /*public void requestPermission(Context context){
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            HiPermission.create(context)
+                    .checkMutiPermission(new PermissionCallback() {
+                        @Override
+                        public void onClose() {
+                            Log.i(TAG, "onClose");
+                            ToastUtils.showShort("They cancelled our request");
+                        }
+
+                        @Override
+                        public void onFinish() {
+                            ToastUtils.showToast("All permissions requested completed");
+                        }
+
+                        @Override
+                        public void onDeny(String permission, int position) {
+                            Log.i(TAG, "onDeny");
+                        }
+
+                        @Override
+                        public void onGuarantee(String permission, int position) {
+                            Log.i(TAG, "onGuarantee");
+                        }
+                    });
+        }
+    }*/
 }

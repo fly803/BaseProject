@@ -1,4 +1,4 @@
-package com.cg.baseproject.utils;
+package com.cg.baseproject.utils.android;
 
 import android.graphics.ColorMatrixColorFilter;
 import android.view.MotionEvent;

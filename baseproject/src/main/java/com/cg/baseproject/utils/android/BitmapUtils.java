@@ -1,4 +1,4 @@
-package com.cg.baseproject.utils;
+package com.cg.baseproject.utils.android;
 
 import android.app.Activity;
 import android.content.Context;
@@ -24,6 +24,8 @@ import android.media.ExifInterface;
 import android.net.Uri;
 import android.os.Build;
 import android.view.View;
+
+import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
