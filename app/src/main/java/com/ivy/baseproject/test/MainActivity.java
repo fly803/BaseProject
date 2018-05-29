@@ -25,6 +25,7 @@ import com.cg.baseproject.interfaces.SubscriberOnNextListener;
 import com.cg.baseproject.request.data.pojo.IpResult;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
+import com.cg.baseproject.utils.ToastUtils;
 import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 import com.cg.baseproject.utils.SharedPreferencesUtils;
 import com.ivy.baseproject.test.activity.NetImageActivity;
@@ -72,6 +73,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ToastUtils.showToast("ToastUtils测试");
 
         mItems = initData();
         mMode = getMode();
@@ -319,7 +321,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateMode() {
-        SharedPreferencesUtils.getInstance().put("sp_key_switch_mode", mMode);
+        SharedPreferencesUtils.getInstance().set("sp_key_switch_mode", mMode);
     }
 
     private void toggleDisplayMode() {

@@ -2,6 +2,7 @@ package com.cg.baseproject.utils;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.view.Gravity;
 import android.widget.Toast;
 
 import com.cg.baseproject.BaseApplication;
@@ -15,14 +16,14 @@ import com.cg.baseproject.BaseApplication;
 
 public class ToastUtils {
     public static void showToast(String message) {
-        Toast.makeText(BaseApplication.getContext(),message,Toast.LENGTH_LONG).show();
+        Toast toast = Toast.makeText(BaseApplication.getContext(),message,Toast.LENGTH_LONG);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 
     public static void showShort(String message) {
-        Toast.makeText(BaseApplication.getContext(),message,Toast.LENGTH_SHORT).show();
-    }
-    
-    public static void showToast(Context context, String message) {
-        //        new StyleableToast.Builder(context).text(message).textColor(Color.WHITE).backgroundColor(Color.BLACK).show();
+        Toast toast = Toast.makeText(BaseApplication.getContext(),message,Toast.LENGTH_SHORT);
+        toast.setGravity(Gravity.CENTER, 0, 0);
+        toast.show();
     }
 }

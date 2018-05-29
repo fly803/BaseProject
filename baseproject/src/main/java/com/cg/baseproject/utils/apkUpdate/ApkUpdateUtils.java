@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.cg.baseproject.BaseApplication;
+import com.cg.baseproject.utils.SharedPreferencesUtils;
 import com.cg.baseproject.utils.android.AppUtils;
 
 /**
@@ -23,7 +24,7 @@ public class ApkUpdateUtils {
     private static final String DOWNLOAD_ID = "downloadId";
 
     public static void download(Context context, String url, String title) {
-        long downloadId = SPUtils.getLong(DOWNLOAD_ID, -1L);
+        long downloadId = (long) SharedPreferencesUtils.getParam(DOWNLOAD_ID, -1L);
         if (downloadId != -1L) {
             ApkDownloadManager apkDownloadManager = ApkDownloadManager.getInstance(context);
             int status = apkDownloadManager.getDownloadStatus(downloadId);
@@ -51,7 +52,7 @@ public class ApkUpdateUtils {
 
     private static void start(Context context, String url, String title) {
         long id = ApkDownloadManager.getInstance(context).download(url, title, "下载完成后点击打开");
-        SPUtils.saveLong(DOWNLOAD_ID, id);
+        SharedPreferencesUtils.setParam(DOWNLOAD_ID, id);
         Log.d(TAG, "apk start download " + id);
     }
 

@@ -69,7 +69,6 @@ public class MainActivityOld extends AppCompatActivity {
         //        testResolution();
 //                AppApplication.setUID("set10001");
         Log.d("cg", "onCreate: uid:" + AppApplication.getUID());
-        ToastUtils.showToast(AppApplication.getContext(), "AppApplication.getContext()");
 //        interfaceTest();
     }
 

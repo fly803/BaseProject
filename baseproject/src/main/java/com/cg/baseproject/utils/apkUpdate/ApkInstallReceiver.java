@@ -6,6 +6,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
+import com.cg.baseproject.utils.SharedPreferencesUtils;
+
 
 /**
  * Created by sam on 2017/6/1.
@@ -20,7 +22,7 @@ public class ApkInstallReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (intent.getAction().equals(DownloadManager.ACTION_DOWNLOAD_COMPLETE)) {
             long downloadId = intent.getLongExtra(DownloadManager.EXTRA_DOWNLOAD_ID, -1);
-            long spApkId = SPUtils.getLong("downloadId", -1L);
+            long spApkId = (long) SharedPreferencesUtils.getParam("downloadId", -1L);
             if (downloadId == spApkId) {
                 installApk(context, downloadId);
             }
