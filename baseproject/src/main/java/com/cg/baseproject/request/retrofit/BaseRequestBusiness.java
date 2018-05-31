@@ -2,7 +2,7 @@ package com.cg.baseproject.request.retrofit;
 
 import android.util.Log;
 import com.cg.baseproject.request.data.BaseResponse;
-import com.cg.baseproject.common.ServerReturnCode;
+import com.cg.baseproject.constant.ServerReturnCode;
 import com.cg.baseproject.configs.BaseProjectConfig;
 import com.cg.baseproject.request.exception.ApiException;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
@@ -62,7 +62,7 @@ public abstract class BaseRequestBusiness {
             } else {
                 //统一处理服务器返回值非正常结果
                 Log.d(BaseProjectConfig.TAG, "统一处理服务器返回值非正常结果apply: " + ServerReturnCode.getReasonByCode(result.getCode()));
-                return Observable.error(new ApiException(ServerReturnCode.getReasonByCode(0)));
+                return Observable.error(new ApiException(ServerReturnCode.getReasonByCode(result.getCode())));
             }
           }
         })

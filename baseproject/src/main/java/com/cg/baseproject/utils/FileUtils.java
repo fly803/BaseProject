@@ -1146,4 +1146,26 @@ public class FileUtils {
     public static boolean isExistSDCard() {
         return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
     }
+
+
+    /**
+     * 删除目录下所有文件
+     * @param Path    路径
+     */
+    public static void deleteAllFile(String Path) {
+
+        // 删除目录下所有文件
+        File path = new File(Path);
+        File files[] = path.listFiles();
+        if (files != null) {
+            for (File tfi : files) {
+                if (tfi.isDirectory()) {
+                    System.out.println(tfi.getName());
+                }
+                else {
+                    tfi.delete();
+                }
+            }
+        }
+    }
 }

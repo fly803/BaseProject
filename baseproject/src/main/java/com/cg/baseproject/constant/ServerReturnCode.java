@@ -1,4 +1,4 @@
-package com.cg.baseproject.common;
+package com.cg.baseproject.constant;
 
 public enum ServerReturnCode {
     REQUEST_FAIL(0, "请求失败##"),REQUEST_SUCCESS(1, "请求成功@@"),
