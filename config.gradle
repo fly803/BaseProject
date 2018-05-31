@@ -72,7 +72,7 @@ ext {
     //Crash 
     customActivityOnCrash = "cat.ereza:customactivityoncrash:2.2.0"//https://github.com/Ereza/CustomActivityOnCrash
 
-    //基础项目，通用工具类
+    //项目必备，基础项目，通用工具类
     myBaseProject = "com.github.fly803:BaseProject:v1.0"
     baseProject = "com.classic.android:core:1.5"
     utils = "com.classic.android:utils:1.1"
@@ -82,6 +82,7 @@ ext {
     fragmentation = "me.yokeyword:fragmentation:1.3.3"//https://github.com/YoKeyword/Fragmentation
     // Swipeback is based on fragmentation. Refer to SwipeBackActivity/Fragment for your Customized SupportActivity/Fragment
     fragmentationSwipeback = "me.yokeyword:fragmentation-swipeback:1.3.3"
+    ScreenShott = "com.github.nisrulz:screenshott:2.0.0"
 
     //缓存
     //http://mvnrepository.com/artifact/com.google.guava/guava/24.0-android

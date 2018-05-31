@@ -86,6 +86,7 @@ dependencies {
     implementation ext.easyPermissions
     implementation ext.fastjson
     implementation ext.jjwt
+    implementation ext.ScreenShott
     //UI
     implementation ext.shapeLoadingView
 }

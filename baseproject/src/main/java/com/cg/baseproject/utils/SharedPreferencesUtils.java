@@ -73,7 +73,7 @@ public class SharedPreferencesUtils {
      * @param key
      * @param value
      */
-    public void setParam(String key, Object value) {
+    public static void setParam(String key, Object value) {
         SharedPreferences sharedPreferences = BaseApplication.getContext().getSharedPreferences(SharedFILE_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor editor = sharedPreferences.edit();
         if (value instanceof String) {
