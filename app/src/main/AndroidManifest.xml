@@ -59,8 +59,12 @@
         </activity>
         <activity
             android:name=".activity.PermissionActivity"
-            android:label="@string/title_activity_permission"
-            >
+            android:label="@string/title_activity_permission">
+        </activity>
+        <activity
+            android:name=".activity.FileImageActivity"
+            android:label="@string/title_activity_file_image"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
     </application>
 

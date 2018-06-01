@@ -11,4 +11,5 @@
     <string name="title_activity_sample">SampleActivity</string>
     <string name="description">app</string>
     <string name="title_activity_permission">PermissionActivity</string>
+    <string name="title_activity_file_image">FileImageActivity</string>
 </resources>

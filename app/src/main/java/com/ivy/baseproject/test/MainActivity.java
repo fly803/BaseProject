@@ -28,6 +28,7 @@ import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
 import com.cg.baseproject.utils.ToastUtils;
 import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 import com.cg.baseproject.utils.SharedPreferencesUtils;
+import com.ivy.baseproject.test.activity.FileImageActivity;
 import com.ivy.baseproject.test.activity.NetImageActivity;
 import com.ivy.baseproject.test.activity.PermissionActivity;
 import com.ivy.baseproject.test.activity.ResolutionAdaptionDemoActivity;
@@ -138,7 +139,12 @@ public class MainActivity extends AppCompatActivity {
         record9.setMethod("runtimePermission");
         records.add(record9);
 
-        for (int i = 10; i < 18; i++) {
+        Item record10 = new Item();
+        record10.setName("文件图像操作测试");
+        record10.setMethod("FileUtilsTest");
+        records.add(record10);
+
+        for (int i = 11; i < 18; i++) {
             Item record = new Item();
             record.setName("待添加操作" + i);
             record.setMethod("");
@@ -181,6 +187,9 @@ public class MainActivity extends AppCompatActivity {
             case "runtimePermission":
                 runtimePermission();
                 break;
+            case "FileUtilsTest":
+                FileUtilsTest();
+                break;
             default:
                 testResolution(this);
                 ResolutionAdaptationUtils.showNavBar(MainActivity.this);
@@ -189,6 +198,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void FileUtilsTest(){
+        Intent intentResolutionTest = new Intent(MainActivity.this, FileImageActivity.class);
+        startActivity(intentResolutionTest);
+    }
+    
     private void runtimePermission(){
         Intent intentResolutionTest = new Intent(MainActivity.this, PermissionActivity.class);
         startActivity(intentResolutionTest);

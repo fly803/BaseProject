@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.view.View;
 
+import com.cg.baseproject.utils.FileUtils;
 import com.cg.baseproject.utils.ToastUtils;
 
 import java.io.File;
@@ -48,7 +49,19 @@ public class ScreenShotUtils {
         return bmp;
     }
 
-    private static String getViewBitmapPath(Activity activity,View view){
+    public static String getViewBitmapPath(Activity activity, View view, String dirName, String fileName){
+        String bitmapFilePath = null;
+        File file = null;
+        try {
+            file = FileUtils.saveBitmapFile(activity,dirName,fileName,loadBitmapFromView(view));
+            bitmapFilePath = file.getAbsolutePath();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return bitmapFilePath;
+    }
+
+    public static String getViewBitmapPath(Activity activity,View view){
         String bitmapFilePath = null;
         File file = null;
         try {
