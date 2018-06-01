@@ -24,20 +24,20 @@ public class LogManager {
 
 	/**** 5中Log日志类型 *******/
 	/** 调试日志类型 */
-	public static final int DEBUG = 111;
+	public static final int DEBUG = 101;
 	/** 错误日志类型 */
-	public static final int ERROR = 112;
+	public static final int ERROR = 102;
 	/** 信息日志类型 */
-	public static final int INFO = 113;
+	public static final int INFO = 103;
 	/** 详细信息日志类型 */
-	public static final int VERBOSE = 114;
+	public static final int VERBOSE = 104;
 	/** 警告调试日志类型 */
-	public static final int WARN = 115;
+	public static final int WARN = 105;
 	/** SystemOUT类型 */
-	public static final int SYSTEMOUT = 116;
+	public static final int SYSTEMOUT = 106;
 
 	/** 显示，打印日志 */
-	public static void LogShow(String Tag, String Message, int Style) {
+	public static void logShow(String Tag, String Message, int Style) {
 		if (!LogOFF) {
 			switch (Style) {
 			case DEBUG:

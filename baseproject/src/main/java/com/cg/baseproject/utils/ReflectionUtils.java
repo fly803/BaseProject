@@ -1,6 +1,10 @@
-package com.cg.baseproject.manager;
+package com.cg.baseproject.utils;
 
-import java.lang.reflect.*;
+import java.lang.reflect.Array;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 
 /**
  * 主要功能:反射工具类
@@ -14,7 +18,7 @@ import java.lang.reflect.*;
  * @version: 1.0.0
  */
 
-public class AppReflectionMgr {
+public class ReflectionUtils {
         /**
          * 得到某个对象的公共属性
          *

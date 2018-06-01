@@ -4,11 +4,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.support.multidex.MultiDexApplication;
 
-import com.cg.baseproject.configs.BaseProjectConfig;
-import com.cg.baseproject.crash.CrashHandler;
-import com.cg.baseproject.manager.FragmentManage;
-import com.squareup.leakcanary.LeakCanary;
-
 import java.util.Set;
 
 import me.yokeyword.fragmentation.Fragmentation;

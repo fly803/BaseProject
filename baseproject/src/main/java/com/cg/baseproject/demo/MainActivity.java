@@ -1,4 +1,4 @@
-package com.cg.baseproject.base;
+package com.cg.baseproject.demo;
 
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;

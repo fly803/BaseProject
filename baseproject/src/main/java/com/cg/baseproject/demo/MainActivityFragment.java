@@ -1,4 +1,4 @@
-package com.cg.baseproject.base;
+package com.cg.baseproject.demo;
 
 import android.support.v4.app.Fragment;
 import android.os.Bundle;

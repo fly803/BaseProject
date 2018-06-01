@@ -1,4 +1,4 @@
-package com.cg.baseproject.serialize;
+package com.cg.baseproject.utils.serialize;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -15,25 +15,25 @@ import java.util.Stack;
  * @Company:
  * @version: 1.0.0
  */
-public class AppDavikActivityMgr {
+public class AppDavikActivityManager {
 
     
     //存储ActivityStack
     private static Stack<Activity> activityStack = new Stack<Activity>();
 
     //单例模式
-    private static AppDavikActivityMgr instance;
+    private static AppDavikActivityManager instance;
 
 
     /**
      * 单列堆栈集合对象
      * @return AppDavikActivityMgr 单利堆栈集合对象
      */
-    public static AppDavikActivityMgr getScreenManager() {
+    public static AppDavikActivityManager getScreenManager() {
         if (instance == null) {
-            synchronized (AppDavikActivityMgr.class){
+            synchronized (AppDavikActivityManager.class){
                 if (instance == null) {
-                    instance = new AppDavikActivityMgr();
+                    instance = new AppDavikActivityManager();
                 }
             }
         }

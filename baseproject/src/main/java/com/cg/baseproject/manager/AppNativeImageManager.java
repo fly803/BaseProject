@@ -19,7 +19,7 @@ import java.io.ByteArrayOutputStream;
  * @version: 1.0.0
  */
 
-public class AppNativeImageMgr {
+public class AppNativeImageManager {
 
 //ThumbnailUtils系统工具类的使用
 /*创建一张视频的缩略图。如果视频已损坏或者格式不支持可能返回null。
@@ -77,7 +77,7 @@ Bitmap extractThumbnail(Bitmap source, int width, int height)
         // 最大图片大小 100KB
         int maxSize = 100;
         // 获取尺寸压缩倍数
-        int ratio = AppNativeImageMgr.getRatioSize(image.getWidth(), image.getHeight());
+        int ratio = AppNativeImageManager.getRatioSize(image.getWidth(), image.getHeight());
         // 压缩Bitmap到对应尺寸
         Bitmap result = Bitmap.createBitmap(image.getWidth() / ratio, image.getHeight() / ratio, Config.ARGB_8888);
         Canvas canvas = new Canvas(result);
@@ -98,7 +98,7 @@ Bitmap extractThumbnail(Bitmap source, int width, int height)
             result.compress(Bitmap.CompressFormat.JPEG, options, baos);
         }
         // JNI调用保存图片到SD卡 这个关键
-        AppNativeImageMgr.saveBitmap(result, options, filePath, true);
+        AppNativeImageManager.saveBitmap(result, options, filePath, true);
         // 释放Bitmap
         if (result != null && !result.isRecycled()) {
             result.recycle();

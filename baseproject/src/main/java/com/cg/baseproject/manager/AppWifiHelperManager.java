@@ -21,7 +21,7 @@ import java.util.List;
  * @version: 1.0.0
  */
 
-public class AppWifiHelperMgr {
+public class AppWifiHelperManager {
     private WifiManager wifiManager;// 声明Wifi管理对象
     private WifiInfo wifiInfo;// Wifi信息
     private List<ScanResult> scanResultList; // 扫描出来的网络连接列表
@@ -32,7 +32,7 @@ public class AppWifiHelperMgr {
      * 构造函数
      * @param context
      */
-    public AppWifiHelperMgr(Context context){
+    public AppWifiHelperManager(Context context){
         this.wifiManager = (WifiManager) context.getSystemService(Context.WIFI_SERVICE);// 获取Wifi服务
         // 得到Wifi信息
         this.wifiInfo = wifiManager.getConnectionInfo();// 得到连接信息

@@ -1,16 +1,16 @@
 package com.cg.baseproject.manager;
-
-/**
- * @author
- * @version 1.0
- * @date 2018/5/4
- */
 import android.content.pm.ActivityInfo;
 import android.os.Build;
 import android.view.Window;
 import android.view.WindowManager;
 
 import com.cg.baseproject.base.BaseActivity;
+/**
+ * @author
+ * @version 1.0
+ * @date 2018/6/1
+ */
+
 
 /**
  * 屏幕管理类

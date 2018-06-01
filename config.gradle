@@ -85,7 +85,7 @@ ext {
     ScreenShott = "com.github.nisrulz:screenshott:2.0.0"
 
     //缓存
-    //http://mvnrepository.com/artifact/com.google.guava/guava/24.0-android
+    //http://mvnrepository.com/artifact/com.google.guava/guava/25.1-android
     guava = "com.google.guava:guava:25.1-android" //compile group: 'com.google.guava', name: 'guava', version: '24.0-android'
     store = ""
     //数据库

@@ -10,7 +10,7 @@ import android.database.Cursor;
 import android.net.Uri;
 import android.os.IBinder;
 
-import com.cg.baseproject.manager.AppApplicationMgr;
+import com.cg.baseproject.utils.android.AppUtils;
 import com.cg.baseproject.manager.AppLogMessageMgr;
 
 /**
@@ -83,7 +83,7 @@ public class DownloadService extends Service {
                 case DownloadManager.STATUS_RUNNING:
                     break;*/
                 case DownloadManager.STATUS_SUCCESSFUL:
-                    AppApplicationMgr.installApk(this, filePath);
+                    AppUtils.installApk(this, filePath);
                     break;
             }
         }

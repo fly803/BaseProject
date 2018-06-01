@@ -1,5 +1,7 @@
 package com.cg.baseproject.utils;
 
+import com.cg.baseproject.manager.AppLogMessageMgr;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -33,6 +35,160 @@ public class DateUtils {
 
 	private static final long serialVersionUID = 1L;
 
+    /**
+     * 获取系统时间(格式：yyyyMMddHHmmss)
+     * @return String 返回时间
+     */
+    public static String getNowTime() {
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMddHHmmss");
+        return sdf.format(Calendar.getInstance().getTime());
+    }
+
+    /**
+     * 获取系统时间(格式：yyyyMMddHHmmss)
+     * @return String 返回时间
+     */
+    public static String getStringTime() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmss");
+        return df.format(new Date());
+    }
+
+    /**
+     * 获取系统时间(格式：yyyyMMddHHmmssSSS)
+     * @return String 返回时间
+     */
+    public static String getStringTimeFull() {
+        SimpleDateFormat df = new SimpleDateFormat("yyyyMMddHHmmssSSS");
+        return df.format(new Date());
+    }
+
+    /**
+     * 判断日期是否属于今天日期(精确到天)
+     * @param sDate 日期值
+     * @return boolean 返回true表示是，false表示不是
+     */
+    public static boolean getSysIsToday(String sDate) {
+        boolean falg = false;
+        try {
+            Date date = null;
+            date = dateFormaterFull.get().parse(sDate);
+            Date today = new Date();
+            if (date != null) {
+                String nowDate = dateFormater.get().format(today);
+                String timeDate = dateFormater.get().format(date);
+                if (nowDate.equals(timeDate)) {
+                    falg = true;
+                }
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+            AppLogMessageMgr.e("AppSysDateMgr-->>getSysIsToday", e.getMessage().toString());
+        }
+        return falg;
+    }
+
+    private final static ThreadLocal<SimpleDateFormat> dateFormater = new ThreadLocal<SimpleDateFormat>() {
+        @Override
+        protected SimpleDateFormat initialValue() {
+            return new SimpleDateFormat("yyyy-MM-dd");
+        }
+    };
+    
+    private final static ThreadLocal<SimpleDateFormat> dateFormaterFull = new ThreadLocal<SimpleDateFormat>() {
+        @Override
+        protected SimpleDateFormat initialValue() {
+            return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        }
+    };
+    
+    /**
+     * 检查日期是否有效
+     * @param year 年
+     * @param month 月
+     * @param day 日
+     * @return boolean
+     */
+    public static boolean getDateIsTrue(String year, String month, String day){
+        try {
+            String data = year + month + day;
+            SimpleDateFormat simpledateformat = new SimpleDateFormat("yyyyMMdd");
+            simpledateformat.setLenient(false);
+            simpledateformat.parse(data);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            AppLogMessageMgr.e("AppSysDateMgr-->>getDateIsTrue", e.getMessage().toString());
+            return false;
+        }
+        return true;
+    }
+
+    /**
+     * 判断两个字符串日期的前后
+     * @param strdate1  字符串时间1
+     * @param strdate2  字符串时间2
+     * @return boolean
+     * 日期与时间
+     */
+    public static boolean getDateIsBefore(String strdate1, String strdate2){
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            AppLogMessageMgr.i("AppSysDateMgr-->>getDateIsBefore-->>strdate1: ", strdate1);
+            AppLogMessageMgr.i("AppSysDateMgr-->>getDateIsBefore-->>strdate2: ", strdate2);
+            return df.parse(strdate1).before(df.parse(strdate2));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            AppLogMessageMgr.e("AppSysDateMgr-->>getDateIsBefore", e.getMessage().toString());
+            return false;
+        }
+    }
+    /**
+     * 判断两个字符串日期的前后
+     * @param strdate1  字符串时间1
+     * @param strdate2  字符串时间2
+     * @return boolean
+     */
+    public static boolean getDateIsEqual(String strdate1, String strdate2){
+        try {
+            SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            return df.parse(strdate1).equals(df.parse(strdate2));
+        } catch (ParseException e) {
+            e.printStackTrace();
+            AppLogMessageMgr.e("AppSysDateMgr-->>getDateIsBefore", e.getMessage().toString());
+            return false;
+        }
+    }
+
+    /**
+     * 判断两个字符串日期的前后
+     * @param Longdate1  字符串时间1
+     * @param Longdate2  字符串时间2
+     * @return boolean
+     */
+    public static boolean getDateIsBefore(Long Longdate1, Long Longdate2){
+        try {
+            AppLogMessageMgr.i("AppSysDateMgr-->>getDateIsBefore-->>strdate1: ", Longdate1 + "");
+            AppLogMessageMgr.i("AppSysDateMgr-->>getDateIsBefore-->>strdate2: ", Longdate2 + "");
+            Longdate1 = (null == Longdate1) ? 0 : Longdate1;
+            Longdate2 = (null == Longdate2) ? 0 : Longdate2;
+            return  Longdate1 > Longdate2 ? true : false;
+        } catch (Exception e) {
+            e.printStackTrace();
+            AppLogMessageMgr.e("AppSysDateMgr-->>getDateIsBefore", e.getMessage().toString());
+            return false;
+        }
+    }
+
+    /**
+     * 判断两个时间日期的前后
+     * @param date1  日期1
+     * @param date2  日期2
+     * @return boolean
+     */
+    public static boolean getDateIsBefore(Date date1, Date date2) {
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        return getDateIsBefore(df.format(date1), df.format(date2));
+    }
+    
 	/**
 	 * 得到当前年
 	 * 
@@ -389,16 +545,6 @@ public class DateUtils {
 		} else {
 			return 0;
 		}
-	}
-
-	/**
-	 * 获取系统当前时间
-	 * 
-	 * @return
-	 */
-	public static String getNowTime() {
-		SimpleDateFormat df = new SimpleDateFormat(DATE_FULL_STR);
-		return df.format(new Date());
 	}
 
 	/**

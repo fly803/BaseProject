@@ -9,6 +9,7 @@ import org.json.JSONObject;
 import org.json.JSONTokener;
 
 import java.lang.reflect.Array;
+import java.lang.reflect.Type;
 import java.math.BigDecimal;
 import java.math.BigInteger;
 import java.util.ArrayList;
@@ -29,28 +30,57 @@ import java.util.Set;
  */
 
 public class JsonUtils {
-
-    /**
-     * 对象转json
-     * @param obj
-     * @return
-     */
-    public static String toJson(Object obj) {
+    public static <T> T json2Bean(String result , Class<T> clazz){
         Gson gson = new Gson();
-        return gson.toJson(obj);
+        T t = gson.fromJson(result, clazz);
+        return t;
+
     }
 
     /**
-     * json转对象
-     * @param str
+     * @Title: toJson
+     * @Description: TODO(这里用一句话描述这个方法的作用)
+     * @param bean
+     * @return String 返回类型
+     * @throws：
+     */
+    public static String toJson(Object bean){
+        Gson gson = new Gson();
+        return gson.toJson(bean);
+    }
+
+    public static String toJson(Object bean,Type type){
+        Gson gson = new Gson();
+        return gson.toJson(bean, type);
+    }
+
+    /**
+     * @Title: fromJson
+     * @Description: TODO(这里用一句话描述这个方法的作用)
+     * @param json
      * @param type
-     * @param <T>
-     * @return
+     * @return T 返回类型
+     * @throws：
      */
-    public static <T> T fromJson(String str, Class<T> type) {
+    public static Object fromJson(String json,Type type){
         Gson gson = new Gson();
-        return gson.fromJson(str, type);
+        return gson.fromJson(json, type);
     }
+
+    /**
+     * @Title: fromJson
+     * @Description: TODO(对象转json)
+     * @param <T>
+     * @param json
+     * @param classOfT
+     * @return T 返回类型
+     * @throws：
+     */
+    public  static <T>T fromJson(String json,Class<T> classOfT){
+        Gson gson = new Gson();
+        return gson.fromJson(json, classOfT);
+    }
+
 
     /**
      * Map转为JSONObject

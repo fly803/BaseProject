@@ -1,4 +1,4 @@
-package com.cg.baseproject.utils.apkUpdate;
+package com.cg.baseproject.utils.apkupdate;
 
 import android.app.DownloadManager;
 import android.content.BroadcastReceiver;

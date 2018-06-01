@@ -3,6 +3,7 @@ package com.cg.baseproject.utils.android;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -26,9 +27,9 @@ import android.net.Uri;
 import android.os.Build;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.DisplayMetrics;
+import android.util.TypedValue;
 import android.view.View;
-
-import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;
@@ -105,6 +106,95 @@ public class BitmapUtils {
         Matrix matrix = new Matrix();
         matrix.postScale(scaleWidth, scaleHeight);
         return Bitmap.createBitmap(org, 0, 0, org.getWidth(), org.getHeight(), matrix, true);
+    }
+
+    /**
+     * 圆形图片
+     *
+     * @param bitmap
+     * @return
+     */
+    public static Bitmap getCircleBitmap(Bitmap bitmap){
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
+        float roundPx;
+        float left, top, right, bottom, dst_left, dst_top, dst_right, dst_bottom;
+        if (width <= height) {
+            roundPx = width / 2;
+            top = 0;
+            bottom = width;
+            left = 0;
+            right = width;
+            height = width;
+            dst_left = 0;
+            dst_top = 0;
+            dst_right = width;
+            dst_bottom = width;
+        } else {
+            roundPx = height / 2;
+            float clip = (width - height) / 2;
+            left = clip;
+            right = width - clip;
+            top = 0;
+            bottom = height;
+            width = height;
+            dst_left = 0;
+            dst_top = 0;
+            dst_right = height;
+            dst_bottom = height;
+        }
+
+        Bitmap output = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(output);
+
+        final int color = 0xff424242;
+        final Paint paint = new Paint();
+        final Rect src = new Rect((int) left, (int) top, (int) right,
+                (int) bottom);
+        final Rect dst = new Rect((int) dst_left, (int) dst_top,
+                (int) dst_right, (int) dst_bottom);
+        final RectF rectF = new RectF(dst);
+
+        paint.setAntiAlias(true);
+
+        canvas.drawARGB(0, 0, 0, 0);
+        paint.setColor(color);
+        canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+
+        paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+        canvas.drawBitmap(bitmap, src, dst, paint);
+        return output;
+    }
+    
+    /**
+     * 获取圆角
+     *
+     * @param bitmap
+     * @param pixels 角度
+     * @return
+     */
+    public static Bitmap getRoundedCornerBitmap(Bitmap bitmap, int pixels) {
+        if (bitmap != null) {
+            final Bitmap output = Bitmap.createBitmap(bitmap.getWidth(),
+                    bitmap.getHeight(), Bitmap.Config.ARGB_8888);
+            if (output != null) {
+                final Canvas canvas = new Canvas(output);
+                final int color = 0xff424242;
+                final Paint paint = new Paint();
+                final Rect rect = new Rect(0, 0, bitmap.getWidth(), bitmap.getHeight());
+                final RectF rectF = new RectF(rect);
+                final float roundPx = pixels;
+                paint.setAntiAlias(true);
+                canvas.drawARGB(0, 0, 0, 0);
+                paint.setColor(color);
+                canvas.drawRoundRect(rectF, roundPx, roundPx, paint);
+                paint.setXfermode(new PorterDuffXfermode(PorterDuff.Mode.SRC_IN));
+                canvas.drawBitmap(bitmap, rect, rect, paint);
+                return output;
+            }
+        }
+
+        return null;
     }
 
     public static Bitmap toRoundCorner(Bitmap bitmap) {
@@ -377,7 +467,7 @@ public class BitmapUtils {
     }
 
     /**
-     * Decode bitmap
+     * Decode bitmap 从文件中获取图片
      *
      * @param is
      * @param context
@@ -1560,6 +1650,262 @@ public class BitmapUtils {
 
         newBitmap.setPixels(pixels, 0, width, 0, 0, width, height);
         return newBitmap;
+    }
+
+    /**
+     * 长度单位转换
+     * @param context
+     * @param unit
+     * @param value
+     * @return
+     */
+    public static float applyDimension(Context context,int unit, float value){
+        DisplayMetrics metrics = context.getResources().getDisplayMetrics();
+        return TypedValue.applyDimension(unit, value, metrics);
+    }
+
+    /**
+     * 图片旋转
+     *
+     * @param bm
+     * 图片资源Bitmap
+     * @param curDegrees
+     * //当前旋转度数
+     */
+    public static Bitmap rotateBitmap(Bitmap bm, float curDegrees) {
+        return rotateBitmap(bm, curDegrees, true);
+    }
+
+    public static Bitmap rotateBitmap(Bitmap bm, float curDegrees, boolean isRecycled) {
+        if (bm == null) {
+            return null;
+        }
+        final int bmpW = bm.getWidth();
+        final int bmpH = bm.getHeight();
+        // 注意这个Matirx是android.graphics底下的那个
+        final Matrix mt = new Matrix();
+        mt.reset();
+        mt.setRotate(curDegrees);
+        final Bitmap bitmap = Bitmap.createBitmap(bm, 0, 0, bmpW, bmpH, mt,
+                true);
+
+        if (isRecycled && !bm.isRecycled()) {
+            bm.recycle();
+        }
+        return bitmap;
+    }
+
+    /**
+     * 旋转图片
+     * @param path 图片路径
+     * @param bitmap 原图
+     * @return
+     */
+    public static Bitmap rotaingImageView(String path, Bitmap bitmap) {
+        // 旋转图片 动作
+        Matrix matrix = new Matrix();
+        final int angle = readPictureDegree(path);
+        if (angle != 0) {
+            matrix.postRotate(angle);
+        }
+        // 创建新的图片
+        Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, bitmap.getWidth(), bitmap.getHeight(), matrix, true);
+        return resizedBitmap;
+    }
+
+    /**
+     * 判断图片旋转情况
+     *
+     * @param path
+     * @return
+     */
+    public static int readPictureDegree(String path) {
+        int degree = 0;
+        try {
+            final ExifInterface exifInterface = new ExifInterface(path);
+            final int orientation =
+                    exifInterface.getAttributeInt(ExifInterface.TAG_ORIENTATION,
+                            ExifInterface.ORIENTATION_NORMAL);
+            switch (orientation) {
+                case ExifInterface.ORIENTATION_ROTATE_90:
+                    degree = 90;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_180:
+                    degree = 180;
+                    break;
+                case ExifInterface.ORIENTATION_ROTATE_270:
+                    degree = 270;
+                    break;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return degree;
+    }
+
+    /**
+     * 按比例缩小图片（单位像素） lessen the bitmap
+     *
+     * @param resId
+     * bitmap
+     * @param destWidth
+     * the dest bitmap width
+     * @param destHeigth
+     * @return new bitmap if successful ,oherwise null
+     */
+    public static Bitmap lessenBitmap(Context context, int resId, int destWidth, int destHeigth) {
+
+        final BitmapFactory.Options opt = new BitmapFactory.Options();
+        opt.inPreferredConfig = Bitmap.Config.RGB_565;
+        opt.inPurgeable = true;
+        opt.inInputShareable = true;
+        // 获取资源图片
+        final InputStream is = context.getResources().openRawResource(resId);
+        final Bitmap bitmap = BitmapFactory.decodeStream(is, null, opt);
+
+        try {
+            if (is != null) {
+                is.close();
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+        final int w = bitmap.getWidth();// 源文件的大小
+        final int h = bitmap.getHeight();
+        float scaleWidth = ((float) destWidth) / w;// 宽度缩小比例
+        float scaleHeight = ((float) destHeigth) / h;// 高度缩小比例
+        final Matrix m = new Matrix();// 矩阵
+        m.postScale(scaleWidth, scaleHeight);// 设置矩阵比例
+        final Bitmap resizedBitmap = Bitmap.createBitmap(bitmap, 0, 0, w, h, m, true);// 直接按照矩阵的比例把源文件画入进
+
+        if (!bitmap.isRecycled()) {
+            bitmap.recycle();
+        }
+
+        return resizedBitmap;
+    }
+
+    /**
+     *
+     * 从Assets中读取图片
+     * @param filepath 相对路径
+     * @return Bitmap
+     */
+    public static Bitmap getImageFromAssetsFile(String filepath, Context context) {
+        Bitmap image = null;
+        InputStream is = null;
+        AssetManager am = context.getResources().getAssets();
+        try {
+            is = am.open(filepath);
+            image = BitmapFactory.decodeStream(is);
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (is != null)
+                try {
+                    is.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+        }
+
+        return image;
+    }
+
+    /**
+     * 获取缩略图
+     *
+     * @param bitmap
+     * 是否转成缩略图
+     * @return
+     */
+    public static Bitmap decodeBitmapToThumbnail(Bitmap bitmap) {
+        return decodeBitmapToThumbnail(bitmap, true);
+    }
+
+    /**
+     * 缩略图
+     * @param bitmap
+     * @param isThumbnail
+     * @return
+     */
+    public static Bitmap decodeBitmapToThumbnail(Bitmap bitmap,
+                                                 boolean isThumbnail) {
+        if (isThumbnail) {
+            final BitmapFactory.Options options = new BitmapFactory.Options();
+            options.inJustDecodeBounds = true;
+
+            final float realWidth = options.outWidth;
+            final float realHeight = options.outHeight;
+
+            // 计算缩放比
+            int scale = (int) ((realHeight > realWidth ? realHeight : realWidth) / 100);
+            if (scale <= 0) {
+                scale = 1;
+            }
+            options.inSampleSize = scale;
+            options.inJustDecodeBounds = false;
+            // 注意这次要把options.inJustDecodeBounds 设为 false,这次图片是要读取出来的。
+            final byte[] data = getBitmap2Byte(bitmap);
+            if (data != null) {
+                bitmap = BitmapFactory.decodeByteArray(data, 0, data.length,
+                        options);
+            }
+
+        }
+        return bitmap;
+    }
+
+    /**
+     * bitmap转byte[]
+     *
+     * @param bitmap
+     * @return
+     */
+    public static byte[] getBitmap2Byte(Bitmap bitmap) {
+        if (bitmap != null) {
+            final ByteArrayOutputStream baos = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, baos);
+            final byte[] data = baos.toByteArray();
+            try {
+                baos.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return data;
+        }
+        return null;
+    }
+    
+    /**
+     * 图片透明度处理
+     *
+     * @param sourceImg
+     * 原始图片
+     * @param number
+     * 透明度
+     * @return
+     */
+    public static Bitmap setAlpha(Bitmap sourceImg, int number) {
+        try {
+            int[] argb = new int[sourceImg.getWidth() * sourceImg.getHeight()];
+            sourceImg.getPixels(argb, 0, sourceImg.getWidth(), 0, 0,
+                    sourceImg.getWidth(), sourceImg.getHeight());// 获得图片的ARGB值
+            number = number * 255 / 100;
+            for (int i = 0; i < argb.length; i++) {
+                if ((argb[i] & 0xff000000) != 0x00000000) {// 透明色不做处理
+                    argb[i] = (number << 24) | (argb[i] & 0xFFFFFF);// 修改最高2位的值
+                }
+            }
+            sourceImg = Bitmap.createBitmap(argb, sourceImg.getWidth(),
+                    sourceImg.getHeight(), Bitmap.Config.ARGB_8888);
+        } catch (OutOfMemoryError e) {
+            e.printStackTrace();
+            System.gc();
+        }
+        return sourceImg;
     }
 
 }

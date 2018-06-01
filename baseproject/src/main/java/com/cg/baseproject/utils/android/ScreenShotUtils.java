@@ -8,7 +8,6 @@ import android.graphics.Canvas;
 import android.os.Build;
 import android.view.View;
 
-import com.cg.baseproject.utils.EasyPermissionUtils;
 import com.cg.baseproject.utils.ToastUtils;
 
 import java.io.File;

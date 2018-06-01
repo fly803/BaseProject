@@ -1,4 +1,4 @@
-package com.cg.baseproject.utils;
+package com.cg.baseproject.request.ssl;
 
 import java.io.IOException;
 import java.io.InputStream;

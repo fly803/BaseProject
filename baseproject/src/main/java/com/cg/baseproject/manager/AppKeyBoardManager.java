@@ -21,7 +21,7 @@ import java.util.TimerTask;
  * @version: 1.0.0
  */
 
-public class AppKeyBoardMgr {
+public class AppKeyBoardManager {
     /**
      * 打开软键盘
      *

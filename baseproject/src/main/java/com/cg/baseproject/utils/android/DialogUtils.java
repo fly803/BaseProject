@@ -18,9 +18,17 @@ package com.cg.baseproject.utils.android;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.view.View;
+import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.TextView;
+
+import com.cg.baseproject.R;
+import com.cg.baseproject.utils.StringUtils;
+import com.cg.baseproject.view.view.progress.ProgressBarLayout;
 
 /**
  * 对话框工具箱
@@ -28,6 +36,19 @@ import android.view.WindowManager;
  * @author xiaopan
  */
 public class DialogUtils {
+    public static Dialog createProgressDiaolg(Context context, String prompt, boolean isCancle) {
+        Dialog mProgressDialog = new Dialog(context, R.style.CustomTheme_Dialog);
+        ProgressBarLayout mProgressDialogView = (ProgressBarLayout) View.inflate(context, R.layout.progressbar_dialog, null);
+        if (!StringUtils.isEmpty(prompt)) {
+            TextView promptTv = (TextView) mProgressDialogView.findViewById(R.id.tvProgress);
+            promptTv.setText(prompt);
+        }
+        mProgressDialog.setContentView(mProgressDialogView, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT,
+                ViewGroup.LayoutParams.WRAP_CONTENT));
+        mProgressDialog.setCanceledOnTouchOutside(isCancle);
+        mProgressDialog.setCancelable(isCancle);
+        return mProgressDialog;
+    }
     /**
      * 显示一个对话框
      *

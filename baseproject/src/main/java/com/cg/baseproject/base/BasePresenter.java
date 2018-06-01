@@ -9,7 +9,7 @@ import android.content.Context;
  * Date: 2017/6/13
  * Email: 541567595@qq.com
  */
-public abstract class BasePresenter<T extends BaseView, E extends BaseModel> {
+public abstract class BasePresenter<T extends BaseUiView, E extends BaseModel> {
     public Context mContext;
     public E mModel;
     public T mView;

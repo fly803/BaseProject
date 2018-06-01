@@ -148,7 +148,7 @@ public class FileUtils {
         try {
             file.createNewFile();
             FileOutputStream fos = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
             fos.flush();
             fos.close();
         } catch (IOException e) {
@@ -206,6 +206,86 @@ public class FileUtils {
             return 0;
         }
     }
+
+    /**
+     * 获取SDCard的AbsolutePath路径
+     * @return String
+     */
+    public static String getSdCardAbsolutePath() {
+        return Environment.getExternalStorageDirectory().getAbsolutePath() + File.separator;
+    }
+
+
+    /**
+     * 获取SdCard的Path路径
+     * @return String
+     */
+    public static String getSdCardPath() {
+        return Environment.getExternalStorageDirectory().getPath() +  File.separator;
+    }
+
+    /**
+     * 获取SDCard总存储容量大小(单位byte) 
+     * @return long  返回大小
+     */
+    @SuppressWarnings("deprecation")
+    public long getSdCardAllSize() {
+        if(getSdCardIsEnable()) {
+            File path = Environment.getExternalStorageDirectory();
+            StatFs stat = new StatFs(path.getPath());
+            long blockSize = stat.getBlockSize();
+            long totalBlocks = stat.getBlockCount();
+            return totalBlocks * blockSize;
+        }
+        return 0;
+    }
+
+
+    /**
+     * 获取系统AbsolutePath存储路径
+     * @return String
+     */
+    public static String getRootAbsolutePath() {
+        return Environment.getRootDirectory().getAbsolutePath() +  File.separator;
+    }
+
+
+    /**
+     * 获取系统Path存储路径
+     * @return String
+     */
+    public static String getRootPath() {
+        return Environment.getRootDirectory().getPath() +  File.separator;
+    }
+
+
+    /**
+     * 获取手机内存Path存储路径
+     * @return String
+     */
+    public static String getDataPath(){
+        return Environment.getDataDirectory().getPath() +  File.separator;
+    }
+
+
+
+    /**
+     * 获取手机内存AbsolutePath存储路径
+     * @return String
+     */
+    public static String getDataAbsolutePath(){
+        return Environment.getDataDirectory().getAbsolutePath() +  File.separator;
+    }
+
+
+    /**
+     * 检查SDCard是否可用，是否存在
+     * @return boolean
+     */
+    public static boolean getSdCardIsEnable() {
+        return Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED);
+    }
+
 
     /**
      * 获取SD卡总容量（单位Byte）
@@ -814,7 +894,7 @@ public class FileUtils {
                 file.getParentFile().mkdirs();
             }
             fos = new FileOutputStream(file);
-            bitmap.compress(Bitmap.CompressFormat.JPEG, 100, fos);
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, fos);
             fos.flush();
         } finally {
             if (fos != null) {
@@ -1166,6 +1246,23 @@ public class FileUtils {
                     tfi.delete();
                 }
             }
+        }
+    }
+
+    /**
+     * 删除方法, 这里只会删除某个文件夹下的文件，如果传入的directory是个文件，将不做处理
+     * @param directory
+     * @return void
+     */
+    public static void deleteFilesByDirectory(File directory) {
+        if (directory != null && directory.exists() && directory.isDirectory()) {
+            for (File file : directory.listFiles()) {
+                if(file.isDirectory())
+                    deleteFilesByDirectory(file);
+                file.delete();
+            }
+        }else{
+            Log.i("", "This directory is file, not execute delete");
         }
     }
 }

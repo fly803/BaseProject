@@ -1,6 +1,7 @@
 package com.cg.baseproject.utils;
 
 import android.content.Context;
+import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -81,6 +82,25 @@ public class ResourceUtils {
      */
     public static String[] getStringArray(int resId) {
         return getResources().getStringArray(resId);
+    }
+
+    /**
+     * 根据资源名获得资源id
+     * @param context 上下文
+     * @param name 资源名
+     * @param type 资源类型
+     * @return 资源id，找不到返回0
+     */
+    public static int getResourceId(Context context,String name,String type){
+        Resources resources=null;
+        PackageManager pm=context.getPackageManager();
+        try {
+            resources=context.getResources();
+            return resources.getIdentifier(name, type, context.getPackageName());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
     }
 
 }

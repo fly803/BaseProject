@@ -5,7 +5,7 @@ import java.lang.reflect.Method;
 import android.content.Context;
 import dalvik.system.DexFile;
 
-public class SystemPropertiesProxy {
+public class SystemPropertiesProxyManager {
 
 	/**
 	 * 根据给定Key获取值.
