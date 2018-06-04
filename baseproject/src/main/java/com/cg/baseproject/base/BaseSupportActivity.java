@@ -21,6 +21,8 @@ import com.cg.baseproject.manager.ScreenManagerSupportActivity;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
+import me.yokeyword.fragmentation.SupportActivity;
+import me.yokeyword.fragmentation_swipeback.SwipeBackActivity;
 
 /**
  * @author sam
@@ -28,7 +30,7 @@ import butterknife.Unbinder;
  * @date 2018/5/4
  * https://blog.csdn.net/xx244488877/article/details/65937778
  */
-public abstract class BaseSupportActivity extends AppCompatActivity {
+public abstract class BaseSupportActivity extends SwipeBackActivity {
     private static final String TAG = "BaseSupportActivity";
     protected LinearLayout badnetworkLayout, loadingLayout,baseactivityLayout;
     protected LayoutInflater inflater;
@@ -110,6 +112,18 @@ public abstract class BaseSupportActivity extends AppCompatActivity {
         } else {
             finish();
         }
+    }
+
+    //返回键返回事件  
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if (KeyEvent.KEYCODE_BACK == keyCode) {
+            if (getSupportFragmentManager().getBackStackEntryCount() == 1) {
+                finish();
+                return true;
+            }
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     @Override
