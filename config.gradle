@@ -79,9 +79,9 @@ ext {
     rxTools = "com.github.vondear:RxTools:v1.7.6.4"//https://github.com/vondear/RxTools
     logger = "com.orhanobut:logger:2.1.1"//https://github.com/orhanobut/logger
     // To get SwipeBack feature, rely on both fragmentation & fragmentation-swipeback
-    fragmentation = "me.yokeyword:fragmentation:1.3.3"//https://github.com/YoKeyword/Fragmentation
+    fragmentation = "me.yokeyword:fragmentation:1.3.4"//https://github.com/YoKeyword/Fragmentation
     // Swipeback is based on fragmentation. Refer to SwipeBackActivity/Fragment for your Customized SupportActivity/Fragment
-    fragmentationSwipeback = "me.yokeyword:fragmentation-swipeback:1.3.3"
+    fragmentationSwipeback = "me.yokeyword:fragmentation-swipeback:1.3.4"
     ScreenShott = "com.github.nisrulz:screenshott:2.0.0"
 
     //缓存

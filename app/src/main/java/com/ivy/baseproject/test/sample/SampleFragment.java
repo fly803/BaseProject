@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.cg.baseproject.base.BaseContentPageFragment;
 import com.cg.baseproject.base.BaseSupportFragment;
 import com.cg.baseproject.configs.IConstants;
 import com.ivy.baseproject.test.R;
@@ -22,25 +23,22 @@ import butterknife.Unbinder;
  */
 
 public class SampleFragment extends BaseSupportFragment {
-
     @BindView(R.id.tvFragmentSample)
     TextView mTvFragmentSample;
-    Unbinder unbinder;
-
-    @Override
-    protected void onClickFailureResetButton(View view) {
-        super.onClickFailureResetButton(view);
-        Toast.makeText(getActivity(), "网络错误从新加载", Toast.LENGTH_SHORT).show();
-    }
 
     @Override
     protected int getFragmentLayoutId() {
-        return 0;
+        return  R.layout.fragment_sample;
     }
 
     @Override
     protected void initViews() {
-
+        new Handler().postDelayed(new Runnable(){
+            public void run() {
+                //execute the task   
+                pdLoading.cancel();
+            }
+        }, 3000);
     }
 
     @Override
@@ -48,37 +46,10 @@ public class SampleFragment extends BaseSupportFragment {
 
     }
 
-
-    @Override
-    protected View getSuccessView() {
-        final View view = View.inflate(getActivity(), R.layout.fragment_sample, null);
-//        mTvFragmentSample = view.findViewById(R.id.tvFragmentSample);
-//        mTvFragmentSample.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Toast.makeText(getActivity(), "SampleFragment点击测试$$$", Toast.LENGTH_SHORT).show();
-//            }
-//        });
-        return view;
-    }
-
     @Override
     protected void initData(Bundle savedInstanceState) {
 
     }
-
-    @Override
-    protected Object requestData() {
-        new Handler().postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                //execute the task   
-                refreshPage(IConstants.STATE_SUCCESSED);
-            }
-        }, 3000);
-        return IConstants.STATE_LOADING;
-    }
-
 
     @OnClick(R.id.tvFragmentSample)
     public void onViewClicked() {

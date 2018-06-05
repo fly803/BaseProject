@@ -22,7 +22,6 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportActivity;
-import me.yokeyword.fragmentation_swipeback.SwipeBackActivity;
 
 /**
  * @author sam
@@ -30,7 +29,7 @@ import me.yokeyword.fragmentation_swipeback.SwipeBackActivity;
  * @date 2018/5/4
  * https://blog.csdn.net/xx244488877/article/details/65937778
  */
-public abstract class BaseSupportActivity extends SwipeBackActivity {
+public abstract class BaseSupportActivity extends SupportActivity {
     private static final String TAG = "BaseSupportActivity";
     protected LinearLayout badnetworkLayout, loadingLayout,baseactivityLayout;
     protected LayoutInflater inflater;

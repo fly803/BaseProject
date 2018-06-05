@@ -6,7 +6,7 @@ import com.cg.baseproject.crash.CrashHandler;
 import com.squareup.leakcanary.LeakCanary;
 
 /**
- * @author
+ * @author sam
  * @version 1.0
  * @date 2018/3/20
  */
