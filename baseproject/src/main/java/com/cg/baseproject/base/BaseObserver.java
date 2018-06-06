@@ -10,7 +10,7 @@ import com.cg.baseproject.BaseApplication;
 import com.cg.baseproject.request.exception.ERROR;
 import com.cg.baseproject.request.exception.ExceptionHandle;
 import com.cg.baseproject.utils.android.NetworkUtils;
-import com.cg.baseproject.utils.ToastUtils;
+import com.cg.baseproject.utils.android.ToastUtils;
 
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;

@@ -15,7 +15,6 @@ import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
 import com.cg.baseproject.utils.android.AdbUtils;
 import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
-import com.cg.baseproject.utils.ToastUtils;
 import com.ivy.baseproject.test.AppApplication;
 import com.ivy.baseproject.test.R;
 import com.ivy.baseproject.test.api.AppConfig;

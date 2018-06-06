@@ -6,7 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.cg.baseproject.utils.android.EasyPermissionUtils;
-import com.cg.baseproject.utils.ToastUtils;
+import com.cg.baseproject.utils.android.ToastUtils;
 import com.ivy.baseproject.test.R;
 
 import java.util.List;
