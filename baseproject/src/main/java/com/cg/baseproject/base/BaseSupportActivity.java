@@ -39,7 +39,7 @@ public abstract class BaseSupportActivity extends SupportActivity {
     protected Context ctx;//Context
     private boolean isDebug;// 是否输出日志信息
     protected abstract int getActivityLayoutId();////布局中Fragment的ID
-    protected abstract void initView();//初始化界面
+    protected abstract void initViews();//初始化界面
     protected abstract void registerListener();//绑定事件
     protected abstract void initData();// 初始化数据,请求网络数据等
     //布局中Fragment的ID
@@ -55,11 +55,7 @@ public abstract class BaseSupportActivity extends SupportActivity {
         initScreenManage();
         setContentView(getActivityLayoutId());
         inflater = LayoutInflater.from(this);
-        initView();
         unbinder = ButterKnife.bind(this);
-        registerListener();
-        initData();
-        ctx = this;
     }
     
 
@@ -141,6 +137,10 @@ public abstract class BaseSupportActivity extends SupportActivity {
     @Override
     protected void onStart() {
         super.onStart();
+        initViews();
+        registerListener();
+        initData();
+        ctx = this;
         Log.i(TAG, "--->onStart()");
     }
 
