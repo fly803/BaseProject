@@ -25,7 +25,7 @@ import com.cg.baseproject.interfaces.SubscriberOnNextListener;
 import com.cg.baseproject.request.data.pojo.IpResult;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
-import com.cg.baseproject.utils.SharedPreferencesUtils;
+import com.cg.baseproject.utils.android.SharedPreferencesUtils;
 import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 import com.ivy.baseproject.test.R;
 import com.ivy.baseproject.test.api.AppConfig;

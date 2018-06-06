@@ -9,7 +9,7 @@ import android.net.Uri;
 import android.util.Log;
 
 import com.cg.baseproject.BaseApplication;
-import com.cg.baseproject.utils.SharedPreferencesUtils;
+import com.cg.baseproject.utils.android.SharedPreferencesUtils;
 import com.cg.baseproject.utils.android.AppUtils;
 
 /**

@@ -55,7 +55,7 @@ public abstract class BaseSupportActivity extends SupportActivity {
         initScreenManage();
         setContentView(getActivityLayoutId());
         inflater = LayoutInflater.from(this);
-//        initView();
+        initView();
         unbinder = ButterKnife.bind(this);
         registerListener();
         initData();
@@ -123,6 +123,19 @@ public abstract class BaseSupportActivity extends SupportActivity {
             }
         }
         return super.onKeyDown(keyCode, event);
+    }
+
+    /**
+     * 防止快速点击
+     * @return
+     */
+    private boolean fastClick() {
+        long lastClick = 0;
+        if (System.currentTimeMillis() - lastClick <= 1000) {
+            return false;
+        }
+        lastClick = System.currentTimeMillis();
+        return true;
     }
 
     @Override

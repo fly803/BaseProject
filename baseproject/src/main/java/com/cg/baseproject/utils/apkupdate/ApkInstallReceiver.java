@@ -6,7 +6,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 
-import com.cg.baseproject.utils.SharedPreferencesUtils;
+import com.cg.baseproject.utils.android.SharedPreferencesUtils;
 
 
 /**

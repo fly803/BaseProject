@@ -49,7 +49,7 @@ import java.net.URI;
  * @desc: bitmap图片的相互转换工具类
  */
 
-public class BitmapUtils {
+public class ImageUtils {
     public static final int UNSPECIFIED = 0;
 
     /**

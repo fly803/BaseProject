@@ -27,7 +27,7 @@ import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
 import com.cg.baseproject.utils.ToastUtils;
 import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
-import com.cg.baseproject.utils.SharedPreferencesUtils;
+import com.cg.baseproject.utils.android.SharedPreferencesUtils;
 import com.ivy.baseproject.test.activity.FileImageActivity;
 import com.ivy.baseproject.test.activity.NetImageActivity;
 import com.ivy.baseproject.test.activity.PermissionActivity;

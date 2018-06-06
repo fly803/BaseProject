@@ -32,7 +32,6 @@ import rx.Subscriber;
 public abstract class BaseSupportFragment extends SupportFragment {
     protected BaseSupportActivity mActivity;
     protected View mRootView;//根view
-    public ContentPage contentPage;
     public ProgressDialog pdLoading;
     Unbinder unbinder;
     private ArrayList<Subscriber> subscribers;
@@ -42,26 +41,16 @@ public abstract class BaseSupportFragment extends SupportFragment {
     private boolean isVisible = false;//是否对用户可见
     private boolean isInitView;//是否初始化控件
     private SparseArray<View> mViews;//管理View的集合
-    private String contentPageType;
-    private TextView mResetButton;
 
     /**
      * 是否加载完成
      * 当执行完oncreatview,View的初始化方法后方法后即为true
      */
-    protected abstract int getFragmentLayoutId();//获得布局资源ID
-
+    protected abstract int getFragmentLayoutId();//获得布局资源ID,强制子类重写,实现子类不同的UI效果,使用BufferKnife
     protected abstract void initViews();//强制子类重写,实现子类不同的UI效果,使用BufferKnife
-
     protected abstract void registerListener();//注册监听事件
-
     protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
-
-    /**
-     * 记录是否已经创建了,防止重复创建
-     */
-    private boolean viewCreated;
-
+    private boolean viewCreated;//记录是否已经创建了,防止重复创建
 
     /*
     SDK API<23时，onAttach(Context)不执行，需要使用onAttach(Activity)。Fragment自身的Bug，v4的没有此问题
@@ -192,7 +181,6 @@ public abstract class BaseSupportFragment extends SupportFragment {
         subscribers.add(subscriber);
         return subscriber;
     }
-
 
     /*
      * Called when the fragment attaches to the context
