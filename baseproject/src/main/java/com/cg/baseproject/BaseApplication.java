@@ -47,7 +47,7 @@ public class BaseApplication extends MultiDexApplication {
     private void initFragmentation() {
         Fragmentation.builder()
                 // 设置 栈视图 模式为 （默认）悬浮球模式   SHAKE: 摇一摇唤出  NONE：隐藏， 仅在Debug环境生效
-                .stackViewMode(Fragmentation.BUBBLE)
+                .stackViewMode(BaseProjectConfig.STACKVIEW)
                 .debug(BaseProjectConfig.DEBUG) // 实际场景建议.debug(BuildConfig.DEBUG)
                 /**
                  * 可以获取到{@link me.yokeyword.fragmentation.exception.AfterSaveStateTransactionWarning}

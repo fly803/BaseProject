@@ -38,7 +38,7 @@ public class SampleFragment extends BaseSupportFragment {
                 //execute the task   
                 pdLoading.cancel();
             }
-        }, 3000);
+        }, 1000);
     }
 
     @Override

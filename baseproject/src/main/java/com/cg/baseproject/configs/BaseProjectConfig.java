@@ -1,9 +1,12 @@
 package com.cg.baseproject.configs;
 
 import android.app.Application;
+import android.app.Fragment;
 
 import com.cg.baseproject.crash.CrashHandler;
 import com.squareup.leakcanary.LeakCanary;
+
+import me.yokeyword.fragmentation.Fragmentation;
 
 /**
  * @author sam
@@ -13,6 +16,7 @@ import com.squareup.leakcanary.LeakCanary;
 
 public class BaseProjectConfig {
     public static  int SUCCESS_CODE = 0;
+    public static  int STACKVIEW = Fragmentation.BUBBLE;
     public static  boolean DEBUG = true;
     public static  String BASE_URL = "http://ip.taobao.com/";
     public static  String TAG = "retrofit";
@@ -30,5 +34,9 @@ public class BaseProjectConfig {
         BASE_URL = baseurl;
         SUCCESS_CODE = successcode;
         TAG = tag;
+    }
+    
+    public static void setConfig(int stackviewMode){
+        STACKVIEW = stackviewMode;
     }
 }

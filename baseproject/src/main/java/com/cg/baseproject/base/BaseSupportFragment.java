@@ -157,11 +157,6 @@ public abstract class BaseSupportFragment extends SupportFragment {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        for (Subscriber subscriber : subscribers) {
-            if (!subscriber.isUnsubscribed()) {
-                subscriber.unsubscribe();
-            }
-        }
     }
 
     @Override
