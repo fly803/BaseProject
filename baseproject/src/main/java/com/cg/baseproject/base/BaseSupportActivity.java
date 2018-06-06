@@ -47,6 +47,14 @@ public abstract class BaseSupportActivity extends SupportActivity {
     protected abstract void setScreenManager();
     private ScreenManagerSupportActivity screenManager;
     Unbinder unbinder;
+    public static final int FIRST = 0;
+    public static final int SECOND = 1;
+    public static final int THIRD = 2;
+    public static final int FOURTH = 3;
+    public static final int FIFTH = 4;
+    public static final int CENTER = 10;
+    public static int position = 0;
+    public static int prePosition = 0;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
