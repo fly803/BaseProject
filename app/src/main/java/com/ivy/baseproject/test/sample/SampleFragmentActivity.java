@@ -19,8 +19,8 @@ public class SampleFragmentActivity extends BaseSupportActivity {
     }
 
     @Override
-    protected void initView() {
-
+    protected void initViews() {
+        
     }
 
     @Override

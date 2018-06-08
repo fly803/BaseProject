@@ -7,7 +7,6 @@ package com.cg.baseproject.base;
  * https://blog.csdn.net/xx244488877/article/details/66144690?locationNum=3&fps=1
  */
 
-import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.ProgressDialog;
@@ -19,11 +18,11 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+
+import com.roger.catloadinglibrary.CatLoadingView;
 
 import java.util.ArrayList;
 
-import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportFragment;
@@ -51,6 +50,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
     protected abstract void registerListener();//注册监听事件
     protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
     private boolean viewCreated;//记录是否已经创建了,防止重复创建
+    CatLoadingView mCatLoadingView;
 
     /*
     SDK API<23时，onAttach(Context)不执行，需要使用onAttach(Activity)。Fragment自身的Bug，v4的没有此问题
@@ -79,7 +79,6 @@ public abstract class BaseSupportFragment extends SupportFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //        mViews = new SparseArray<View>();//初始化集合
-        initLoading();
         if (null == mRootView) {
             int layoutResId = 1;
             if (layoutResId > 0) {
@@ -93,6 +92,9 @@ public abstract class BaseSupportFragment extends SupportFragment {
                     return true;
                 }
             });
+            mCatLoadingView = new CatLoadingView();
+//            mCatLoadingView.
+            initLoading();
             unbinder = ButterKnife.bind(this, mRootView);
         }
         return mRootView;
@@ -161,21 +163,26 @@ public abstract class BaseSupportFragment extends SupportFragment {
     }
 
     private void initLoading() {
+        mCatLoadingView.show(getFragmentManager(), "拼命加载中");
+        
         /**
          * 初始化pdLoading
          */
-        pdLoading = new ProgressDialog(getActivity());
+        /*pdLoading = new ProgressDialog(getActivity());
         pdLoading.setProgressStyle(ProgressDialog.STYLE_SPINNER);
         pdLoading.setMessage("拼命加载中...");
         pdLoading.show();
         pdLoading.setCanceledOnTouchOutside(false);
-        pdLoading.setCancelable(true);
+        pdLoading.setCancelable(true);*/
     }
 
     public void cancelLoading(){
-        if(pdLoading!=null){
-            pdLoading.cancel();
-        }
+        if(mCatLoadingView.isCancelable()){
+            mCatLoadingView.onStop();
+    }
+//        if(pdLoading!=null){
+//            pdLoading.cancel();
+//        }
     }
     public <T> Subscriber<T> addSubscriber(Subscriber<T> subscriber) {
         subscribers.add(subscriber);

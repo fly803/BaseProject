@@ -156,7 +156,6 @@ ext {
     smartFresh = "com.scwang.smartrefresh:SmartRefreshLayout:1.0.4-7"
     //广告库
     adDialog = ""
-    //loading
     //二维码扫描
     zxing = "com.google.zxing:core:3.3.2"
     QRCode = "cn.bingoogolapple:bga-qrcode-zxing:1.2.1"//https://github.com/bingoogolapple/BGAQRCode-Android
@@ -178,6 +177,8 @@ ext {
     materialDialog = "com.afollestad.material-dialogs:core:0.9.6.0"
     iosStyleDialog = "com.mylhyl:circleDialog:2.4.1"//https://github.com/mylhyl/Android-CircleDialog
     xLog = "com.elvishew:xlog:1.4.0"
+    //loading
+    catLoading = "com.roger.catloadinglibrary:catloadinglibrary:1.0.4"
     avLoading = "com.wang.avi:library:2.1.3"
     shapeLoadingView = "com.github.zzz40500:android-shapeLoadingView:1.0.3.2"
     //BottomNavigationView

@@ -89,4 +89,5 @@ dependencies {
     implementation ext.ScreenShott
     //UI
     implementation ext.shapeLoadingView
+    implementation ext.catLoading
 }

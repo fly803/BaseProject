@@ -36,7 +36,7 @@ public class SampleFragment extends BaseSupportFragment {
         new Handler().postDelayed(new Runnable(){
             public void run() {
                 //execute the task   
-                pdLoading.cancel();
+               cancelLoading();
             }
         }, 1000);
     }
