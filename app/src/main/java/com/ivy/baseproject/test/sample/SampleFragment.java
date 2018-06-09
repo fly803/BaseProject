@@ -36,9 +36,9 @@ public class SampleFragment extends BaseSupportFragment {
         new Handler().postDelayed(new Runnable(){
             public void run() {
                 //execute the task   
-               cancelLoading();
+               cancelLoading(0);
             }
-        }, 1000);
+        }, 10000);
     }
 
     @Override

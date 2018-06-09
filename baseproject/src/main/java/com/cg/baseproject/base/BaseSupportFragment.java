@@ -9,6 +9,7 @@ package com.cg.baseproject.base;
 
 import android.annotation.TargetApi;
 import android.app.Activity;
+import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
@@ -19,6 +20,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cg.baseproject.view.loading.CommonLoading;
 import com.roger.catloadinglibrary.CatLoadingView;
 
 import java.util.ArrayList;
@@ -51,6 +53,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
     protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
     private boolean viewCreated;//记录是否已经创建了,防止重复创建
     CatLoadingView mCatLoadingView;
+    Dialog mCommonLoading;
 
     /*
     SDK API<23时，onAttach(Context)不执行，需要使用onAttach(Activity)。Fragment自身的Bug，v4的没有此问题
@@ -94,7 +97,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
             });
             mCatLoadingView = new CatLoadingView();
 //            mCatLoadingView.
-            initLoading();
+            initLoading(0);
             unbinder = ButterKnife.bind(this, mRootView);
         }
         return mRootView;
@@ -162,6 +165,33 @@ public abstract class BaseSupportFragment extends SupportFragment {
         mActivity = (BaseSupportActivity) activity;
     }
 
+    private void initLoading(int loadingStyle) {
+        switch (loadingStyle) {
+            case 0:
+                mCommonLoading = CommonLoading.createLoadingDialog(getActivity(), "努力加载中...");
+                break;
+            case 1:
+                break;
+            default:
+                break;
+        }
+    }
+    
+    public void cancelLoading(int loadingStyle) {
+        switch (loadingStyle) {
+            case 0:
+                if(mCommonLoading!=null && mCommonLoading.isShowing()){
+                    CommonLoading.closeDialog(mCommonLoading);
+                }
+                break;
+            case 1:
+                break;
+            default:
+                break;
+        }
+        
+    }
+    
     private void initLoading() {
         mCatLoadingView.show(getFragmentManager(), "拼命加载中");
         

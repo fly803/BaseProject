@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<animated-rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@mipmap/dialog_loading_img"
+    android:pivotX="50%"
+    android:pivotY="50%" />
+
+
+    <!-- 下面是转圈的
+
+    <?xml version="1.0" encoding="utf-8"?>
+    <rotate xmlns:android="http://schemas.android.com/apk/res/android"
+        android:drawable="@drawable/dialog_loading_img2"
+        android:fromDegrees="0"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:toDegrees="360" />
+
+    -->
