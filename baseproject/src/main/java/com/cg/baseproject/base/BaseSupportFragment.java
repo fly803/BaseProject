@@ -97,7 +97,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
             });
             mCatLoadingView = new CatLoadingView();
 //            mCatLoadingView.
-            initLoading(0);
+//            initLoading(0);
             unbinder = ButterKnife.bind(this, mRootView);
         }
         return mRootView;
