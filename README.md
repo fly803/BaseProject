@@ -539,10 +539,10 @@ allprojects {
 
 ##### 在APP的build.gradle dependencies节点下加入
 
-implementation 'com.github.fly803:BaseProject:v+相应的版本号：例如v1.0'
+implementation 'com.github.fly803:BaseProject:相应的版本号：例如1.0.0'
 
 ###### 当前可以下载版本
-implementation 'com.github.fly803:BaseProject:v1.0'
+implementation 'com.github.fly803:BaseProject:1.0.0',已release里面的最新release为准
 
 #### 2.clone项目到本地，将BaseProject库直接依赖到项目。
 
