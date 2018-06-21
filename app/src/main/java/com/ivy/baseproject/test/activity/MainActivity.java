@@ -127,8 +127,8 @@ public class MainActivity extends AppCompatActivity {
         record8.setName("继承BaseFragment");
         record8.setMethod("sampleFragment");
         records.add(record8);
-
-        for (int i = 9; i < 18; i++) {
+        
+        for (int i = 10; i < 18; i++) {
             Item record = new Item();
             record.setName("待添加操作" + i);
             record.setMethod("");

@@ -33,12 +33,13 @@ public class SampleFragment extends BaseSupportFragment {
 
     @Override
     protected void initViews() {
+        loading(LOADINGSTYLECOMMON);
         new Handler().postDelayed(new Runnable(){
             public void run() {
                 //execute the task   
-               cancelLoading(0);
+               cancelLoading(LOADINGSTYLECOMMON);
             }
-        }, 10000);
+        }, 2000);
     }
 
     @Override

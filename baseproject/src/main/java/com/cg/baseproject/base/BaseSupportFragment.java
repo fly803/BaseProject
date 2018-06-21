@@ -42,6 +42,8 @@ public abstract class BaseSupportFragment extends SupportFragment {
     private boolean isVisible = false;//是否对用户可见
     private boolean isInitView;//是否初始化控件
     private SparseArray<View> mViews;//管理View的集合
+    public static final int LOADINGSTYLECOMMON = 0;
+    public static final int GETLOADINGSTYLECAT = 1;
 
     /**
      * 是否加载完成
@@ -54,6 +56,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
     private boolean viewCreated;//记录是否已经创建了,防止重复创建
     CatLoadingView mCatLoadingView;
     Dialog mCommonLoading;
+    int loadingStyle = 0;
 
     /*
     SDK API<23时，onAttach(Context)不执行，需要使用onAttach(Activity)。Fragment自身的Bug，v4的没有此问题
@@ -96,8 +99,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
                 }
             });
             mCatLoadingView = new CatLoadingView();
-//            mCatLoadingView.
-//            initLoading(0);
+//            initLoading(loadingStyle);
             unbinder = ButterKnife.bind(this, mRootView);
         }
         return mRootView;
@@ -165,12 +167,17 @@ public abstract class BaseSupportFragment extends SupportFragment {
         mActivity = (BaseSupportActivity) activity;
     }
 
+    public void loading(int loadingStyle){
+        initLoading(loadingStyle);
+    }
+    
     private void initLoading(int loadingStyle) {
         switch (loadingStyle) {
             case 0:
                 mCommonLoading = CommonLoading.createLoadingDialog(getActivity(), "努力加载中...");
                 break;
             case 1:
+                mCatLoadingView.show(getFragmentManager(), "拼命加载中");
                 break;
             default:
                 break;
@@ -185,6 +192,9 @@ public abstract class BaseSupportFragment extends SupportFragment {
                 }
                 break;
             case 1:
+                if(mCatLoadingView.isCancelable()){
+                    mCatLoadingView.onStop();
+                }
                 break;
             default:
                 break;

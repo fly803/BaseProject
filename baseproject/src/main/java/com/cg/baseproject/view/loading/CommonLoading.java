@@ -11,6 +11,7 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.cg.baseproject.BaseApplication;
 import com.cg.baseproject.R;
 import com.cg.baseproject.view.FadeInTextView;
 
@@ -24,6 +25,10 @@ import com.cg.baseproject.view.FadeInTextView;
 public class CommonLoading {
     private FadeInTextView mFadeInTextView;
 
+    public static Dialog  createLoadingDialog() {
+        return createLoadingDialog(BaseApplication.getContext(),"拼命加载中");
+    }
+    
     public static Dialog createLoadingDialog(Context context, String msg) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_loading, null);// 得到加载view

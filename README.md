@@ -563,6 +563,10 @@ compile(name: 'BaseProject-release', ext: 'aar')
 集成过程出现问题可联系本人QQ：356576318(注明来自github)
 ****
 
+#### 友情链接
+[github/UCodeUStory/S-MVP](https://github.com/UCodeUStory/S-MVP) 
+[github/UCodeUStory/GradlePluginDevelop](https://https://github.com/UCodeUStory/GradlePluginDevelop)  
+
 ## License
 
     Copyright 2015 bingoogolapple

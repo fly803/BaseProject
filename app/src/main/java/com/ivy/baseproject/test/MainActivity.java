@@ -33,6 +33,7 @@ import com.ivy.baseproject.test.activity.NetImageActivity;
 import com.ivy.baseproject.test.activity.PermissionActivity;
 import com.ivy.baseproject.test.activity.ResolutionAdaptionDemoActivity;
 import com.ivy.baseproject.test.activity.ResolutionTestActivity;
+import com.ivy.baseproject.test.activity.UiWidgetActivity;
 import com.ivy.baseproject.test.api.AppConfig;
 import com.ivy.baseproject.test.api.RequestBusiness;
 import com.ivy.baseproject.test.sample.SampleActivity;
@@ -144,7 +145,12 @@ public class MainActivity extends AppCompatActivity {
         record10.setMethod("FileUtilsTest");
         records.add(record10);
 
-        for (int i = 11; i < 18; i++) {
+        Item record11= new Item();
+        record11.setName("UI小控件");
+        record11.setMethod("uiWidget");
+        records.add(record11);
+
+        for (int i = 12; i < 18; i++) {
             Item record = new Item();
             record.setName("待添加操作" + i);
             record.setMethod("");
@@ -190,6 +196,9 @@ public class MainActivity extends AppCompatActivity {
             case "FileUtilsTest":
                 FileUtilsTest();
                 break;
+            case "uiWidget":
+                uiWidgetest();
+                break;
             default:
                 testResolution(this);
                 ResolutionAdaptationUtils.showNavBar(MainActivity.this);
@@ -198,6 +207,11 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void uiWidgetest(){
+        Intent intentResolutionTest = new Intent(MainActivity.this, UiWidgetActivity.class);
+        startActivity(intentResolutionTest);
+    }
+    
     private void FileUtilsTest(){
         Intent intentResolutionTest = new Intent(MainActivity.this, FileImageActivity.class);
         startActivity(intentResolutionTest);

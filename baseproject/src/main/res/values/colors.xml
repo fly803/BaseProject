@@ -144,6 +144,10 @@
     <color name="palevioletred">#db7093</color><!--苍紫罗兰色 -->
     <color name="darkviolet">#9400d3</color><!--暗紫罗兰色 -->
     <color name="mediumorchid">#ba55d3</color>
+
+    <color name="colorDefault">#ffffff</color>
+    <color name="colorBackground">#f1f0f6</color>
+    <color name="colorText">#9b9b9b</color>
     
     <!--透明度由#加八位数字或字母组成，前两个ff为透明度（十六进制），后面六位ffffff为颜色代码，采用RGB配色（十六进制）-->
     <color name="AllTransparent">#ffffffff</color><!--全透明-->
