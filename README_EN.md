@@ -1,20 +1,18 @@
 README
 ===========================
 # BaseProject
-Android项目基础库，包含四大部分：一、分辨率适配 二、网络请求框架Retrofit2封装 
-For the English readme：## [English](https://github.com/fly803/BaseProject/README_EN.md) |
-三、Android基类封装和项目常用Utils方法 四、基于RxJava、RxAndroid的事件总线RxBus。
-1.Android分辨率适配方案，解决大家的分辨率适配烦恼，可以直接依据设计图写尺寸，不做额外的操作，简单方便准确。
-2.封装Retrofit2，统一了异常处理，对网络错误，网络错误，连接失败，证书验证失败进行了统一封装，无需用户
-在单独处理，框架已经做了统一处理，只需在处理正确返回部分。对服务器定义的Api错误，也做了处理，未来完善可以让用户
-自定义服务器返回错误，和自定义服务器返回数据类型，现在还需要遵循统一格式。
-3.封装android开发中常用的Utils,也许你的项目只需要这一个库就完全够了。不信你看，有图有真相。
-高仿iOS进度条和对话框、activity基类的封装(可继承自BaseActivity自行拓展)、常用自定义View(圆角头像等)、Glide一行代码加载图片、可直接依赖使用。
-4.在Rxjava、RxAndroid基础上进行了封装，并对Android进行了优化的事件总线RxBus。事件总线就是一条通信用的通道，
-上面跑着各种信息，Android中的各个组件或是控件都可以向它发送各种信息，在各个组件或控件中只要订阅这条总线，每
-当总线收到消息的时候，这些订阅者同样就能收到这些消息。减少广播等高占用资源控件的使用。
-喜欢的话不妨star一下吧。项目地址：https://github.com/fly803/BaseProject
-
+The Android project foundation library contains four main parts: first, resolution adaptation two, network request frame Retrofit2 encapsulation.
+Three, Android base class encapsulation and common Utils method of project four, event bus RxBus based on RxJava and RxAndroid.
+1.Android resolution adaptation scheme, to solve the problem of resolution adaptation, can be directly based on the design of the size of the drawings, do not do extra operation, simple and convenient and accurate.
+2. encapsulates Retrofit2, unifies exception handling, and makes unified encapsulation of network errors, network errors, connection failures, certificate validation failures, without users.
+In separate processing, the framework has been dealt with in a unified manner, only dealing with the correct return part. The server defined Api errors have also been processed, and the future improvements can allow users.
+The custom server returns errors, and the custom server returns the data type. Now it needs to follow the uniform format.
+3. encapsulate Utils commonly used in Android development. Maybe your project only needs this library. Do not believe you, there is a picture of the truth.
+The high imitation iOS progress bar and dialog box, the encapsulation of the activity base class (can inherit from BaseActivity self-development), commonly used custom View (round corner head image, etc.), Glide one line code load the picture, can be directly dependent on use.
+4. encapsulated on Rxjava and RxAndroid, and optimized event bus RxBus for Android. The event bus is a channel for communication.
+With all the information running on it, every component or control in Android can send a variety of information to it, just subscribe to the bus in each component or control.
+When the bus receives the message, these subscribers can also receive the messages. Reduce the use of high occupancy resource controls such as broadcasting.
+If you like, you might as well star. Project address: https://github.com/fly803/BaseProject
 
 [![](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-陈刚-orange.svg)](https://github.com/fly803/BaseProject) 
 [![](https://jitpack.io/v/fly803/BaseProject.svg)](https://jitpack.io/#fly803/BaseProject)
@@ -27,27 +25,44 @@ For the English readme：## [English](https://github.com/fly803/BaseProject/READ
 ```diff
 
 ```
-## 目录
-* [屏幕分辨率适配](#屏幕分辨率适配)
-* [Retrofit2封装](#Retrofit2封装)
-* [RxBus集成](#RxBus集成)
-* [常用Utils封装](#常用Utils封装])
-* [集成该库](#集成该库)
 
 
-## 一、屏幕分辨率适配
-### 分辨率适配概述
-该方案参考的了Android适配领域做得比较好的方案，如郭霖，Stormzhang，鸿洋和凯子的方案，可以说综合了各家之所长。
-以最小的代价，实现最好的适配效果。我们都希望分辨率适配是这样。拿到效果图，不需要额外计算，布局直接抄设计图上的尺寸。
-我的适配方案就可以达到这样的效果，你说爽不爽。
+Catalogues
 
-#### 基本原理
-App在运行的时候，会在Res下读取对应的dimens文件，BaseProject已经在Res里面对主流的手机的常用分辨率建立的所有的对应关系，
-无需用户额外操作，就可以完美适配主流手机。亲测可以适配市面主流手机的95%，即使默认不能适配的手机，也可以通过本文的工具进行适配（ResolutionTools.png）。用户如果想适配其他分辨率，也提供了相应的获取方法。
-介于低于1280x720的低端手机已经很少，所有960x640,480x320等低分辨率手机没有提供默认支持，如需支持，请手动添加。
+* [screen resolution adaptation]
 
-#### 默认支持的分辨率：
- 分辨率 | 分辨率描述
+* [Retrofit2 encapsulation] (#Retrofit2 package)
+
+* [RxBus integration] (#RxBus integration)
+
+* [commonly used Utils package] (commonly used Utils package))
+
+* [integration of the library]
+
+
+Screen resolution adaptation
+
+Overview of resolution adaptation
+
+The scheme referred to the better Android adaptation areas, such as the plans of Guo Lin, Stormzhang, Hongyang and Kezi, which can be said to be integrated with the director of the family.
+
+The best adaptation results are achieved at the lowest cost. We all want resolution adaptation to be the same. To get the effect map, no additional calculation is required, and the layout directly copies the size of the design.
+
+My adaptation plan can achieve this effect, you say it is not pleasant.
+
+
+The basic principle
+
+When App runs, it reads the corresponding dimens files under Res, and BaseProject has all the corresponding relationships that have been established in the Res for the common resolution of the mainstream mobile phones.
+
+Without user extra operation, the mainstream mobile phone can be perfectly adapted. The pro test can match 95% of the mainstream mobile phone, even if the default can not fit the mobile phone, it can also be adapted through the tools of this article (ResolutionTools.png). If users want to match other resolutions, they also provide corresponding acquisition methods.
+
+Low - end mobile phones with less than 1280x720 are very few, and all 960x640480x320 and other low - resolution phones do not provide default support. If you need support, please add them manually.
+
+
+The resolution of the default:
+
+Resolution description
  ---  | ---
 | 1184 x 720   | 带虚拟键1280x720手机实际dimens夹
 | 1280 x 720   | 无虚拟键1280x702手机
@@ -64,73 +79,122 @@ App在运行的时候，会在Res下读取对应的dimens文件，BaseProject已
 | 2960 x 1440  | 常见型号三星s9等，dimens实际文件夹 长宽比18.5:9
 
 
-### 集成分辨率适配
-#### 使用概述 
-有两种集成分辨率适配的方式。
-###### 1.通过Gradle集成BaseProject。集成BaseProject，就对默认分辨率都进行了支持。
-###### 其他分辨率通过doc/工具集/分配率适配dimens工具.jar手动添加，如图所示：
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionTools.png) 
-##### 加需要额外支持的dimens拷贝到自己的工程res下,注意输入的名字是values+xxxdpi+分辨率的形式，如values-xhdpi-960x640
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/dimens.png) 
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/project_res.png) 
-###### 分辨率适配工具下载地址：
-https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.jar
+Integrated resolution adaptation
 
-###### 2.通过BaseProject提供的工具手动集成，利用工具生成dimens，将所有的dimens和相应的文件夹拷贝到自己工程的res文件夹
-###### 分辨率适配工具下载地址：
-https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.jar
+An overview of the use
 
+There are two ways to adapt the integrated resolution.
 
-###### 项目中具体使用方法：
-拿到效果图:
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/Mark.png) 
+The 1. is integrated with BaseProject through Gradle. With BaseProject integration, the default resolution is supported.
 
-##### 按照我们的思想：
+Other resolutions are added manually through the doc/ toolkit / allocation rate adapter dimens tool.Jar, as shown in the figure:
 
-    布局直接抄设计图上的尺寸
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionTools.png)
 
-##### 布局文库应该这么写：
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/mark_layout.png) 
+The dimens copy is added to the res of your project under the additional support. Note that the input name is the form of values+xxxdpi+ resolution, such as values-xhdpi-960x640.
 
-##### 来张组合图，直接根据效果图输入相应的尺寸，只是写法上，如果是1px，改成px1就可以了，感受一下：
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/mark_compare.jpg) 
-##### 感受完了，想一想，按照这种方式去写布局你说爽不爽。
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/dimens.png)
 
-##### 首先说一下：这个px并不代表px1像素，我在内部会进行dp处理，转成相应手机对应的尺寸。这就是本库适配的原理。
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/project_res.png)
 
-##### 接下来：看下不同手机，不同分辨率下的效果：
-三星S7 分辨率:2560x1440
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/S7.png) 
+The resolution adapter tool download address:
 
-Google pixsel XL 分辨率：2560x1440 带虚拟键
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/Pixsel_XL.png) 
-
-Google pixsel2 分辨率：1920x1080 带虚拟键
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/Pixcel2.png) 
-
-华为P9 分辨率：1920x1080
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/P9.png) 
+Https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.jar
 
 
-联想手机 分辨率：1280x720
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/720.png)
+By manually integrating tools provided by BaseProject and using tools to generate dimens, all dimens and corresponding folders are copied to the res folder of their own project.
 
-上述若干不同分辨率的手机，完美实现了适配，最为重要的是：
+The resolution adapter tool download address:
 
-    再也不用拿着设计稿去想这控件的宽高到底取多少dp
-    再也不用去计算百分比了（如果使用百分比控件完成适配）
-    再也不用去跟UI MM去解释什么是dp了
+Https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.jar
 
-而且细心的同学肯定发现，最底下有3条横向的细线很奇怪，效果图怎么会出这种图。其实那3条横线只是为了说明适配效果，我特意加上去的。现在效果图的尺寸是
-1920x1080，现在照抄宽度px1080，和宽度的一半px540.大家可以看到多款手机型号和分辨率不同，但是宽度条正好充满了全部和充满了一半，证明适配效果良好。
-## 二、网络请求框架Retrofit2封装 
-###  1.Retrofit+RxJava 优雅的处理服务器返回异常、错误 
-异常&错误
 
-实际开发经常有这种情况，比如登录请求，接口返回的
-信息包括请求返回的状态：失败还是成功，错误码，User对象等等。如果网络等原因引起的登录失败可以归结为异常，如果是用户信息输入错误导致的登录失败算是错误。
 
-假如服务器返回的是统一数据格式：
+
+
+The specific use method in the project:
+
+Get the effect map:
+
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/Mark.png)
+
+
+According to our thought:
+
+
+The size of the layout of the design
+
+
+The layout library should be written in this way:
+
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/mark_layout.png)
+
+
+If you want to input the corresponding size according to the effect picture, if you write 1px, you can change it to PX1.
+
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/mark_compare.jpg)
+
+When you feel it, think about it. It's not easy to write a layout in this way.
+
+
+The first thing to say is: This PX does not represent PX1 pixels. I will do DP processing internally and turn it into the corresponding size of the corresponding phone. This is the principle of the fit of the library.
+
+Next, look at the effects of different cell phones and different resolutions:
+
+Samsung S7 resolution: 2560x1440
+
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/S7.png)
+
+
+Google pixsel XL resolution: 2560x1440 with virtual key
+
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/Pixsel_XL.png)
+
+
+Google pixsel2 resolution: 1920x1080 with virtual keys
+
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/Pixcel2.png)
+
+
+HUAWEI P9 resolution: 1920x1080
+
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/P9.png)
+
+
+
+Lenovo cell phone resolution: 1280x720
+
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionShow/720.png)
+
+
+The above several mobile phones with different resolutions perfectly realized their adaptation.
+
+
+No longer need to take the design draft to think about the width of the control and how much DP it takes.
+
+No more percentage is calculated (if percentage controls are used to complete the adaptation).
+
+No more to explain to UI MM what DP is.
+
+
+And careful students must find that there are 3 horizontal lines at the bottom, which are very strange. How can the effect picture come out? Actually, those 3 horizontal lines are just to illustrate the matching effect. Now the size of the effect diagram is
+
+1920x1080, now copying the width of px1080, and half the width of px540., you can see a number of mobile phone models and different resolution, but the width is full and half full, proving that the matching effect is good.
+
+Retrofit2 encapsulation of network request framework Retrofit2
+
+1.Retrofit+RxJava handles gracefully the server returns exceptions and errors.
+
+Abnormality & error
+
+
+This often happens in real development, such as logon requests, interfaces returned.
+
+Information includes the state of request return: failure or success, error code, User object, and so on. If the login failure caused by network and other reasons can be attributed to an exception, if the user information input error caused by login failure is wrong.
+
+
+If the server returns a unified data format:
+
 
 /**
  * 标准数据格式
@@ -142,10 +206,15 @@ public class Response<T> {
     public T data;
 }
 
-    网络异常导致的登录失败，在使用Retrofit+RxJava请求时都会直接调用subscribe的onError事件；
-    密码错误导致的登录失败，在使用Retrofit+RxJava请求时都会调用subscribe的onNext事件；
 
-无论是异常还是错误，都要在subscribe里面处理异常信息，如下代码：
+
+The login failure caused by network exception will call the onError event of subscribe directly when using Retrofit+RxJava request.
+
+The login failure caused by password error will call the onNext event of subscribe when using Retrofit+RxJava request.
+
+
+Exception or error, you should process exception information in subscribe, as follows:
+
 ```Java
 APIWrapper.getInstance().login("username", "password")
                 .subscribe(new Observer<Response<User>>() {
@@ -170,18 +239,26 @@ APIWrapper.getInstance().login("username", "password")
 
 
 
-现在我希望在发生任何错误的情况下，都会调用onError事件，并且由model来处理错误信息。那么，此时我们就应该有一个ExceptionEngine来处理事件流中的错误信息了。
-在工作流中处理异常
+Now I hope that in any case of error, the onError event will be invoked and the error message will be processed by model. Then, we should have a ExceptionEngine to deal with the error message in the event stream.
 
-在正常情况下，我们获取网络数据的流程通常如下：
+Handling exceptions in Workflow
 
-请求接口->解析数据->更新ＵＩ
 
-整个数据请求过程都是发生在Rx中的工作流之中。当有异常产生的时候，我们要尽量不在ui层里面进行判断，换句话说，我们没有必要去告诉ui层具体的错误信息，只需要让他弹出一个信息（Toast或者Dialog）展示我们给它的信息就行。
+Under normal circumstances, the process of obtaining network data is usually as follows:
 
-统一封装，拦截异常错误
 
-统一封装拦截异常错误主要是为了获取具体的错误信息，分发给上层的UI，给用户以提示，增强用户体验。
+Request interface - > parse data - > update UI
+
+
+The entire data request process takes place in the workflow of Rx. When there is an exception, we should try not to make a judgment in the UI layer. In other words, we don't have to tell the UI layer specific error information, just let him pop up a message (Toast or Dialog) to show the information we give it.
+
+
+Unified encapsulation, intercepting exception errors
+
+
+Unified encapsulation interception exception error is mainly to obtain specific error information, distribute to the upper level of UI, give users hints, enhance user experience.
+
+
 ```Java
 /**
      * 所以调研接口，统一调用这个方法
@@ -250,19 +327,31 @@ APIWrapper.getInstance().login("username", "password")
   }
 
 ```
-所以整个逻辑是这样的： 
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/RetrofitExceptionHandle.png) 
-请求接口和数据解析都可能出错，所以在这两层进行错误处理。为了更好的解耦，我们通过拦截器拦截错误，然后根据错误类型分发信息。
 
-###  2.集成Retrofit封装使用方法
-BaseProject测试工程app工程中的api文件夹拷贝到自己的工程目录下，包含四个文件：
-![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/api.png) 
 
-在AppConfig里面进行相应的baseurl的设置。
-在RequestApiInterface进行相应的接口设置。
-UrlConstants用来拼接接口字符串。
+So the whole logic is:
 
-进行如上操作好，就可以调用相应的接口了，调用方式如下所示。
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/RetrofitExceptionHandle.png)
+
+Request interfaces and data parsing may be wrong, so error handling is done on these two levels. For better decoupling, we intercept the error through the interceptor and distribute the information according to the type of error.
+
+
+The method of using 2. integrated Retrofit package
+
+BaseProject test engineering app project API folder copied to its own engineering directory, contains four documents:
+
+[log] (https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/api.png)
+
+
+The corresponding baseurl settings are set up in AppConfig.
+
+The corresponding interface settings are set up in RequestApiInterface.
+
+UrlConstants is used to splice interface strings.
+
+
+If the operation is done as above, the corresponding interface can be called, and the way of calling is shown below.
+
 ```Java
  RequestBusiness.getInstance()
 .toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"),
@@ -274,11 +363,14 @@ UrlConstants用来拼接接口字符串。
             }
         }, this));
 ```
-由于统一对异常和错误进行了封装，所以只写onNext方法就可以了。
+Because of the encapsulation of exceptions and errors, the onNext method can only be written.
 
-## 三、Android基类封装和常用Utils方法
-### 1.Android常用工具栏
- 工具 | 描述
+
+Three, Android base class encapsulation and common Utils methods
+
+1.Android common toolbar
+
+Tool description
  ---  | ---
  [ActivityUtils](https://github.com/fly803/BaseProject/tree/master/baseproject/src/main/java/com/cg/baseproject/utils/ActivityUtils.java)| Activity管理工具类
  [AppUtils](https://github.com/fly803/BaseProject/tree/master/baseproject/src/main/java/com/cg/baseproject/utils/AppUtils.java)| Adb工具类
@@ -314,11 +406,12 @@ UrlConstants用来拼接接口字符串。
  [ValidateUtils](https://github.com/fly803/BaseProject/tree/master/baseproject/src/main/java/com/cg/baseproject/utils/ValidateUtils.java)| 验证工具类
  [ZipUtils](https://github.com/fly803/BaseProject/tree/master/baseproject/src/main/java/com/cg/baseproject/utils/ZipUtils.java)| ZipUtils
 
+Encapsulation of base class
 
+- -- - ---
 
-## 基类封装
---------------------
-### 使用请参考demo，请继承自BaseActivity自行拓展
+For reference, please refer to demo. Please inherit from BaseActivity.
+
 ```Java
 public abstract class BaseActivity extends AppCompatActivity {
 
@@ -479,23 +572,28 @@ public abstract class BaseActivity extends AppCompatActivity {
 }
 ```
 
-## 四、事件总线RxBus
-### 使用方法
-我们推荐获取一个RxBus的单例：
+
+
+Event bus based on RxJava and optimized for Android.
+Usage
+
+We recommend obtaining the single instance of bus through injection or another appropriate mechanism.
+
+Or get singleton like following:
 
 Bus bus = BusProvider.getInstance();
 
-### 订阅Subscribing
+Subscribing
 
-为了订阅事件，声明和注解使用 @Subscribe。这方法应该是public和使用only一个single参数
-```Java
+To subscribe to an event, declare and annotate a method with @Subscribe. The method should be public and take only a single parameter.
+
 @Subscribe
 public void onEvent(SomeEvent event) {
     // TODO: Do something
 }
-```
-你应该也创建订阅像下面这样：
-```Java
+
+You can also create subscription like following:
+
 CustomSubscriber<SomeEvent> customSubscriber = bus.obtainSubscriber(SomeEvent.class,
     new Consumer<SomeEvent>() {
         @Override
@@ -510,27 +608,38 @@ CustomSubscriber<SomeEvent> customSubscriber = bus.obtainSubscriber(SomeEvent.cl
         }
     })
     .withScheduler(Schedulers.trampoline());
-```
-### 注册和注销你的观察者，为了收到事件，一个类实例应该注册使用RxBus
+
+Register and unregister your observer
+
+To receive events, a class instance needs to register with the bus.
+
 bus.register(this);
 
-这定制的订阅器也需要注册使用RxBus
+The customSubscriber also needs to register with the bus.
+
 bus.registerSubscriber(this, customSubscriber);
 
-请也记得注销RxBus当适当的时候
+Remember to also call the unregister method when appropriate.
+
 bus.unregister(this);
 
-### 发布事件
+Publishing
 
-为了发布一个事件，调用post方法
+To publish a new event, call the post method:
+
 bus.post(new SomeEvent("Message"));
 
+# Add RxBus to your project
 
-## 集成该库
+Gradle:
+
+implementation 'com.github.fly803:BaseProject:1.0.0'
+get latest realease
+https://github.com/fly803/BaseProject/releases
 -----------
 
-#### 1.通过jitpack.io仓库方式依赖
-##### 项目根目录下的build.gradle 中加入
+#### 1.jitpack.io
+##### build.gradle
 
 allprojects {
     repositories {
@@ -538,36 +647,16 @@ allprojects {
     }
 }
 
-##### 在APP的build.gradle dependencies节点下加入
-
-implementation 'com.github.fly803:BaseProject:相应的版本号：例如1.0.0'
-
-###### 当前可以下载版本
-implementation 'com.github.fly803:BaseProject:1.0.0',已release里面的最新release为准
-
-#### 2.clone项目到本地，将BaseProject库直接依赖到项目。
-
-compile project(':BaseProject')
-
-#### 3.aar方式依赖
-##### 在项目根目录下新建aars文件夹，将BaseProject目录build/outputs下的kutils-release.aar文件copy进aars文件夹  在app的build.gradle 最外层节点加入
-
-repositories { flatDir { dirs '../aars' } }
-
-#####   在dependencies节点下加入对aar的依赖
-
-compile(name: 'BaseProject-release', ext: 'aar')
 
 
 ****
-项目地址：https://github.com/fly803/BaseProject
-集成过程出现问题可联系本人QQ：356576318(注明来自github)
+Contact QQ：356576318(from github)
 ****
 
 
 ## [English](https://github.com/fly803/BaseProject/README_EN.md) | 中文
 
-#### 友情链接
+#### Friend Link
 [github/UCodeUStory/S-MVP](https://github.com/UCodeUStory/S-MVP) 
 
 [github/UCodeUStory/GradlePluginDevelop](https://https://github.com/UCodeUStory/GradlePluginDevelop)  
