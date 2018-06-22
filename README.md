@@ -2,7 +2,7 @@ README
 ===========================
 # BaseProject
 Android项目基础库，包含四大部分：一、分辨率适配 二、网络请求框架Retrofit2封装 
-For the English readme：## [English](https://github.com/fly803/BaseProject/README_EN.md) |
+For the English readme：## [English](https://github.com/fly803/BaseProject/blob/master/README_EN.md) |
 三、Android基类封装和项目常用Utils方法 四、基于RxJava、RxAndroid的事件总线RxBus。
 1.Android分辨率适配方案，解决大家的分辨率适配烦恼，可以直接依据设计图写尺寸，不做额外的操作，简单方便准确。
 2.封装Retrofit2，统一了异常处理，对网络错误，网络错误，连接失败，证书验证失败进行了统一封装，无需用户
@@ -565,7 +565,7 @@ compile(name: 'BaseProject-release', ext: 'aar')
 ****
 
 
-## [English](https://github.com/fly803/BaseProject/README_EN.md) | 中文
+## [English](https://github.com/fly803/BaseProject/blob/master/README_EN.md) | 中文
 
 #### 友情链接
 [github/UCodeUStory/S-MVP](https://github.com/UCodeUStory/S-MVP) 
