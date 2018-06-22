@@ -64,6 +64,9 @@ The resolution of the default:
 
 Resolution description
  ---  | ---
+#### Default Support Resolution：
+ Resolution | description
+ ---  | ---
 | 1184 x 720   | 带虚拟键1280x720手机实际dimens夹
 | 1280 x 720   | 无虚拟键1280x702手机
 | 1776 x 1080  | 带虚拟键盘1920x1280手机，常见型号Google nexus5
@@ -77,7 +80,6 @@ Resolution description
 | 2712 x 1440  | 密度3.5，分辨率2560x1440手机，常见型号Google nexus6等
 | 2792 x 1440  | 常见型号三星S8+等，dimens实际文件夹
 | 2960 x 1440  | 常见型号三星s9等，dimens实际文件夹 长宽比18.5:9
-
 
 Integrated resolution adaptation
 
