@@ -3,6 +3,7 @@ package com.ivy.baseproject.test;
 import android.content.Context;
 
 import com.cg.baseproject.BaseApplication;
+import com.ivy.baseproject.test.api.AppConfig;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
 import com.nostra13.universalimageloader.core.DisplayImageOptions;
@@ -26,10 +27,15 @@ public class AppApplication extends BaseApplication {
         super.onCreate();
         application = this;
         initImageLoader();
+        initConfig();
     }
 
     public static AppApplication getInstance() {
         return application;
+    }
+
+    private void initConfig(){
+        AppConfig.init(this,false,false,AppConfig.BUBBLE,true, AppConfig.BASE_URL,AppConfig.SUCCESS_CODE,"AppConfig");
     }
     
     private void initImageLoader(){

@@ -1,12 +1,14 @@
 package com.ivy.baseproject.test.api;
 
+import com.cg.baseproject.configs.BaseProjectConfig;
+
 /**
  * @author
  * @version 1.0
  * @date 3/5/2018
  */
 
-public class AppConfig {
+public class AppConfig extends BaseProjectConfig{
     public static final int SUCCESS_CODE = 0;
     public static final String TAG = "retrofit";
     public static final boolean DEBUG = true;
