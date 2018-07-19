@@ -14,6 +14,8 @@
     <dimen name="screen_width">1920px</dimen>
     <dimen name="screen_height">1080px</dimen>
     <dimen name="dimen_values">@dimen/px11</dimen>
+    <dimen name="three_grid_unit">@dimen/px30</dimen>
+    <dimen name="one_and_a_half_grid_unit">@dimen/px10</dimen>
     <!--
     密度类型 	         代表的分辨率（px） 	屏幕密度（dpi） 	 换算（px/dp） 	比例
     低密度（ldpi） 	     240x320 	        120 	            1dp=0.75px 	3

@@ -23,6 +23,8 @@
     <color name="lightslategrey">#778899</color><!--亮蓝灰 -->
     <color name="darkslategrey">#2f4f4f</color><!--暗瓦灰色 -->
     <color name="silver">#c0c0c0</color><!--银色 -->
+    <color name="colorSpinnerGrey">#F2F4F5</color>
+    <color name="colorTextQueryIndexValue">#3E97E6</color>
 
     <color name="red">#ff0000</color><!--红色 -->
     <color name="darkred">#8b0000</color><!--暗红色 -->
