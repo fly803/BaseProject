@@ -44,6 +44,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
     private SparseArray<View> mViews;//管理View的集合
     public static final int LOADINGSTYLECOMMON = 0;
     public static final int GETLOADINGSTYLECAT = 1;
+    protected OnBackToFirstListener _mBackToFirstListener;
 
     /**
      * 是否加载完成
@@ -53,6 +54,9 @@ public abstract class BaseSupportFragment extends SupportFragment {
     protected abstract void initViews();//强制子类重写,实现子类不同的UI效果,使用BufferKnife
     protected abstract void registerListener();//注册监听事件
     protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
+    public interface OnBackToFirstListener {//返回到第一个Fragment
+        void onBackToFirstFragment();
+    }
     private boolean viewCreated;//记录是否已经创建了,防止重复创建
     CatLoadingView mCatLoadingView;
     Dialog mCommonLoading;
@@ -70,6 +74,12 @@ public abstract class BaseSupportFragment extends SupportFragment {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.M) {
             // Code here
             mActivity = (BaseSupportActivity) activity;
+            if (activity instanceof OnBackToFirstListener) {
+                _mBackToFirstListener = (OnBackToFirstListener) activity;
+            } else {
+                throw new RuntimeException(activity.toString()
+                        + " must implement OnBackToFirstListener");
+            }
         }
     }
 
@@ -86,8 +96,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //        mViews = new SparseArray<View>();//初始化集合
         if (null == mRootView) {
-            int layoutResId = 1;
-            if (layoutResId > 0) {
+            if (getFragmentLayoutId() > 0) {
                 mRootView = inflater.inflate(getFragmentLayoutId(), container, false);
             }
             // 解决点击穿透问题,或者在每个fragment布局的根节点加一条android:clickable="true"。
@@ -158,6 +167,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
     @Override
     public void onDetach() {
         super.onDetach();
+        _mBackToFirstListener = null;
     }
 
     @TargetApi(Build.VERSION_CODES.M)
@@ -165,7 +175,32 @@ public abstract class BaseSupportFragment extends SupportFragment {
     public void onAttach(Context activity) {
         super.onAttach(activity);
         mActivity = (BaseSupportActivity) activity;
+        if (activity instanceof OnBackToFirstListener) {
+            _mBackToFirstListener = (OnBackToFirstListener) activity;
+        } else {
+            throw new RuntimeException(activity.toString()
+                    + " must implement OnBackToFirstListener");
+        }
     }
+
+    /**
+     * 处理回退事件
+     *
+     * @return
+     */
+/*    @Override
+    public boolean onBackPressedSupport() {
+        if (getChildFragmentManager().getBackStackEntryCount() > 1) {
+            popChild();
+        } else {
+            if (this instanceof ZhihuFirstFragment) {   // 如果是 第一个Fragment 则退出app
+                _mActivity.finish();
+            } else {                                    // 如果不是,则回到第一个Fragment
+                _mBackToFirstListener.onBackToFirstFragment();
+            }
+        }
+        return true;
+    }*/
 
     public void loading(int loadingStyle){
         initLoading(loadingStyle);
