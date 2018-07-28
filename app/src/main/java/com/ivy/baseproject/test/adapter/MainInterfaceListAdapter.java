@@ -14,6 +14,6 @@ public class MainInterfaceListAdapter extends BaseQuickAdapter<MainInterfaceItem
     @Override
     protected void convert(BaseViewHolder baseViewHolder, MainInterfaceItem dataIndex) {
         baseViewHolder.setText(R.id.list_item_name, dataIndex.getName());
-        baseViewHolder.setBackgroundColor(R.id.list_item_name, dataIndex.getBackgroundColor());
+        baseViewHolder.setBackgroundColor(R.id.list_item_color, dataIndex.getBackgroundColor());
     }
 }
