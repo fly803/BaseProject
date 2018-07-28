@@ -31,6 +31,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:srcCompat="@mipmap/scrollview_bottom"/>
+        <include
+            android:id="@+id/includeFootBar"
+            layout="@layout/foot_bar"/>
     </LinearLayout>
     <!--</com.scwang.smartrefresh.layout.SmartRefreshLayout>-->
 </android.support.v4.widget.NestedScrollView>

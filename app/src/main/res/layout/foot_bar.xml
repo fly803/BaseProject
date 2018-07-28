@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                                             xmlns:app="http://schemas.android.com/apk/res-auto"
+                                             xmlns:tools="http://schemas.android.com/tools"
+                                             android:layout_width="match_parent"
+                                             android:layout_height="@dimen/px120"
+                                             android:background="#f1f8fe"
+                                             tools:layout_editor_absoluteY="25dp">
+
+    <TextView
+        android:id="@+id/tvFootTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/px70"
+        android:text="root"
+        android:textColor="@color/grey"
+        android:textSize="@dimen/sp36"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <ImageView
+        android:id="@+id/ivFootLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/px15"
+        app:layout_constraintBottom_toBottomOf="@+id/tvFootTitle"
+        app:layout_constraintEnd_toStartOf="@+id/tvFootTitle"
+        app:layout_constraintTop_toTopOf="@+id/tvFootTitle"
+        app:srcCompat="@mipmap/logo"/>
+
+
+</android.support.constraint.ConstraintLayout>
