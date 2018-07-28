@@ -37,7 +37,7 @@
             android:ellipsize="end"
             android:singleLine="true"
             android:textColor="@color/main_black"
-            android:textSize="16sp" />
+            android:textSize="16sp" />B
 
         <View
             android:id="@+id/list_item_color"

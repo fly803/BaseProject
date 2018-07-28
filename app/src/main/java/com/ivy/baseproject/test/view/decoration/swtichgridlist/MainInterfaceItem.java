@@ -1,9 +1,19 @@
 package com.ivy.baseproject.test.view.decoration.swtichgridlist;
 
-public class Item {
+public class MainInterfaceItem {
 
     private String name;
     private String method;
+    private int backgroundColor;
+
+    public int getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public void setBackgroundColor(int backgroundColor) {
+        this.backgroundColor = backgroundColor;
+    }
+
 
     public String getMethod() {
         return method;

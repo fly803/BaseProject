@@ -55,7 +55,7 @@ ext {
     gson = "com.google.code.gson:gson:2.8.0"
     fastjson = "com.alibaba:fastjson:1.1.65.android"
     romandanylykIndicator = "com.romandanylyk:pageindicatorview:1.0.0"
-    bravh = "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.9"
+    bravh = "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40"
     //通用适配器
     commonAdapter = "com.classic.adapter:commonadapter:1.9"
     //方便的切换到：加载中视图、错误视图、空数据视图、网络异常视图、内容视图。

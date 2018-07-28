@@ -6,6 +6,15 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".activity.MainActivity">
+  <!--  <android.support.v7.widget.RecyclerView
+        android:id="@+id/rvDataIndex"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>-->
 
     <com.ivy.baseproject.test.view.decoration.swtichgridlist.AutoFitRecyclerView
         android:id="@+id/recycler_view"

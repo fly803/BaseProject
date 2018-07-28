@@ -1,4 +1,4 @@
-package com.ivy.baseproject.test;
+package com.ivy.baseproject.test.activity;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,12 +11,14 @@ import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 
@@ -28,18 +30,15 @@ import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
 import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 import com.cg.baseproject.utils.android.SharedPreferencesUtils;
 import com.cg.baseproject.utils.android.ToastUtils;
-import com.ivy.baseproject.test.activity.FileImageActivity;
-import com.ivy.baseproject.test.activity.NetImageActivity;
-import com.ivy.baseproject.test.activity.PermissionActivity;
-import com.ivy.baseproject.test.activity.ResolutionAdaptionDemoActivity;
-import com.ivy.baseproject.test.activity.ResolutionTestActivity;
-import com.ivy.baseproject.test.activity.UiWidgetActivity;
+import com.chad.library.adapter.base.BaseQuickAdapter;
+import com.ivy.baseproject.test.R;
+import com.ivy.baseproject.test.adapter.MainInterfaceListAdapter;
 import com.ivy.baseproject.test.api.AppConfig;
 import com.ivy.baseproject.test.api.RequestBusiness;
 import com.ivy.baseproject.test.sample.SampleActivity;
 import com.ivy.baseproject.test.sample.SampleFragmentActivity;
 import com.ivy.baseproject.test.view.decoration.swtichgridlist.AutoFitRecyclerView;
-import com.ivy.baseproject.test.view.decoration.swtichgridlist.Item;
+import com.ivy.baseproject.test.view.decoration.swtichgridlist.MainInterfaceItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,6 +53,8 @@ import retrofit2.Response;
  * @date 2018/4/11
  */
 public class MainActivity extends AppCompatActivity {
+    RecyclerView mRvDataIndex;
+    private MainInterfaceListAdapter mDataIndexBaseQuickAdapter;
 
     @ColorInt
     private static final int[] BG_COLORS = {0xfff25f8c, 0xfffb7f77, 0xfffcc02c, 0xff2fcc87,
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AutoFitRecyclerView mRecyclerView;
     private MyAdapter mAdapter;
-    private List<Item> mItems;
+    private List<MainInterfaceItem> mMainInterfaceItems;
     private int mMode;
 
     private LayoutInflater mLayoutInflater;
@@ -75,9 +76,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ToastUtils.showToast("ToastUtils测试");
+//        initView();
+//        initMainInterfaceAdapter();
 
-        mItems = initData();
+        mMainInterfaceItems = initData();
         mMode = getMode();
 
         mLayoutInflater = LayoutInflater.from(this);
@@ -86,78 +88,94 @@ public class MainActivity extends AppCompatActivity {
         mAdapter = new MyAdapter();
         mRecyclerView.setAdapter(mAdapter);
     }
+    
+    private void initView(){
+//        mRvDataIndex = (RecyclerView) findViewById(R.id.rvDataIndex);
+    }
 
-    private List<Item> initData() {
-        List<Item> records = new ArrayList<>();
+    private void initMainInterfaceAdapter(){
+        mDataIndexBaseQuickAdapter = new MainInterfaceListAdapter(R.layout.list_maininterface_item, initData());
+        mRvDataIndex.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
+        mRvDataIndex.setLayoutManager(new LinearLayoutManager(this));
+        mRvDataIndex.setAdapter(mDataIndexBaseQuickAdapter);
+        mDataIndexBaseQuickAdapter.setOnItemClickListener(new BaseQuickAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(BaseQuickAdapter adapter, View view, int position) {
+
+            }
+        });
+    }
+    private List<MainInterfaceItem> initData() {
+        List<MainInterfaceItem> listMainInterfaceItem = new ArrayList<>();
         
-        Item record0 = new Item();
+        MainInterfaceItem record0 = new MainInterfaceItem();
         record0.setName("Get请求");
         record0.setMethod("getRequest");
-        records.add(record0);
+        listMainInterfaceItem.add(record0);
         
-        Item record1 = new Item();
+        MainInterfaceItem record1 = new MainInterfaceItem();
         record1.setName("Post请求");
         record1.setMethod("postRequest");
-        records.add(record1);
+        listMainInterfaceItem.add(record1);
         
-        Item record2 = new Item();
+        MainInterfaceItem record2 = new MainInterfaceItem();
         record2.setName("RxGet请求");
         record2.setMethod("rxGet");
-        records.add(record2);
+        listMainInterfaceItem.add(record2);
         
-        Item record3 = new Item();
+        MainInterfaceItem record3 = new MainInterfaceItem();
         record3.setName("RxPost请求");
         record3.setMethod("rxPost");
-        records.add(record3);
+        listMainInterfaceItem.add(record3);
         
-        Item record4 = new Item();
+        MainInterfaceItem record4 = new MainInterfaceItem();
         record4.setName("网络图片");
         record4.setMethod("netImage");
-        records.add(record4);
+        listMainInterfaceItem.add(record4);
         
-        Item record5 = new Item();
+        MainInterfaceItem record5 = new MainInterfaceItem();
         record5.setName("分配率适配");
         record5.setMethod("resolution");
-        records.add(record5);
+        listMainInterfaceItem.add(record5);
         
-        Item record6 = new Item();
+        MainInterfaceItem record6 = new MainInterfaceItem();
         record6.setName("分配率适配测试");
         record6.setMethod("resolutionTest");
-        records.add(record6);
+        listMainInterfaceItem.add(record6);
 
-        Item record7 = new Item();
+        MainInterfaceItem record7 = new MainInterfaceItem();
         record7.setName("继承BaseActivity");
         record7.setMethod("sampleActivity");
-        records.add(record7);
+        listMainInterfaceItem.add(record7);
 
-        Item record8 = new Item();
+        MainInterfaceItem record8 = new MainInterfaceItem();
         record8.setName("继承BaseFragment");
         record8.setMethod("sampleFragment");
-        records.add(record8);
+        listMainInterfaceItem.add(record8);
 
-        Item record9 = new Item();
+        MainInterfaceItem record9 = new MainInterfaceItem();
         record9.setName("运行时权限请求");
         record9.setMethod("runtimePermission");
-        records.add(record9);
+        listMainInterfaceItem.add(record9);
 
-        Item record10 = new Item();
+        MainInterfaceItem record10 = new MainInterfaceItem();
         record10.setName("文件图像操作测试");
         record10.setMethod("FileUtilsTest");
-        records.add(record10);
+        listMainInterfaceItem.add(record10);
 
-        Item record11= new Item();
+        MainInterfaceItem record11= new MainInterfaceItem();
         record11.setName("UI小控件");
         record11.setMethod("uiWidget");
-        records.add(record11);
+        listMainInterfaceItem.add(record11);
 
         for (int i = 12; i < 18; i++) {
-            Item record = new Item();
+            MainInterfaceItem record = new MainInterfaceItem();
             record.setName("待添加操作" + i);
             record.setMethod("");
-            records.add(record);
+            listMainInterfaceItem.add(record);
         }
         
-        return records;
+        return listMainInterfaceItem;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
@@ -365,14 +383,14 @@ public class MainActivity extends AppCompatActivity {
         @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
         @Override
         public void onClick(View v) {
-            Item item = (Item) v.getTag();
-            if (item == null) {
+            MainInterfaceItem mainInterfaceItem = (MainInterfaceItem) v.getTag();
+            if (mainInterfaceItem == null) {
                 Snackbar.make(mRecyclerView, "测试分辨率Dimens", Snackbar.LENGTH_SHORT).show();
                 testResolution(MainActivity.this);
                 ResolutionAdaptationUtils.hideNavBar(MainActivity.this);
                 isShow = 1;
             } else {
-                runMethod(item.getMethod());
+                runMethod(mainInterfaceItem.getMethod());
             }
         }
     };
@@ -425,7 +443,7 @@ public class MainActivity extends AppCompatActivity {
             } else {
                 switch (mMode) {
                     case AutoFitRecyclerView.MODE_LIST:
-                        v = mLayoutInflater.inflate(R.layout.list_item, parent, false);
+                        v = mLayoutInflater.inflate(R.layout.list_maininterface_item, parent, false);
                         return new ListHolder(v);
                     case AutoFitRecyclerView.MODE_GRID:
                         v = mLayoutInflater.inflate(R.layout.grid_item, parent, false);
@@ -441,20 +459,20 @@ public class MainActivity extends AppCompatActivity {
                 HeaderHolder headerHolder = (HeaderHolder) holder;
                 headerHolder.headerView.setOnClickListener(mOnClickListener);
             } else {
-                Item item = mItems.get(position - 1);// 减去header的位置
+                MainInterfaceItem mainInterfaceItem = mMainInterfaceItems.get(position - 1);// 减去header的位置
                 @ColorInt int colorRes = getBgColor(position);
                 if (holder instanceof ListHolder) {
                     ListHolder listHolder = (ListHolder) holder;
-                    listHolder.nameText.setText(item.getName());
+                    listHolder.nameText.setText(mainInterfaceItem.getName());
                     listHolder.colorView.setBackgroundColor(colorRes);
-                    listHolder.cardView.setTag(item);
+                    listHolder.cardView.setTag(mainInterfaceItem);
                     listHolder.cardView.setOnClickListener(mOnClickListener);
                 } else if (holder instanceof GridHolder) {
                     GridHolder gridHolder = (GridHolder) holder;
-                    gridHolder.nameText.setText(item.getName());
+                    gridHolder.nameText.setText(mainInterfaceItem.getName());
                     gridHolder.colorView.setBackgroundColor(colorRes);
                     gridHolder.coverView.setImageResource(getBgCover(position));
-                    gridHolder.cardView.setTag(item);
+                    gridHolder.cardView.setTag(mainInterfaceItem);
                     gridHolder.cardView.setOnClickListener(mOnClickListener);
                 }
             }
@@ -462,10 +480,10 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public int getItemCount() {
-            if (mItems == null || mItems.isEmpty()) {
+            if (mMainInterfaceItems == null || mMainInterfaceItems.isEmpty()) {
                 return 1;
             } else {
-                return mItems.size() + 1;
+                return mMainInterfaceItems.size() + 1;
             }
         }
 
