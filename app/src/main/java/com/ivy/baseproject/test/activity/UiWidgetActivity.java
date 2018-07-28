@@ -20,7 +20,7 @@ public class UiWidgetActivity extends AppCompatActivity {
     SearchView searchView;
     private void seachButton(){
         // 3. 绑定组件
-        searchView = (SearchView) findViewById(R.id.search_view);
+//        searchView = (SearchView) findViewById(R.id.search_view);
 
         // 4. 设置点击键盘上的搜索按键后的操作（通过回调接口）
         // 参数 = 搜索框输入的内容

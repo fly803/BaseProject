@@ -23,12 +23,12 @@ import butterknife.Unbinder;
  */
 
 public class SampleFragment extends BaseSupportFragment {
-    @BindView(R.id.tvFragmentSample)
-    TextView mTvFragmentSample;
+//    @BindView(R.id.tvFragmentSample)
+//    TextView mTvFragmentSample;
 
     @Override
     protected int getFragmentLayoutId() {
-        return  R.layout.fragment_sample;
+        return  R.layout.fragment_scrollview_root;
     }
 
     @Override
@@ -52,8 +52,8 @@ public class SampleFragment extends BaseSupportFragment {
 
     }
 
-    @OnClick(R.id.tvFragmentSample)
-    public void onViewClicked() {
-        Toast.makeText(getActivity(), "SampleFragment点击测试", Toast.LENGTH_SHORT).show();
-    }
+//    @OnClick(R.id.tvFragmentSample)
+//    public void onViewClicked() {
+//        Toast.makeText(getActivity(), "SampleFragment点击测试", Toast.LENGTH_SHORT).show();
+//    }
 }
