@@ -1,14 +1,17 @@
 package com.ivy.baseproject.test.activity;
 
+import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 import com.ivy.baseproject.test.R;
 
 public class ResolutionTestActivity extends AppCompatActivity {
@@ -18,6 +21,7 @@ public class ResolutionTestActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_resolution_test);
+        testResolution(this);
         TextView argumentsTv = (TextView) findViewById(R.id.metrics_argus);
         StringBuilder sb = new StringBuilder();
         DisplayMetrics metrics = getResources().getDisplayMetrics();
@@ -44,6 +48,18 @@ public class ResolutionTestActivity extends AppCompatActivity {
         argumentsTv.setText(sb.toString());
     }
 
+    public void testResolution(Context context) {
+        Log.d("cg", "testResolution: " + ResolutionAdaptationUtils.getResolutionInfo(context));
+        //        Log.d("cg", "getBottomStatusHeight: "+ResolutionAdaptationUtils.getBottomStatusHeight(this));
+        //        Log.d("cg", "getNavigationBarHeight: "+ResolutionAdaptationUtils.getNavigationBarHeight(this));
+        Log.d("cg", "xxxvalues: " + getResources().getDimension(R.dimen.xxxvalues));
+        Log.d("cg", "dimen_values: " + getResources().getDimension(R.dimen.dimen_values));
+        //        Log.d("cg", "px1: "+getResources().getDimension(R.dimen.px1));
+        //        Log.d("cg", "testResolution getPPI: "+ResolutionAdaptationUtils.getPPI(3840,2160,65));
+        //        Log.d("cg", "witch values dimens pick_values:"+getResources().getDimension(R.dimen.pick_values)/ ResolutionAdaptationUtils.getDipScale(this));
+        //        Log.d("cg", "witch values dimens dp:"+getResources().getDimension(R.dimen.witch_values)/ResolutionAdaptationUtils.getDipScale(this));
+    }
+    
     @Override
     protected void onStart() {
         super.onStart();
