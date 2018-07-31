@@ -1,15 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="xxxvalues">100dp</dimen>
-    <dimen name="xxxXdpi">@dimen/px10</dimen>
-    <dimen name="xxxYdpi">@dimen/px10</dimen>
-    <dimen name="dp1">1dp</dimen>
-    <dimen name="pick_pxX1">@dimen/px1</dimen>
-    <dimen name="pick_pxY1">@dimen/px1</dimen>
-    <dimen name="pick_dp1">@dimen/dp1</dimen>
-    <dimen name="pick_1dp">1dp</dimen>
-    <dimen name="pick_1px">1px</dimen>
-    
     <dimen name="px1">0.37714288dp</dimen>
     <dimen name="px2">0.76571435dp</dimen>
     <dimen name="px3">1.1428572dp</dimen>
