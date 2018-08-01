@@ -53,6 +53,7 @@ public class ResolutionTestActivity extends AppCompatActivity {
         //        Log.d("cg", "getBottomStatusHeight: "+ResolutionAdaptationUtils.getBottomStatusHeight(this));
         //        Log.d("cg", "getNavigationBarHeight: "+ResolutionAdaptationUtils.getNavigationBarHeight(this));
         Log.d("cg", "xxxvalues: " + getResources().getDimension(R.dimen.xxxvalues));
+        Log.d("cg", "px1: " + getResources().getDimension(R.dimen.px1));
         Log.d("cg", "dimen_values: " + getResources().getDimension(R.dimen.dimen_values));
         //        Log.d("cg", "px1: "+getResources().getDimension(R.dimen.px1));
         //        Log.d("cg", "testResolution getPPI: "+ResolutionAdaptationUtils.getPPI(3840,2160,65));
