@@ -73,6 +73,7 @@
                 android:layout_toLeftOf="@id/middle_guide_line">
 
                 <Button
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
@@ -91,6 +92,7 @@
                 android:layout_toRightOf="@id/middle_guide_line">
 
                 <Button
+                    android:visibility="gone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"

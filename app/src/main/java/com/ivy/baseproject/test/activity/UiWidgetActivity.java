@@ -14,7 +14,7 @@ public class UiWidgetActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ui_widget);
-        seachButton();
+//        seachButton();
     }
 
     SearchView searchView;

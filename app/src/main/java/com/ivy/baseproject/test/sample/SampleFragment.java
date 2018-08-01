@@ -28,7 +28,7 @@ public class SampleFragment extends BaseSupportFragment {
 
     @Override
     protected int getFragmentLayoutId() {
-        return  R.layout.fragment_scrollview_root;
+        return  R.layout.fragment_sample;
     }
 
     @Override

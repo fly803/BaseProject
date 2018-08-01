@@ -6,12 +6,13 @@ import android.view.View;
 
 import com.cg.baseproject.base.BaseActivity;
 import com.cg.baseproject.base.BaseSupportActivity;
+import com.cg.baseproject.base.BaseSupportFragment;
 import com.cg.baseproject.base.BaseTempActivity;
 import com.ivy.baseproject.test.R;
 
 import butterknife.ButterKnife;
 
-public class SampleFragmentActivity extends BaseSupportActivity {
+public class SampleFragmentActivity extends BaseSupportActivity implements BaseSupportFragment.OnBackToFirstListener{
 
     @Override
     protected int getActivityLayoutId() {
@@ -43,5 +44,9 @@ public class SampleFragmentActivity extends BaseSupportActivity {
 
     }
 
-    
+
+    @Override
+    public void onBackToFirstFragment() {
+        
+    }
 }
