@@ -14,7 +14,40 @@ import java.util.ArrayList;
 /**
  * https://blog.csdn.net/mjb00000/article/details/79297677
  * 实现 JsonDeserializer 接口重写 deserialize(JsonElement json, Type typeOfT, 
- * JsonDeserializationContext context) 方法，这里进行解析处理，针对特殊字段特殊处理。
+ * JsonDeserializationContext context) 方法，这里进行解析处理，针对特殊字段特殊处理
+ *   返回Json中data为空
+     {
+         "data": "",
+         "code": 1,
+         "message": "请求失败"
+     }
+     返回Json中data值为null{
+         "data": null,
+         "code": 1,
+         "message": "请求失败"
+     }
+     返回Json中data为对象类型
+    {
+         "data": {
+         "name": "秦川小将",
+         "phone": "182******08"
+         },
+     "code": 0,
+     "message": "请求成功"
+     }
+     返回Json中的data为集合类型
+    {
+         "data": [{
+         "name": "张三",
+         "phone": "182******08"
+         }, {
+         "name": "李四",
+         "phone": "182******08"
+         }],
+         "code": 0,
+         "message": "请求成功"
+         }
+     }
  * @author cg
  * @version 1.0
  * @date 2018/4/13
@@ -62,8 +95,11 @@ public class JsonFormatParser implements JsonDeserializer<BaseResponse> {
         // 根据键获取返回的状态码。
         mResult.setCode(mJsonObject.get("code").getAsInt());
         // 根据键获取返回的状态信息。
-        mResult.setMessage(mJsonObject.get("message").getAsString());
-        mResult.setMessage(mJsonObject.get("msg").getAsString());
+        if(mJsonObject.has("message")){
+            mResult.setMessage(mJsonObject.get("message").getAsString());
+        }else {
+            mResult.setMessage(mJsonObject.get("msg").getAsString());
+        }
         return mResult;
     }
 

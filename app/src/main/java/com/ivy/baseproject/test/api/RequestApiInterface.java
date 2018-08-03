@@ -11,6 +11,8 @@ import com.cg.baseproject.request.data.pojo.User;
 import com.cg.baseproject.request.data.pojo.WrapperRspEntity;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.data.response.NotLoginResponse;
+import com.ivy.baseproject.test.bean.response.AirForecast;
+import com.ivy.baseproject.test.bean.response.EnvProportion;
 
 import java.util.List;
 
@@ -178,4 +180,10 @@ public interface RequestApiInterface {
                              @Field("showapi_sign") String showapi_sign,
                              @Field("num") int num ,
                              @Field("page") int page);
+
+    @GET("getEnvProportion")
+    Observable<BaseResponse<EnvProportion>> getEnvProportion();
+
+    @GET("getAirForecast")
+    Observable<BaseResponse<AirForecast>> getAirForecast();
 }

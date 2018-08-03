@@ -2,7 +2,8 @@ package com.cg.baseproject.request.retrofit;
 
 import android.util.Log;
 import com.cg.baseproject.configs.BaseProjectConfig;
-import com.cg.baseproject.request.retrofit.factory.SBGsonConverterFactory;
+import com.cg.baseproject.request.retrofit.converter.GsonResponseBodyConverter;
+import com.cg.baseproject.request.retrofit.factory.MyGsonConverterFactory;
 import com.cg.baseproject.request.retrofit.interceptor.BaseUrlInterceptor;
 import java.util.concurrent.TimeUnit;
 import okhttp3.OkHttpClient;
@@ -45,7 +46,8 @@ public class RetrofitRequestManager {
     private static final String TAG = "RetrofitManager";
     private static RetrofitRequestManager mRetrofitRequestManager;
     private Retrofit mRetrofit;
-    private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();
+    private static Converter.Factory gsonConverterFactory = MyGsonConverterFactory.create();
+//    private static Converter.Factory gsonConverterFactory = GsonConverterFactory.create();
 
     private RetrofitRequestManager() {
         initRetrofit();

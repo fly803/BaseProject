@@ -2,7 +2,7 @@
     <string name="app_name">BaseProject库测试工程</string>
     <string name="title_activity_net_image">NetImageActivity</string>
     <string name="movie_list">电影列表</string>
-    <string name="award_list">福利列表</string>
+    <string name="award_list">美女列表</string>
     <string name="title_activity_movie_list">MovieListActivity</string>
     <string name="title_activity_girl_list">GirlListActivity</string>
     <string name="title_activity_resolution_adaption_demo">ResolutionAdaptionDemoActivity</string>

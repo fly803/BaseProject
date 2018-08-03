@@ -10,7 +10,7 @@
         android:id="@+id/tool_bar"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/colorPrimary"
+        android:background="#EE3A8C"
         />
     <android.support.v7.widget.RecyclerView
         android:id="@+id/gank_recycler_view"
@@ -18,5 +18,4 @@
         android:layout_height="match_parent"
         android:padding="@dimen/px19"
         />
-
 </LinearLayout>

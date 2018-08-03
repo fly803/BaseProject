@@ -29,6 +29,7 @@ public class BaseResponse<T> {
     public int code;
     public String message;
     public T data;
+
     /**
      * 扩展字段
      * 0:data为对象
@@ -36,15 +37,8 @@ public class BaseResponse<T> {
      * 2:date为空或者null字段
      */
     public int dataType;
+
     public String msg;
-
-    public String getMsg() {
-        return msg;
-    }
-
-    public void setMsg(String msg) {
-        this.msg = msg;
-    }
 
     public int getCode() {
         return code;
@@ -60,6 +54,14 @@ public class BaseResponse<T> {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public String getMsg() {
+        return msg;
+    }
+
+    public void setMsg(String msg) {
+        this.msg = msg;
     }
 
     public T getData() {
@@ -78,9 +80,14 @@ public class BaseResponse<T> {
         this.dataType = dataType;
     }
 
-
     @Override
     public String toString() {
-        return "BaseResponse{" + "code=" + code + ", message='" + message + '\'' + ", data=" + data + ", dataType=" + dataType + ", msg='" + msg + '\'' + '}';
+        return "{" +
+                "data=" + data +
+                ", code=" + code +
+                ", message='" + message + '\'' +
+                ", msg='" + msg + '\'' +
+                ", dataType=" + dataType +
+                '}';
     }
 }

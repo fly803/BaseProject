@@ -64,7 +64,7 @@ public class ExceptionHandle {
             return ex;
         } else {
             ex = new ResponeThrowable(e, ERROR.UNKNOWN);
-            ex.message = "未知错误";
+            ex.message = "未知错误ExceptionHandle";
             return ex;
         }
     }

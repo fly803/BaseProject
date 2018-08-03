@@ -23,6 +23,8 @@ import com.ivy.baseproject.test.R;
 import com.ivy.baseproject.test.adapter.MainInterfaceListAdapter;
 import com.ivy.baseproject.test.api.AppConfig;
 import com.ivy.baseproject.test.api.RequestBusiness;
+import com.ivy.baseproject.test.bean.response.AirForecast;
+import com.ivy.baseproject.test.bean.response.EnvProportion;
 import com.ivy.baseproject.test.sample.SampleActivity;
 import com.ivy.baseproject.test.sample.SampleFragmentActivity;
 import com.ivy.baseproject.test.view.decoration.swtichgridlist.MainInterfaceItem;
@@ -150,12 +152,18 @@ public class MainActivity extends AppCompatActivity {
         listMainInterfaceItem.add(mainInterfaceItem10);
 
         MainInterfaceItem mainInterfaceItem11 = new MainInterfaceItem();
-        mainInterfaceItem11.setName("UI小控件");
+        mainInterfaceItem11.setName("UI小控件测试");
         mainInterfaceItem11.setMethod("uiWidget");
         mainInterfaceItem11.setBackgroundColor(BG_COLORS[11]);
         listMainInterfaceItem.add(mainInterfaceItem11);
 
-        for (int i = 12; i < 18; i++) {
+        MainInterfaceItem mainInterfaceItem12 = new MainInterfaceItem();
+        mainInterfaceItem12.setName("项目接口测试");
+        mainInterfaceItem12.setMethod("interfaceTest");
+        mainInterfaceItem12.setBackgroundColor(BG_COLORS[12]);
+        listMainInterfaceItem.add(mainInterfaceItem12);
+
+        for (int i = 13; i < 18; i++) {
             MainInterfaceItem mainInterfaceItem = new MainInterfaceItem();
             mainInterfaceItem.setName("待添加操作" + i);
             mainInterfaceItem.setMethod("");
@@ -205,6 +213,9 @@ public class MainActivity extends AppCompatActivity {
             case "uiWidget":
                 uiWidgetest();
                 break;
+            case "interfaceTest":
+                interfaceTest();
+                break;
             default:
                 testResolution(this);
                 ResolutionAdaptationUtils.showNavBar(MainActivity.this);
@@ -213,6 +224,24 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private void interfaceTest() {
+        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().getAirForecast(), 
+                new ProgressSubscriber<BaseResponse<AirForecast>>(new SubscriberOnNextListener<AirForecast>() {
+            @Override
+            public void onNext(AirForecast airForecast) {
+                Snackbar.make(mRvDataIndex, "getAirForecast:" + airForecast.getMsg(), Snackbar.LENGTH_SHORT).show();
+            }
+        }, this));
+//        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().getEnvProportion(),
+//                new ProgressSubscriber<BaseResponse<EnvProportion>>(new SubscriberOnNextListener<EnvProportion>() {
+//                    @Override
+//                    public void onNext(EnvProportion envProportion) {
+//                        Log.d("cg", "MainActivity onNext: "+envProportion.getMsg()+" " +envProportion.getCode());
+//                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.getData(), Snackbar.LENGTH_SHORT).show();
+//                    }
+//                }, this));
+    }
+    
     private void uiWidgetest() {
         Intent intentResolutionTest = new Intent(MainActivity.this, UiWidgetActivity.class);
         startActivity(intentResolutionTest);
