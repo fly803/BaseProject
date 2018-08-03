@@ -34,7 +34,7 @@ public class ApiException extends Exception {
   }
 
   public ApiException(BaseResponse detailMessage) {
-    super(detailMessage.getMessage());
+    super(detailMessage.getMessage()+detailMessage.getMsg());
     this.baseResult = detailMessage;
   }
 }

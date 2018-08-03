@@ -63,6 +63,7 @@ public class JsonFormatParser implements JsonDeserializer<BaseResponse> {
         mResult.setCode(mJsonObject.get("code").getAsInt());
         // 根据键获取返回的状态信息。
         mResult.setMessage(mJsonObject.get("message").getAsString());
+        mResult.setMessage(mJsonObject.get("msg").getAsString());
         return mResult;
     }
 

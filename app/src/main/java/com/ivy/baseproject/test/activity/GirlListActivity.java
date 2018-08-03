@@ -49,7 +49,7 @@ public class GirlListActivity extends AppCompatActivity {
 
     private void getGankList(){
         RequestBusiness.getInstance().getAPI().
-                getGank("http://gank.io/api/data/福利/50/1").
+                getGank("http://gank.io/api/data/福利/1000/1").
                 enqueue(new Callback<GankResp>() {
                     @Override
                     public void onResponse(Call<GankResp> call, retrofit2.Response<GankResp> response) {

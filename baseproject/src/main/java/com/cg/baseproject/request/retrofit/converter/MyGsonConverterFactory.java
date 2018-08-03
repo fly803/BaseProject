@@ -35,7 +35,7 @@ public class MyGsonConverterFactory<T> implements Converter<ResponseBody, T> {
                 return resultBaseResponse.data;
             } else {
                 //抛出自定义服务器异常
-                throw new ServerException(resultBaseResponse.code, resultBaseResponse.message);
+                throw new ServerException(resultBaseResponse.code, resultBaseResponse.message+resultBaseResponse.msg);
             }
         }finally {
 //                        Utils.closeQuietly(reader);
