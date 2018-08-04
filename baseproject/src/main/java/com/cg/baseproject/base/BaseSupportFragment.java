@@ -100,7 +100,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
                 mRootView = inflater.inflate(getFragmentLayoutId(), container, false);
             }
             // 解决点击穿透问题,或者在每个fragment布局的根节点加一条android:clickable="true"。
-            //            mRootView.setOnTouchListener((View.OnTouchListener) this);
+//                        mRootView.setOnTouchListener((View.OnTouchListener) this);
             mRootView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
                 public boolean onTouch(View v, MotionEvent event) {
