@@ -16,6 +16,13 @@ public class JsonTest {
     private static final String mJson6 = "{\"data\":\"[{\\\"id\\\":2981,\\\"title\\\":\\\"除夕活动启动页\\\",\\\"content\\\":\\\"\\\",\\\"url\\\":\\\"http://np.test.com/Activity/MonsterNian20180215\\\"},{\\\"id\\\":2849,\\\"title\\\":\\\"默认启动页\\\",\\\"content\\\":\\\"\\\",\\\"url\\\":\\\"\\\"}]\",\"code\":0,\"message\":\"请求成功\"}";
 
     public static void main(String[] args) {
+
+        String responseString = mJson1;
+        System.out.println("反序列化前responseString：" + responseString);
+        responseString = FromJsonUtils.fromJson(responseString,BaseResponse.class).toString();
+        System.out.println("反序列化后responseString：" + responseString);
+        System.out.print("***********************************************************" + "\n");
+        
         System.out.print("mJson1：" + mJson1);
         BaseResponse<DataBean> mData1 = FromJsonUtils.fromJson(mJson1, DataBean.class);
         System.out.print("数据类型：" + mData1.getDataType() + "\t解析后取值：" + mData1.getData().getName() + "\n");

@@ -2,6 +2,7 @@ package com.cg.baseproject.request.retrofit.converter;
 
 import com.cg.baseproject.configs.BaseProjectConfig;
 import com.cg.baseproject.request.data.BaseResponse;
+import com.cg.baseproject.request.data.FromJsonUtils;
 import com.cg.baseproject.request.data.HttpStatus;
 import com.cg.baseproject.request.exception.ApiException;
 import com.cg.baseproject.request.exception.ServerException;
@@ -41,14 +42,14 @@ public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T
     }
 
 
-    /*@Override
+/*    @Override
     public T convert(ResponseBody value) throws IOException {
-            String response = value.string();
-        HttpStatus httpStatus = gson.fromJson(response, HttpStatus.class);
-        if (httpStatus.isCodeInvalid()) {
-            value.close();
-            throw new ApiException(httpStatus.getCode(), httpStatus.getMessage());
-        }
+//        String response = value.string();
+//        HttpStatus httpStatus = gson.fromJson(response, HttpStatus.class);
+//        if (httpStatus.isCodeInvalid()) {
+//            value.close();
+//            throw new ApiException(httpStatus.getCode(), httpStatus.getMessage());
+//        }
         JsonReader jsonReader = gson.newJsonReader(value.charStream());
         try {
             return adapter.read(jsonReader);
@@ -59,10 +60,11 @@ public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T
 
     @Override
     public T convert(ResponseBody value) throws IOException {
-        String response = value.string();
+        String responseString = value.string();
+//        responseString = FromJsonUtils.fromJson(responseString,BaseResponse.class).toString();
         MediaType contentType = value.contentType();
         Charset charset = contentType != null ? contentType.charset(UTF_8) : UTF_8;
-        InputStream inputStream = new ByteArrayInputStream(response.getBytes());
+        InputStream inputStream = new ByteArrayInputStream(responseString.getBytes());
         Reader reader = new InputStreamReader(inputStream, charset);
         JsonReader jsonReader = gson.newJsonReader(reader);
         try {

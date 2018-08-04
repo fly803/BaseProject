@@ -3,7 +3,7 @@ package com.cg.baseproject.request.data;
 import com.google.gson.GsonBuilder;
 
 /**
- * @author
+ * @author sam
  * @version 1.0
  * @date 2018/4/13
  */

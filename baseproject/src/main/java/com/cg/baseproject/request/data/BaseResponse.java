@@ -90,4 +90,14 @@ public class BaseResponse<T> {
                 ", dataType=" + dataType +
                 '}';
     }
+    
+    public String getNewJsonStrin(){
+        return "{" +
+                "data=" + data +
+                ", code=" + code +
+                ", message='" + message + '\'' +
+                ", msg='" + msg + '\'' +
+                ", dataType=" + dataType +
+                '}'; 
+    }
 }
