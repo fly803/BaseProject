@@ -1,5 +1,6 @@
 package com.cg.baseproject.request.retrofit.factory;
 
+import com.cg.baseproject.request.retrofit.converter.MyGsonRequestBodyConverter;
 import com.cg.baseproject.request.retrofit.converter.MyGsonResponseBodyConverter;
 import com.google.gson.Gson;
 import com.google.gson.TypeAdapter;
@@ -41,11 +42,11 @@ public class MyGsonConverterFactory extends Converter.Factory {
         return new MyGsonResponseBodyConverter<>(gson, adapter);
     }
 
-//    @Override
-//    public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
-//        TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
-//        return new MyGsonRequestBodyConverter<>(gson, adapter);
-//    }
+    @Override
+    public Converter<?, RequestBody> requestBodyConverter(Type type, Annotation[] parameterAnnotations, Annotation[] methodAnnotations, Retrofit retrofit) {
+        TypeAdapter<?> adapter = gson.getAdapter(TypeToken.get(type));
+        return new MyGsonRequestBodyConverter<>(gson, adapter);
+    }
 
 
 }

@@ -23,7 +23,7 @@ public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T
     private final Gson gson;
     private final TypeAdapter<T> adapter;
 
-    MyGsonResponseBodyConverter(Gson gson, TypeAdapter<T> adapter) {
+    public MyGsonResponseBodyConverter(Gson gson, TypeAdapter<T> adapter) {
         this.gson = gson;
         this.adapter = adapter;
     }
