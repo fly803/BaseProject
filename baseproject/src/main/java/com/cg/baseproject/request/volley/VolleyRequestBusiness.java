@@ -10,7 +10,7 @@ import java.util.Map;
 * 接口测试链接：http://huoli.sgs8.com/test.aspx
 * @author sam
  */
-public class RequestBusiness {
+public class VolleyRequestBusiness {
     //服务器地址
     private static Gson gson = new Gson();
     private static Map<String, String> params = new HashMap<String, String>();

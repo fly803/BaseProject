@@ -225,21 +225,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void interfaceTest() {
-        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().getAirForecast(), 
+/*        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().getAirForecast(), 
                 new ProgressSubscriber<BaseResponse<AirForecast>>(new SubscriberOnNextListener<AirForecast>() {
             @Override
             public void onNext(AirForecast airForecast) {
                 Snackbar.make(mRvDataIndex, "getAirForecast:" + airForecast.getMsg(), Snackbar.LENGTH_SHORT).show();
             }
-        }, this));
-//        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().getEnvProportion(),
-//                new ProgressSubscriber<BaseResponse<EnvProportion>>(new SubscriberOnNextListener<EnvProportion>() {
-//                    @Override
-//                    public void onNext(EnvProportion envProportion) {
-//                        Log.d("cg", "MainActivity onNext: "+envProportion.getMsg()+" " +envProportion.getCode());
-//                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.getData(), Snackbar.LENGTH_SHORT).show();
-//                    }
-//                }, this));
+        }, this));*/
+        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().psalms(),
+                new ProgressSubscriber<BaseResponse<EnvProportion>>(new SubscriberOnNextListener<EnvProportion>() {
+                    @Override
+                    public void onNext(EnvProportion envProportion) {
+                        Log.d("cg", "MainActivity onNext: "+envProportion.getMsg()+" " +envProportion.getCode());
+                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.getData(), Snackbar.LENGTH_SHORT).show();
+                    }
+                }, this));
     }
     
     private void uiWidgetest() {
@@ -290,7 +290,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void rxGet() {
-        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"), new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
+        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"), 
+                new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
             @Override
             public void onNext(IpResult ipResult) {
                 Log.d(AppConfig.TAG, "!!!onNext: " + ipResult.getCity());
@@ -355,13 +356,13 @@ public class MainActivity extends AppCompatActivity {
                         } else {
                             //请求出现错误例如：404 或者 500
                         }
-                        try {
+                        /*try {
                             throw new NullPointerException();
                         } catch (Exception e) {
                             // TODO: handle exception
                             e.printStackTrace();
                             Log.d("cg", "Exception: " + e.toString());
-                        }
+                        }*/
                     }
 
                     @Override

@@ -181,6 +181,9 @@ public interface RequestApiInterface {
                              @Field("num") int num ,
                              @Field("page") int page);
 
+    @GET("psalms/cg")
+    Observable<BaseResponse<EnvProportion>> psalms();
+    
     @GET("getEnvProportion")
     Observable<BaseResponse<EnvProportion>> getEnvProportion();
 

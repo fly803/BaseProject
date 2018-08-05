@@ -9,12 +9,12 @@ import com.cg.baseproject.configs.BaseProjectConfig;
  */
 
 public class AppConfig extends BaseProjectConfig{
-    public static final int SUCCESS_CODE = 0;
+    public static final int SUCCESS_CODE = 200;
     public static final String TAG = "retrofit";
     public static final boolean DEBUG = true;
-//    public static final String BASE_URL = "https://api.douban.com/v2/";
+    public static final String BASE_URL = "http://120.79.24.27/";
 //    public static final String BASE_URL = "https://gank.io/api/";
-    public static final String BASE_URL = "http://ip.taobao.com/";
+//    public static final String BASE_URL = "http://ip.taobao.com/";
 //    public static final String BASE_URL = "http://172.16.7.74:4000/api/";
 //    public static final String BASE_URL = "https://api.douban.com/";
     public static final String DOUBAN_BASE_URL = "https://api.douban.com/";

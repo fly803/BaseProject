@@ -19,7 +19,7 @@ import java.util.Map;
 * @author sam
 * @date 2014-6-18 下午2:04:33
  */
-public class GsonRequest<T> extends Request<T> {
+public class VolleyGsonRequest<T> extends Request<T> {
 
 	private final Gson gson = new Gson();
 	private Class<T> clazz;
@@ -39,8 +39,8 @@ public class GsonRequest<T> extends Request<T> {
 	 * @param listener 返回数据监听器
 	 * @param errorListener 请求错误接口监听器
 	 */
-	public GsonRequest(String url, Class<T> clazz,
-                       Listener<T> listener, ErrorListener errorListener) {
+	public VolleyGsonRequest(String url, Class<T> clazz,
+                             Listener<T> listener, ErrorListener errorListener) {
 		super(Method.GET, url, errorListener);
 		this.clazz = clazz;
 		this.listener = listener;
@@ -54,8 +54,8 @@ public class GsonRequest<T> extends Request<T> {
 	 * @param listener 返回数据监听器
 	 * @param errorListener 请求错误接口监听器
 	 */
-	public GsonRequest(String url, Class<T> clazz, Map<String, String> params,
-                       Listener<T> listener, ErrorListener errorListener) {
+	public VolleyGsonRequest(String url, Class<T> clazz, Map<String, String> params,
+                             Listener<T> listener, ErrorListener errorListener) {
 		super(Method.POST, url, errorListener);
 		this.clazz = clazz;
 		this.params = params;

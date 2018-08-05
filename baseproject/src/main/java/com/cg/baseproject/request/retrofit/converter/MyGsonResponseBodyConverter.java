@@ -32,16 +32,22 @@ import static okhttp3.internal.Util.UTF_8;
  */
 
 public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
-    private final Gson gson;
-    private final TypeAdapter<T> adapter;
+    private  Gson gson;
+    private  TypeAdapter<T> adapter;
+    
     private Class<T> clazz;
 
+    public MyGsonResponseBodyConverter(Class<T> clazz) {
+        this.clazz = clazz;
+    }
+    
     public MyGsonResponseBodyConverter(Gson gson, TypeAdapter<T> adapter) {
         this.gson = gson;
         this.adapter = adapter;
     }
 
 
+    
 /*    @Override
     public T convert(ResponseBody value) throws IOException {
 //        String response = value.string();
