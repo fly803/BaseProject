@@ -233,11 +233,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }, this));*/
         RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().psalms(),
-                new ProgressSubscriber<BaseResponse<EnvProportion>>(new SubscriberOnNextListener<EnvProportion>() {
+                new ProgressSubscriber<BaseResponse<EnvProportion.DataBean>>(new SubscriberOnNextListener<EnvProportion.DataBean>() {
                     @Override
-                    public void onNext(EnvProportion envProportion) {
-                        Log.d("cg", "MainActivity onNext: "+envProportion.getMsg()+" " +envProportion.getCode());
-                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.getData(), Snackbar.LENGTH_SHORT).show();
+                    public void onNext(EnvProportion.DataBean envProportion) {
+                        Log.d("cg", "MainActivity onNext: "+envProportion.toString());
+                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.toString(), Snackbar.LENGTH_SHORT).show();
                     }
                 }, this));
     }

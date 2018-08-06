@@ -182,7 +182,7 @@ public interface RequestApiInterface {
                              @Field("page") int page);
 
     @GET("psalms/cg")
-    Observable<BaseResponse<EnvProportion>> psalms();
+    Observable<BaseResponse<EnvProportion.DataBean>> psalms();
     
     @GET("getEnvProportion")
     Observable<BaseResponse<EnvProportion>> getEnvProportion();
