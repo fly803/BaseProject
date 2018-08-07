@@ -234,11 +234,11 @@ public class MainActivity extends AppCompatActivity {
             }
         }, this));*/
         RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().psalms(3),
-                new ProgressSubscriber<BaseResponse<String>>(new SubscriberOnNextListener<String>() {
+                new ProgressSubscriber<BaseResponse<DataBean>>(new SubscriberOnNextListener<DataBean>() {
                     @Override
-                    public void onNext(String envProportion) {
-//                        Log.d("cg", "MainActivity onNext: "+envProportion.toString());
-//                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.toString(), Snackbar.LENGTH_SHORT).show();
+                    public void onNext(DataBean envProportion) {
+                        Log.d("cg", "MainActivity onNext: "+envProportion.toString());
+                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.toString(), Snackbar.LENGTH_SHORT).show();
                     }
                 }, this));
     }

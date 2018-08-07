@@ -6,7 +6,9 @@ import com.cg.baseproject.base.BaseModel;
 import com.cg.baseproject.configs.BaseProjectConfig;
 import com.cg.baseproject.request.data.BaseResponse;
 import com.cg.baseproject.request.data.JsonFormatParser;
+import com.cg.baseproject.request.retrofit.factory.FastJsonConverterFactory;
 import com.cg.baseproject.request.retrofit.factory.MyGsonConverterFactory;
+import com.cg.baseproject.request.retrofit.factory.MyStringConverterFactory;
 import com.cg.baseproject.request.retrofit.interceptor.BaseUrlInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -73,8 +75,10 @@ public class RetrofitRequestManager {
     private void initRetrofit() {
         mRetrofit = new Retrofit.Builder()
                 .baseUrl(BaseProjectConfig.BASE_URL)//配置服务器路径
+//                .addConverterFactory(MyStringConverterFactory.create())//配置转化库，String
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .addConverterFactory(MyGsonConverterFactory.create())//配置转化库 字符串类型 的
+//                .addConverterFactory(FastJsonConverterFactory.create())//配置转化库，FastJson
+                .addConverterFactory(MyGsonConverterFactory.create())//配置转化库，Gson
                 // 配置转化库，默认是Gson(返回参数不规范 要不然可以直接转换成实体类)
                 //配置回调库，采用RxJava
                 //设置OKHttpClient为网络客户端
