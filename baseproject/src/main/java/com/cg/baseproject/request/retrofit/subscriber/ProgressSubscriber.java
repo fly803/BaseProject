@@ -8,6 +8,8 @@ import com.cg.baseproject.request.exception.ExceptionHandle;
 import com.cg.baseproject.request.retrofit.progress.ProgressCancelListener;
 import com.cg.baseproject.request.retrofit.progress.ProgressDialogHandler;
 import com.orhanobut.logger.Logger;
+import com.shashank.sony.fancytoastlib.FancyToast;
+
 import io.reactivex.Observer;
 import io.reactivex.disposables.Disposable;
 
@@ -54,9 +56,8 @@ public class ProgressSubscriber<T> implements ProgressCancelListener, Observer<T
    * 当发送了onError事件之后,发送者onError之后的事件依旧会继续发送,但是接收者当接收到onError之后就会停止接收事件了.
    */
   @Override public void onError(Throwable e) {
-      Toast.makeText(context,
-              "返回值错误ProgressSubscriber onError" + ExceptionHandle.handleException(e).message,
-              Toast.LENGTH_SHORT).show();
+      FancyToast.makeText(context,"返回值错误ProgressSubscriber onError" + ExceptionHandle.handleException(e).message, 
+              FancyToast.LENGTH_LONG,FancyToast.ERROR,false).show();
     dismissProgressDialog();
   }
 

@@ -17,8 +17,10 @@ import retrofit2.Retrofit;
  */
 public class MyStringConverterFactory extends Converter.Factory {
 
+    public static final MyStringConverterFactory INSTANCE = new MyStringConverterFactory();
+
     public static MyStringConverterFactory create() {
-        return new MyStringConverterFactory();
+        return INSTANCE;
     }
 
     @Override

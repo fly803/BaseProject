@@ -233,12 +233,12 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(mRvDataIndex, "getAirForecast:" + airForecast.getMsg(), Snackbar.LENGTH_SHORT).show();
             }
         }, this));*/
-        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().psalms(2),
-                new ProgressSubscriber<BaseResponse<DataBean>>(new SubscriberOnNextListener<DataBean>() {
+        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().psalms(3),
+                new ProgressSubscriber<BaseResponse<String>>(new SubscriberOnNextListener<String>() {
                     @Override
-                    public void onNext(DataBean envProportion) {
-                        Log.d("cg", "MainActivity onNext: "+envProportion.toString());
-                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.toString(), Snackbar.LENGTH_SHORT).show();
+                    public void onNext(String envProportion) {
+//                        Log.d("cg", "MainActivity onNext: "+envProportion.toString());
+//                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.toString(), Snackbar.LENGTH_SHORT).show();
                     }
                 }, this));
     }

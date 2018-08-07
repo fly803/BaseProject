@@ -50,7 +50,7 @@ dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
 
     implementation 'com.android.support:support-v4:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     testImplementation 'junit:junit:4.12'
     implementation support.multidex
     implementation support.supportAppcompatV7
@@ -73,8 +73,6 @@ dependencies {
     implementation ext.fragmentationSwipeback
     implementation ext.butterknife
     annotationProcessor ext.butterknifeCompiler
-    //Converter
-    implementation ext.retrofitConverterGson
     implementation ext.retrofitAdapter
     //项目组件
     implementation ext.bravh
@@ -84,10 +82,13 @@ dependencies {
     implementation ext.leakCanary
     implementation ext.logger
     implementation ext.easyPermissions
+    implementation ext.gson
     implementation ext.fastjson
+    implementation ext.fastjsonAndroid
     implementation ext.jjwt
     implementation ext.ScreenShott
     //UI
     implementation ext.shapeLoadingView
     implementation ext.catLoading
+    implementation ext.fancyToast
 }

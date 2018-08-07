@@ -53,7 +53,8 @@ ext {
     butterknifeCompiler = "com.jakewharton:butterknife-compiler:${butterKnifeVersion}"
     butterknifePlugin = "com.jakewharton:butterknife-gradle-plugin:${butterKnifeVersion}"
     gson = "com.google.code.gson:gson:2.8.0"
-    fastjson = "com.alibaba:fastjson:1.1.65.android"
+    fastjson = "com.alibaba:fastjson:1.2.47"
+    fastjsonAndroid = "com.alibaba:fastjson:1.1.68.android"
     romandanylykIndicator = "com.romandanylyk:pageindicatorview:1.0.0"
     bravh = "com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.40"
     //通用适配器
