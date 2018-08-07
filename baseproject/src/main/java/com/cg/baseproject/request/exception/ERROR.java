@@ -10,7 +10,7 @@ public class ERROR {
      */
     public static final int UNKNOWN = 1000;
     /**
-     * 解析错误
+     * 解析错误ERROR
      */
     public static final int PARSE_ERROR = 1001;
     /**

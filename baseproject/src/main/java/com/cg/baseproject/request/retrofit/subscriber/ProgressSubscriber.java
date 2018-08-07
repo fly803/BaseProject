@@ -55,7 +55,7 @@ public class ProgressSubscriber<T> implements ProgressCancelListener, Observer<T
    */
   @Override public void onError(Throwable e) {
       Toast.makeText(context,
-              "ProgressSubscriber onError" + ExceptionHandle.handleException(e).message,
+              "返回值错误ProgressSubscriber onError" + ExceptionHandle.handleException(e).message,
               Toast.LENGTH_SHORT).show();
     dismissProgressDialog();
   }

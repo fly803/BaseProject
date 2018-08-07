@@ -79,6 +79,4 @@ public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T
             value.close();
         }
     }
-
-
 }

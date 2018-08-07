@@ -1,6 +1,7 @@
 package com.ivy.baseproject.test.api;
 
 import com.cg.baseproject.request.data.BaseResponse;
+import com.cg.baseproject.request.data.DataBean;
 import com.cg.baseproject.request.data.bean.GirlsBean;
 import com.cg.baseproject.request.data.entity.HttpResult;
 import com.cg.baseproject.request.data.entity.Subject;
@@ -182,7 +183,7 @@ public interface RequestApiInterface {
                              @Field("page") int page);
 
     @GET("psalms/cg")
-    Observable<BaseResponse<EnvProportion.DataBean>> psalms();
+    Observable<BaseResponse<DataBean>> psalms(@Query("param") int ip);
     
     @GET("getEnvProportion")
     Observable<BaseResponse<EnvProportion>> getEnvProportion();

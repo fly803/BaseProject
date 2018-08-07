@@ -25,4 +25,9 @@ public class DataBean {
     public void setPhone(String phone) {
         this.phone = phone;
     }
+
+    @Override
+    public String toString() {
+        return "DataBean{" + "name='" + name + '\'' + ", phone='" + phone + '\'' + '}';
+    }
 }

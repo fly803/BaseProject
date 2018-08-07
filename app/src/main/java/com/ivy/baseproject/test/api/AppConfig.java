@@ -9,8 +9,8 @@ import com.cg.baseproject.configs.BaseProjectConfig;
  */
 
 public class AppConfig extends BaseProjectConfig{
-    public static final int SUCCESS_CODE = 200;
-    public static final String TAG = "retrofit";
+    public static final int SUCCESS_CODE = 0;
+    public static final String TAG = "BaseProject";
     public static final boolean DEBUG = true;
     public static final String BASE_URL = "http://120.79.24.27/";
 //    public static final String BASE_URL = "https://gank.io/api/";

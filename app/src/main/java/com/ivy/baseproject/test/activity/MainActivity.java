@@ -14,6 +14,7 @@ import android.util.Log;
 import android.view.View;
 import com.cg.baseproject.interfaces.SubscriberOnNextListener;
 import com.cg.baseproject.request.data.BaseResponse;
+import com.cg.baseproject.request.data.DataBean;
 import com.cg.baseproject.request.data.pojo.IpResult;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
@@ -232,10 +233,10 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(mRvDataIndex, "getAirForecast:" + airForecast.getMsg(), Snackbar.LENGTH_SHORT).show();
             }
         }, this));*/
-        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().psalms(),
-                new ProgressSubscriber<BaseResponse<EnvProportion.DataBean>>(new SubscriberOnNextListener<EnvProportion.DataBean>() {
+        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().psalms(2),
+                new ProgressSubscriber<BaseResponse<DataBean>>(new SubscriberOnNextListener<DataBean>() {
                     @Override
-                    public void onNext(EnvProportion.DataBean envProportion) {
+                    public void onNext(DataBean envProportion) {
                         Log.d("cg", "MainActivity onNext: "+envProportion.toString());
                         Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.toString(), Snackbar.LENGTH_SHORT).show();
                     }
