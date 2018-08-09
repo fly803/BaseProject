@@ -1,5 +1,6 @@
 package com.ivy.baseproject.test.activity;
 
+import android.Manifest;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.content.Intent;
@@ -12,6 +13,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
+
 import com.cg.baseproject.interfaces.SubscriberOnNextListener;
 import com.cg.baseproject.request.data.BaseResponse;
 import com.cg.baseproject.request.data.DataBean;
@@ -31,6 +34,9 @@ import com.ivy.baseproject.test.sample.SampleFragmentActivity;
 import com.ivy.baseproject.test.view.decoration.swtichgridlist.MainInterfaceItem;
 import java.util.ArrayList;
 import java.util.List;
+
+import pub.devrel.easypermissions.AfterPermissionGranted;
+import pub.devrel.easypermissions.EasyPermissions;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -65,8 +71,29 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
         initMainInterfaceAdapter();
+        requireSomePermission();
     }
 
+    private static final int num = 23;//用于验证获取的权
+
+    @AfterPermissionGranted(num)
+    private void requireSomePermission() {
+        String[] perms = {
+                // 把你想要申请的权限放进这里就行，注意用逗号隔开
+                Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE,
+                Manifest.permission.ACCESS_NETWORK_STATE,
+        };
+        if (EasyPermissions.hasPermissions(this, perms)) {
+            // Already have permission, do the thing
+            // ...
+            Toast.makeText(this, "已授权!", Toast.LENGTH_LONG).show();
+        } else {
+            // Do not have permissions, request them now
+            Toast.makeText(this, "授权被拒绝，将不能进行分享，请从新点击确认允许授权!", Toast.LENGTH_LONG).show();
+            EasyPermissions.requestPermissions(this, getString(R.string.app_name),num, perms);
+        }
+    }
     private void initView() {
         mRvDataIndex = (RecyclerView) findViewById(R.id.rvDataIndex);
     }
