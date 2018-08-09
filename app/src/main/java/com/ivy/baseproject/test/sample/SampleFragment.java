@@ -2,6 +2,7 @@ package com.ivy.baseproject.test.sample;
 
 import android.os.Bundle;
 import android.os.Handler;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +26,7 @@ import butterknife.Unbinder;
 public class SampleFragment extends BaseSupportFragment {
 //    @BindView(R.id.tvFragmentSample)
 //    TextView mTvFragmentSample;
-
+    
     @Override
     protected int getFragmentLayoutId() {
         return  R.layout.fragment_sample;
@@ -33,6 +34,8 @@ public class SampleFragment extends BaseSupportFragment {
 
     @Override
     protected void initViews() {
+        isLazyLoad = true;
+        Log.d("cg", "initViews: ");
         loading(LOADINGSTYLECOMMON);
         new Handler().postDelayed(new Runnable(){
             public void run() {
@@ -47,9 +50,14 @@ public class SampleFragment extends BaseSupportFragment {
 
     }
 
-    @Override
-    protected void initData(Bundle savedInstanceState) {
+//    @Override
+//    public void setUserVisibleHint(boolean isVisibleToUser) {
+//        Log.d("cg", "setUserVisibleHint: "+ isVisibleToUser);
+//    }
 
+    @Override
+    protected void initData() {
+        Log.d("cg", "initData: ");
     }
 
 //    @OnClick(R.id.tvFragmentSample)

@@ -14,6 +14,7 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -37,13 +38,14 @@ public abstract class BaseSupportFragment extends SupportFragment {
     Unbinder unbinder;
     private ArrayList<Subscriber> subscribers;
     private boolean isRequestPORTRAIT;//强制竖屏
+    protected boolean isSingleFragment = true;//是否单个fragment
     protected boolean isLazyLoad = true;//是否懒加载
     private boolean isFirstLoad = true;//是否是第一次加载
     private boolean isVisible = false;//是否对用户可见
     private boolean isInitView;//是否初始化控件
     private SparseArray<View> mViews;//管理View的集合
-    public static final int LOADINGSTYLECOMMON = 0;
-    public static final int GETLOADINGSTYLECAT = 1;
+    protected static final int LOADINGSTYLECOMMON = 0;
+    protected static final int GETLOADINGSTYLECAT = 1;
     protected OnBackToFirstListener _mBackToFirstListener;
 
     /**
@@ -53,7 +55,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
     protected abstract int getFragmentLayoutId();//获得布局资源ID,强制子类重写,实现子类不同的UI效果,使用BufferKnife
     protected abstract void initViews();//强制子类重写,实现子类不同的UI效果,使用BufferKnife
     protected abstract void registerListener();//注册监听事件
-    protected abstract void initData(Bundle savedInstanceState);//初始化数据，如：网络请求获取数据
+    protected abstract void initData();//初始化数据，如：网络请求获取数据
     public interface OnBackToFirstListener {//返回到第一个Fragment
         void onBackToFirstFragment();
     }
@@ -122,7 +124,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
             isInitView = true;//已经初始化
             if (!isLazyLoad) {//是否懒加载，懒加载在用户可见时候才加载数据
                 registerListener();//注册监听事件
-                initData(savedInstanceState);
+                initData();
             }
         }
     }
@@ -141,6 +143,10 @@ public abstract class BaseSupportFragment extends SupportFragment {
     @Override
     public void onResume() {
         super.onResume();
+        if(isSingleFragment){
+            registerListener();//注册监听事件
+            initData();
+        }
     }
 
     @Override
@@ -291,9 +297,12 @@ public abstract class BaseSupportFragment extends SupportFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
+        Log.d("cg", "setUserVisibleHint: isVisibleToUser:"+isVisibleToUser);
         this.isVisible = isVisibleToUser;
+        Log.d("cg", "setUserVisibleHint: 0");
         if (isVisibleToUser) {
             onVisibleToUser(isLazyLoad);
+            Log.d("cg", "setUserVisibleHint: 1");
         }
     }
 
@@ -317,8 +326,8 @@ public abstract class BaseSupportFragment extends SupportFragment {
      */
     protected void onLazyLoadData() {
         registerListener();//注册监听事件
-        initData(getArguments());
-        ;//初始化数据
+        initData();
+        //初始化数据
         isFirstLoad = false;//已经不是第一次加载
     }
 
