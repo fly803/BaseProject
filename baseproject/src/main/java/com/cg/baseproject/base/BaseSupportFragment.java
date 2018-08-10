@@ -6,7 +6,6 @@ package com.cg.baseproject.base;
  * @date 2018/3/2
  * https://blog.csdn.net/xx244488877/article/details/66144690?locationNum=3&fps=1
  */
-
 import android.annotation.TargetApi;
 import android.app.Activity;
 import android.app.Dialog;
@@ -14,29 +13,22 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-
 import com.cg.baseproject.view.loading.CommonLoading;
 import com.roger.catloadinglibrary.CatLoadingView;
-
-import java.util.ArrayList;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 import me.yokeyword.fragmentation.SupportFragment;
-import rx.Subscriber;
 
 public abstract class BaseSupportFragment extends SupportFragment {
     protected BaseSupportActivity mActivity;
     protected View mRootView;//根view
     public ProgressDialog pdLoading;
     Unbinder unbinder;
-    private ArrayList<Subscriber> subscribers;
     private boolean isRequestPORTRAIT;//强制竖屏
     protected boolean isSingleFragment = true;//是否单个fragment
     protected boolean isLazyLoad = true;//是否懒加载
@@ -242,7 +234,6 @@ public abstract class BaseSupportFragment extends SupportFragment {
             default:
                 break;
         }
-        
     }
     
     private void initLoading() {
@@ -262,15 +253,12 @@ public abstract class BaseSupportFragment extends SupportFragment {
     public void cancelLoading(){
         if(mCatLoadingView.isCancelable()){
             mCatLoadingView.onStop();
+        }
+      /*  if(pdLoading!=null){
+            pdLoading.cancel();
+        }*/
     }
-//        if(pdLoading!=null){
-//            pdLoading.cancel();
-//        }
-    }
-    public <T> Subscriber<T> addSubscriber(Subscriber<T> subscriber) {
-        subscribers.add(subscriber);
-        return subscriber;
-    }
+    
 
     /*
      * Called when the fragment attaches to the context

@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
         initView();
         initMainInterfaceAdapter();
 //        requireSomePermission();
-        EasyPermissionUtils.hiPermission(this);
+//        EasyPermissionUtils.hiPermission(this);
     }
 
     private static final int num = 23;//用于验证获取的权
@@ -170,8 +170,8 @@ public class MainActivity extends AppCompatActivity {
         listMainInterfaceItem.add(mainInterfaceItem8);
 
         MainInterfaceItem mainInterfaceItem9 = new MainInterfaceItem();
-        mainInterfaceItem9.setName("运行时权限请求");
-        mainInterfaceItem9.setMethod("runtimePermission");
+        mainInterfaceItem9.setName("多Fragment");
+        mainInterfaceItem9.setMethod("multiFragment");
         mainInterfaceItem9.setBackgroundColor(BG_COLORS[9]);
         listMainInterfaceItem.add(mainInterfaceItem9);
 
@@ -193,7 +193,13 @@ public class MainActivity extends AppCompatActivity {
         mainInterfaceItem12.setBackgroundColor(BG_COLORS[12]);
         listMainInterfaceItem.add(mainInterfaceItem12);
 
-        for (int i = 13; i < 18; i++) {
+        MainInterfaceItem mainInterfaceItem13 = new MainInterfaceItem();
+        mainInterfaceItem13.setName("运行时权限请求");
+        mainInterfaceItem13.setMethod("runtimePermission");
+        mainInterfaceItem13.setBackgroundColor(BG_COLORS[9]);
+        listMainInterfaceItem.add(mainInterfaceItem13);
+
+        for (int i = 14; i < 18; i++) {
             MainInterfaceItem mainInterfaceItem = new MainInterfaceItem();
             mainInterfaceItem.setName("待添加操作" + i);
             mainInterfaceItem.setMethod("");
