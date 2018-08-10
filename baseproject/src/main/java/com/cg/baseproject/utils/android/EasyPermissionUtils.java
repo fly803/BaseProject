@@ -105,31 +105,31 @@ public class EasyPermissionUtils {
     }*/
 
 
-    /*public void requestPermission(Context context){
+    public static void hiPermission(final Context context){
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             HiPermission.create(context)
                     .checkMutiPermission(new PermissionCallback() {
                         @Override
                         public void onClose() {
-                            Log.i(TAG, "onClose");
-                            ToastUtils.showShort("They cancelled our request");
+//                            Log.i(TAG, "onClose");
+//                            Toast.makeText(context,"They cancelled our request",Toast.LENGTH_LONG).show();
                         }
 
                         @Override
                         public void onFinish() {
-                            ToastUtils.showToast("All permissions requested completed");
+//                            Toast.makeText(context,"All permissions requested completed",Toast.LENGTH_LONG).show();
                         }
 
                         @Override
                         public void onDeny(String permission, int position) {
-                            Log.i(TAG, "onDeny");
+//                            Log.i(TAG, "onDeny");
                         }
 
                         @Override
                         public void onGuarantee(String permission, int position) {
-                            Log.i(TAG, "onGuarantee");
+//                            Log.i(TAG, "onGuarantee");
                         }
                     });
         }
-    }*/
+    }
 }

@@ -21,6 +21,7 @@ import com.cg.baseproject.request.data.DataBean;
 import com.cg.baseproject.request.data.pojo.IpResult;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
+import com.cg.baseproject.utils.android.EasyPermissionUtils;
 import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.ivy.baseproject.test.R;
@@ -71,7 +72,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         initView();
         initMainInterfaceAdapter();
-        requireSomePermission();
+//        requireSomePermission();
+        EasyPermissionUtils.hiPermission(this);
     }
 
     private static final int num = 23;//用于验证获取的权

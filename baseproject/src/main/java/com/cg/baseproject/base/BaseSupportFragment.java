@@ -162,7 +162,9 @@ public abstract class BaseSupportFragment extends SupportFragment {
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        if(unbinder!=null){
+            unbinder.unbind();
+        }
     }
 
     @Override
@@ -297,12 +299,12 @@ public abstract class BaseSupportFragment extends SupportFragment {
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        Log.d("cg", "setUserVisibleHint: isVisibleToUser:"+isVisibleToUser);
+//        Log.d("cg", "setUserVisibleHint: isVisibleToUser:"+isVisibleToUser);
         this.isVisible = isVisibleToUser;
-        Log.d("cg", "setUserVisibleHint: 0");
+//        Log.d("cg", "setUserVisibleHint: 0");
         if (isVisibleToUser) {
             onVisibleToUser(isLazyLoad);
-            Log.d("cg", "setUserVisibleHint: 1");
+//            Log.d("cg", "setUserVisibleHint: 1");
         }
     }
 

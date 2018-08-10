@@ -181,6 +181,8 @@ public abstract class BaseSupportActivity extends SupportActivity {
         super.onDestroy();
         Log.i(TAG, "--->onDestroy()");
         ActivityStackManager.getActivityStackManager().popActivity(this);
-        unbinder.unbind();
+        if(unbinder!=null){
+            unbinder.unbind();
+        }
     }
 }
