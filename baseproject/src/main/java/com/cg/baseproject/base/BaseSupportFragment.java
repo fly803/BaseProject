@@ -83,7 +83,6 @@ public abstract class BaseSupportFragment extends SupportFragment {
         // 防止重复调用onCreate方法，造成在initData方法中adapter重复初始化问题
         if (!viewCreated) {
             viewCreated = true;
-            mCommonLoading = new CommonLoading(getActivity(),"数据加载中...");
         }
     }
 
@@ -103,6 +102,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
                 }
             });
             mCatLoadingView = new CatLoadingView();
+            mCommonLoading = new CommonLoading(getActivity(),"数据加载中...");
 //            initLoading(loadingStyle);
             unbinder = ButterKnife.bind(this, mRootView);
         }
@@ -215,7 +215,9 @@ public abstract class BaseSupportFragment extends SupportFragment {
                 }
                 break;
             case 1:
-                mCatLoadingView.show(getFragmentManager(), "拼命加载中");
+                if(mCatLoadingView!=null){
+                    mCatLoadingView.show(getFragmentManager(), "拼命加载中");
+                }
                 break;
             default:
                 break;
@@ -230,7 +232,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
                 }
                 break;
             case 1:
-                if(mCatLoadingView.isCancelable()){
+                if(mCatLoadingView == null && mCatLoadingView.isCancelable()){
                     mCatLoadingView.onStop();
                 }
                 break;
