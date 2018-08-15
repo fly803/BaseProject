@@ -1,5 +1,6 @@
 package com.cg.baseproject.request.retrofit.subscriber;
 
+import android.app.Dialog;
 import android.content.Context;
 import android.widget.Toast;
 import com.cg.baseproject.interfaces.SubscriberOnNextListener;
@@ -7,6 +8,7 @@ import com.cg.baseproject.request.exception.ApiException;
 import com.cg.baseproject.request.exception.ExceptionHandle;
 import com.cg.baseproject.request.retrofit.progress.ProgressCancelListener;
 import com.cg.baseproject.request.retrofit.progress.ProgressDialogHandler;
+import com.cg.baseproject.view.loading.CommonLoading;
 import com.orhanobut.logger.Logger;
 import com.shashank.sony.fancytoastlib.FancyToast;
 
@@ -26,27 +28,25 @@ public class ProgressSubscriber<T> implements ProgressCancelListener, Observer<T
      */
   private Disposable mDisposable;
   private SubscriberOnNextListener mSubscriberOnNextListener;
-  private ProgressDialogHandler mProgressDialogHandler;
+//  private ProgressDialogHandler mProgressDialogHandler;
   private Context context;
+  private CommonLoading mCommonLoading;
 
   public ProgressSubscriber(SubscriberOnNextListener mSubscriberOnNextListener, Context context) {
     this.mSubscriberOnNextListener = mSubscriberOnNextListener;
     this.context = context;
-    mProgressDialogHandler = new ProgressDialogHandler(context, this, true);
+    mCommonLoading = new CommonLoading(context,"数据请求中...");
   }
 
   private void showProgressDialog() {
-    if (mProgressDialogHandler != null) {
-      mProgressDialogHandler.obtainMessage(ProgressDialogHandler.SHOW_PROGRESS_DIALOG)
-          .sendToTarget();
+    if (mCommonLoading != null) {
+        mCommonLoading.showLoading();
     }
   }
 
   private void dismissProgressDialog() {
-    if (mProgressDialogHandler != null) {
-      mProgressDialogHandler.obtainMessage(ProgressDialogHandler.DISMISS_PROGRESS_DIALOG)
-          .sendToTarget();
-      mProgressDialogHandler = null;
+    if (mCommonLoading != null) {
+      mCommonLoading.closeLoading();
     }
   }
 

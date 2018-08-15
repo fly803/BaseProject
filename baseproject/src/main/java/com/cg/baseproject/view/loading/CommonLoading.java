@@ -24,12 +24,26 @@ import com.cg.baseproject.view.FadeInTextView;
 
 public class CommonLoading {
     private FadeInTextView mFadeInTextView;
+    private Dialog loadingDialog;
+    private Context mContext;
 
-    public static Dialog  createLoadingDialog() {
-        return createLoadingDialog(BaseApplication.getContext(),"拼命加载中");
+    public CommonLoading(Context context) {
+        mContext = context;
+        createLoadingDialog(mContext,"拼命加载中...");
+        //        createLoadingDialog(mContext,"拼命加载中...");
     }
     
-    public static Dialog createLoadingDialog(Context context, String msg) {
+    public CommonLoading(Context context,String loadingMessage) {
+        mContext = context;
+        createLoadingDialog(mContext,loadingMessage);
+//        createLoadingDialog(mContext,"拼命加载中...");
+    }
+
+/*    public Dialog createLoadingDialog() {
+        return createLoadingDialog(BaseApplication.getContext(),"拼命加载中");
+    }*/
+    
+    public Dialog createLoadingDialog(Context context,String loadingMessage) {
         LayoutInflater inflater = LayoutInflater.from(context);
         View v = inflater.inflate(R.layout.dialog_loading, null);// 得到加载view
         LinearLayout layout = (LinearLayout) v
@@ -39,10 +53,9 @@ public class CommonLoading {
 //            tipTextView.setText(msg);
 //            tipTextView.startLoading();
 //        }
-
         TextView tipTextView = (TextView) v.findViewById(R.id.tipTextView);// 提示文字
-        tipTextView.setText(msg);// 设置加载信息
-        Dialog loadingDialog = new Dialog(context, R.style.MyDialogStyle);// 创建自定义样式dialog
+        tipTextView.setText(loadingMessage);// 设置加载信息
+        loadingDialog = new Dialog(context, R.style.MyDialogStyle);// 创建自定义样式dialog
         loadingDialog.setCancelable(true); // 是否可以按“返回键”消失
         loadingDialog.setCanceledOnTouchOutside(true); // 点击加载框以外的区域
         loadingDialog.setContentView(layout, new LinearLayout.LayoutParams(
@@ -58,22 +71,22 @@ public class CommonLoading {
         window.setGravity(Gravity.CENTER);
         window.setAttributes(lp);
         window.setWindowAnimations(R.style.PopWindowAnimStyle);
-        loadingDialog.show();
-
         return loadingDialog;
     }
 
     /**
      * 关闭dialog
-     *
      * http://blog.csdn.net/qq_21376985
-     *
-     * @param mDialogUtils
      */
-    public static void closeDialog(Dialog mDialogUtils) {
-        if (mDialogUtils != null && mDialogUtils.isShowing()) {
-            mDialogUtils.dismiss();
+    public void closeLoading() {
+        if (loadingDialog != null && loadingDialog.isShowing()) {
+            loadingDialog.dismiss();
         }
     }
 
+    public void showLoading() {
+        if (loadingDialog != null) {
+            loadingDialog.show();
+        }
+    }
 }

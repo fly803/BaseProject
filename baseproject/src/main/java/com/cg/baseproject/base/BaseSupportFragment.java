@@ -53,7 +53,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
     }
     private boolean viewCreated;//记录是否已经创建了,防止重复创建
     CatLoadingView mCatLoadingView;
-    Dialog mCommonLoading;
+    CommonLoading mCommonLoading;
     int loadingStyle = 0;
 
     /*
@@ -83,6 +83,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
         // 防止重复调用onCreate方法，造成在initData方法中adapter重复初始化问题
         if (!viewCreated) {
             viewCreated = true;
+            mCommonLoading = new CommonLoading(getActivity(),"数据加载中...");
         }
     }
 
@@ -209,7 +210,9 @@ public abstract class BaseSupportFragment extends SupportFragment {
     private void initLoading(int loadingStyle) {
         switch (loadingStyle) {
             case 0:
-                mCommonLoading = CommonLoading.createLoadingDialog(getActivity(), "努力加载中...");
+                if(mCommonLoading!=null){
+                    mCommonLoading.showLoading();
+                }
                 break;
             case 1:
                 mCatLoadingView.show(getFragmentManager(), "拼命加载中");
@@ -222,8 +225,8 @@ public abstract class BaseSupportFragment extends SupportFragment {
     public void cancelLoading(int loadingStyle) {
         switch (loadingStyle) {
             case 0:
-                if(mCommonLoading!=null && mCommonLoading.isShowing()){
-                    CommonLoading.closeDialog(mCommonLoading);
+                if(mCommonLoading!=null){
+                    mCommonLoading.closeLoading();
                 }
                 break;
             case 1:
