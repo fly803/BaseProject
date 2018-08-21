@@ -74,7 +74,7 @@ ext {
     customActivityOnCrash = "cat.ereza:customactivityoncrash:2.2.0"//https://github.com/Ereza/CustomActivityOnCrash
 
     //项目必备，基础项目，通用工具类
-    myBaseProject = "com.github.fly803:BaseProject:1.0.9"
+    myBaseProject = "com.github.fly803:BaseProject:1.0.22"
     baseProject = "com.classic.android:core:1.5"
     utils = "com.classic.android:utils:1.1"
     rxTools = "com.github.vondear:RxTools:v1.7.6.4"//https://github.com/vondear/RxTools
