@@ -1,5 +1,7 @@
 package com.cg.baseproject.utils;
 
+import android.util.Log;
+
 import com.cg.baseproject.manager.AppLogMessageMgr;
 
 import java.text.ParseException;
@@ -20,6 +22,16 @@ import java.sql.Timestamp;
  */
 public class DateUtils {
 
+    private static long calendarLong = 1533081600000L;
+    private static String calendar = "CalendarDay{2018-7-6}";
+    public static void main(String[] args) {
+        System.out.println(formatTimeInMillis(calendarLong));
+    }
+    
+    public static String formatCanlendar(String calendar){
+        return calendar.substring(calendar.indexOf("{")+1,calendar.indexOf("}"));
+    }
+    
 	public static final SimpleDateFormat DEFAULT_DATE_FORMAT = new SimpleDateFormat(
 			"yyyy-MM-dd HH:mm:ss");
 	public static final SimpleDateFormat DATE_FORMAT_DATE = new SimpleDateFormat(
@@ -623,6 +635,24 @@ public class DateUtils {
 		return sd.format(new Date(timestamp));
 	}
 
+    /**
+     * 格式化时间为
+     * @param timeMillis
+     * @return
+     */
+	public static String formatTimeInMillis(long timeMillis){
+	    String time = "2018-01-01";
+        try {
+            Date curDate = new Date(timeMillis);// 获取当前时间
+            SimpleDateFormat format = new SimpleDateFormat(DATE_SMALL_STR);
+            time = format.format(curDate);
+        } catch (Exception e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return time;
+    }
+    
 	public static int getSystemTime() {
 		int result = -1;
 		try {
