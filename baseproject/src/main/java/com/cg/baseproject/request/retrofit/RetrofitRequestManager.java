@@ -103,9 +103,9 @@ public class RetrofitRequestManager {
          请求/响应行 + 头 + 体 
          */
         final OkHttpClient.Builder builder = new OkHttpClient.Builder();
-        builder.connectTimeout(15, TimeUnit.SECONDS);
-        builder.readTimeout(20, TimeUnit.SECONDS);
-        builder.writeTimeout(20, TimeUnit.SECONDS);
+        builder.connectTimeout(5, TimeUnit.SECONDS);
+        builder.readTimeout(10, TimeUnit.SECONDS);
+        builder.writeTimeout(5, TimeUnit.SECONDS);
         //错误重连
         builder.retryOnConnectionFailure(true);
         //新建log拦截器
