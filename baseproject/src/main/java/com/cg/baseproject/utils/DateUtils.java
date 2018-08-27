@@ -25,7 +25,7 @@ public class DateUtils {
     private static long calendarLong = 1533081600000L;
     private static String calendar = "CalendarDay{2018-7-6}";
     public static void main(String[] args) {
-        System.out.println(formatTimeInMillis(calendarLong));
+        System.out.println(getCurrentDateBefore30Day());
     }
     
     public static String formatCanlendar(String calendar){
@@ -421,6 +421,17 @@ public class DateUtils {
 		return format.format(new Date());
 	}
 
+    /**
+     * 获取当前日期前30天
+     *
+     * @return
+     */
+    public static String getCurrentDateBefore30Day() {
+        Calendar now = Calendar.getInstance();
+        now.add(Calendar.DAY_OF_MONTH, -30);
+        return new SimpleDateFormat(formatPattern).format(now.getTime());
+    }
+    
 	/**
 	 * 获取制定毫秒数之前的日期
 	 * 
