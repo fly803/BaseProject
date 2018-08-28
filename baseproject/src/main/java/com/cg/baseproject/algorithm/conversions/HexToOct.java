@@ -1,4 +1,4 @@
-package com.cg.baseproject.algorithm.Conversions; /**
+package com.cg.baseproject.algorithm.conversions; /**
  + * Converts any Hexadecimal Number to Octal 
  + * 
  + * @author Tanmay Joshi

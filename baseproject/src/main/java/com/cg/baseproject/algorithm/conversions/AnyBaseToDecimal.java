@@ -1,4 +1,4 @@
-package com.cg.baseproject.algorithm.Conversions;
+package com.cg.baseproject.algorithm.conversions;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;

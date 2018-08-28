@@ -1,4 +1,4 @@
-package com.cg.baseproject.algorithm.Searches;
+package com.cg.baseproject.algorithm.searches;
 
 class Test
 {

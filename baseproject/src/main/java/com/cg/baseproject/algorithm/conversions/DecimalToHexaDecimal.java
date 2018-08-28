@@ -1,4 +1,4 @@
-package com.cg.baseproject.algorithm.Conversions;
+package com.cg.baseproject.algorithm.conversions;
 
 class DecimalToHexaDecimal {
 	private static final int sizeOfIntInHalfBytes = 8;

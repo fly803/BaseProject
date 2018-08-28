@@ -1,6 +1,5 @@
-package com.cg.baseproject.algorithm.Sorts;
+package com.cg.baseproject.algorithm.sorts;
 
-import java.util.*;
 import java.lang.*;
  
 class Sorting

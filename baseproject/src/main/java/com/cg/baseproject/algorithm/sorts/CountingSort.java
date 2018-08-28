@@ -1,4 +1,4 @@
-package com.cg.baseproject.algorithm.Sorts;
+package com.cg.baseproject.algorithm.sorts;
 
 import java.util.ArrayList;
 import java.util.Map;
