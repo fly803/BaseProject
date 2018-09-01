@@ -152,7 +152,7 @@
     <color name="colorText">#9b9b9b</color>
     
     <!--透明度由#加八位数字或字母组成，前两个ff为透明度（十六进制），后面六位ffffff为颜色代码，采用RGB配色（十六进制）-->
-    <color name="AllTransparent">#ffffffff</color><!--全透明-->
+    <color name="AllTransparent">#00ffffff</color><!--全透明-->
     <color name="transparency">#80000000</color>
     <color name="tmd">#FF000000</color>
     <!--
