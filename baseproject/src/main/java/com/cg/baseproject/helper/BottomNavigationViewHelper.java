@@ -22,7 +22,9 @@ public class BottomNavigationViewHelper {
 
             for (int i = 0; i < menuView.getChildCount(); i++) {
                 BottomNavigationItemView itemView = (BottomNavigationItemView) menuView.getChildAt(i);
-                itemView.setShiftingMode(false);
+                itemView.setLabelVisibilityMode(0);
+                itemView.setShifting(false);
+//                itemView.setShiftingMode(false);
                 itemView.setChecked(itemView.getItemData().isChecked());
             }
 

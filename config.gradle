@@ -1,8 +1,9 @@
-def supportVersion = "27.1.1"
+def supportVersion = "28.0.0"
 def rxBindingVersion = "2.0.0"
 def retrofitVersion = "2.3.0"
 def stethoVersion = "1.5.0"
-def butterKnifeVersion = "9.0.0-SNAPSHOT"
+def butterKnifeVersion = "9.0.0-rc1"
+//def butterKnifeVersion = "9.0.0-SNAPSHOT"
 def leakCanaryVersion = "1.5.4"
 def blockCanaryVersion = "1.5.0"
 def dagger2Version = "2.14.1"
@@ -11,10 +12,10 @@ def glideVersion = "4.7.1"
 
 ext {
     android = [
-            compileSdkVersion: 27,
+            compileSdkVersion: 28,
             applicationId    : "com.ivy.baseproject.test",
             minSdkVersion    : 19,
-            targetSdkVersion : 27,
+            targetSdkVersion : 28,
             versionCode      : 1,
             versionName      : "1.0"
     ]
@@ -23,7 +24,7 @@ ext {
      * support官方库
      */
     support = [
-            constraintLayout      : "com.android.support.constraint:constraint-layout:1.1.2",
+            constraintLayout      : "com.android.support.constraint:constraint-layout:1.1.3",
             multidex    : "com.android.support:multidex:1.0.3",
             supportAppcompatV7   : "com.android.support:appcompat-v7:${supportVersion}",//得到宏定义字符串，要用双引号
             supportV4   : "com.android.support:support-v4:${supportVersion}",

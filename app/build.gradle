@@ -1,6 +1,7 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.jakewharton.butterknife'
 
+
 def ext = rootProject.ext
 def config = rootProject.ext.android // 配置
 def support = rootProject.ext.support // 依赖
@@ -17,6 +18,9 @@ android {
         multiDexEnabled true
     }
     dexOptions {
+        // Sets the maximum number of DEX processes
+        // that can be started concurrently.
+        maxProcessCount 8
         preDexLibraries true
         javaMaxHeapSize "6g"
         //Warning:The `android.dexOptions.incremental` property is deprecated and it has no effect on the build process.
@@ -59,6 +63,7 @@ dependencies {
 //    println ''
     implementation ext.butterknife
     annotationProcessor ext.butterknifeCompiler
+
     //项目必备
     implementation ext.styleableToast
     implementation ext.zxing
