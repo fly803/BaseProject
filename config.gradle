@@ -9,6 +9,7 @@ def blockCanaryVersion = "1.5.0"
 def dagger2Version = "2.14.1"
 def okHttpVersion = "3.11.0"
 def glideVersion = "4.8.0"
+def kotlin_version = "1.2.30"
 
 ext {
     android = [
@@ -46,6 +47,7 @@ ext {
     easyPermissions = "pub.devrel:easypermissions:1.2.0"
     //    implementation group: 'com.android.volley', name: 'volley', version: '1.1.0'
     volley = "com.android.volley:volley:1.1.0"//等效写法
+    kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     /**
      *项目必备库
