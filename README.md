@@ -544,6 +544,7 @@ allprojects {
 ##### 在APP的build.gradle dependencies节点下加入
 
 implementation 'com.github.fly803:BaseProject:相应的版本号：例如1.0.0'
+配置仓库，添加mavenCentral()
 
 ###### 当前可以下载版本
 implementation 'com.github.fly803:BaseProject:1.0.0',已release里面的最新release为准
