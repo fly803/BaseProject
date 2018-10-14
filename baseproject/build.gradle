@@ -25,6 +25,9 @@ android {
 
     }
     dexOptions {
+        // Sets the maximum number of DEX processes
+        // that can be started concurrently.
+        maxProcessCount 8
         preDexLibraries true
         javaMaxHeapSize "6g"
         //Warning:The `android.dexOptions.incremental` property is deprecated and it has no effect on the build process.
@@ -52,43 +55,43 @@ dependencies {
 //    implementation 'com.android.support:support-v4:28.0.0'
     implementation 'com.android.support.constraint:constraint-layout:1.1.3'
     testImplementation 'junit:junit:4.12'
-    implementation support.multidex
-    implementation support.supportAppcompatV7
-    implementation support.design
+    implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.android.support:appcompat-v7:28.0.0'
+    implementation 'com.android.support:design:28.0.0'
 
     //Rx家族
-    implementation ext.rxAndroid
-    implementation ext.rxJava
-    implementation ext.rxLife
-    implementation ext.rxBinding
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
+    implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.1'
+    implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     //网络组件
-    implementation ext.retrofit
-    implementation ext.retrofitConverterGson
-    implementation ext.rxJavaForRetrofit
-    implementation ext.okhttp
-    implementation ext.okhttpLoggingInterceptor
-    implementation ext.volley
+    implementation 'com.squareup.retrofit2:retrofit:2.3.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.3.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    implementation 'com.squareup.okhttp3:okhttp:3.11.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.11.0'
+    implementation 'com.android.volley:volley:1.1.0'
     //项目基础库
-    implementation ext.fragmentation
-    implementation ext.fragmentationSwipeback
-    implementation ext.butterknife
-    annotationProcessor ext.butterknifeCompiler
-    implementation ext.retrofitAdapter
+    implementation 'me.yokeyword:fragmentation:1.3.6'
+    implementation 'me.yokeyword:fragmentation-swipeback:1.3.6'
+    implementation 'com.jakewharton:butterknife:9.0.0-rc1'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
     //项目组件
-    implementation ext.bravh
-    implementation ext.hiPermission
-    implementation ext.glide
-    implementation ext.picasso
-    implementation ext.leakCanary
-    implementation ext.logger
-    implementation ext.easyPermissions
-    implementation ext.gson
-    implementation ext.fastjson
-    implementation ext.fastjsonAndroid
-    implementation ext.jjwt
-    implementation ext.ScreenShott
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
+    implementation 'me.weyye.hipermission:library:1.0.7'
+    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.squareup.picasso:picasso:2.5.2'
+    implementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
+    implementation 'com.orhanobut:logger:2.1.1'
+    implementation 'pub.devrel:easypermissions:1.2.0'
+    implementation 'com.google.code.gson:gson:2.8.5'
+    implementation 'com.alibaba:fastjson:1.2.49'
+    implementation 'com.alibaba:fastjson:1.2.49.android'
+    implementation 'io.jsonwebtoken:jjwt:0.9.0'
+    implementation 'com.github.nisrulz:screenshott:2.0.0'
     //UI
-    implementation ext.shapeLoadingView
-    implementation ext.catLoading
-    implementation ext.fancyToast
+    implementation 'com.github.zzz40500:android-shapeLoadingView:1.0.3.2'
+    implementation 'com.roger.catloadinglibrary:catloadinglibrary:1.0.4'
+    implementation 'com.github.Shashank02051997:FancyToast-Android:0.1.3'
 }
