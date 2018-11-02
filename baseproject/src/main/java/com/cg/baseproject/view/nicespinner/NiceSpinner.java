@@ -141,8 +141,7 @@ public class NiceSpinner extends AppCompatTextView {
 
         backgroundSelector = typedArray.getResourceId(R.styleable.NiceSpinner_backgroundSelector, R.drawable.selector);
         setBackgroundResource(backgroundSelector);
-//        textColor = typedArray.getColor(R.styleable.NiceSpinner_textTint, getDefaultTextColor(context));
-        textColor = getResources().getColor(R.color.colorTextQueryIndexValue);
+        textColor = typedArray.getColor(R.styleable.NiceSpinner_textTint, getDefaultTextColor(context));
         setTextColor(textColor);
 
         listView = new ListView(context);
