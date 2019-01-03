@@ -117,6 +117,7 @@ https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.j
 
 
 
+
 ## 布局中的具体使用方法，2种适配方法，布局layout写法一致：
 拿到效果图:
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/Mark.png) 
