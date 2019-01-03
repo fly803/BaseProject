@@ -60,8 +60,8 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
 
     //Rx家族
-    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
-    implementation 'io.reactivex.rxjava2:rxjava:2.1.8'
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.2'
+    implementation 'io.reactivex.rxjava2:rxjava:2.1.9'
     implementation 'com.trello.rxlifecycle2:rxlifecycle:2.2.1'
     implementation 'com.jakewharton.rxbinding2:rxbinding:2.0.0'
     //网络组件
