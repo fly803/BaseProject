@@ -37,6 +37,35 @@ For the English readme：## [English](https://github.com/fly803/BaseProject/blob
 
 ## 一、屏幕分辨率适配
 ### 分辨率适配概述
+采用了2种屏幕适配方式，用户可以自己的需要进行选择。1、头条屏幕适配方式；2、Dimens适配方式
+####1、头条屏幕适配方案
+#### 基本原理
+方案的原理其实很简单，首先我们要明白一点，无论我们在xml中使用何种尺寸单位（dp、sp、pt……）,最后在绘制时都会给我们转成px!知道这点后，剩下的容易了，我们选定一种尺寸单位
+（dp、sp、pt ……）作为我们的适配单位，然后篡改这个单位与px之间的转化比例，然后在xml中使用选定的单位做适配！就是这么简单。我这里是采用自定义的px，和sp，这样更灵活。方便切换
+不同适配方案的时候，不用改动任何的布局代码。今日头条屏幕适配方案的核心原理在于，根据以下公式算出 density 当前设备屏幕总宽度（单位为像素）/ 设计图总宽度（单位为 dp) = density
+density 的意思就是 1 dp 占当前设备多少像素。在屏幕适配中，我们一般只对宽度适配，毕竟高度可以滑动解决！而且高度值，标准屏，虚拟键、全面屏等五花八门，手机的宽高比许多厂家也不一样。
+这个方案的思路，主旨是通过修改density值，强行把所有不同尺寸分辨率的手机的宽度dp值改成一个统一的值，这样就解决了所有的适配问题。比如，设计稿宽度是360px，那么开发这边就会把
+目标dp值设为360dp，在不同的设备中，动态修改density值，从而保证(手机像素宽度)px/density这个值始终是360dp,这样的话，就能保证UI在不同的设备上表现一致了。
+该方案有如下几点优势：
+a、侵入性很低，而且也没有涉及私有API b、今日头条的大厂在用，稳定性有保证的 c、不会有任何性能的损耗 d、使用成本低，使用该方案后在页面布局时不需要额外的代码和操作
+e、可适配三方库的控件和系统的控件(不止是 Activity 和 Fragment，Dialog、Toast 等所有系统控件都可以适配)，由于修改的 density 在整个项目中是全局的，所以只要一次修改，项目中的所有地方都会受益。
+如果是新项目采用基本没有缺点。
+
+####项目引入方法。
+1.引导页Activity继承BaseScreenAdaptActivity，重新相关方法
+@Override
+    protected void initScreenAdaption() {
+        if (ScreenUtils.isPortrait()) {
+            ScreenUtils.adaptScreen4VerticalSlide(this, AppConfig.widthInPx);
+        } else {
+            ScreenUtils.adaptScreen4HorizontalSlide(this, AppConfig.heightInPx);
+        }
+    }
+2.AppConfig里面配置widthInPx，heightInPx为相应的效果图像素宽度值，如果横屏就是高度值
+3.布局文件里面的xml使用方式同屏幕适配的第二种适配方法，请在后面查看。
+
+
+####2、Dimens屏幕适配方案
 该方案参考的了Android适配领域做得比较好的方案，如郭霖，Stormzhang，鸿洋和凯子的方案，可以说综合了各家之所长。
 以最小的代价，实现最好的适配效果。我们都希望分辨率适配是这样。拿到效果图，不需要额外计算，布局直接抄设计图上的尺寸。
 我的适配方案就可以达到这样的效果，你说爽不爽。
@@ -70,7 +99,7 @@ App在运行的时候，会在Res下读取对应的dimens文件，BaseProject已
 ### 集成分辨率适配
 #### 使用概述 
 有两种集成分辨率适配的方式。
-###### 1.通过Gradle集成BaseProject。集成BaseProject，就对默认分辨率都进行了支持。
+###### 1.下载demo工程，doc-res文件夹下载values全部默认分辨率支持拷贝到自己的工程。
 ###### 其他分辨率通过doc/工具集/分配率适配dimens工具.jar手动添加，如图所示：
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionTools.png) 
 ##### 加需要额外支持的dimens拷贝到自己的工程res下,注意输入的名字是values+xxxdpi+分辨率的形式，如values-xhdpi-960x640
@@ -84,7 +113,7 @@ https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.j
 https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.jar
 
 
-###### 项目中具体使用方法：
+### 项目中具体使用方法，2种适配方法，布局layout写法一致：
 拿到效果图:
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/Mark.png) 
 
