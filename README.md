@@ -65,17 +65,17 @@ e、可适配三方库的控件和系统的控件(不止是 Activity 和 Fragmen
 3.布局文件里面的xml使用方式同屏幕适配的第二种适配方法，请在后面查看。
 
 
-###2、Dimens屏幕适配方案
+####2、Dimens屏幕适配方案
 该方案参考的了Android适配领域做得比较好的方案，如郭霖，Stormzhang，鸿洋和凯子的方案，可以说综合了各家之所长。
 以最小的代价，实现最好的适配效果。我们都希望分辨率适配是这样。拿到效果图，不需要额外计算，布局直接抄设计图上的尺寸。
 我的适配方案就可以达到这样的效果，你说爽不爽。
 
-### 基本原理
+#### 基本原理
 App在运行的时候，会在Res下读取对应的dimens文件，BaseProject已经在Res里面对主流的手机的常用分辨率建立的所有的对应关系，
 无需用户额外操作，就可以完美适配主流手机。亲测可以适配市面主流手机的95%，即使默认不能适配的手机，也可以通过本文的工具进行适配（ResolutionTools.jar）。用户如果想适配其他分辨率，也提供了相应的获取方法。
 介于低于1280x720的低端手机已经很少，所有960x640,480x320等低分辨率手机没有提供默认支持，如需支持，请手动添加。
 
-### 默认支持的分辨率：
+#### 默认支持的分辨率：
  分辨率 | 分辨率描述
  ---  | ---
 | 1280 x 720   | 无虚拟键1280x702手机
@@ -97,19 +97,19 @@ App在运行的时候，会在Res下读取对应的dimens文件，BaseProject已
 
 
 ### 集成分辨率适配
-### 使用概述 
+#### 使用概述 
 有两种集成分辨率适配的方式。
-###### 1.下载demo工程，doc-res文件夹下载values全部默认分辨率支持拷贝到自己的工程。
-###### 其他分辨率通过doc/工具集/分配率适配dimens工具.jar手动添加，如图所示：
+#### 1.下载demo工程，doc-res文件夹下载values全部拷贝到自己的工程。
+#### 其他分辨率通过doc/工具集/分配率适配dimens工具.jar手动添加，如图所示：
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionTools.png) 
 ##### 加需要额外支持的dimens拷贝到自己的工程res下,注意输入的名字是values+xxxdpi+分辨率的形式，如values-xhdpi-960x640
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/dimens.png) 
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/project_res.png) 
-###### 分辨率适配工具下载地址：
+#### 分辨率适配工具下载地址：
 https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.jar
 
-###### 2.通过BaseProject提供的工具手动集成，利用工具生成dimens，将所有的dimens和相应的文件夹拷贝到自己工程的res文件夹
-###### 分辨率适配工具下载地址：
+#### 2.通过BaseProject提供的工具手动集成，利用工具生成dimens，将所有的dimens和相应的文件夹拷贝到自己工程的res文件夹
+#### 分辨率适配工具下载地址：
 https://github.com/fly803/BaseProject/blob/master/doc/Tools/ResolutionAdaption.jar
 
 
@@ -561,7 +561,7 @@ bus.post(new SomeEvent("Message"));
 ## 集成该库
 -----------
 
-### 1.通过jitpack.io仓库方式依赖
+#### 1.通过jitpack.io仓库方式依赖
 ##### 项目根目录下的build.gradle 中加入
 
 allprojects {
@@ -575,14 +575,14 @@ allprojects {
 implementation 'com.github.fly803:BaseProject:相应的版本号：例如1.0.0'
 配置仓库，添加mavenCentral() maven { url 'https://jitpack.io' }
 
-###### 当前可以下载版本
+#### 当前可以下载版本
 implementation 'com.github.fly803:BaseProject:1.0.0',已release里面的最新release为准
 
-### 2.clone项目到本地，将BaseProject库直接依赖到项目。
+#### 2.clone项目到本地，将BaseProject库直接依赖到项目。
 
 compile project(':BaseProject')
 
-### 3.aar方式依赖
+#### 3.aar方式依赖
 ##### 在项目根目录下新建aars文件夹，将BaseProject目录build/outputs下的kutils-release.aar文件copy进aars文件夹  在app的build.gradle 最外层节点加入
 
 repositories { flatDir { dirs '../aars' } }
@@ -600,7 +600,7 @@ compile(name: 'BaseProject-release', ext: 'aar')
 
 ## [English](https://github.com/fly803/BaseProject/blob/master/README_EN.md) | 中文
 
-### 友情链接
+#### 友情链接
 [github/UCodeUStory/S-MVP](https://github.com/UCodeUStory/S-MVP) 
 
 [github/UCodeUStory/GradlePluginDevelop](https://https://github.com/UCodeUStory/GradlePluginDevelop)  
