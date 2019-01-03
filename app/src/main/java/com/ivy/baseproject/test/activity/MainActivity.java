@@ -321,7 +321,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void resolution() {
-        Intent intentResolutionTest = new Intent(MainActivity.this, ResolutionAdaptionDemoActivity.class);
+        Intent intentResolutionTest = new Intent(MainActivity.this, SplashActivity.class);
+//        Intent intentResolutionTest = new Intent(MainActivity.this, ResolutionAdaptionDemoActivity.class);
         startActivity(intentResolutionTest);
     }
 

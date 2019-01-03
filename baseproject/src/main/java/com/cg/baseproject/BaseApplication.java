@@ -17,6 +17,7 @@ import me.yokeyword.fragmentation.helper.ExceptionHandler;
  * @date 2018/3/2
  */
 public class BaseApplication extends MultiDexApplication {
+    private static BaseApplication application = null;
     private static Context mContext;
     private static String uid ="10001";//用户id，用户唯一标识
     private Set<Activity> allActivities;
@@ -25,9 +26,13 @@ public class BaseApplication extends MultiDexApplication {
     public void onCreate() {
         super.onCreate();
         mContext = getApplicationContext();
+        application = this;
         init();
     }
 
+    public static BaseApplication getBaseApplication(){
+        return application;
+    }
     
     /**
      * 得到Application环境变量
@@ -44,11 +49,18 @@ public class BaseApplication extends MultiDexApplication {
 //        initFragmentation();
     }
 
-    
     /**
      * 退出app
      */
     public void exitApp() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+        System.exit(0);
+    }
+    
+    /**
+     * 退出app
+     */
+    public void exitAppAll() {
         if (allActivities != null) {
             synchronized (allActivities) {
                 for (Activity act : allActivities) {

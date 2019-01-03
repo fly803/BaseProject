@@ -3,7 +3,6 @@ package com.cg.baseproject.utils.android;
 import android.app.Activity;
 import android.app.Application;
 import android.app.KeyguardManager;
-import android.content.ComponentCallbacks;
 import android.content.Context;
 import android.content.pm.ActivityInfo;
 import android.content.res.Configuration;
@@ -15,25 +14,37 @@ import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.annotation.RequiresPermission;
 import android.util.DisplayMetrics;
+import android.util.Log;
 import android.view.Surface;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 
+import com.cg.baseproject.BaseApplication;
+import com.cg.baseproject.configs.BaseProjectConfig;
 import static android.Manifest.permission.WRITE_SETTINGS;
 
 /**
- * <pre>
- *     author: Blankj
- *     blog  : http://blankj.com
- *     time  : 2016/08/02
- *     desc  : utils about screen
- * </pre>
+ * @author sam
+ * @version 1.0
+ * @date 2018/8/12
  */
 public final class ScreenUtils {
 
+    private static Application mApplication = BaseApplication.getBaseApplication();
+
     private ScreenUtils() {
         throw new UnsupportedOperationException("u can't instantiate me...");
+    }
+
+    /**
+     * Init utils.
+     * <p>Init it in the class of Application.</p>
+     *
+     * @param context context
+     */
+    public void init(@NonNull final Context context) {
+        init((Application) context.getApplicationContext());
     }
 
     /**
@@ -42,9 +53,9 @@ public final class ScreenUtils {
      * @return the width of screen, in pixel
      */
     public static int getScreenWidth() {
-        WindowManager wm = (WindowManager) Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) mApplication.getSystemService(Context.WINDOW_SERVICE);
         if (wm == null) {
-            return Utils.getApp().getResources().getDisplayMetrics().widthPixels;
+            return mApplication.getResources().getDisplayMetrics().widthPixels;
         }
         Point point = new Point();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -61,9 +72,9 @@ public final class ScreenUtils {
      * @return the height of screen, in pixel
      */
     public static int getScreenHeight() {
-        WindowManager wm = (WindowManager) Utils.getApp().getSystemService(Context.WINDOW_SERVICE);
+        WindowManager wm = (WindowManager) mApplication.getSystemService(Context.WINDOW_SERVICE);
         if (wm == null) {
-            return Utils.getApp().getResources().getDisplayMetrics().heightPixels;
+            return mApplication.getResources().getDisplayMetrics().heightPixels;
         }
         Point point = new Point();
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
@@ -80,7 +91,7 @@ public final class ScreenUtils {
      * @return the density of screen
      */
     public static float getScreenDensity() {
-        return Utils.getApp().getResources().getDisplayMetrics().density;
+        return mApplication.getResources().getDisplayMetrics().density;
     }
 
     /**
@@ -89,7 +100,7 @@ public final class ScreenUtils {
      * @return the screen density expressed as dots-per-inch
      */
     public static int getScreenDensityDpi() {
-        return Utils.getApp().getResources().getDisplayMetrics().densityDpi;
+        return mApplication.getResources().getDisplayMetrics().densityDpi;
     }
 
     /**
@@ -164,7 +175,7 @@ public final class ScreenUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isLandscape() {
-        return Utils.getApp().getResources().getConfiguration().orientation
+        return mApplication.getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_LANDSCAPE;
     }
 
@@ -174,7 +185,7 @@ public final class ScreenUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isPortrait() {
-        return Utils.getApp().getResources().getConfiguration().orientation
+        return mApplication.getResources().getConfiguration().orientation
                 == Configuration.ORIENTATION_PORTRAIT;
     }
 
@@ -219,8 +230,9 @@ public final class ScreenUtils {
     public static Bitmap screenShot(@NonNull final Activity activity, boolean isDeleteStatusBar) {
         View decorView = activity.getWindow().getDecorView();
         decorView.setDrawingCacheEnabled(true);
-        decorView.buildDrawingCache();
+        decorView.setWillNotCacheDrawing(false);
         Bitmap bmp = decorView.getDrawingCache();
+        if (bmp == null) return null;
         DisplayMetrics dm = new DisplayMetrics();
         activity.getWindowManager().getDefaultDisplay().getMetrics(dm);
         Bitmap ret;
@@ -249,7 +261,7 @@ public final class ScreenUtils {
      */
     public static boolean isScreenLock() {
         KeyguardManager km =
-                (KeyguardManager) Utils.getApp().getSystemService(Context.KEYGUARD_SERVICE);
+                (KeyguardManager) mApplication.getSystemService(Context.KEYGUARD_SERVICE);
         return km != null && km.inKeyguardRestrictedInputMode();
     }
 
@@ -262,7 +274,7 @@ public final class ScreenUtils {
     @RequiresPermission(WRITE_SETTINGS)
     public static void setSleepDuration(final int duration) {
         Settings.System.putInt(
-                Utils.getApp().getContentResolver(),
+                mApplication.getContentResolver(),
                 Settings.System.SCREEN_OFF_TIMEOUT,
                 duration
         );
@@ -276,7 +288,7 @@ public final class ScreenUtils {
     public static int getSleepDuration() {
         try {
             return Settings.System.getInt(
-                    Utils.getApp().getContentResolver(),
+                    mApplication.getContentResolver(),
                     Settings.System.SCREEN_OFF_TIMEOUT
             );
         } catch (Settings.SettingNotFoundException e) {
@@ -291,7 +303,7 @@ public final class ScreenUtils {
      * @return {@code true}: yes<br>{@code false}: no
      */
     public static boolean isTablet() {
-        return (Utils.getApp().getResources().getConfiguration().screenLayout
+        return (mApplication.getResources().getConfiguration().screenLayout
                 & Configuration.SCREENLAYOUT_SIZE_MASK)
                 >= Configuration.SCREENLAYOUT_SIZE_LARGE;
     }
@@ -299,25 +311,113 @@ public final class ScreenUtils {
     /**
      * Adapt the screen for vertical slide.
      *
-     * @param designWidthInDp The size of design diagram's width, in dp,
-     *                        e.g. the design diagram width is 720px, in XHDPI device,
-     *                        the designWidthInDp = 720 / 2.
+     * @param activity        The activity.
+     * @param designWidthInPx The size of design diagram's width, in pixel.
      */
     public static void adaptScreen4VerticalSlide(final Activity activity,
-                                                 final int designWidthInDp) {
-        adaptScreen(activity, designWidthInDp, true);
+                                                 final int designWidthInPx) {
+        adaptScreen(activity, designWidthInPx, true,false);
     }
 
     /**
      * Adapt the screen for horizontal slide.
      *
-     * @param designHeightInDp The size of design diagram's height, in dp,
-     *                         e.g. the design diagram height is 1080px, in XXHDPI device,
-     *                         the designHeightInDp = 1080 / 3.
+     * @param activity         The activity.
+     * @param designHeightInPx The size of design diagram's height, in pixel.
      */
     public static void adaptScreen4HorizontalSlide(final Activity activity,
-                                                   final int designHeightInDp) {
-        adaptScreen(activity, designHeightInDp, false);
+                                                   final int designHeightInPx) {
+        adaptScreen(activity, designHeightInPx, false,false);
+    }
+
+
+    /**
+     * 得到缩放因子
+     * @param sizeInPx
+     * @return
+     */
+    public static float getScaleDesity(final int sizeInPx) {
+        float scaleDesity = 3.0f;
+        if (720 == sizeInPx) {
+            scaleDesity = 2.0f;
+        } else if (1080 == sizeInPx) {
+            scaleDesity = 3.0f;
+        } else if (1440 == sizeInPx) {
+            scaleDesity = 4.0f;
+        } else if (750 == sizeInPx) {
+            scaleDesity = 4.32f;
+        } else {
+            scaleDesity = 3.0f;
+        }
+        return scaleDesity;
+    }
+
+    /**
+     * Reference from: https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA
+     * DisplayMetrics#density 就是上述的density
+     DisplayMetrics#densityDpi 就是上述的dpi
+     DisplayMetrics#scaledDensity 字体的缩放因子，正常情况下和density相等，但是调节系统字体大小后会改变这个值
+     */
+    private static void adaptScreen(final Activity activity,
+                                    final int sizeInPx,
+                                    final boolean isVerticalSlide,
+                                    final boolean isMatchScreen) {
+        final DisplayMetrics systemDm = Resources.getSystem().getDisplayMetrics();
+        final DisplayMetrics appDm = mApplication.getResources().getDisplayMetrics();
+        final DisplayMetrics activityDm = activity.getResources().getDisplayMetrics();
+        int widthPixels = activityDm.widthPixels;
+        //        float widthDp = sizeInPx/getScaleDesity(sizeInPx);
+        //        BaseProjectConfig.widthDp = sizeInPx/(float)getScaleDesity(sizeInPx);
+        if(!isMatchScreen){
+            if (isVerticalSlide) {
+                activityDm.density = (widthPixels*BaseProjectConfig.baseScale)/ sizeInPx ;
+                //                Log.d("cg", "adaptScreen activityDm.density: "+activityDm.density);
+                //                activityDm.density = scaleRadio * getScaleDesity(sizeInPx);
+                activityDm.scaledDensity = activityDm.density;
+                activityDm.densityDpi = (int) (160 * activityDm.density);
+
+                appDm.density = activityDm.density;
+                appDm.scaledDensity = activityDm.scaledDensity;
+                appDm.densityDpi = activityDm.densityDpi;
+            } else {
+                activityDm.density = widthPixels / (float) sizeInPx;
+                activityDm.scaledDensity = activityDm.density * (systemDm.scaledDensity / systemDm.density);
+                activityDm.densityDpi = (int) (160 * activityDm.density);
+
+                appDm.density = getScaleDesity(sizeInPx);
+                appDm.scaledDensity = activityDm.density;
+                appDm.densityDpi = (int) (160 * activityDm.density);
+            }
+        }else {
+            if (isVerticalSlide) {
+                activityDm.density = widthPixels / (float) sizeInPx;
+                activityDm.scaledDensity = activityDm.density * (systemDm.scaledDensity / systemDm.density);
+                activityDm.densityDpi = (int) (160 * activityDm.density);
+
+                appDm.density = getScaleDesity(sizeInPx);
+                appDm.scaledDensity = activityDm.density;
+                appDm.densityDpi = (int) (160 * activityDm.density);
+            } else {
+                activityDm.density = widthPixels / (float) sizeInPx;
+                activityDm.scaledDensity = activityDm.density * (systemDm.scaledDensity / systemDm.density);
+                activityDm.densityDpi = (int) (160 * activityDm.density);
+
+                appDm.density = getScaleDesity(sizeInPx);
+                appDm.scaledDensity = activityDm.density;
+                appDm.densityDpi = (int) (160 * activityDm.density);
+            }
+        }
+        /*if (isVerticalSlide) {
+            activityDm.density = widthPixels / (float) sizeInPx;
+        } else {
+            activityDm.density = activityDm.heightPixels / (float) sizeInPx;
+        }
+        activityDm.scaledDensity = activityDm.density * (systemDm.scaledDensity / systemDm.density);
+        activityDm.densityDpi = (int) (160 * activityDm.density);
+
+        appDm.density = activityDm.density;
+        appDm.scaledDensity = activityDm.scaledDensity;
+        appDm.densityDpi = activityDm.densityDpi;*/
     }
 
     /**
@@ -326,74 +426,26 @@ public final class ScreenUtils {
      * @param activity The activity.
      */
     public static void cancelAdaptScreen(final Activity activity) {
-        final DisplayMetrics appDm = Utils.getApp().getResources().getDisplayMetrics();
+        final DisplayMetrics systemDm = Resources.getSystem().getDisplayMetrics();
+        final DisplayMetrics appDm = mApplication.getResources().getDisplayMetrics();
         final DisplayMetrics activityDm = activity.getResources().getDisplayMetrics();
-        activityDm.density = appDm.density;
-        activityDm.scaledDensity = appDm.scaledDensity;
-        activityDm.densityDpi = appDm.densityDpi;
+        activityDm.density = systemDm.density;
+        activityDm.scaledDensity = systemDm.scaledDensity;
+        activityDm.densityDpi = systemDm.densityDpi;
+
+        appDm.density = systemDm.density;
+        appDm.scaledDensity = systemDm.scaledDensity;
+        appDm.densityDpi = systemDm.densityDpi;
     }
 
     /**
-     * Reference from: https://mp.weixin.qq.com/s/d9QCoBP6kV9VSWvVldVVwA
-     * DisplayMetrics#density 就是上述的density
-       DisplayMetrics#densityDpi 就是上述的dpi
-       DisplayMetrics#scaledDensity 字体的缩放因子，正常情况下和density相等，但是调节系统字体大小后会改变这个值
+     * Return whether adapt screen.
+     *
+     * @return {@code true}: yes<br>{@code false}: no
      */
-    private static void adaptScreen(final Activity activity,
-                                    final float sizeInDp,
-                                    final boolean isVerticalSlide) {
-        final DisplayMetrics appDm = Utils.getApp().getResources().getDisplayMetrics();
-        final DisplayMetrics activityDm = activity.getResources().getDisplayMetrics();
-        if (isVerticalSlide) {
-            activityDm.density = activityDm.widthPixels / sizeInDp;
-        } else {
-            activityDm.density = activityDm.heightPixels / sizeInDp;
-        }
-        activityDm.scaledDensity = activityDm.density * (appDm.scaledDensity / appDm.density);
-        activityDm.densityDpi = (int) (160 * activityDm.density);
-    }
-
-    /**
-     * 适配：修改设备密度
-     * DisplayUtil.setCustomDensity(this, getApplication());使用方法
-     */
-    private static float sNoncompatDensity;
-    private static float sNoncompatScaledDensity;
-    
-
-    public static void setCustomDensity(@NonNull Activity activity, @NonNull final Application application) {
-        DisplayMetrics appDisplayMetrics = application.getResources().getDisplayMetrics();
-        if (sNoncompatDensity == 0) {
-            sNoncompatDensity = appDisplayMetrics.density;
-            sNoncompatScaledDensity = appDisplayMetrics.scaledDensity;
-            // 防止系统切换后不起作用
-            application.registerComponentCallbacks(new ComponentCallbacks() {
-                @Override
-                public void onConfigurationChanged(Configuration newConfig) {
-                    if (newConfig != null && newConfig.fontScale > 0) {
-                        sNoncompatScaledDensity = application.getResources().getDisplayMetrics().scaledDensity;
-                    }
-                }
-
-                @Override
-                public void onLowMemory() {
-
-                }
-            });
-        }
-        float targetDensity = appDisplayMetrics.widthPixels / 360;
-        // 防止字体变小
-        float targetScaleDensity = targetDensity * (sNoncompatScaledDensity / sNoncompatDensity);
-        int targetDensityDpi = (int) (160 * targetDensity);
-
-        appDisplayMetrics.density = targetDensity;
-        appDisplayMetrics.scaledDensity = targetScaleDensity;
-        appDisplayMetrics.densityDpi = targetDensityDpi;
-
-        final DisplayMetrics activityDisplayMetrics = activity.getResources().getDisplayMetrics();
-        activityDisplayMetrics.density = targetDensity;
-        activityDisplayMetrics.scaledDensity = targetScaleDensity;
-        activityDisplayMetrics.densityDpi = targetDensityDpi;
-
+    public static boolean isAdaptScreen() {
+        final DisplayMetrics systemDm = Resources.getSystem().getDisplayMetrics();
+        final DisplayMetrics appDm = mApplication.getResources().getDisplayMetrics();
+        return systemDm.density != appDm.density;
     }
 }

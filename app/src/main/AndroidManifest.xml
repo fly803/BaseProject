@@ -45,11 +45,15 @@
             android:label="@string/title_activity_resolution_adaption_demo">
         </activity>
         <activity
+            android:name=".activity.ResolutionTestActivity"
+            android:label="@string/title_activity_resolution_test">
+        </activity>
+        <activity
             android:name=".activity.ScreenInfoActivity"
             android:label="@string/title_activity_screen_info">
         </activity>
         <activity
-            android:name=".activity.ResolutionTestActivity"
+            android:name=".activity.SplashActivity"
             android:label="@string/title_activity_resolution_test">
         </activity>
         <activity

@@ -9,6 +9,8 @@ import com.cg.baseproject.configs.BaseProjectConfig;
  */
 
 public class AppConfig extends BaseProjectConfig{
+    public static  int widthInPx = 1080;
+    public static  int heightInPx = 1920;
     public static final int SUCCESS_CODE = 0;
     public static final String TAG = "BaseProject";
     public static final boolean DEBUG = true;
