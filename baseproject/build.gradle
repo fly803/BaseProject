@@ -74,8 +74,8 @@ dependencies {
     //项目基础库
     implementation 'me.yokeyword:fragmentation:1.3.6'
     implementation 'me.yokeyword:fragmentation-swipeback:1.3.6'
-    implementation 'com.jakewharton:butterknife:9.0.0-rc1'
-    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0-rc1'
+    implementation 'com.jakewharton:butterknife:9.0.0'
+    annotationProcessor 'com.jakewharton:butterknife-compiler:9.0.0'
     implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
     //项目组件
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
