@@ -87,7 +87,7 @@ dependencies {
     implementation 'pub.devrel:easypermissions:1.2.0'
     implementation 'com.google.code.gson:gson:2.8.5'
     implementation 'com.alibaba:fastjson:1.2.54'
-    implementation 'com.alibaba:fastjson:1.2.54.android'
+    implementation 'com.alibaba:fastjson:1.1.70.android'
     implementation 'io.jsonwebtoken:jjwt:0.9.0'
     implementation 'com.github.nisrulz:screenshott:2.0.0'
     //UI
