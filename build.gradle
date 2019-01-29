@@ -8,11 +8,11 @@ buildscript {
         mavenCentral()
         maven { url "https://jitpack.io" }
         //ButterKnife编译插件路径
-//        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
     }
     dependencies {
         classpath 'com.android.tools.build:gradle:3.2.1'
-        classpath 'com.jakewharton:butterknife-gradle-plugin:10.0.0'
+//        classpath 'com.jakewharton:butterknife-gradle-plugin:10.0.0'
 //        classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT'
         classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0' // Add this line
     }
@@ -25,7 +25,7 @@ allprojects {
         mavenCentral()
         maven { url "https://jitpack.io" }
         //ButterKnife编译插件路径
-//        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
+        maven { url = 'https://oss.sonatype.org/content/repositories/snapshots/' }
     }
 }
 
