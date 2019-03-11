@@ -82,7 +82,7 @@ dependencies {
     //项目组件
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.42'
     implementation 'me.weyye.hipermission:library:1.0.7'
-    implementation 'com.github.bumptech.glide:glide:4.8.0'
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
     implementation 'com.squareup.picasso:picasso:2.5.2'
     implementation 'com.squareup.leakcanary:leakcanary-android:1.6.1'
     implementation 'com.orhanobut:logger:2.1.1'
