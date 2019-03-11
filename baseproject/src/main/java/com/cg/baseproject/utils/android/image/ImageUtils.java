@@ -1,4 +1,4 @@
-package com.cg.baseproject.utils.android;
+package com.cg.baseproject.utils.android.image;
 
 import android.app.Activity;
 import android.content.Context;
@@ -30,6 +30,8 @@ import android.util.Base64;
 import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.View;
+
+import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 
 import java.io.BufferedInputStream;
 import java.io.ByteArrayInputStream;

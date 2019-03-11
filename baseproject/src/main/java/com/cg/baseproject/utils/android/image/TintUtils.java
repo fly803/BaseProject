@@ -1,4 +1,4 @@
-package com.cg.baseproject.utils.android;
+package com.cg.baseproject.utils.android.image;
 
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
