@@ -62,7 +62,7 @@ public abstract class BaseRequestBusiness {
             } else {
                 //统一处理服务器返回值非正常结果
                 Log.d(BaseProjectConfig.TAG, "统一处理服务器返回值非正常结果apply: " + ServerReturnCode.getReasonByCode(result.getCode()));
-                return Observable.error(new ApiException(ServerReturnCode.getReasonByCode(result.getCode())));
+                return Observable.error(new ApiException(BaseProjectConfig.getApiReason(result.getCode())));
             }
           }
         })

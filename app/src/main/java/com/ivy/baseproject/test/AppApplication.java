@@ -11,6 +11,8 @@ import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * @author
@@ -35,7 +37,27 @@ public class AppApplication extends BaseApplication {
     }
 
     private void initConfig(){
-        AppConfig.init(this,false,false,AppConfig.BUBBLE,true, AppConfig.BASE_URL,AppConfig.SUCCESS_CODE,"AppConfig");
+        AppConfig.init(this,false,false,
+                AppConfig.BUBBLE,true, AppConfig.BASE_URL,AppConfig.SUCCESS_CODE,"AppConfig",getServerReturnCodeMap());
+    }
+
+    /** 
+     * 外部工程传自己的API异常码给类库工程
+     * @date   2019/3/20
+     * @version 1.0
+     * @param  * @param null
+     * @return  
+     */ 
+    private Map<Integer, String> getServerReturnCodeMap(){
+        Map<Integer, String> map = new HashMap<Integer, String>();
+        map.put(101, "消息101");
+        map.put(102, "消息102");
+        map.put(103, "消息101");
+        map.put(104, "消息102");
+        map.put(105, "消息101");
+        map.put(106, "消息102");
+        map.put(999, "不明原因999");
+        return map;
     }
     
     private void initImageLoader(){

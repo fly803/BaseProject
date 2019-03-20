@@ -2,9 +2,12 @@ package com.cg.baseproject.request.exception;
 
 import com.cg.baseproject.request.data.BaseResponse;
 
-/**
- * Created by 12262 on 2016/5/31.
- */
+/** 
+ * 
+ * @author  sam
+ * @date   2019/3/20
+ * @version 1.0
+ */ 
 public class ApiException extends Exception {
   private int code;
   private String message;
@@ -18,6 +21,7 @@ public class ApiException extends Exception {
     this.message = message;
   }
 
+  @Override
   public String getMessage() {
     return message;
   }
