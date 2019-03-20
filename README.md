@@ -286,6 +286,15 @@ APIWrapper.getInstance().login("username", "password")
     });
   }
 
+支持自定义服务器状态码和消息值，修改Demo里面的AppApplication的getServerReturnCodeMap方法
+        map.put(101, "消息101");
+        map.put(102, "消息102");
+        map.put(103, "消息101");
+        map.put(104, "消息102");
+        map.put(105, "消息101");
+        map.put(106, "消息102");
+        map.put(999, "不明原因999");
+        填入自己服务器返回的自定义状态码和消息值
 ```
 所以整个逻辑是这样的： 
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/RetrofitExceptionHandle.png) 
