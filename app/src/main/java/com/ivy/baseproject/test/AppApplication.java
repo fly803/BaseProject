@@ -58,8 +58,8 @@ public class AppApplication extends BaseApplication {
         final boolean isBaseURLInterceptorOpen = true;
         final boolean isHeaderInterceptorOpen = false;
         final int stackview = BaseProjectConfig.BUBBLE;
-        final String baseURL = "http://120.79.24.27/";
-        final int successCode = 200;
+        final String baseURL = "http://116.62.60.235/";
+        final int successCode = 0;
         final String tag = AppConfig.TAG;
         Map<Integer, String> mapServerReturnCodeMap = getServerReturnCodeMap();
         Map<String, String> mapBaseURL = getBaseURLMap();

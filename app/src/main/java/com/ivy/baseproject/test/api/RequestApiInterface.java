@@ -120,7 +120,7 @@ public interface RequestApiInterface {
      * @param  * @param 根据不同的类型，data返回不同的值
      * @return  
      */ 
-    @GET("psalms/cg")
+    @GET("test/cg")
     Observable<BaseResponse<DataBean>> psalms(@Query("param") int type);
 
     /**

@@ -1,7 +1,9 @@
 package com.cg.baseproject.request.data.pojo;
 
 /**
- * Created by Tamic on 2016-06-03.
+ * @author sam
+ * @version 1.0
+ * @date 2018/3/20
  */
 public class IpResult {
 
