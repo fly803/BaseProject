@@ -7,6 +7,6 @@ package com.ivy.baseproject.test.api;
  */
 
 public class UrlConstants {
-    public static final String searchBooksUrl = AppConfig.DOUBAN_BASE_URL +"book/search";
-    public static final String postDataUrl = AppConfig.GANK_BASE_URL +"add2gank";
+//    public static final String searchBooksUrl = AppConfig.DOUBAN_BASE_URL +"book/search";
+//    public static final String postDataUrl = AppConfig.GANK_BASE_URL +"add2gank";
 }

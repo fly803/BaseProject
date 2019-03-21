@@ -65,7 +65,7 @@ public class AppLogMessageMgr {
 
     public static void d(String msg){
         if(isDebug){
-            Log.d(" [DEBUG] --- ", msg != null ? msg : "");
+            Log.d(" [neqRequestLog] --- ", msg != null ? msg : "");
         }
     }
 

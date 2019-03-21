@@ -2,13 +2,10 @@ package com.cg.baseproject.request.retrofit;
 
 import android.util.Log;
 
-import com.cg.baseproject.base.BaseModel;
 import com.cg.baseproject.configs.BaseProjectConfig;
 import com.cg.baseproject.request.data.BaseResponse;
 import com.cg.baseproject.request.data.JsonFormatParser;
-import com.cg.baseproject.request.retrofit.factory.FastJsonConverterFactory;
 import com.cg.baseproject.request.retrofit.factory.MyGsonConverterFactory;
-import com.cg.baseproject.request.retrofit.factory.MyStringConverterFactory;
 import com.cg.baseproject.request.retrofit.interceptor.BaseUrlInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
@@ -74,7 +71,7 @@ public class RetrofitRequestManager {
 
     private void initRetrofit() {
         mRetrofit = new Retrofit.Builder()
-                .baseUrl(BaseProjectConfig.BASE_URL)//配置服务器路径
+                .baseUrl(BaseProjectConfig.baseURL)//配置服务器路径
 //                .addConverterFactory(MyStringConverterFactory.create())//配置转化库，String
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 //                .addConverterFactory(FastJsonConverterFactory.create())//配置转化库，FastJson
@@ -117,7 +114,7 @@ public class RetrofitRequestManager {
         });
         HttpLoggingInterceptor.Level level = HttpLoggingInterceptor.Level.BASIC;
         loggingInterceptor.setLevel(level);
-        if (BaseProjectConfig.DEBUG) {
+        if (BaseProjectConfig.neqRequestLog) {
             builder.addInterceptor(loggingInterceptor);//添加retrofit日志打印 } 
             //            builder.addInterceptor(new HeaderInterceptor());
             builder.addInterceptor(new BaseUrlInterceptor());

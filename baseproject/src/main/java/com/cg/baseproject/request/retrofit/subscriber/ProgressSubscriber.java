@@ -3,6 +3,8 @@ package com.cg.baseproject.request.retrofit.subscriber;
 import android.app.Dialog;
 import android.content.Context;
 import android.widget.Toast;
+
+import com.cg.baseproject.configs.BaseProjectConfig;
 import com.cg.baseproject.interfaces.SubscriberOnNextListener;
 import com.cg.baseproject.request.exception.ApiException;
 import com.cg.baseproject.request.exception.ExceptionHandle;
@@ -35,7 +37,7 @@ public class ProgressSubscriber<T> implements ProgressCancelListener, Observer<T
   public ProgressSubscriber(SubscriberOnNextListener mSubscriberOnNextListener, Context context) {
     this.mSubscriberOnNextListener = mSubscriberOnNextListener;
     this.context = context;
-    mCommonLoading = new CommonLoading(context,"数据请求中...");
+    mCommonLoading = new CommonLoading(context, BaseProjectConfig.loadingMessage);
   }
 
   private void showProgressDialog() {

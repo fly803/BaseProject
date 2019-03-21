@@ -18,6 +18,8 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.cg.baseproject.configs.BaseProjectConfig;
 import com.cg.baseproject.view.loading.CommonLoading;
 import com.roger.catloadinglibrary.CatLoadingView;
 import butterknife.ButterKnife;
@@ -102,7 +104,7 @@ public abstract class BaseSupportFragment extends SupportFragment {
                 }
             });
             mCatLoadingView = new CatLoadingView();
-            mCommonLoading = new CommonLoading(getActivity(),"数据加载中...");
+            mCommonLoading = new CommonLoading(getActivity(), BaseProjectConfig.loadingMessage);
 //            initLoading(loadingStyle);
             unbinder = ButterKnife.bind(this, mRootView);
         }

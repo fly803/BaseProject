@@ -209,14 +209,14 @@ public class MainActivityOld extends AppCompatActivity {
                 startActivity(intent);
                 break;
             case R.id.btn_rxget:
-                RequestBusiness.getInstance()
-                        .toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"),
-                                new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
-                                    @Override
-                                    public void onNext(IpResult ipResult) {
-                                        Log.d(AppConfig.TAG, "!!!onNext: "+ipResult.getCity());
-                                    }
-                                }, this));
+//                RequestBusiness.getInstance()
+//                        .toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"),
+//                                new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
+//                                    @Override
+//                                    public void onNext(IpResult ipResult) {
+//                                        Log.d(AppConfig.TAG, "!!!onNext: "+ipResult.getCity());
+//                                    }
+//                                }, this));
 
                 break;
             case R.id.btn_rxpost:

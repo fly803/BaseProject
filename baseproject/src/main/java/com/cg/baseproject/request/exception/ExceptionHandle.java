@@ -30,6 +30,8 @@ public class ExceptionHandle {
             switch (httpException.code()) {
                 case UNAUTHORIZED:
                 case FORBIDDEN:
+                    ex.message = "Forbidden";
+                    break;
                 case NOT_FOUND:
                 case REQUEST_TIMEOUT:
                 case GATEWAY_TIMEOUT:

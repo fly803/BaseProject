@@ -1,8 +1,7 @@
 package com.ivy.baseproject.test;
 
-import android.content.Context;
-
 import com.cg.baseproject.BaseApplication;
+import com.cg.baseproject.configs.BaseProjectConfig;
 import com.ivy.baseproject.test.api.AppConfig;
 import com.nostra13.universalimageloader.cache.disc.impl.UnlimitedDiscCache;
 import com.nostra13.universalimageloader.cache.memory.impl.LruMemoryCache;
@@ -29,17 +28,62 @@ public class AppApplication extends BaseApplication {
         super.onCreate();
         application = this;
         initImageLoader();
-        initConfig();
+        initBaseProjectConfig();
     }
 
     public static AppApplication getInstance() {
         return application;
     }
 
-    private void initConfig(){
-        AppConfig.init(this,false,false,
-                AppConfig.BUBBLE,true, AppConfig.BASE_URL,AppConfig.SUCCESS_CODE,"AppConfig",getServerReturnCodeMap());
+    /**
+     * 初始化BaseProject
+     * application 应用的application
+     * isLeakCanary 是否集成内存检测库LeakCanary
+     * isCrashHandel 是否集成全局Crash监控
+     * isNetRequestLog 是否打印网络请求log
+     * stackview 栈结构分析样式
+     * baseurl 网络请求baseurl
+     * successcode 网络请求成功code，例如200
+     * tag 打印log的tag
+     * loadingmessage 数据加载loading的显示语
+     * map 应用工程自定义的API异常
+     */
+    private void initBaseProjectConfig(){
+        final boolean isLeakCanary = false;
+        final boolean isCrashHandel = false;
+        final boolean isRequestLog = true;
+        final int stackview = BaseProjectConfig.BUBBLE;
+        final String baseURL = "http://120.79.24.27/";
+        final int successCode = 200;
+        final String tag = AppConfig.TAG;
+        Map<Integer, String> mapServerReturnCodeMap = getServerReturnCodeMap();
+        final String loadingMessage = "加载中...";
+        BaseProjectConfig.init(this,
+                isLeakCanary,
+                isCrashHandel,
+                isRequestLog,
+                stackview,
+                baseURL,
+                successCode,
+                tag,
+                loadingMessage,
+                mapServerReturnCodeMap);
     }
+    /*
+    public static  int widthInPx = 1080;
+    public static  int heightInPx = 1920;
+    public static final int SUCCESS_CODE = 0;
+    public static final String TAG = "BaseProject";
+    public static final boolean DEBUG = true;
+    public static final String BASE_URL = "http://120.79.24.27/";
+    public static final String baseURL = "https://gank.io/api/";
+    public static final String baseURL = "http://ip.taobao.com/";
+    public static final String baseURL = "http://172.16.7.74:4000/api/";
+    public static final String baseURL = "https://api.douban.com/";
+    public static final String DOUBAN_BASE_URL = "https://api.douban.com/";
+    public static final String GANK_BASE_URL = "https://gank.io/";
+    public static final String GIRLS_BASE_URL = "http://route.showapi.com/";
+     */
 
     /** 
      * 外部工程传自己的API异常码给类库工程

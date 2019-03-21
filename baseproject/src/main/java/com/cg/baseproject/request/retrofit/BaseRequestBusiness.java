@@ -2,7 +2,6 @@ package com.cg.baseproject.request.retrofit;
 
 import android.util.Log;
 import com.cg.baseproject.request.data.BaseResponse;
-import com.cg.baseproject.constant.ServerReturnCode;
 import com.cg.baseproject.configs.BaseProjectConfig;
 import com.cg.baseproject.request.exception.ApiException;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
@@ -57,11 +56,11 @@ public abstract class BaseRequestBusiness {
         return tObservable.flatMap(new Function<BaseResponse<T>, ObservableSource<T>>() {
           @Override public Observable<T> apply(BaseResponse<T> result) {
             //成功后交给界面处理
-            if (result.getCode() == BaseProjectConfig.SUCCESS_CODE) {
+            if (result.getCode() == BaseProjectConfig.successCode) {
                 return createData(result.getData());
             } else {
                 //统一处理服务器返回值非正常结果
-                Log.d(BaseProjectConfig.TAG, "统一处理服务器返回值非正常结果apply: " + ServerReturnCode.getReasonByCode(result.getCode()));
+                Log.d(BaseProjectConfig.TAG, "BaseRequestBusiness统一处理服务器返回值非正常结果apply: " + BaseProjectConfig.getApiReason(result.getCode()));
                 return Observable.error(new ApiException(BaseProjectConfig.getApiReason(result.getCode())));
             }
           }
