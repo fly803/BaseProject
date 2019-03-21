@@ -62,20 +62,15 @@ import retrofit2.http.Url;
  * @Query 用于Get中指定参数
  * @QueryMap 和Query使用类似
  * @Url 指定请求路径
- * 
+ * //使用@Headers添加多个请求头
+ *   @Headers({
+ *             "User-Agent:android",
+ *             "apikey:123456789",
+ *     })
  * 
  */
 
 public interface RequestApiInterface {
-    //使用@Headers添加多个请求头
-    @Headers({
-            "User-Agent:android",
-            "apikey:123456789",
-    })
-
-    @GET("service/getIpInfo.php")
-    Observable<BaseResponse<IpResult>> rxGet(@Query("ip") String ip);
-    
     /**
      * https://www.cnblogs.com/oceanfhy/p/7699379.html
      * https://api.douban.com/v2/book/search?q=%E5%B0%8F%E7%8E%8B%E5%AD%90&tag=&start=0&count=3
@@ -116,13 +111,9 @@ public interface RequestApiInterface {
             @Field("who") String who,
             @Field("type") String type,
             @Field("debug") Boolean debug);
-    
-    @GET("v2/book/search")
-    Observable<BaseResponse<BookSearchResponse>> getSearchBooksRx(
-                                                     @Query("q") String name,
-                                                     @Query("tag") String tag, 
-                                                     @Query("start") int start,
-                                                     @Query("count") int count);
+
+    @GET("service/getIpInfo.php")
+    Observable<BaseResponse<IpResult>> rxGet(@Query("ip") String ip);
 
     /** 
      * @date   2019/3/21
@@ -146,6 +137,7 @@ public interface RequestApiInterface {
     /**
      * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      * 未使用接口begin
+     * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      */
     @GET("v2/book/search")
     Observable<BaseResponse<BookSearchResponse>> observableTypeGet(
@@ -215,7 +207,8 @@ public interface RequestApiInterface {
     Observable<BaseResponse<LoginBean.DataBean>> login(@Query("loginName") String loginName, @Query("userPwd") String userPwd);
 
     /**
-     * 未使用接口end
+     * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     * * 未使用接口end
      * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      */
 }
