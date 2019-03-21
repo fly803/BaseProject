@@ -129,6 +129,7 @@ public interface RequestApiInterface {
     @GET("v2/movie/top250")
     Call<MovieSubject> getTop250(@Query("start") int start, @Query("count")int count);
 
+    //如果需要切换BaseURL也可以通过传入完整地址的方式实现
     //    @GET("http://gank.io/api/data/福利/50/1")
     @GET
     Call<GankResp> getGank(@Url String url/*, @Path("count")int count,@Path("page")int page*/);

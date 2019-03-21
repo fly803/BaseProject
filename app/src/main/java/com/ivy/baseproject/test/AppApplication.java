@@ -27,8 +27,8 @@ public class AppApplication extends BaseApplication {
     public void onCreate() {
         super.onCreate();
         application = this;
-        initImageLoader();
-        initBaseProjectConfig();
+        initImageLoader();//其他工程注释掉，不需要
+        initBaseProjectConfig();//必须初始化
     }
 
     public static AppApplication getInstance() {
