@@ -92,7 +92,6 @@ public interface RequestApiInterface {
     Call<BookSearchResponse> callTypeGet(@Query("q") String name,
                                          @Query("tag") String tag, @Query("start") int start,
                                          @Query("count") int count);
-
     /**
      url 	想要提交的网页地址 	
      desc 	对干货内容的描述 	单独的文字描述

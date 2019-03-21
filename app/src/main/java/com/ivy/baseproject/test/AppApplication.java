@@ -40,7 +40,9 @@ public class AppApplication extends BaseApplication {
      * application 应用的application
      * isLeakCanary 是否集成内存检测库LeakCanary
      * isCrashHandel 是否集成全局Crash监控
-     * isNetRequestLog 是否打印网络请求log
+     * isNetRequestInterceptor 是否打印网络请求log
+     * isBaseUrl 是否开启BaseURL过滤器
+     * isHeaderInterceptorOpen 是否开启请求头过滤器
      * stackview 栈结构分析样式
      * baseurl 网络请求baseurl
      * successcode 网络请求成功code，例如200
@@ -51,39 +53,30 @@ public class AppApplication extends BaseApplication {
     private void initBaseProjectConfig(){
         final boolean isLeakCanary = false;
         final boolean isCrashHandel = false;
-        final boolean isRequestLog = true;
+        final boolean isNetRequestInterceptorOpen = true;
+        final boolean isBaseURLInterceptorOpen = true;
+        final boolean isHeaderInterceptorOpen = false;
         final int stackview = BaseProjectConfig.BUBBLE;
         final String baseURL = "http://120.79.24.27/";
         final int successCode = 200;
         final String tag = AppConfig.TAG;
         Map<Integer, String> mapServerReturnCodeMap = getServerReturnCodeMap();
+        Map<String, String> mapBaseURL = getBaseURLMap();
         final String loadingMessage = "加载中...";
         BaseProjectConfig.init(this,
                 isLeakCanary,
                 isCrashHandel,
-                isRequestLog,
+                isNetRequestInterceptorOpen,
+                isBaseURLInterceptorOpen,
+                isHeaderInterceptorOpen,
                 stackview,
                 baseURL,
                 successCode,
                 tag,
                 loadingMessage,
-                mapServerReturnCodeMap);
+                mapServerReturnCodeMap,
+                mapBaseURL);
     }
-    /*
-    public static  int widthInPx = 1080;
-    public static  int heightInPx = 1920;
-    public static final int SUCCESS_CODE = 0;
-    public static final String TAG = "BaseProject";
-    public static final boolean DEBUG = true;
-    public static final String BASE_URL = "http://120.79.24.27/";
-    public static final String baseURL = "https://gank.io/api/";
-    public static final String baseURL = "http://ip.taobao.com/";
-    public static final String baseURL = "http://172.16.7.74:4000/api/";
-    public static final String baseURL = "https://api.douban.com/";
-    public static final String DOUBAN_BASE_URL = "https://api.douban.com/";
-    public static final String GANK_BASE_URL = "https://gank.io/";
-    public static final String GIRLS_BASE_URL = "http://route.showapi.com/";
-     */
 
     /** 
      * 外部工程传自己的API异常码给类库工程
@@ -103,6 +96,20 @@ public class AppApplication extends BaseApplication {
         map.put(999, "不明原因999");
         return map;
     }
+
+    /**
+     * 外部工程传自己的API异常码给类库工程
+     * @date   2019/3/20
+     * @version 1.0
+     * @param  * @param null
+     * @return
+     */
+    private Map<String, String> getBaseURLMap(){
+        Map<String, String> map = new HashMap<String, String>();
+        map.put("douban", "https://api.douban.com/");
+        map.put("gank", "https://gank.io/");
+        return map;
+    }
     
     private void initImageLoader(){
         // 初始化 Image-Loader
@@ -120,6 +127,22 @@ public class AppApplication extends BaseApplication {
 
         ImageLoader.getInstance().init(configuration);
     }
+    
+        /*
+    public static  int widthInPx = 1080;
+    public static  int heightInPx = 1920;
+    public static final int SUCCESS_CODE = 0;
+    public static final String TAG = "BaseProject";
+    public static final boolean DEBUG = true;
+    public static final String BASE_URL = "http://120.79.24.27/";
+    public static final String baseURL = "https://gank.io/api/";
+    public static final String baseURL = "http://ip.taobao.com/";
+    public static final String baseURL = "http://172.16.7.74:4000/api/";
+    public static final String baseURL = "https://api.douban.com/";
+    public static final String DOUBAN_BASE_URL = "https://api.douban.com/";
+    public static final String GANK_BASE_URL = "https://gank.io/";
+    public static final String GIRLS_BASE_URL = "http://route.showapi.com/";
+     */
 }
 
 

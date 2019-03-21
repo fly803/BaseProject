@@ -30,33 +30,41 @@ public class BaseProjectConfig {
      */
     public static final int BUBBLE = 2;
     public static  int successCode = 0;
-    public static  boolean neqRequestLog = true;
+    public static  boolean isNetRequestInterceptor = true;
+    public static  boolean isBaseURLInterceptor = true;
+    public static  boolean isHeaderInterceptor = false;
     public static  String baseURL = "http://ip.taobao.com/";
     public static  String TAG = "BaseProjectConfig";
-    public static final String DOUBAN_BASE_URL = "https://api.douban.com/";
-    public static final String GANK_BASE_URL = "https://gank.io/";
-
+    public static Map<Integer, String> mapServerReturnCode = new HashMap<Integer, String>();
+    public static Map<String, String> mapBaseURL = new HashMap<String, String>();
+    
     public static float baseScale = 3.0f;
     public static float widthDp = 360f;
     public static String apiReturnCode = "未知";
     public static String loadingMessage = "数据请求中...";
-    public static Map<Integer, String> mapServerReturnCode = new HashMap<Integer, String>();
+    
 
     /**
      * 初始化BaseProject
      * @param application 应用的application
      * @param isLeakCanary 是否集成内存检测库LeakCanary
      * @param isCrashHandel 是否集成全局Crash监控
-     * @param isNetRequestLog 是否打印网络请求log
+     * @param isNetRequestInterceptorOpen 是否打印网络请求log
+     * @param isBaseURLInterceptorOpen 是否开启BaseURL过滤器
+     * @param isHeaderInterceptorOpen 是否开启请求头过滤器
      * @param stackview 栈结构分析样式
      * @param baseurl 网络请求baseurl
      * @param successcode 网络请求成功code，例如200
      * @param tag 打印log的tag
      * @param loadingmessage 数据加载loading的显示语
-     * @param map 应用工程自定义的API异常
+     * @param serverReturnCodeMap 应用工程自定义的API异常
+     * @param serverReturnCodeMap 应用工程自定义的API异常
      */
-    public static void init(Application application, boolean isLeakCanary, boolean isCrashHandel, boolean isNetRequestLog,int stackview,
-                             String baseurl, int successcode, String tag,String loadingmessage, Map<Integer, String> map){
+    public static void init(Application application, 
+                            boolean isLeakCanary, boolean isCrashHandel, 
+                            boolean isNetRequestInterceptorOpen, boolean isBaseURLInterceptorOpen,boolean isHeaderInterceptorOpen,
+                            int stackview, String baseurl, int successcode, String tag,String loadingmessage, 
+                            Map<Integer, String> serverReturnCodeMap,Map<String, String> baseURLMap){
         if(isLeakCanary){
             LeakCanary.install(application);
         }
@@ -64,20 +72,23 @@ public class BaseProjectConfig {
             CrashHandler crashHandler = CrashHandler.getInstance();
             crashHandler.init(application);
         }
+        isNetRequestInterceptor = isNetRequestInterceptorOpen;
+        isBaseURLInterceptor = isBaseURLInterceptorOpen;
+        isHeaderInterceptor = isHeaderInterceptorOpen;
         initFragmentation(stackview);
-        neqRequestLog = isNetRequestLog;
         baseURL = baseurl;
         successCode = successcode;
         TAG = tag;
         loadingMessage = loadingmessage;
-        mapServerReturnCode = map;
+        mapServerReturnCode = serverReturnCodeMap;
+        mapBaseURL = baseURLMap;
     }
 
     private static void initFragmentation(int stackViewMode) {
         Fragmentation.builder()
                 // 设置 栈视图 模式为 （默认）悬浮球模式   SHAKE: 摇一摇唤出  NONE：隐藏， 仅在Debug环境生效
                 .stackViewMode(stackViewMode)
-                .debug(BaseProjectConfig.neqRequestLog) // 实际场景建议.debug(BuildConfig.neqRequestLog)
+                .debug(BaseProjectConfig.isNetRequestInterceptor) // 实际场景建议.debug(BuildConfig.isNetRequestInterceptor)
                 /**
                  * 可以获取到{@link me.yokeyword.fragmentation.exception.AfterSaveStateTransactionWarning}
                  * 在遇到After onSaveInstanceState时，不会抛出异常，会回调到下面的ExceptionHandler
@@ -113,5 +124,4 @@ public class BaseProjectConfig {
         }
         return reason;
     }
-
 }

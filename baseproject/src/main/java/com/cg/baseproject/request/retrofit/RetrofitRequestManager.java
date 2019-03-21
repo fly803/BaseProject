@@ -7,6 +7,7 @@ import com.cg.baseproject.request.data.BaseResponse;
 import com.cg.baseproject.request.data.JsonFormatParser;
 import com.cg.baseproject.request.retrofit.factory.MyGsonConverterFactory;
 import com.cg.baseproject.request.retrofit.interceptor.BaseUrlInterceptor;
+import com.cg.baseproject.request.retrofit.interceptor.HeaderInterceptor;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -114,10 +115,14 @@ public class RetrofitRequestManager {
         });
         HttpLoggingInterceptor.Level level = HttpLoggingInterceptor.Level.BASIC;
         loggingInterceptor.setLevel(level);
-        if (BaseProjectConfig.neqRequestLog) {
+        if (BaseProjectConfig.isNetRequestInterceptor) {
             builder.addInterceptor(loggingInterceptor);//添加retrofit日志打印 } 
-            //            builder.addInterceptor(new HeaderInterceptor());
+        }
+        if (BaseProjectConfig.isBaseURLInterceptor) {
             builder.addInterceptor(new BaseUrlInterceptor());
+        }
+        if (BaseProjectConfig.isHeaderInterceptor) {
+            builder.addInterceptor(new HeaderInterceptor());
         }
         OkHttpClient httpClient = builder.build();
         return httpClient;

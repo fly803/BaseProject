@@ -4,6 +4,7 @@ import com.cg.baseproject.configs.BaseProjectConfig;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Map;
 
 import okhttp3.HttpUrl;
 import okhttp3.Interceptor;
@@ -17,12 +18,6 @@ import okhttp3.Response;
  */
 
 public class BaseUrlInterceptor implements Interceptor {
-    Request.Builder builder;
-
-//    public BaseUrlInterceptor(Request.Builder builder) {
-//        this.builder = builder;
-//    }
-
     @Override
     public Response intercept(Chain chain) throws IOException {
         //获取request  
@@ -39,12 +34,10 @@ public class BaseUrlInterceptor implements Interceptor {
             //匹配获得新的BaseUrl  
             String headerValue = headerValues.get(0);
             HttpUrl newBaseUrl = null;
-            if ("gank".equals(headerValue)) {
-                newBaseUrl = HttpUrl.parse(BaseProjectConfig.GANK_BASE_URL);
-            }else if ("douban".equals(headerValue)) {
-                newBaseUrl = HttpUrl.parse(BaseProjectConfig.DOUBAN_BASE_URL);
-            }else{
-                newBaseUrl = oldHttpUrl;
+            for(Map.Entry<String, String> entry : BaseProjectConfig.mapBaseURL.entrySet()){
+                if(entry.getKey().equals(headerValue)){
+                    newBaseUrl = HttpUrl.parse(entry.getValue());
+                }
             }
             //重建新的HttpUrl，修改需要修改的url部分  
             HttpUrl newFullUrl = oldHttpUrl
