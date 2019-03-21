@@ -58,7 +58,7 @@ public class BaseProjectConfig {
      * @param tag 打印log的tag
      * @param loadingmessage 数据加载loading的显示语
      * @param serverReturnCodeMap 应用工程自定义的API异常
-     * @param serverReturnCodeMap 应用工程自定义的API异常
+     * @param baseURLMap 应用工程自己的多个BaseURL
      */
     public static void init(Application application, 
                             boolean isLeakCanary, boolean isCrashHandel, 

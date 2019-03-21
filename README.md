@@ -295,30 +295,47 @@ APIWrapper.getInstance().login("username", "password")
         map.put(106, "消息102");
         map.put(999, "不明原因999");
         填入自己服务器返回的自定义状态码和消息值
+        
+支持自定义多个BaseURl值，修改Demo里面的AppApplication的getBaseURLMap方法
+                 map.put("douban", "https://api.douban.com/");
+                 map.put("gank", "https://gank.io/");
 ```
 所以整个逻辑是这样的： 
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/RetrofitExceptionHandle.png) 
 请求接口和数据解析都可能出错，所以在这两层进行错误处理。为了更好的解耦，我们通过拦截器拦截错误，然后根据错误类型分发信息。
 
 ###  2.集成Retrofit封装使用方法
-BaseProject测试工程app工程中的api文件夹拷贝到自己的工程目录下，包含四个文件：
+BaseProject测试工程app工程中的api文件夹拷贝到自己的工程目录下，包含两个文件，AppConfig和RequestApiInterface,另外2个文件已经废弃：
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/api.png) 
-
-在AppConfig里面进行相应的baseurl的设置。
 在RequestApiInterface进行相应的接口设置。
-UrlConstants用来拼接接口字符串。
+拷贝APPApplication到自己的工程目录进行相应的设置
+ /**
+     * 初始化BaseProject
+     * @param application 应用的application
+     * @param isLeakCanary 是否集成内存检测库LeakCanary
+     * @param isCrashHandel 是否集成全局Crash监控
+     * @param isNetRequestInterceptorOpen 是否打印网络请求log
+     * @param isBaseURLInterceptorOpen 是否开启BaseURL过滤器
+     * @param isHeaderInterceptorOpen 是否开启请求头过滤器
+     * @param stackview 栈结构分析样式
+     * @param baseurl 网络请求baseurl
+     * @param successcode 网络请求成功code，例如200
+     * @param tag 打印log的tag
+     * @param loadingmessage 数据加载loading的显示语
+     * @param serverReturnCodeMap 应用工程自定义的API异常
+     * @param baseURLMap 应用工程自己的多个BaseURL
+     */
 
 进行如上操作好，就可以调用相应的接口了，调用方式如下所示。
 ```Java
- RequestBusiness.getInstance()
-.toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"),
-        new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
-            @Override
-            public void onNext(IpResult ipResult) {
-                Log.d(AppConfig.TAG, "!!!onNext: "+ipResult.getCity());
-                Snackbar.make(mRecyclerView, "postRequest:" + ipResult.getCity(), Snackbar.LENGTH_SHORT).show();
-            }
-        }, this));
+ RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().rxGet("220.181.90.8"), 
+                 new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
+             @Override
+             public void onNext(IpResult ipResult) {
+                 Log.d(AppConfig.TAG, "!!!onNext: " + ipResult.getCity());
+                 Snackbar.make(mRvDataIndex, "callTypePost:" + ipResult.getCity(), Snackbar.LENGTH_SHORT).show();
+             }
+         }, this));
 ```
 由于统一对异常和错误进行了封装，所以只写onNext方法就可以了。
 

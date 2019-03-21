@@ -48,7 +48,8 @@ public class AppApplication extends BaseApplication {
      * successcode 网络请求成功code，例如200
      * tag 打印log的tag
      * loadingmessage 数据加载loading的显示语
-     * map 应用工程自定义的API异常
+     * mapServerReturnCodeMap 应用工程自定义的API异常
+     * mapBaseURL 应用工程多个自己的BaseURL
      */
     private void initBaseProjectConfig(){
         final boolean isLeakCanary = false;
