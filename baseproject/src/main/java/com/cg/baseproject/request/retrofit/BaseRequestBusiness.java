@@ -22,9 +22,6 @@ import io.reactivex.schedulers.Schedulers;
  */
 
 public abstract class BaseRequestBusiness {
-    public interface BaseRequestBusinessHolder{
-        void getAPI();
-    }
     /**
      * 所以调研接口，统一调用这个方法
      * @param ob

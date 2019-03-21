@@ -115,25 +115,25 @@ public class MainActivity extends AppCompatActivity {
 
     private List<MainInterfaceItem> initData() {
         MainInterfaceItem mainInterfaceItem0 = new MainInterfaceItem();
-        mainInterfaceItem0.setName("Get请求");
-        mainInterfaceItem0.setMethod("getRequest");
+        mainInterfaceItem0.setName("Call方式Get请求");
+        mainInterfaceItem0.setMethod("callTypeGet");
         mainInterfaceItem0.setBackgroundColor(BG_COLORS[0]);
         listMainInterfaceItem.add(mainInterfaceItem0);
 
         MainInterfaceItem mainInterfaceItem1 = new MainInterfaceItem();
-        mainInterfaceItem1.setName("Post请求");
-        mainInterfaceItem1.setMethod("postRequest");
+        mainInterfaceItem1.setName("Call方式Post请求");
+        mainInterfaceItem1.setMethod("callTypePost");
         mainInterfaceItem1.setBackgroundColor(BG_COLORS[1]);
         listMainInterfaceItem.add(mainInterfaceItem1);
 
         MainInterfaceItem mainInterfaceItem2 = new MainInterfaceItem();
-        mainInterfaceItem2.setName("RxGet请求");
+        mainInterfaceItem2.setName("Observable方式RxGet请求");
         mainInterfaceItem2.setMethod("rxGet");
         mainInterfaceItem2.setBackgroundColor(BG_COLORS[2]);
         listMainInterfaceItem.add(mainInterfaceItem2);
 
         MainInterfaceItem mainInterfaceItem3 = new MainInterfaceItem();
-        mainInterfaceItem3.setName("RxPost请求");
+        mainInterfaceItem3.setName("Observable方式RxPost请求");
         mainInterfaceItem3.setMethod("rxPost");
         mainInterfaceItem3.setBackgroundColor(BG_COLORS[3]);
         listMainInterfaceItem.add(mainInterfaceItem3);
@@ -212,11 +212,11 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void runMethod(String methodName) {
         switch (methodName) {
-            case "getRequest":
-                getRequest();
+            case "callTypeGet":
+                callTypeGet();
                 break;
-            case "postRequest":
-                postRequest();
+            case "callTypePost":
+                callTypePost();
                 break;
             case "rxGet":
                 rxGet();
@@ -335,12 +335,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void rxGet() {
-        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"), 
+        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().rxGet("220.181.90.8"), 
                 new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
             @Override
             public void onNext(IpResult ipResult) {
                 Log.d(AppConfig.TAG, "!!!onNext: " + ipResult.getCity());
-                Snackbar.make(mRvDataIndex, "postRequest:" + ipResult.getCity(), Snackbar.LENGTH_SHORT).show();
+                Snackbar.make(mRvDataIndex, "callTypePost:" + ipResult.getCity(), Snackbar.LENGTH_SHORT).show();
             }
         }, this));
 
@@ -351,39 +351,39 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-    private void postRequest() {
+    private void callTypePost() {
         RequestBusiness.getInstance().getAPI().
-                postData("https://www.baidu.com", "desc", "content", "Android", true).
+                callTypePost("https://www.baidu.com", "desc", "content", "Android", true).
                 enqueue(new Callback<Object>() {
                     @Override
                     public void onResponse(Call<Object> call, Response<Object> response) {
                         if (response.isSuccessful()) {
                             //对数据的处理操作
-                            Log.d("cg", "onResponse postData: " + response.body().toString());
-                            Snackbar.make(mRvDataIndex, "postRequest:" + response.body().toString(), Snackbar.LENGTH_SHORT).show();
+                            Log.d("cg", "onResponse callTypePost: " + response.body().toString());
+                            Snackbar.make(mRvDataIndex, "callTypePost:" + response.body().toString(), Snackbar.LENGTH_SHORT).show();
                         } else {
                             //请求出现错误例如：404 或者 500
-                            Log.d("cg", "onResponse postData else: " + " code:" + response.code());
-                            //                                  Log.d("cg", "onResponse postData else: " + response.headers().toString());
+                            Log.d("cg", "onResponse callTypePost else: " + " code:" + response.code());
+                            //                                  Log.d("cg", "onResponse callTypePost else: " + response.headers().toString());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Object> call, Throwable t) {
-                        Log.d("cg", "onFailure postData: ");
+                        Log.d("cg", "onFailure callTypePost: ");
                     }
 
                 });
     }
 
-    private void getRequest() {
+    private void callTypeGet() {
         /**
          * 同步请求，这里需要注意的是网络请求一定要在子线程中完成，不能直接在UI线程执行，不然会crash
          * BookSearchResponse response = call.execute().body();
          * https://api.douban.com/v2/book/search?q=%E5%B0%8F%E7%8E%8B%E5%AD%90&tag=&start=0&count=3
          */
         RequestBusiness.getInstance().getAPI().
-                getSearchBooks("小王子", "", 0, 3).
+                callTypeGet("小王子", "", 0, 3).
                 enqueue(new Callback<BookSearchResponse>() {
                     @Override
                     public void onResponse(Call<BookSearchResponse> call, Response<BookSearchResponse> response) {
@@ -396,8 +396,8 @@ public class MainActivity extends AppCompatActivity {
                          */
                         if (response.isSuccessful()) {
                             //对数据的处理操作
-                            Log.d("cg", "onResponse getSearchBooks: " + response.body().getTotal());
-                            Snackbar.make(mRvDataIndex, "getRequest:" + response.body().getTotal(), Snackbar.LENGTH_SHORT).show();
+                            Log.d("cg", "onResponse callTypeGet: " + response.body().getTotal());
+                            Snackbar.make(mRvDataIndex, "callTypeGet:" + response.body().getTotal(), Snackbar.LENGTH_SHORT).show();
                         } else {
                             //请求出现错误例如：404 或者 500
                         }
@@ -418,7 +418,7 @@ public class MainActivity extends AppCompatActivity {
                          当连接服务器时出现网络异常 或者 在创建请求、处理响应结果 的时候突发异常 都会被调用。
                          通过自己测试发现了几种调用情况：GSON解析数据转换错误，手机断网或者网络异常。
                          */
-                        Log.d("cg", "onFailure getSearchBooks: ");
+                        Log.d("cg", "onFailure callTypeGet: ");
                     }
                 });
     }

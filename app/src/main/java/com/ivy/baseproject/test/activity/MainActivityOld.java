@@ -69,22 +69,22 @@ public class MainActivityOld extends AppCompatActivity {
     private void interfaceTest() {
         Log.d("cg", "interfaceTest: ");
         RequestBusiness.getInstance().getAPI().
-                postData("https://gank.io/api/add2gank", "content", "rating", "android", true).
+                callTypePost("https://gank.io/api/add2gank", "content", "rating", "android", true).
                 enqueue(new Callback<Object>() {
                     @Override
                     public void onResponse(Call<Object> call, Response<Object> response) {
                         if (response.isSuccessful()) {
                             //对数据的处理操作
-                            Log.d("cg", "onResponse postData: " + response.body().toString());
+                            Log.d("cg", "onResponse callTypePost: " + response.body().toString());
                         } else {
                             //请求出现错误例如：404 或者 500
-                            Log.d("cg", "onResponse postData else: " + response.body());
+                            Log.d("cg", "onResponse callTypePost else: " + response.body());
                         }
                     }
 
                     @Override
                     public void onFailure(Call<Object> call, Throwable t) {
-                        Log.d("cg", "onFailure postData: ");
+                        Log.d("cg", "onFailure callTypePost: ");
                     }
 
                 });
@@ -133,7 +133,7 @@ public class MainActivityOld extends AppCompatActivity {
                  * https://api.douban.com/v2/book/search?q=%E5%B0%8F%E7%8E%8B%E5%AD%90&tag=&start=0&count=3
                  */
                 RequestBusiness.getInstance().getAPI().
-                        getSearchBooks("小王子", "", 0, 3).
+                        callTypeGet("小王子", "", 0, 3).
                         enqueue(new Callback<BookSearchResponse>() {
                     @Override
                     public void onResponse(Call<BookSearchResponse> call, Response<BookSearchResponse> response) {
@@ -146,7 +146,7 @@ public class MainActivityOld extends AppCompatActivity {
                          */
                         if(response.isSuccessful()){
                             //对数据的处理操作
-                            Log.d("cg", "onResponse getSearchBooks: "+response.body().getTotal());
+                            Log.d("cg", "onResponse callTypeGet: "+response.body().getTotal());
                             mBtnGet.setText(String.valueOf(response.body().getTotal()));
                         }else{
                             //请求出现错误例如：404 或者 500
@@ -167,13 +167,13 @@ public class MainActivityOld extends AppCompatActivity {
                      当连接服务器时出现网络异常 或者 在创建请求、处理响应结果 的时候突发异常 都会被调用。
                      通过自己测试发现了几种调用情况：GSON解析数据转换错误，手机断网或者网络异常。
                      */
-                        Log.d("cg", "onFailure getSearchBooks: ");
+                        Log.d("cg", "onFailure callTypeGet: ");
                     }
                 });
                 break;
             case R.id.btn_post:
                 RequestBusiness.getInstance().getAPI().
-                        postData("https://www.baidu.com", 
+                        callTypePost("https://www.baidu.com", 
                                 "desc", 
                                 "content", 
                                 "Android", 
@@ -183,18 +183,18 @@ public class MainActivityOld extends AppCompatActivity {
                             public void onResponse(Call<Object> call, Response<Object> response) {
                                 if (response.isSuccessful()) {
                                     //对数据的处理操作
-                                    Log.d("cg", "onResponse postData: " + response.body().toString());
+                                    Log.d("cg", "onResponse callTypePost: " + response.body().toString());
                                     mBtnPost.setText("post");
                                 } else {
                                     //请求出现错误例如：404 或者 500
-                                    Log.d("cg", "onResponse postData else: " + " code:"+response.code());
-//                                  Log.d("cg", "onResponse postData else: " + response.headers().toString());
+                                    Log.d("cg", "onResponse callTypePost else: " + " code:"+response.code());
+//                                  Log.d("cg", "onResponse callTypePost else: " + response.headers().toString());
                                 }
                             }
 
                             @Override
                             public void onFailure(Call<Object> call, Throwable t) {
-                                Log.d("cg", "onFailure postData: ");
+                                Log.d("cg", "onFailure callTypePost: ");
                             }
 
                         });
@@ -205,7 +205,7 @@ public class MainActivityOld extends AppCompatActivity {
                 break;
             case R.id.btn_rxget:
 //                RequestBusiness.getInstance()
-//                        .toSubscribe(RequestBusiness.getInstance().getAPI().demoRxJava2("220.181.90.8"),
+//                        .toSubscribe(RequestBusiness.getInstance().getAPI().rxGet("220.181.90.8"),
 //                                new ProgressSubscriber<BaseResponse<IpResult>>(new SubscriberOnNextListener<IpResult>() {
 //                                    @Override
 //                                    public void onNext(IpResult ipResult) {

@@ -15,9 +15,7 @@ import com.cg.baseproject.request.data.response.NotLoginResponse;
 import com.ivy.baseproject.test.bean.response.AirForecast;
 import com.ivy.baseproject.test.bean.response.EnvProportion;
 import com.ivy.baseproject.test.bean.response.LoginBean;
-
 import java.util.List;
-
 import io.reactivex.Observable;
 import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
@@ -76,20 +74,8 @@ public interface RequestApiInterface {
     })
 
     @GET("service/getIpInfo.php")
-    Observable<BaseResponse<IpResult>> demoRxJava2(@Query("ip") String ip);
+    Observable<BaseResponse<IpResult>> rxGet(@Query("ip") String ip);
     
-    @POST("user/{userName}")
-    Call<WrapperRspEntity<User>> loginReq(@Path("userName") String userName, @Field("pwd") String pwd);
-
-    /**
-     * @GET注解就表示get请求，@Query表示请求参数，将会以key=value的方式拼接在url后面
-     * @param start
-     * @param count
-     * @return
-     */
-    @GET("top250")
-    Observable<HttpResult<List<Subject>>> getTopMovie(@Query("start") int start, @Query("count") int count);
-
     /**
      * https://www.cnblogs.com/oceanfhy/p/7699379.html
      * https://api.douban.com/v2/book/search?q=%E5%B0%8F%E7%8E%8B%E5%AD%90&tag=&start=0&count=3
@@ -108,22 +94,9 @@ public interface RequestApiInterface {
     @Headers({"baseurl:douban"})
 //    @GET(UrlConstants.searchBooksUrl)
     @GET("v2/book/search")
-    Call<BookSearchResponse> getSearchBooks(@Query("q") String name,
-                                            @Query("tag") String tag, @Query("start") int start,
-                                            @Query("count") int count);
-    @GET("v2/book/search")
-    Observable<BaseResponse<BookSearchResponse>> getSearchBooksRx(
-                                                     @Query("q") String name,
-                                                     @Query("tag") String tag, 
-                                                     @Query("start") int start,
-                                                     @Query("count") int count);
-
-    @GET("v2/movie/top250")
-    Call<MovieSubject> getTop250(@Query("start") int start, @Query("count")int count);
-
-//    @GET("http://gank.io/api/data/福利/50/1")
-    @GET
-    Call<GankResp> getGank(@Url String url/*, @Path("count")int count,@Path("page")int page*/);
+    Call<BookSearchResponse> callTypeGet(@Query("q") String name,
+                                         @Query("tag") String tag, @Query("start") int start,
+                                         @Query("count") int count);
 
     /**
      url 	想要提交的网页地址 	
@@ -136,13 +109,62 @@ public interface RequestApiInterface {
     @FormUrlEncoded
     @Headers({"baseurl:gank"})
     @POST("api/add2gank")
-//    @POST(UrlConstants.postDataUrl)
-    Call<Object> postData(  
-                              @Field("url") String url,
-                              @Field("desc") String desc,
-                              @Field("who") String who,
-                              @Field("type") String type,
-                              @Field("debug") Boolean debug);
+    //    @POST(UrlConstants.postDataUrl)
+    Call<Object> callTypePost(
+            @Field("url") String url,
+            @Field("desc") String desc,
+            @Field("who") String who,
+            @Field("type") String type,
+            @Field("debug") Boolean debug);
+    
+    @GET("v2/book/search")
+    Observable<BaseResponse<BookSearchResponse>> getSearchBooksRx(
+                                                     @Query("q") String name,
+                                                     @Query("tag") String tag, 
+                                                     @Query("start") int start,
+                                                     @Query("count") int count);
+
+    /** 
+     * @date   2019/3/21
+     * @version 1.0
+     * @param  * @param 根据不同的类型，data返回不同的值
+     * @return  
+     */ 
+    @GET("psalms/cg")
+    Observable<BaseResponse<DataBean>> psalms(@Query("param") int type);
+
+    /**
+     * 网络图片接口
+     */
+    @GET("v2/movie/top250")
+    Call<MovieSubject> getTop250(@Query("start") int start, @Query("count")int count);
+
+    //    @GET("http://gank.io/api/data/福利/50/1")
+    @GET
+    Call<GankResp> getGank(@Url String url/*, @Path("count")int count,@Path("page")int page*/);
+
+    /**
+     * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     * 未使用接口begin
+     */
+    @GET("v2/book/search")
+    Observable<BaseResponse<BookSearchResponse>> observableTypeGet(
+            @Query("q") String name,
+            @Query("tag") String tag,
+            @Query("start") int start,
+            @Query("count") int count);
+    
+    @POST("user/{userName}")
+    Call<WrapperRspEntity<User>> loginReq(@Path("userName") String userName, @Field("pwd") String pwd);
+
+    /**
+     * @GET注解就表示get请求，@Query表示请求参数，将会以key=value的方式拼接在url后面
+     * @param start
+     * @param count
+     * @return
+     */
+    @GET("top250")
+    Observable<HttpResult<List<Subject>>> getTopMovie(@Query("start") int start, @Query("count") int count);
     
     @FormUrlEncoded
     @POST("v2/book/reviews")
@@ -182,9 +204,6 @@ public interface RequestApiInterface {
                              @Field("showapi_sign") String showapi_sign,
                              @Field("num") int num ,
                              @Field("page") int page);
-
-    @GET("psalms/cg")
-    Observable<BaseResponse<DataBean>> psalms(@Query("param") int ip);
     
     @GET("getEnvProportion")
     Observable<BaseResponse<EnvProportion>> getEnvProportion();
@@ -194,4 +213,9 @@ public interface RequestApiInterface {
 
     @GET("applogin/login.action")
     Observable<BaseResponse<LoginBean.DataBean>> login(@Query("loginName") String loginName, @Query("userPwd") String userPwd);
+
+    /**
+     * 未使用接口end
+     * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+     */
 }

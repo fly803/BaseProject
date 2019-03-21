@@ -82,7 +82,7 @@ public class MovieListActivity extends AppCompatActivity {
                          当连接服务器时出现网络异常 或者 在创建请求、处理响应结果 的时候突发异常 都会被调用。
                          通过自己测试发现了几种调用情况：GSON解析数据转换错误，手机断网或者网络异常。
                          */
-                        Log.d("cg", "onFailure getSearchBooks: ");
+                        Log.d("cg", "onFailure callTypeGet: ");
                     }
                 });
 
