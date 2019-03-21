@@ -1,4 +1,4 @@
-package com.ivy.baseproject.test.api;
+package com.ivy.baseproject.test.deprecated;
 
 /**
  * @author

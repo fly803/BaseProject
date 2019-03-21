@@ -1,4 +1,4 @@
-package com.ivy.baseproject.test.bean;
+package com.ivy.baseproject.test.bean.response;
 
 import com.google.gson.annotations.SerializedName;
 
@@ -7,7 +7,7 @@ import com.google.gson.annotations.SerializedName;
  * @version 1.0
  * @date 2018/8/3
  */
-public class Bean {
+public class LoginBean {
     /**
      * data : {"sessionId:":"D594D7D4FB2FBA0FF6C0CC073C48CC96"}
      * message : 登录成功

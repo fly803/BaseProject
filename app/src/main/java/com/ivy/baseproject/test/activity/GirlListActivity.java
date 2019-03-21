@@ -12,7 +12,7 @@ import android.view.View;
 import com.cg.baseproject.request.data.pojo.GankResp;
 import com.ivy.baseproject.test.R;
 import com.ivy.baseproject.test.adapter.GanKAdapter;
-import com.ivy.baseproject.test.api.RequestBusiness;
+import com.ivy.baseproject.test.deprecated.RequestBusiness;
 
 import retrofit2.Call;
 import retrofit2.Callback;

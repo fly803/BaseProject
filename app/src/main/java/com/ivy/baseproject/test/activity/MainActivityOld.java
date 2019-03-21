@@ -8,17 +8,12 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 
-import com.cg.baseproject.request.data.BaseResponse;
-import com.cg.baseproject.interfaces.SubscriberOnNextListener;
-import com.cg.baseproject.request.data.pojo.IpResult;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
-import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
 import com.cg.baseproject.utils.android.AdbUtils;
 import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 import com.ivy.baseproject.test.AppApplication;
 import com.ivy.baseproject.test.R;
-import com.ivy.baseproject.test.api.AppConfig;
-import com.ivy.baseproject.test.api.RequestBusiness;
+import com.ivy.baseproject.test.deprecated.RequestBusiness;
 
 import java.util.List;
 

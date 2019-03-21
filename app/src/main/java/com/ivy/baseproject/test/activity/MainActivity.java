@@ -20,16 +20,15 @@ import com.cg.baseproject.request.data.BaseResponse;
 import com.cg.baseproject.request.data.DataBean;
 import com.cg.baseproject.request.data.pojo.IpResult;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
+import com.cg.baseproject.request.retrofit.RequestAPI;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
-import com.cg.baseproject.utils.android.EasyPermissionUtils;
 import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.ivy.baseproject.test.R;
 import com.ivy.baseproject.test.adapter.MainInterfaceListAdapter;
 import com.ivy.baseproject.test.api.AppConfig;
-import com.ivy.baseproject.test.api.RequestBusiness;
-import com.ivy.baseproject.test.bean.response.AirForecast;
-import com.ivy.baseproject.test.bean.response.EnvProportion;
+import com.ivy.baseproject.test.api.RequestApiInterface;
+import com.ivy.baseproject.test.deprecated.RequestBusiness;
 import com.ivy.baseproject.test.sample.SampleActivity;
 import com.ivy.baseproject.test.sample.SampleFragmentActivity;
 import com.ivy.baseproject.test.view.decoration.swtichgridlist.MainInterfaceItem;
@@ -268,14 +267,23 @@ public class MainActivity extends AppCompatActivity {
                 Snackbar.make(mRvDataIndex, "getAirForecast:" + airForecast.getMsg(), Snackbar.LENGTH_SHORT).show();
             }
         }, this));*/
-        RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().psalms(3),
+   /*     RequestBusiness.getInstance().toSubscribe(RequestBusiness.getInstance().getAPI().psalms(3),
                 new ProgressSubscriber<BaseResponse<DataBean>>(new SubscriberOnNextListener<DataBean>() {
                     @Override
                     public void onNext(DataBean envProportion) {
                         Log.d("cg", "MainActivity onNext: "+envProportion.toString());
                         Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.toString(), Snackbar.LENGTH_SHORT).show();
                     }
-                }, this));
+                }, this));*/
+
+        RequestAPI.getInstance().toSubscribe(((RequestApiInterface) (RequestAPI.getInstance().getApi(RequestApiInterface.class))).psalms(3),
+                new ProgressSubscriber<BaseResponse<DataBean>>(new SubscriberOnNextListener<DataBean>() {
+                    @Override
+                    public void onNext(DataBean envProportion) {
+                        Log.d("cg", "MainActivity onNext: " + envProportion.toString());
+                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.toString(), Snackbar.LENGTH_SHORT).show();
+                    }
+                }, MainActivity.this));
     }
     
     private void uiWidgetest() {

@@ -1,7 +1,8 @@
-package com.ivy.baseproject.test.api;
+package com.ivy.baseproject.test.deprecated;
 
 import com.cg.baseproject.request.retrofit.BaseRequestBusiness;
 import com.cg.baseproject.request.retrofit.RetrofitRequestManager;
+import com.ivy.baseproject.test.api.RequestApiInterface;
 
 /**
  * @author sam

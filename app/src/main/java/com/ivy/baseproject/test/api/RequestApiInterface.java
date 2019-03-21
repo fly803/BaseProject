@@ -14,6 +14,7 @@ import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.data.response.NotLoginResponse;
 import com.ivy.baseproject.test.bean.response.AirForecast;
 import com.ivy.baseproject.test.bean.response.EnvProportion;
+import com.ivy.baseproject.test.bean.response.LoginBean;
 
 import java.util.List;
 
@@ -190,4 +191,7 @@ public interface RequestApiInterface {
 
     @GET("getAirForecast")
     Observable<BaseResponse<AirForecast>> getAirForecast();
+
+    @GET("applogin/login.action")
+    Observable<BaseResponse<LoginBean.DataBean>> login(@Query("loginName") String loginName, @Query("userPwd") String userPwd);
 }

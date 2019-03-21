@@ -11,7 +11,7 @@ import android.view.View;
 import com.cg.baseproject.request.data.pojo.MovieSubject;
 import com.ivy.baseproject.test.R;
 import com.ivy.baseproject.test.adapter.MovieAdapter;
-import com.ivy.baseproject.test.api.RequestBusiness;
+import com.ivy.baseproject.test.deprecated.RequestBusiness;
 import com.ivy.baseproject.test.view.decoration.MovieDecoration;
 
 import retrofit2.Call;
