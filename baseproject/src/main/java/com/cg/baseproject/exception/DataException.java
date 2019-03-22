@@ -16,7 +16,8 @@ public class DataException extends Exception {
 		return errorMessage;
 	}
 
-	public String getMessage() {
+	@Override
+    public String getMessage() {
 		return errorMessage;
 	}
 }

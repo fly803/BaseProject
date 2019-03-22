@@ -23,8 +23,9 @@ public class MyGsonConverterFactory extends Converter.Factory {
     private final Gson gson;
 
     private MyGsonConverterFactory(Gson gson) {
-        if (gson == null)
+        if (gson == null) {
             throw new NullPointerException("gson == null");
+        }
         this.gson = gson;
     }
 

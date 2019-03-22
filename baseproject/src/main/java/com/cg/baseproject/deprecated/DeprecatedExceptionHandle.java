@@ -1,6 +1,10 @@
-package com.cg.baseproject.request.exception;
+package com.cg.baseproject.deprecated;
 
 import android.net.ParseException;
+
+import com.cg.baseproject.request.exception.ApiException;
+import com.cg.baseproject.request.exception.ERROR;
+import com.cg.baseproject.request.exception.ServerException;
 import com.google.gson.JsonParseException;
 import org.json.JSONException;
 import java.net.ConnectException;
@@ -12,7 +16,8 @@ import retrofit2.HttpException;
  * @date 2018/3/14
  */
 
-public class ExceptionHandle {
+
+public class DeprecatedExceptionHandle {
     private static final int UNAUTHORIZED = 401;
     private static final int FORBIDDEN = 403;
     private static final int NOT_FOUND = 404;

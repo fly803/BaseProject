@@ -20,6 +20,8 @@ import com.cg.baseproject.request.data.BaseResponse;
 import com.cg.baseproject.request.data.DataBean;
 import com.cg.baseproject.request.data.pojo.IpResult;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
+import com.cg.baseproject.request.data.response.myinterface.MyResponse;
+import com.cg.baseproject.request.data.response.myinterface.MyResponseException;
 import com.cg.baseproject.request.retrofit.RequestAPI;
 import com.cg.baseproject.request.retrofit.subscriber.ProgressSubscriber;
 import com.cg.baseproject.utils.android.ResolutionAdaptationUtils;
@@ -277,11 +279,11 @@ public class MainActivity extends AppCompatActivity {
                 }, this));*/
 
         RequestAPI.getInstance().toSubscribe(((RequestApiInterface) (RequestAPI.getInstance().getApi(RequestApiInterface.class))).psalms(3),
-                new ProgressSubscriber<BaseResponse<DataBean>>(new SubscriberOnNextListener<DataBean>() {
+                new ProgressSubscriber<BaseResponse<MyResponse.DataBean>>(new SubscriberOnNextListener<MyResponse.DataBean>() {
                     @Override
-                    public void onNext(DataBean envProportion) {
-                        Log.d("cg", "MainActivity onNext: " + envProportion.toString());
-                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + envProportion.toString(), Snackbar.LENGTH_SHORT).show();
+                    public void onNext(MyResponse.DataBean myResponseException) {
+                        Log.d(AppConfig.TAG, "MainActivity onNext: " + myResponseException.getName());
+                        Snackbar.make(mRvDataIndex, "getEnvProportion:" + myResponseException.getPhone(), Snackbar.LENGTH_SHORT).show();
                     }
                 }, MainActivity.this));
     }
@@ -400,6 +402,7 @@ public class MainActivity extends AppCompatActivity {
                             Snackbar.make(mRvDataIndex, "callTypeGet:" + response.body().getTotal(), Snackbar.LENGTH_SHORT).show();
                         } else {
                             //请求出现错误例如：404 或者 500
+                            Snackbar.make(mRvDataIndex, "callTypeGet:" + +response.code()+response.message(), Snackbar.LENGTH_SHORT).show();
                         }
                         /*try {
                             throw new NullPointerException();

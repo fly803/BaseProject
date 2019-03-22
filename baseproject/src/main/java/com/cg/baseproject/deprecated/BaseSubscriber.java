@@ -1,11 +1,11 @@
-package com.cg.baseproject.request.retrofit.subscriber;
+package com.cg.baseproject.deprecated;
 
 import android.content.Context;
 import android.util.Log;
 
 import com.cg.baseproject.BaseApplication;
 import com.cg.baseproject.request.exception.ERROR;
-import com.cg.baseproject.request.exception.ExceptionHandle;
+import com.cg.baseproject.deprecated.DeprecatedExceptionHandle;
 import com.cg.baseproject.utils.android.NetworkUtils;
 import com.cg.baseproject.utils.android.ToastUtils;
 
@@ -54,10 +54,10 @@ public abstract class BaseSubscriber<T> implements Subscriber<T> {
     public void onError(Throwable e) {
         Log.e(TAG, e.getMessage());
         // todo error somthing
-        if(e instanceof ExceptionHandle.ResponeThrowable){
-            onError((ExceptionHandle.ResponeThrowable)e);
+        if(e instanceof DeprecatedExceptionHandle.ResponeThrowable){
+            onError((DeprecatedExceptionHandle.ResponeThrowable)e);
         } else {
-            onError(new ExceptionHandle.ResponeThrowable(e, ERROR.UNKNOWN));
+            onError(new DeprecatedExceptionHandle.ResponeThrowable(e, ERROR.UNKNOWN));
         }
         onComplete();
     }

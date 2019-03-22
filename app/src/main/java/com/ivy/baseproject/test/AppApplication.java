@@ -99,7 +99,7 @@ public class AppApplication extends BaseApplication {
     }
 
     /**
-     * 外部工程传自己的API异常码给类库工程
+     * 外部工程传如果需要多BaseURL的时候，传需要切换的BaseURL给类库工程
      * @date   2019/3/20
      * @version 1.0
      * @param  * @param null

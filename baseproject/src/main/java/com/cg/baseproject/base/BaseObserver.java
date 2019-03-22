@@ -8,7 +8,7 @@ package com.cg.baseproject.base;
 
 import com.cg.baseproject.BaseApplication;
 import com.cg.baseproject.request.exception.ERROR;
-import com.cg.baseproject.request.exception.ExceptionHandle;
+import com.cg.baseproject.deprecated.DeprecatedExceptionHandle;
 import com.cg.baseproject.utils.android.NetworkUtils;
 import com.cg.baseproject.utils.android.ToastUtils;
 
@@ -51,10 +51,10 @@ public abstract class BaseObserver<T> implements Observer<BaseObserver<T>> {
         //        Log.w(TAG, "onError: ", );这里可以打印错误信息  
         onRequestEnd();
         try {
-            if(e instanceof ExceptionHandle.ResponeThrowable){
-                onError((ExceptionHandle.ResponeThrowable)e);
+            if(e instanceof DeprecatedExceptionHandle.ResponeThrowable){
+                onError((DeprecatedExceptionHandle.ResponeThrowable)e);
             } else {
-                onError(new ExceptionHandle.ResponeThrowable(e, ERROR.UNKNOWN));
+                onError(new DeprecatedExceptionHandle.ResponeThrowable(e, ERROR.UNKNOWN));
             }
         } catch (Exception e1) {
             e1.printStackTrace();

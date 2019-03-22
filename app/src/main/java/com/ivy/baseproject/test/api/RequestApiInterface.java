@@ -12,6 +12,7 @@ import com.cg.baseproject.request.data.pojo.User;
 import com.cg.baseproject.request.data.pojo.WrapperRspEntity;
 import com.cg.baseproject.request.data.response.BookSearchResponse;
 import com.cg.baseproject.request.data.response.NotLoginResponse;
+import com.cg.baseproject.request.data.response.myinterface.MyResponse;
 import com.ivy.baseproject.test.bean.response.AirForecast;
 import com.ivy.baseproject.test.bean.response.EnvProportion;
 import com.ivy.baseproject.test.bean.response.LoginBean;
@@ -121,7 +122,7 @@ public interface RequestApiInterface {
      * @return  
      */ 
     @GET("test/cg")
-    Observable<BaseResponse<DataBean>> psalms(@Query("param") int type);
+    Observable<BaseResponse<MyResponse.DataBean>> psalms(@Query("param") int type);
 
     /**
      * 网络图片接口

@@ -1,4 +1,4 @@
-package com.cg.baseproject.request.retrofit.subscriber;
+package com.cg.baseproject.deprecated;
 
 import android.app.ProgressDialog;
 import android.content.Context;
