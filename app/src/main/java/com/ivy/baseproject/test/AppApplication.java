@@ -59,7 +59,7 @@ public class AppApplication extends BaseApplication {
         final boolean isHeaderInterceptorOpen = false;
         final int stackview = BaseProjectConfig.BUBBLE;
         final String baseURL = "http://116.62.60.235/";
-        final int successCode = 0;
+        final int successCode = 1;
         final String tag = AppConfig.TAG;
         Map<Integer, String> mapServerReturnCodeMap = getServerReturnCodeMap();
         Map<String, String> mapBaseURL = getBaseURLMap();

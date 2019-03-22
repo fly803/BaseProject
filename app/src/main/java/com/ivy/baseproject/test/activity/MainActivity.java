@@ -140,6 +140,12 @@ public class MainActivity extends AppCompatActivity {
         mainInterfaceItem3.setBackgroundColor(BG_COLORS[3]);
         listMainInterfaceItem.add(mainInterfaceItem3);
 
+        MainInterfaceItem mainInterfaceItem03 = new MainInterfaceItem();
+        mainInterfaceItem03.setName("项目接口测试");
+        mainInterfaceItem03.setMethod("interfaceTest");
+        mainInterfaceItem03.setBackgroundColor(BG_COLORS[12]);
+        listMainInterfaceItem.add(mainInterfaceItem03);
+
         MainInterfaceItem mainInterfaceItem4 = new MainInterfaceItem();
         mainInterfaceItem4.setName("网络图片");
         mainInterfaceItem4.setMethod("netImage");
@@ -188,11 +194,6 @@ public class MainActivity extends AppCompatActivity {
         mainInterfaceItem11.setBackgroundColor(BG_COLORS[11]);
         listMainInterfaceItem.add(mainInterfaceItem11);
 
-        MainInterfaceItem mainInterfaceItem12 = new MainInterfaceItem();
-        mainInterfaceItem12.setName("项目接口测试");
-        mainInterfaceItem12.setMethod("interfaceTest");
-        mainInterfaceItem12.setBackgroundColor(BG_COLORS[12]);
-        listMainInterfaceItem.add(mainInterfaceItem12);
 
         MainInterfaceItem mainInterfaceItem13 = new MainInterfaceItem();
         mainInterfaceItem13.setName("运行时权限请求");
@@ -226,6 +227,9 @@ public class MainActivity extends AppCompatActivity {
             case "rxPost":
                 rxGet();
                 break;
+            case "interfaceTest":
+                interfaceTest();
+                break;
             case "netImage":
                 netImage();
                 break;
@@ -249,9 +253,6 @@ public class MainActivity extends AppCompatActivity {
                 break;
             case "uiWidget":
                 uiWidgetest();
-                break;
-            case "interfaceTest":
-                interfaceTest();
                 break;
             default:
                 testResolution(this);
