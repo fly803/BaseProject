@@ -14,16 +14,12 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-
 import com.cg.baseproject.R;
 import com.cg.baseproject.configs.IConstants;
 import com.cg.baseproject.utils.android.ViewUtils;
-
 import java.util.ArrayList;
-
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import rx.Subscriber;
 
 public abstract class BaseContentPageFragment extends Fragment implements View.OnClickListener {
     protected BaseSupportActivity mActivity;
@@ -34,7 +30,7 @@ public abstract class BaseContentPageFragment extends Fragment implements View.O
     /** 加载弹窗. */
     public ProgressDialog pdLoading;
     /** 订阅列表. */
-    private ArrayList<Subscriber> subscribers;
+//    private ArrayList<Subscriber> subscribers;
     /** 强制竖屏. */
     private boolean isRequestPORTRAIT;
     /** 是否懒加载. */
@@ -145,11 +141,11 @@ public abstract class BaseContentPageFragment extends Fragment implements View.O
     @Override
     public void onDestroy() {
         super.onDestroy();
-        for(Subscriber subscriber:subscribers){
-            if(!subscriber.isUnsubscribed()){
-                subscriber.unsubscribe();
-            }
-        }
+//        for(Subscriber subscriber:subscribers){
+//            if(!subscriber.isUnsubscribed()){
+//                subscriber.unsubscribe();
+//            }
+//        }
     }
 
     @Override
@@ -212,7 +208,7 @@ public abstract class BaseContentPageFragment extends Fragment implements View.O
         /**
          * 创建Subscriber容器
          */
-        subscribers  = new ArrayList<>();
+//        subscribers  = new ArrayList<>();
         if (contentPage == null) {
             contentPage = new ContentPage(getActivity()) {
                 @Override
@@ -260,10 +256,10 @@ public abstract class BaseContentPageFragment extends Fragment implements View.O
         pdLoading.setCancelable(true);
     }
     
-    public <T> Subscriber<T> addSubscriber(Subscriber<T> subscriber) {
-        subscribers.add(subscriber);
-        return subscriber;
-    }
+//    public <T> Subscriber<T> addSubscriber(Subscriber<T> subscriber) {
+//        subscribers.add(subscriber);
+//        return subscriber;
+//    }
 
 
     /*

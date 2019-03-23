@@ -78,7 +78,7 @@ dependencies {
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.8.1'
 //    implementation 'com.jakewharton:butterknife:10.0.0'
 //    annotationProcessor 'com.jakewharton:butterknife-compiler:10.0.0'
-    implementation 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
+    
     //项目组件
     implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.46'
     implementation 'me.weyye.hipermission:library:1.0.7'
