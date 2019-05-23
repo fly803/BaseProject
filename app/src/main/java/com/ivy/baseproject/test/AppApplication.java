@@ -61,7 +61,7 @@ public class AppApplication extends BaseApplication {
         //        final String baseURL = "http://test.hfsr.yunyouduobao.com/";
         //        final String baseURL = "http://116.62.60.235/";
         final String baseURL = "https://recommend.wetolink.com/";
-        final int successCode = 1;
+        final int successCode = 0;
         final String tag = AppConfig.TAG;
         Map<Integer, String> mapServerReturnCodeMap = getServerReturnCodeMap();
         Map<String, String> mapBaseURL = getBaseURLMap();
