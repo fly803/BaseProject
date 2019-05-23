@@ -1,35 +1,27 @@
 package com.ivy.baseproject.test.api;
 
+
 import com.cg.baseproject.request.data.BaseResponse;
-import com.cg.baseproject.request.data.DataBean;
-import com.cg.baseproject.request.data.bean.GirlsBean;
-import com.cg.baseproject.request.data.entity.HttpResult;
-import com.cg.baseproject.request.data.entity.Subject;
 import com.cg.baseproject.request.data.pojo.GankResp;
-import com.cg.baseproject.request.data.pojo.IpResult;
 import com.cg.baseproject.request.data.pojo.MovieSubject;
 import com.cg.baseproject.request.data.pojo.User;
 import com.cg.baseproject.request.data.pojo.WrapperRspEntity;
-import com.cg.baseproject.request.data.response.BookSearchResponse;
-import com.cg.baseproject.request.data.response.NotLoginResponse;
 import com.cg.baseproject.request.data.response.myinterface.MyResponse;
-import com.ivy.baseproject.test.bean.response.AirForecast;
-import com.ivy.baseproject.test.bean.response.EnvProportion;
-import com.ivy.baseproject.test.bean.response.LoginBean;
-import java.util.List;
+import com.ivy.baseproject.test.data.response.AppList;
+import com.ivy.baseproject.test.data.response.AppRecommend;
+import com.ivy.baseproject.test.data.response.BookSearchResponse;
+import com.ivy.baseproject.test.data.response.IpResult;
+
 import io.reactivex.Observable;
-import okhttp3.MultipartBody;
-import okhttp3.RequestBody;
-import okhttp3.ResponseBody;
+
+import java.util.List;
+
 import retrofit2.Call;
-import retrofit2.http.Body;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.Headers;
-import retrofit2.http.Multipart;
 import retrofit2.http.POST;
-import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 import retrofit2.http.Url;
@@ -64,11 +56,9 @@ import retrofit2.http.Url;
  * @QueryMap 和Query使用类似
  * @Url 指定请求路径
  * //使用@Headers添加多个请求头
- *   @Headers({
- *             "User-Agent:android",
- *             "apikey:123456789",
- *     })
- * 
+ * @Headers({ "User-Agent:android",
+ * "apikey:123456789",
+ * })
  */
 
 public interface RequestApiInterface {
@@ -80,49 +70,12 @@ public interface RequestApiInterface {
      * 还有一种方式是通过Interceptor实现，直接看如何通过Interceptor实现请求参数的添加。
      * addQueryParameter就是添加请求参数的具体代码，这种方式比较适用于所有的请求都需要添加的参数，一般现在的网络请求都会
      * 添加token作为用户标识，那么这种方式就比较适合。创建完成自定义的Interceptor后，还需要在Retrofit创建client处完成添加
-       addInterceptor(new CustomInterceptor())
-     * @param name
-     * @param tag
-     * @param start
-     * @param count
-     * @return
+     * addInterceptor(new CustomInterceptor())
      */
     @Headers({"baseurl:douban"})
-//    @GET(UrlConstants.searchBooksUrl)
+    //    @GET(UrlConstants.searchBooksUrl)
     @GET("v2/book/search")
-    Call<BookSearchResponse> callTypeGet(@Query("q") String name,
-                                         @Query("tag") String tag, @Query("start") int start,
-                                         @Query("count") int count);
-    /**
-     url 	想要提交的网页地址 	
-     desc 	对干货内容的描述 	单独的文字描述
-     who 	提交者 ID 	干货提交者的网络 ID
-     type 	干货类型 	可选参数: Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
-     debug 	当前提交为测试数据 	如果想要测试数据是否合法, 请设置 debug 为 true! 可选参数: true | false
-     * @return
-     */
-    @FormUrlEncoded
-    @Headers({"baseurl:gank"})
-    @POST("api/add2gank")
-    //    @POST(UrlConstants.postDataUrl)
-    Call<Object> callTypePost(
-            @Field("url") String url,
-            @Field("desc") String desc,
-            @Field("who") String who,
-            @Field("type") String type,
-            @Field("debug") Boolean debug);
-
-    @GET("service/getIpInfo.php")
-    Observable<BaseResponse<IpResult>> rxGet(@Query("ip") String ip);
-
-    /** 
-     * @date   2019/3/21
-     * @version 1.0
-     * @param  * @param 根据不同的类型，data返回不同的值
-     * @return  
-     */ 
-    @GET("test/cg")
-    Observable<BaseResponse<MyResponse.DataBean>> psalms(@Query("param") int type);
+    Call<BookSearchResponse> callTypeGet(@Query("q") String name, @Query("tag") String tag, @Query("start") int start, @Query("count") int count);
 
     /**
      * 网络图片接口
@@ -141,75 +94,52 @@ public interface RequestApiInterface {
      * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
      */
     @GET("v2/book/search")
-    Observable<BaseResponse<BookSearchResponse>> observableTypeGet(
+    Observable<BaseResponse<com.cg.baseproject.request.data.response.BookSearchResponse>> observableTypeGet(
             @Query("q") String name,
             @Query("tag") String tag,
             @Query("start") int start,
             @Query("count") int count);
-    
+
     @POST("user/{userName}")
     Call<WrapperRspEntity<User>> loginReq(@Path("userName") String userName, @Field("pwd") String pwd);
+    /**
+     * url 	想要提交的网页地址
+     * desc 	对干货内容的描述 	单独的文字描述
+     * who 	提交者 ID 	干货提交者的网络 ID
+     * type 	干货类型 	可选参数: Android | iOS | 休息视频 | 福利 | 拓展资源 | 前端 | 瞎推荐 | App
+     * debug 	当前提交为测试数据 	如果想要测试数据是否合法, 请设置 debug 为 true! 可选参数: true | false
+     */
+    @FormUrlEncoded
+    @Headers({"baseurl:gank"})
+    @POST("api/add2gank")
+    //    @POST(UrlConstants.postDataUrl)
+    Call<Object> callTypePost(@Field("url") String url, @Field("desc") String desc, @Field("who") String who, @Field("type") String type, @Field("debug") Boolean debug);
+
+    @GET("service/getIpInfo.php")
+    Observable<BaseResponse<IpResult>> rxGet(@Query("ip") String ip);
 
     /**
-     * @GET注解就表示get请求，@Query表示请求参数，将会以key=value的方式拼接在url后面
-     * @param start
-     * @param count
-     * @return
+     * @param * @param 根据不同的类型，data返回不同的值
+     * @date 2019/3/21
+     * @version 1.0
      */
-    @GET("top250")
-    Observable<HttpResult<List<Subject>>> getTopMovie(@Query("start") int start, @Query("count") int count);
-    
-    @FormUrlEncoded
-    @POST("v2/book/reviews")
-    Call<NotLoginResponse> addReviews(@Field("book") String bookId,
-                                      @Field("title") String title,
-                                      @Field("content") String content,
-                                      @Field("rating") String rating);
+    @Headers({"baseurl:cg"})
+    @GET("test/cg")
+    Observable<BaseResponse<MyResponse.DataBean>> psalms(@Query("param") int type);
 
-    @FormUrlEncoded
-    @POST("v2/book/reviews")
-    Call<String> addReviews(@Body Reviews reviews);
-    public class Reviews {
-        public String book;
-        public String title;
-        public String content;
-        public String rating;
-    }
+    @Headers({"baseurl:hfsr"})
+    @GET("app/box/list")
+    Observable<BaseResponse<List<AppList.DataBean>>> appListinterfaceTest();
 
-    // 上传单个文件
-    @Multipart
-    @POST("upload")
-    Call<ResponseBody> uploadFile(
-            @Part("description") RequestBody description,
-            @Part MultipartBody.Part file);
+    @Headers({"baseurl:hfsr"})
+    @GET("app/box/search")
+    Observable<BaseResponse<AppList.DataBean>> seachApp(@Query("device_id") String device_id, @Query("words") String words);
 
-    // 上传多个文件
-    @Multipart
-    @POST("upload")
-    Call<ResponseBody> uploadMultipleFiles(
-            @Part("description") RequestBody description,
-            @Part MultipartBody.Part file1,
-            @Part MultipartBody.Part file2);
+    @Headers({"baseurl:wetolink"})
+    @GET("api/v2/app_recommend/pull")
+    Observable<BaseResponse<List<AppRecommend.DataBean>>> appRecommendListinterfaceTest(@Query("limit") int limit, @Query("package_name") String package_name);
 
-    @POST("197-1")
-    @FormUrlEncoded
-    Call<GirlsBean> getGirls(@Field("showapi_appid") String showapi_appid,
-                             @Field("showapi_sign") String showapi_sign,
-                             @Field("num") int num ,
-                             @Field("page") int page);
-    
-    @GET("getEnvProportion")
-    Observable<BaseResponse<EnvProportion>> getEnvProportion();
-
-    @GET("getAirForecast")
-    Observable<BaseResponse<AirForecast>> getAirForecast();
-
-    @GET("applogin/login.action")
-    Observable<BaseResponse<LoginBean.DataBean>> login(@Query("loginName") String loginName, @Query("userPwd") String userPwd);
-
-    /**
-     * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     * * 未使用接口end
-     * -----------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-     */
+    @Headers({"baseurl:hfsr"})
+    @GET("app/box/list")
+    Observable<BaseResponse<List<AppList.DataBean>>> getApplist();
 }

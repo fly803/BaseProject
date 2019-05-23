@@ -58,7 +58,9 @@ public class AppApplication extends BaseApplication {
         final boolean isBaseURLInterceptorOpen = true;
         final boolean isHeaderInterceptorOpen = false;
         final int stackview = BaseProjectConfig.BUBBLE;
-        final String baseURL = "http://116.62.60.235/";
+        //        final String baseURL = "http://test.hfsr.yunyouduobao.com/";
+        //        final String baseURL = "http://116.62.60.235/";
+        final String baseURL = "https://recommend.wetolink.com/";
         final int successCode = 1;
         final String tag = AppConfig.TAG;
         Map<Integer, String> mapServerReturnCodeMap = getServerReturnCodeMap();
@@ -100,13 +102,15 @@ public class AppApplication extends BaseApplication {
 
     /**
      * 外部工程传如果需要多BaseURL的时候，传需要切换的BaseURL给类库工程
-     * @date   2019/3/20
      * @version 1.0
      * @param  * @param null
      * @return
      */
     private Map<String, String> getBaseURLMap(){
         Map<String, String> map = new HashMap<String, String>();
+        map.put("cg", "http://116.62.60.235/");
+        map.put("hfsr", "http://test.hfsr.yunyouduobao.com/");
+        map.put("wetolink", "https://recommend.wetolink.com/");
         map.put("douban", "https://api.douban.com/");
         map.put("gank", "https://gank.io/");
         return map;

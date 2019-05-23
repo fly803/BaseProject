@@ -1,4 +1,4 @@
-package com.ivy.baseproject.test.bean.response;
+package com.ivy.baseproject.test.data.bean.response;
 
 import java.util.List;
 

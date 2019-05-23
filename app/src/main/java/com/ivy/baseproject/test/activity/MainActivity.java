@@ -30,6 +30,7 @@ import com.ivy.baseproject.test.R;
 import com.ivy.baseproject.test.adapter.MainInterfaceListAdapter;
 import com.ivy.baseproject.test.api.AppConfig;
 import com.ivy.baseproject.test.api.RequestApiInterface;
+import com.ivy.baseproject.test.data.response.AppRecommend;
 import com.ivy.baseproject.test.deprecated.RequestBusiness;
 import com.ivy.baseproject.test.sample.SampleActivity;
 import com.ivy.baseproject.test.sample.SampleFragmentActivity;
@@ -201,7 +202,13 @@ public class MainActivity extends AppCompatActivity {
         mainInterfaceItem13.setBackgroundColor(BG_COLORS[9]);
         listMainInterfaceItem.add(mainInterfaceItem13);
 
-        for (int i = 14; i < 18; i++) {
+        MainInterfaceItem mainInterfaceItem14 = new MainInterfaceItem();
+        mainInterfaceItem14.setName("https Get请求");
+        mainInterfaceItem14.setMethod("appRecommendListinterfaceTest");
+        mainInterfaceItem14.setBackgroundColor(BG_COLORS[9]);
+        listMainInterfaceItem.add(mainInterfaceItem14);
+
+        for (int i = 26; i < 38; i++) {
             MainInterfaceItem mainInterfaceItem = new MainInterfaceItem();
             mainInterfaceItem.setName("待添加操作" + i);
             mainInterfaceItem.setMethod("");
@@ -215,6 +222,9 @@ public class MainActivity extends AppCompatActivity {
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     private void runMethod(String methodName) {
         switch (methodName) {
+            case "appRecommendListinterfaceTest":
+                appRecommendListinterfaceTest();
+                break;
             case "callTypeGet":
                 callTypeGet();
                 break;
@@ -385,18 +395,18 @@ public class MainActivity extends AppCompatActivity {
          * BookSearchResponse response = call.execute().body();
          * https://api.douban.com/v2/book/search?q=%E5%B0%8F%E7%8E%8B%E5%AD%90&tag=&start=0&count=3
          */
-        RequestBusiness.getInstance().getAPI().
+        /*RequestBusiness.getInstance().getAPI().
                 callTypeGet("小王子", "", 0, 3).
                 enqueue(new Callback<BookSearchResponse>() {
                     @Override
                     public void onResponse(Call<BookSearchResponse> call, Response<BookSearchResponse> response) {
                        
-                       /*
+                       *//*
                         An HTTP response may still indicate an application-level failure such as a 404 or 500. 
                         Call Response.isSuccessful() to determine if the response indicates success.
                         HTTP response 仍然可以指示应用程序级故障，如404或500
                         调用Response.isSuccessful()，以确定是否该响应指示成功。
-                         */
+                         *//*
                         if (response.isSuccessful()) {
                             //对数据的处理操作
                             Log.d("cg", "onResponse callTypeGet: " + response.body().getTotal());
@@ -405,26 +415,40 @@ public class MainActivity extends AppCompatActivity {
                             //请求出现错误例如：404 或者 500
                             Snackbar.make(mRvDataIndex, "callTypeGet:" + +response.code()+response.message(), Snackbar.LENGTH_SHORT).show();
                         }
-                        /*try {
+                        *//*try {
                             throw new NullPointerException();
                         } catch (Exception e) {
                             // TODO: handle exception
                             e.printStackTrace();
                             Log.d("cg", "Exception: " + e.toString());
-                        }*/
+                        }*//*
                     }
 
                     @Override
                     public void onFailure(Call<BookSearchResponse> call, Throwable t) {
-                        /**
+                        *//**
                          * Invoked when a network exception occurred talking to the server or when an unexpected exception
                          * occurred creating the request or processing the response.
                          当连接服务器时出现网络异常 或者 在创建请求、处理响应结果 的时候突发异常 都会被调用。
                          通过自己测试发现了几种调用情况：GSON解析数据转换错误，手机断网或者网络异常。
-                         */
+                         *//*
                         Log.d("cg", "onFailure callTypeGet: ");
                     }
-                });
+                });*/
+    }
+
+    private void appRecommendListinterfaceTest() {
+        RequestAPI.getInstance().toSubscribe(((RequestApiInterface) (RequestAPI.getInstance().getApi(RequestApiInterface.class))).appRecommendListinterfaceTest(10,"xxoo"),
+                new ProgressSubscriber<BaseResponse<List<AppRecommend.DataBean>>>(new SubscriberOnNextListener<List<AppRecommend.DataBean>>() {
+                    @Override
+                    public void onNext(List<AppRecommend.DataBean> myResponse) {
+                        Log.d("cg", " appRecommendListinterfaceTest onNext: "+myResponse.get(0).getAppName());
+                        Snackbar.make(mRvDataIndex, "onNext:" + myResponse.get(0).getAppName(), Snackbar.LENGTH_SHORT).show();
+                    }
+
+                   
+
+                }, MainActivity.this));
     }
 
 }
