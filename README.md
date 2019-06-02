@@ -1,20 +1,19 @@
 README
 ===========================
 # BaseProject
-Android项目基础库，包含四大部分：一、分辨率适配 二、网络请求框架Retrofit2封装 
-For the English readme：## [English](https://github.com/fly803/BaseProject/blob/master/README_EN.md) |
-三、Android基类封装和项目常用Utils方法 四、基于RxJava、RxAndroid的事件总线RxBus。
-1.Android分辨率适配方案，解决大家的分辨率适配烦恼，可以直接依据设计图写尺寸，不做额外的操作，简单方便准确。
-2.封装Retrofit2，统一了异常处理，对网络错误，网络错误，连接失败，证书验证失败进行了统一封装，无需用户
-在单独处理，框架已经做了统一处理，只需在处理正确返回部分。对服务器定义的Api错误，也做了处理，未来完善可以让用户
-自定义服务器返回错误，和自定义服务器返回数据类型，现在还需要遵循统一格式。
-3.封装android开发中常用的Utils,也许你的项目只需要这一个库就完全够了。不信你看，有图有真相。
-高仿iOS进度条和对话框、activity基类的封装(可继承自BaseActivity自行拓展)、常用自定义View(圆角头像等)、Glide一行代码加载图片、可直接依赖使用。
-4.在Rxjava、RxAndroid基础上进行了封装，并对Android进行了优化的事件总线RxBus。事件总线就是一条通信用的通道，
-上面跑着各种信息，Android中的各个组件或是控件都可以向它发送各种信息，在各个组件或控件中只要订阅这条总线，每
-当总线收到消息的时候，这些订阅者同样就能收到这些消息。减少广播等高占用资源控件的使用。
-喜欢的话不妨star一下吧。项目地址：https://github.com/fly803/BaseProject
+For the English readme：[English](https://github.com/fly803/BaseProject/blob/master/README_EN.md)  
+  
+Android项目基础库，包含四大部分：  
+一、分辨率适配  
+二、网络请求框架Retrofit2封装  
+三、Android基类封装和项目常用Utils方法  
+四、基于RxJava、RxAndroid的事件总线RxBus。  
 
+1. Android分辨率适配方案，解决大家的分辨率适配烦恼，可以直接依据设计图写尺寸，不做额外的操作，简单方便准确。  
+2. 封装Retrofit2，统一了异常处理，对网络错误，网络错误，连接失败，证书验证失败进行了统一封装，无需用户在单独处理，框架已经做了统一处理，只需在处理正确返回部分。对服务器定义的Api错误，也做了处理，未来完善可以让用户自定义服务器返回错误，和自定义服务器返回数据类型，现在还需要遵循统一格式。
+3. 封装android开发中常用的Utils,也许你的项目只需要这一个库就完全够了。不信你看，有图有真相。高仿iOS进度条和对话框、activity基类的封装(可继承自BaseActivity自行拓展)、常用自定义View(圆角头像等)、Glide一行代码加载图片、可直接依赖使用。
+4. 在Rxjava、RxAndroid基础上进行了封装，并对Android进行了优化的事件总线RxBus。事件总线就是一条通信用的通道，上面跑着各种信息，Android中的各个组件或是控件都可以向它发送各种信息，在各个组件或控件中只要订阅这条总线，每当总线收到消息的时候，这些订阅者同样就能收到这些消息。减少广播等高占用资源控件的使用。  
+喜欢的话不妨star一下吧。
 
 [![](https://img.shields.io/badge/%E4%BD%9C%E8%80%85-陈刚-orange.svg)](https://github.com/fly803/BaseProject) 
 [![](https://jitpack.io/v/fly803/BaseProject.svg)](https://jitpack.io/#fly803/BaseProject)
@@ -24,9 +23,6 @@ For the English readme：## [English](https://github.com/fly803/BaseProject/blob
 ### Author陈刚 sam QQ：356576318 QQ群：688700847
 ### E-mail:356576318@qq.com
 ****
-```diff
-
-```
 ## 目录
 * [屏幕分辨率适配](#屏幕分辨率适配)
 * [Retrofit2封装](#Retrofit2封装)
@@ -35,7 +31,7 @@ For the English readme：## [English](https://github.com/fly803/BaseProject/blob
 * [集成该库](#集成该库)
 
 
-## 一、屏幕分辨率适配
+# 一、屏幕分辨率适配
 ### 分辨率适配概述
 采用了2种屏幕适配方式，用户可以自己的需要进行选择。1、头条屏幕适配方式；2、Dimens适配方式
 #### 1、头条屏幕适配方案
@@ -54,8 +50,9 @@ density 的意思就是 1 dp 占当前设备多少像素。在屏幕适配中，
 ###### e、可适配三方库的控件和系统的控件(不止是 Activity 和 Fragment，Dialog、Toast 等所有系统控件都可以适配)，由于修改的 density 在整个项目中是全局的，所以只要一次修改，项目中的所有地方都会受益。
 如果是新项目采用基本没有缺点。
 
-#### 项目引入方法。
+#### 项目引入方法
 ###### 1.引导页Activity继承BaseScreenAdaptActivity，重新相关方法
+```java
 @Override
     protected void initScreenAdaption() {
         if (ScreenUtils.isPortrait()) {
@@ -64,8 +61,9 @@ density 的意思就是 1 dp 占当前设备多少像素。在屏幕适配中，
             ScreenUtils.adaptScreen4HorizontalSlide(this, AppConfig.heightInPx);
         }
     }
+```
 ###### 2.AppConfig里面配置widthInPx，heightInPx为相应的效果图像素宽度值，如果横屏就是高度值
-###### 3.布局中使用方法。拿到效果图，不需要额外计算，布局直接抄设计图上的尺寸。你说爽不爽。布局文件里面的xml使用方式同屏幕适配的第二种适配方法，请在后面查看。
+###### 3.布局中使用方法。拿到效果图，不需要额外计算，布局直接抄设计图上的尺寸。你说爽不爽。布局文件里面的xml使用方式同屏幕适配的第二种适配方法，请在后面查看
 
 
 #### 2、Dimens屏幕适配方案
@@ -78,7 +76,7 @@ App在运行的时候，会在Res下读取对应的dimens文件，BaseProject已
 无需用户额外操作，就可以完美适配主流手机。亲测可以适配市面主流手机的95%，即使默认不能适配的手机，也可以通过本文的工具进行适配（ResolutionTools.jar）。用户如果想适配其他分辨率，也提供了相应的获取方法。
 介于低于1280x720的低端手机已经很少，所有960x640,480x320等低分辨率手机没有提供默认支持，如需支持，请手动添加。
 
-#### 默认支持的分辨率：
+#### 默认支持的分辨率
  分辨率 | 分辨率描述
  ---  | ---
 | 1280 x 720   | 无虚拟键1280x702手机
@@ -102,8 +100,8 @@ App在运行的时候，会在Res下读取对应的dimens文件，BaseProject已
 ### 集成分辨率适配
 #### 使用概述 
 有两种集成分辨率适配的方式。
-#### 1.下载demo工程，doc-res文件夹下载values全部拷贝到自己的工程。
-#### 其他分辨率通过doc/工具集/分配率适配dimens工具.jar手动添加，如图所示：
+#### 1.下载demo工程，doc-res文件夹下载values全部拷贝到自己的工程
+#### 其他分辨率通过doc/工具集/分配率适配dimens工具.jar手动添加
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/ResolutionTools.png) 
 ##### 加需要额外支持的dimens拷贝到自己的工程res下,注意输入的名字是values+xxxdpi+分辨率的形式，如values-xhdpi-960x640
 ![log](https://raw.githubusercontent.com/fly803/BaseProject/master/doc/GitHubPictures/dimens.png) 
@@ -160,7 +158,7 @@ Google pixsel2 分辨率：1920x1080 带虚拟键
 
 而且细心的同学肯定发现，最底下有3条横向的细线很奇怪，效果图怎么会出这种图。其实那3条横线只是为了说明适配效果，我特意加上去的。现在效果图的尺寸是
 1920x1080，现在照抄宽度px1080，和宽度的一半px540.大家可以看到多款手机型号和分辨率不同，但是宽度条正好充满了全部和充满了一半，证明适配效果良好。
-## 二、网络请求框架Retrofit2封装 
+# 二、网络请求框架Retrofit2封装 
 ###  1.Retrofit+RxJava 优雅的处理服务器返回异常、错误 
 异常&错误
 
@@ -168,7 +166,7 @@ Google pixsel2 分辨率：1920x1080 带虚拟键
 信息包括请求返回的状态：失败还是成功，错误码，User对象等等。如果网络等原因引起的登录失败可以归结为异常，如果是用户信息输入错误导致的登录失败算是错误。
 
 假如服务器返回的是统一数据格式：
-
+```Java
 /**
  * 标准数据格式
  * @param <T>
@@ -178,6 +176,7 @@ public class Response<T> {
     public String message;
     public T data;
 }
+```
 
     网络异常导致的登录失败，在使用Retrofit+RxJava请求时都会直接调用subscribe的onError事件；
     密码错误导致的登录失败，在使用Retrofit+RxJava请求时都会调用subscribe的onNext事件；
