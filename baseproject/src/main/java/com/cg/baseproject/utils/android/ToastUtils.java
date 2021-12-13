@@ -11,11 +11,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.LayoutRes;
-import android.support.annotation.NonNull;
-import android.support.annotation.StringRes;
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.LayoutRes;
+import androidx.annotation.NonNull;
+import androidx.annotation.StringRes;
 import android.util.Log;
 import android.view.Display;
 import android.view.Gravity;
@@ -29,6 +29,7 @@ import android.widget.Toast;
 import com.cg.baseproject.BaseApplication;
 
 import java.lang.reflect.Field;
+
 
 /**
  * @author sam

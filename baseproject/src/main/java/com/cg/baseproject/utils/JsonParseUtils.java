@@ -1,6 +1,5 @@
 package com.cg.baseproject.utils;
 
-import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
@@ -12,6 +11,8 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.List;
+
+import androidx.annotation.NonNull;
 
 /**
  * @author

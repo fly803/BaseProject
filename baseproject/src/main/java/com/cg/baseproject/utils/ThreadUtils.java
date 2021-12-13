@@ -2,8 +2,8 @@ package com.cg.baseproject.utils;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.support.annotation.IntRange;
-import android.support.annotation.NonNull;
+import androidx.annotation.IntRange;
+import androidx.annotation.NonNull;
 import android.util.Log;
 
 import java.util.Map;

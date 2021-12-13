@@ -16,9 +16,10 @@
 
 package com.cg.baseproject.rx.rxbus;
 
-import android.support.annotation.NonNull;
 
 import java.lang.reflect.Method;
+
+import androidx.annotation.NonNull;
 
 class AnnotatedSubscriber<T> extends AbstractSubscriber<T> {
 

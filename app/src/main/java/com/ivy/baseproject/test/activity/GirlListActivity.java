@@ -2,10 +2,10 @@ package com.ivy.baseproject.test.activity;
 
 import android.graphics.Rect;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.StaggeredGridLayoutManager;
-import android.support.v7.widget.Toolbar;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.RecyclerView;
+//import android.support.v7.widget.StaggeredGridLayoutManager;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.View;
 
@@ -14,6 +14,7 @@ import com.ivy.baseproject.test.R;
 import com.ivy.baseproject.test.adapter.GanKAdapter;
 import com.ivy.baseproject.test.deprecated.RequestBusiness;
 
+import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import retrofit2.Call;
 import retrofit2.Callback;
 

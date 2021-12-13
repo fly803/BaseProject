@@ -5,8 +5,6 @@ import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Environment;
-import android.support.annotation.IntDef;
-import android.support.annotation.IntRange;
 import android.util.Log;
 
 import org.json.JSONArray;
@@ -37,6 +35,9 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+
+import androidx.annotation.IntDef;
+import androidx.annotation.IntRange;
 
 /**
  * <pre>

@@ -8,11 +8,13 @@ import android.view.MotionEvent;
 
 import com.cg.baseproject.R;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 /**
  * Created by Carson_Ho on 17/8/10.
  */
 
-public class EditText_Clear extends android.support.v7.widget.AppCompatEditText {
+public class EditText_Clear extends AppCompatEditText {
 
 
     /**

@@ -22,7 +22,7 @@ import okhttp3.MediaType;
 import okhttp3.ResponseBody;
 import retrofit2.Converter;
 
-import static okhttp3.internal.Util.UTF_8;
+//import static okhttp3.internal.Util.UTF_8;
 
 /**
  * https://www.jianshu.com/p/5b8b1062866b
@@ -34,13 +34,13 @@ import static okhttp3.internal.Util.UTF_8;
 public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T> {
     private  Gson gson;
     private  TypeAdapter<T> adapter;
-    
+
     private Class<T> clazz;
 
     public MyGsonResponseBodyConverter(Class<T> clazz) {
         this.clazz = clazz;
     }
-    
+
     public MyGsonResponseBodyConverter(Gson gson, TypeAdapter<T> adapter) {
         this.gson = gson;
         this.adapter = adapter;
@@ -66,8 +66,8 @@ public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T
 
     @Override
     public T convert(ResponseBody value) throws IOException {
-        String responseString = value.string();
-//        responseString = FromJsonUtils.fromJson(responseString,BaseResponse.class).toString();
+        /*String responseString = value.string();
+        //        responseString = FromJsonUtils.fromJson(responseString,BaseResponse.class).toString();
         MediaType contentType = value.contentType();
         Charset charset = contentType != null ? contentType.charset(UTF_8) : UTF_8;
         InputStream inputStream = new ByteArrayInputStream(responseString.getBytes());
@@ -77,6 +77,7 @@ public class MyGsonResponseBodyConverter<T> implements Converter<ResponseBody, T
             return adapter.read(jsonReader);
         } finally {
             value.close();
-        }
+        }*/
+        return null;
     }
 }

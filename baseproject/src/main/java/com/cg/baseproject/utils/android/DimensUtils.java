@@ -8,7 +8,8 @@ package com.cg.baseproject.utils.android;
 
 import android.content.Context;
 import android.content.res.Resources;
-import android.support.annotation.DimenRes;
+
+import androidx.annotation.DimenRes;
 /*        屏幕密度 	范围(dpi) 	标准分辨率 	dp与px 	图标尺寸
         ldpi(QVGA) 	~ 120 	240 * 320 	1dp=0.75px 	36 * 36
         mdpi(HVGA) 	120 ~ 160 	320 * 480 	1dp=1px 	48 * 48

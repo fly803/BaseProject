@@ -16,8 +16,8 @@
 
 package com.cg.baseproject.rx.rxbus;
 
-import android.support.annotation.NonNull;
 
+import androidx.annotation.NonNull;
 import io.reactivex.functions.Consumer;
 
 public interface Bus {

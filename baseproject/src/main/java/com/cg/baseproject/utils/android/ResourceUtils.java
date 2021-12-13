@@ -6,8 +6,9 @@ import android.content.res.Resources;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import com.cg.baseproject.BaseApplication;
+
+import androidx.annotation.RequiresApi;
 
 /**
  * Created by sam on 2017/4/17.

@@ -1,9 +1,9 @@
 package com.ivy.baseproject.test.activity;
 
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import com.cg.baseproject.utils.android.EasyPermissionUtils;
 import com.cg.baseproject.utils.android.ToastUtils;

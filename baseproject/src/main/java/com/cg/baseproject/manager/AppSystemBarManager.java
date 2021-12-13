@@ -5,7 +5,6 @@ import android.app.Activity;
 import android.content.Context;
 import android.graphics.Color;
 import android.os.Build;
-import android.support.v4.widget.DrawerLayout;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
@@ -15,6 +14,8 @@ import android.view.WindowManager;
 import android.widget.LinearLayout;
 
 import java.lang.reflect.Method;
+
+import androidx.drawerlayout.widget.DrawerLayout;
 
 /**
  * @Description:主要功能:栏相关工具类

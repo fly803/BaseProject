@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Point;
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Display;
@@ -16,6 +15,8 @@ import android.view.WindowManager;
 import com.cg.baseproject.R;
 
 import java.lang.reflect.Method;
+
+import androidx.annotation.RequiresApi;
 
 public class ResolutionAdaptationUtils {
     /**

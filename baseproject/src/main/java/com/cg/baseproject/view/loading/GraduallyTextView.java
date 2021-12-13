@@ -10,10 +10,12 @@ import android.view.View;
 import android.view.animation.AccelerateDecelerateInterpolator;
 import android.view.animation.Animation;
 
+import androidx.appcompat.widget.AppCompatEditText;
+
 /**
  * Created by Administrator on 2016/3/30.
  */
-public class GraduallyTextView extends android.support.v7.widget.AppCompatEditText {
+public class GraduallyTextView extends AppCompatEditText {
 
     private CharSequence text;
     private int startY = 0;

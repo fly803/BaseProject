@@ -15,11 +15,6 @@
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"/>
 
     <application>
-        <activity
-            android:name=".demo.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
     </application>
 
 </manifest>

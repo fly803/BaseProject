@@ -1,6 +1,6 @@
 package com.ivy.baseproject.test.activity;
 
-import android.support.v7.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
 import com.ivy.baseproject.test.R;
 

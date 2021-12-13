@@ -1,12 +1,14 @@
 package com.cg.baseproject.utils.android.image;
 
+import android.annotation.SuppressLint;
 import android.content.res.ColorStateList;
 import android.graphics.drawable.Drawable;
-import android.support.v4.graphics.drawable.DrawableCompat;
 import android.widget.EditText;
 import android.widget.TextView;
 
 import java.lang.reflect.Field;
+
+import androidx.core.graphics.drawable.DrawableCompat;
 
 /**
  * @Description:主要功能: Drawable 着色工具类
@@ -39,7 +41,7 @@ public class TintUtils {
      */
     public static void tintCursorDrawable(EditText editText, int color) {
         try {
-            Field fCursorDrawableRes = TextView.class.getDeclaredField("mCursorDrawableRes");
+            @SuppressLint("SoonBlockedPrivateApi") Field fCursorDrawableRes = TextView.class.getDeclaredField("mCursorDrawableRes");
             fCursorDrawableRes.setAccessible(true);
             int mCursorDrawableRes = fCursorDrawableRes.getInt(editText);
             Field fEditor = TextView.class.getDeclaredField("mEditor");

@@ -2,12 +2,12 @@ package com.cg.baseproject;
 
 import android.app.Activity;
 import android.content.Context;
-import android.support.multidex.MultiDexApplication;
 
 import com.cg.baseproject.configs.BaseProjectConfig;
 
 import java.util.Set;
 
+import androidx.multidex.MultiDexApplication;
 import me.yokeyword.fragmentation.Fragmentation;
 import me.yokeyword.fragmentation.helper.ExceptionHandler;
 

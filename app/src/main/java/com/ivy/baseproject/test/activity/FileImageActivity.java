@@ -1,13 +1,13 @@
 package com.ivy.baseproject.test.activity;
 
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.View;
 
 import com.cg.baseproject.utils.android.ScreenShotUtils;
+import com.google.android.material.snackbar.Snackbar;
 import com.ivy.baseproject.test.R;
 
 public class FileImageActivity extends AppCompatActivity {

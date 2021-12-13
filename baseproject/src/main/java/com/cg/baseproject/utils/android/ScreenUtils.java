@@ -11,8 +11,6 @@ import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.os.Build;
 import android.provider.Settings;
-import android.support.annotation.NonNull;
-import android.support.annotation.RequiresPermission;
 import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.Surface;
@@ -22,6 +20,10 @@ import android.view.WindowManager;
 
 import com.cg.baseproject.BaseApplication;
 import com.cg.baseproject.configs.BaseProjectConfig;
+
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresPermission;
+
 import static android.Manifest.permission.WRITE_SETTINGS;
 
 /**

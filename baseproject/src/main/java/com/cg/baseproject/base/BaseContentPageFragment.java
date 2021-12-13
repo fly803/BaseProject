@@ -7,7 +7,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Build;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.util.SparseArray;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -18,6 +17,8 @@ import com.cg.baseproject.R;
 import com.cg.baseproject.configs.IConstants;
 import com.cg.baseproject.utils.android.ViewUtils;
 import java.util.ArrayList;
+
+import androidx.fragment.app.Fragment;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 

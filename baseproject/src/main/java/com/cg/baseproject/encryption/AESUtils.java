@@ -2,7 +2,6 @@ package com.cg.baseproject.encryption;
 
 
 import android.os.Build;
-import android.support.annotation.RequiresApi;
 
 import javax.crypto.Cipher;
 import javax.crypto.KeyGenerator;
@@ -19,6 +18,8 @@ import java.security.SecureRandom;
 import javax.crypto.SecretKeyFactory;
 import javax.crypto.spec.DESedeKeySpec;
 import javax.crypto.spec.IvParameterSpec;
+
+import androidx.annotation.RequiresApi;
 
 /**
  * http://desert3.iteye.com/blog/743713

@@ -1,14 +1,8 @@
+/*
 package com.cg.baseproject.manager;
 
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
-import android.support.annotation.ColorInt;
-import android.support.annotation.DrawableRes;
-import android.support.annotation.IdRes;
-import android.support.annotation.NonNull;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.ViewCompat;
 import android.util.Log;
 import android.view.View;
 
@@ -16,6 +10,15 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
+import androidx.annotation.ColorInt;
+import androidx.annotation.DrawableRes;
+import androidx.annotation.IdRes;
+import androidx.annotation.NonNull;
+import androidx.core.view.ViewCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
+*/
 /**
  * @Description:主要功能:Fragment管理类
  * @Prject: CommonUtilLibrary
@@ -25,7 +28,8 @@ import java.util.List;
  * @Copyright: 个人版权所有
  * @Company:
  * @version: 1.0.0
- */
+ *//*
+
 
 public final class FragmentManager {
 
@@ -47,21 +51,24 @@ public final class FragmentManager {
     private static final String ARGS_IS_HIDE      = "args_is_hide";
     private static final String ARGS_IS_ADD_STACK = "args_is_add_stack";
 
-    /**
+    */
+/**
      * 新增fragment
      *
      * @param fragmentManager fragment管理器
      * @param containerId     布局Id
      * @param fragment        fragment
      * @return fragment
-     */
-    public static Fragment addFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
-        @NonNull final Fragment fragment,
-        @IdRes final int containerId) {
+     *//*
+
+    public static Fragment addFragment(@NonNull final FragmentManager fragmentManager,
+                                       @NonNull final Fragment fragment,
+                                       @IdRes final int containerId) {
         return addFragment(fragmentManager, fragment, containerId, false);
     }
 
-    /**
+    */
+/**
      * 新增fragment
      *
      * @param fragmentManager fragment管理器
@@ -69,15 +76,17 @@ public final class FragmentManager {
      * @param fragment        fragment
      * @param isHide          是否隐藏
      * @return fragment
-     */
-    public static Fragment addFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static Fragment addFragment(@NonNull final FragmentManager fragmentManager,
         @NonNull final Fragment fragment,
         @IdRes final int containerId,
         final boolean isHide) {
         return addFragment(fragmentManager, fragment, containerId, isHide, false);
     }
 
-    /**
+    */
+/**
      * 新增fragment
      *
      * @param fragmentManager fragment管理器
@@ -86,8 +95,9 @@ public final class FragmentManager {
      * @param isHide          是否隐藏
      * @param isAddStack      是否入回退栈
      * @return fragment
-     */
-    public static Fragment addFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static Fragment addFragment(@NonNull final FragmentManager fragmentManager,
         @NonNull final Fragment fragment,
         @IdRes final int containerId,
         final boolean isHide,
@@ -96,7 +106,8 @@ public final class FragmentManager {
         return operateFragment(fragmentManager, null, fragment, TYPE_ADD_FRAGMENT);
     }
 
-    /**
+    */
+/**
      * 新增fragment
      *
      * @param fragmentManager fragment管理器
@@ -105,8 +116,9 @@ public final class FragmentManager {
      * @param isHide          是否隐藏
      * @param isAddStack      是否入回退栈
      * @return fragment
-     */
-    public static Fragment addFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static Fragment addFragment(@NonNull final FragmentManager fragmentManager,
         @NonNull final Fragment fragment,
         @IdRes final int containerId,
         final boolean isHide,
@@ -116,7 +128,8 @@ public final class FragmentManager {
         return operateFragment(fragmentManager, null, fragment, TYPE_ADD_FRAGMENT, sharedElement);
     }
 
-    /**
+    */
+/**
      * 先隐藏后新增fragment
      *
      * @param fragmentManager fragment管理器
@@ -126,8 +139,9 @@ public final class FragmentManager {
      * @param isHide          是否隐藏
      * @param isAddStack      是否入回退栈
      * @return fragment
-     */
-    public static Fragment hideAddFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static Fragment hideAddFragment(@NonNull final FragmentManager fragmentManager,
         @NonNull final Fragment hideFragment,
         @NonNull final Fragment addFragment,
         @IdRes final int containerId,
@@ -138,7 +152,8 @@ public final class FragmentManager {
         return operateFragment(fragmentManager, hideFragment, addFragment, TYPE_HIDE_ADD_FRAGMENT, sharedElement);
     }
 
-    /**
+    */
+/**
      * 新增多个fragment
      *
      * @param fragmentManager fragment管理器
@@ -146,8 +161,9 @@ public final class FragmentManager {
      * @param containerId     布局Id
      * @param showIndex       要显示的fragment索引
      * @return 要显示的fragment
-     */
-    public static Fragment addFragments(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static Fragment addFragments(@NonNull final FragmentManager fragmentManager,
         @NonNull final List<Fragment> fragments,
         @IdRes final int containerId,
         final int showIndex) {
@@ -160,7 +176,8 @@ public final class FragmentManager {
         return fragments.get(showIndex);
     }
 
-    /**
+    */
+/**
      * 新增多个fragment
      *
      * @param fragmentManager fragment管理器
@@ -169,8 +186,9 @@ public final class FragmentManager {
      * @param showIndex       要显示的fragment索引
      * @param lists           共享元素链表
      * @return 要显示的fragment
-     */
-    public static Fragment addFragments(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static Fragment addFragments(@NonNull final FragmentManager fragmentManager,
         @NonNull final List<Fragment> fragments,
         @IdRes final int containerId,
         final int showIndex,
@@ -188,29 +206,35 @@ public final class FragmentManager {
         return fragments.get(showIndex);
     }
 
-    /**
+    */
+/**
      * 移除fragment
      *
      * @param fragment fragment
-     */
+     *//*
+
     public static void removeFragment(@NonNull final Fragment fragment) {
         operateFragment(fragment.getFragmentManager(), null, fragment, TYPE_REMOVE_FRAGMENT);
     }
 
-    /**
+    */
+/**
      * 移除到指定fragment
      *
      * @param fragment      fragment
      * @param isIncludeSelf 是否包括Fragment类自己
-     */
+     *//*
+
     public static void removeToFragment(@NonNull final Fragment fragment, final boolean isIncludeSelf) {
         operateFragment(fragment.getFragmentManager(), isIncludeSelf ? fragment : null, fragment, TYPE_REMOVE_TO_FRAGMENT);
     }
 
-    /**
+    */
+/**
      * 移除同级别fragment
-     */
-    public static void removeFragments(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static void removeFragments(@NonNull final FragmentManager fragmentManager) {
         List<Fragment> fragments = getFragments(fragmentManager);
         if (fragments.isEmpty()) return;
         for (int i = fragments.size() - 1; i >= 0; --i) {
@@ -219,10 +243,12 @@ public final class FragmentManager {
         }
     }
 
-    /**
+    */
+/**
      * 移除所有fragment
-     */
-    public static void removeAllFragments(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static void removeAllFragments(@NonNull final FragmentManager fragmentManager) {
         List<Fragment> fragments = getFragments(fragmentManager);
         if (fragments.isEmpty()) return;
         for (int i = fragments.size() - 1; i >= 0; --i) {
@@ -234,14 +260,16 @@ public final class FragmentManager {
         }
     }
 
-    /**
+    */
+/**
      * 替换fragment
      *
      * @param srcFragment  源fragment
      * @param destFragment 目标fragment
      * @param isAddStack   是否入回退栈
      * @return 目标fragment
-     */
+     *//*
+
     public static Fragment replaceFragment(@NonNull final Fragment srcFragment,
         @NonNull final Fragment destFragment,
         final boolean isAddStack) {
@@ -251,7 +279,8 @@ public final class FragmentManager {
         return replaceFragment(srcFragment.getFragmentManager(), destFragment, containerId, isAddStack);
     }
 
-    /**
+    */
+/**
      * 替换fragment
      *
      * @param srcFragment   源fragment
@@ -259,7 +288,8 @@ public final class FragmentManager {
      * @param isAddStack    是否入回退栈
      * @param sharedElement 共享元素
      * @return 目标fragment
-     */
+     *//*
+
     public static Fragment replaceFragment(@NonNull final Fragment srcFragment,
         @NonNull final Fragment destFragment,
         final boolean isAddStack,
@@ -270,7 +300,8 @@ public final class FragmentManager {
         return replaceFragment(srcFragment.getFragmentManager(), destFragment, containerId, isAddStack, sharedElement);
     }
 
-    /**
+    */
+/**
      * 替换fragment
      *
      * @param fragmentManager fragment管理器
@@ -278,8 +309,9 @@ public final class FragmentManager {
      * @param fragment        fragment
      * @param isAddStack      是否入回退栈
      * @return fragment
-     */
-    public static Fragment replaceFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static Fragment replaceFragment(@NonNull final FragmentManager fragmentManager,
         @NonNull final Fragment fragment,
         @IdRes final int containerId,
         final boolean isAddStack) {
@@ -287,7 +319,8 @@ public final class FragmentManager {
         return operateFragment(fragmentManager, null, fragment, TYPE_REPLACE_FRAGMENT);
     }
 
-    /**
+    */
+/**
      * 替换fragment
      *
      * @param fragmentManager fragment管理器
@@ -296,8 +329,9 @@ public final class FragmentManager {
      * @param isAddStack      是否入回退栈
      * @param sharedElement   共享元素
      * @return fragment
-     */
-    public static Fragment replaceFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static Fragment replaceFragment(@NonNull final FragmentManager fragmentManager,
         @NonNull final Fragment fragment,
         @IdRes final int containerId,
         final boolean isAddStack,
@@ -306,47 +340,55 @@ public final class FragmentManager {
         return operateFragment(fragmentManager, null, fragment, TYPE_REPLACE_FRAGMENT, sharedElement);
     }
 
-    /**
+    */
+/**
      * 出栈fragment
      *
      * @param fragmentManager fragment管理器
      * @return {@code true}: 出栈成功<br>{@code false}: 出栈失败
-     */
-    public static boolean popFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static boolean popFragment(@NonNull final FragmentManager fragmentManager) {
         return fragmentManager.popBackStackImmediate();
     }
 
-    /**
+    */
+/**
      * 出栈到指定fragment
      *
      * @param fragmentManager fragment管理器
      * @param fragmentClass   Fragment类
      * @param isIncludeSelf   是否包括Fragment类自己
      * @return {@code true}: 出栈成功<br>{@code false}: 出栈失败
-     */
-    public static boolean popToFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static boolean popToFragment(@NonNull final FragmentManager fragmentManager,
         final Class<? extends Fragment> fragmentClass,
         final boolean isIncludeSelf) {
-        return fragmentManager.popBackStackImmediate(fragmentClass.getName(), isIncludeSelf ? android.support.v4.app.FragmentManager.POP_BACK_STACK_INCLUSIVE : 0);
+        return fragmentManager.popBackStackImmediate(fragmentClass.getName(), isIncludeSelf ? FragmentManager.POP_BACK_STACK_INCLUSIVE : 0);
     }
 
-    /**
+    */
+/**
      * 出栈同级别fragment
      *
      * @param fragmentManager fragment管理器
-     */
-    public static void popFragments(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static void popFragments(@NonNull final FragmentManager fragmentManager) {
         while (fragmentManager.getBackStackEntryCount() > 0) {
             fragmentManager.popBackStackImmediate();
         }
     }
 
-    /**
+    */
+/**
      * 出栈所有fragment
      *
      * @param fragmentManager fragment管理器
-     */
-    public static void popAllFragments(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static void popAllFragments(@NonNull final FragmentManager fragmentManager) {
         List<Fragment> fragments = getFragments(fragmentManager);
         if (fragments.isEmpty()) return;
         for (int i = fragments.size() - 1; i >= 0; --i) {
@@ -358,7 +400,8 @@ public final class FragmentManager {
         }
     }
 
-    /**
+    */
+/**
      * 先出栈后新增fragment
      *
      * @param fragmentManager fragment管理器
@@ -366,8 +409,9 @@ public final class FragmentManager {
      * @param fragment        fragment
      * @param isAddStack      是否入回退栈
      * @return fragment
-     */
-    public static Fragment popAddFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static Fragment popAddFragment(@NonNull final FragmentManager fragmentManager,
         @NonNull final Fragment fragment,
         @IdRes final int containerId,
         final boolean isAddStack) {
@@ -375,7 +419,8 @@ public final class FragmentManager {
         return operateFragment(fragmentManager, null, fragment, TYPE_POP_ADD_FRAGMENT);
     }
 
-    /**
+    */
+/**
      * 先出栈后新增fragment
      *
      * @param fragmentManager fragment管理器
@@ -383,8 +428,9 @@ public final class FragmentManager {
      * @param fragment        fragment
      * @param isAddStack      是否入回退栈
      * @return fragment
-     */
-    public static Fragment popAddFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    public static Fragment popAddFragment(@NonNull final FragmentManager fragmentManager,
         @NonNull final Fragment fragment,
         @IdRes final int containerId,
         final boolean isAddStack,
@@ -393,12 +439,14 @@ public final class FragmentManager {
         return operateFragment(fragmentManager, null, fragment, TYPE_POP_ADD_FRAGMENT, sharedElements);
     }
 
-    /**
+    */
+/**
      * 隐藏fragment
      *
      * @param fragment fragment
      * @return 隐藏的Fragment
-     */
+     *//*
+
     public static Fragment hideFragment(@NonNull final Fragment fragment) {
         Args args = getArgs(fragment);
         if (args != null) {
@@ -407,12 +455,14 @@ public final class FragmentManager {
         return operateFragment(fragment.getFragmentManager(), null, fragment, TYPE_HIDE_FRAGMENT);
     }
 
-    /**
+    */
+/**
      * 隐藏同级别fragment
      *
      * @param fragmentManager fragment管理器
-     */
-    public static void hideFragments(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static void hideFragments(@NonNull final FragmentManager fragmentManager) {
         List<Fragment> fragments = getFragments(fragmentManager);
         if (fragments.isEmpty()) return;
         for (int i = fragments.size() - 1; i >= 0; --i) {
@@ -421,12 +471,14 @@ public final class FragmentManager {
         }
     }
 
-    /**
+    */
+/**
      * 显示fragment
      *
      * @param fragment fragment
      * @return show的Fragment
-     */
+     *//*
+
     public static Fragment showFragment(@NonNull final Fragment fragment) {
         Args args = getArgs(fragment);
         if (args != null) {
@@ -435,24 +487,28 @@ public final class FragmentManager {
         return operateFragment(fragment.getFragmentManager(), null, fragment, TYPE_SHOW_FRAGMENT);
     }
 
-    /**
+    */
+/**
      * 显示fragment
      *
      * @param fragment fragment
      * @return show的Fragment
-     */
+     *//*
+
     public static Fragment hideAllShowFragment(@NonNull final Fragment fragment) {
         hideFragments(fragment.getFragmentManager());
         return operateFragment(fragment.getFragmentManager(), null, fragment, TYPE_SHOW_FRAGMENT);
     }
 
-    /**
+    */
+/**
      * 先隐藏后显示fragment
      *
      * @param hideFragment 需要隐藏的Fragment
      * @param showFragment 需要显示的Fragment
      * @return 显示的Fragment
-     */
+     *//*
+
     public static Fragment hideShowFragment(@NonNull final Fragment hideFragment,
         @NonNull final Fragment showFragment) {
         Args args = getArgs(hideFragment);
@@ -466,12 +522,14 @@ public final class FragmentManager {
         return operateFragment(showFragment.getFragmentManager(), hideFragment, showFragment, TYPE_HIDE_SHOW_FRAGMENT);
     }
 
-    /**
+    */
+/**
      * 传参
      *
      * @param fragment fragment
      * @param args     参数
-     */
+     *//*
+
     private static void putArgs(@NonNull final Fragment fragment, final Args args) {
         Bundle bundle = fragment.getArguments();
         if (bundle == null) {
@@ -483,18 +541,21 @@ public final class FragmentManager {
         bundle.putBoolean(ARGS_IS_ADD_STACK, args.isAddStack);
     }
 
-    /**
+    */
+/**
      * 获取参数
      *
      * @param fragment fragment
-     */
+     *//*
+
     private static Args getArgs(@NonNull final Fragment fragment) {
         Bundle bundle = fragment.getArguments();
         if (bundle == null || bundle.getInt(ARGS_ID) == 0) return null;
         return new Args(bundle.getInt(ARGS_ID), bundle.getBoolean(ARGS_IS_HIDE), bundle.getBoolean(ARGS_IS_ADD_STACK));
     }
 
-    /**
+    */
+/**
      * 操作fragment
      *
      * @param fragmentManager fragment管理器
@@ -503,8 +564,9 @@ public final class FragmentManager {
      * @param type            操作类型
      * @param sharedElements  共享元素
      * @return destFragment
-     */
-    private static Fragment operateFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    private static Fragment operateFragment(@NonNull final FragmentManager fragmentManager,
         final Fragment srcFragment,
         @NonNull Fragment destFragment,
         final int type,
@@ -574,34 +636,40 @@ public final class FragmentManager {
         return destFragment;
     }
 
-    /**
+    */
+/**
      * 获取同级别最后加入的fragment
      *
      * @param fragmentManager fragment管理器
      * @return 最后加入的fragment
-     */
-    public static Fragment getLastAddFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static Fragment getLastAddFragment(@NonNull final FragmentManager fragmentManager) {
         return getLastAddFragmentIsInStack(fragmentManager, false);
     }
 
-    /**
+    */
+/**
      * 获取栈中同级别最后加入的fragment
      *
      * @param fragmentManager fragment管理器
      * @return 最后加入的fragment
-     */
-    public static Fragment getLastAddFragmentInStack(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static Fragment getLastAddFragmentInStack(@NonNull final FragmentManager fragmentManager) {
         return getLastAddFragmentIsInStack(fragmentManager, true);
     }
 
-    /**
+    */
+/**
      * 根据栈参数获取同级别最后加入的fragment
      *
      * @param fragmentManager fragment管理器
      * @param isInStack       是否是栈中的
      * @return 栈中最后加入的fragment
-     */
-    private static Fragment getLastAddFragmentIsInStack(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    private static Fragment getLastAddFragmentIsInStack(@NonNull final FragmentManager fragmentManager,
         final boolean isInStack) {
         List<Fragment> fragments = getFragments(fragmentManager);
         if (fragments.isEmpty()) return null;
@@ -620,35 +688,41 @@ public final class FragmentManager {
         return null;
     }
 
-    /**
+    */
+/**
      * 获取顶层可见fragment
      *
      * @param fragmentManager fragment管理器
      * @return 顶层可见fragment
-     */
-    public static Fragment getTopShowFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static Fragment getTopShowFragment(@NonNull final FragmentManager fragmentManager) {
         return getTopShowFragmentIsInStack(fragmentManager, null, false);
     }
 
-    /**
+    */
+/**
      * 获取栈中顶层可见fragment
      *
      * @param fragmentManager fragment管理器
      * @return 栈中顶层可见fragment
-     */
-    public static Fragment getTopShowFragmentInStack(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static Fragment getTopShowFragmentInStack(@NonNull final FragmentManager fragmentManager) {
         return getTopShowFragmentIsInStack(fragmentManager, null, true);
     }
 
-    /**
+    */
+/**
      * 根据栈参数获取顶层可见fragment
      *
      * @param fragmentManager fragment管理器
      * @param parentFragment  父fragment
      * @param isInStack       是否是栈中的
      * @return 栈中顶层可见fragment
-     */
-    private static Fragment getTopShowFragmentIsInStack(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    private static Fragment getTopShowFragmentIsInStack(@NonNull final FragmentManager fragmentManager,
         final Fragment parentFragment,
         final boolean isInStack) {
         List<Fragment> fragments = getFragments(fragmentManager);
@@ -668,34 +742,40 @@ public final class FragmentManager {
         return parentFragment;
     }
 
-    /**
+    */
+/**
      * 获取同级别fragment
      *
      * @param fragmentManager fragment管理器
      * @return 同级别的fragments
-     */
-    public static List<Fragment> getFragments(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static List<Fragment> getFragments(@NonNull final FragmentManager fragmentManager) {
         return getFragmentsIsInStack(fragmentManager, false);
     }
 
-    /**
+    */
+/**
      * 获取栈中同级别fragment
      *
      * @param fragmentManager fragment管理器
      * @return 栈中同级别fragment
-     */
-    public static List<Fragment> getFragmentsInStack(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static List<Fragment> getFragmentsInStack(@NonNull final FragmentManager fragmentManager) {
         return getFragmentsIsInStack(fragmentManager, true);
     }
 
-    /**
+    */
+/**
      * 根据栈参数获取同级别fragment
      *
      * @param fragmentManager fragment管理器
      * @param isInStack       是否是栈中的
      * @return 栈中同级别fragment
-     */
-    private static List<Fragment> getFragmentsIsInStack(@NonNull final android.support.v4.app.FragmentManager fragmentManager, final boolean isInStack) {
+     *//*
+
+    private static List<Fragment> getFragmentsIsInStack(@NonNull final FragmentManager fragmentManager, final boolean isInStack) {
         List<Fragment> fragments = fragmentManager.getFragments();
         if (fragments == null || fragments.isEmpty()) return Collections.emptyList();
         List<Fragment> result = new ArrayList<>();
@@ -714,27 +794,32 @@ public final class FragmentManager {
         return result;
     }
 
-    /**
+    */
+/**
      * 获取所有fragment
      *
      * @param fragmentManager fragment管理器
      * @return 所有fragment
-     */
-    public static List<FragmentNode> getAllFragments(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static List<FragmentNode> getAllFragments(@NonNull final FragmentManager fragmentManager) {
         return getAllFragmentsIsInStack(fragmentManager, new ArrayList<FragmentNode>(), false);
     }
 
-    /**
+    */
+/**
      * 获取栈中所有fragment
      *
      * @param fragmentManager fragment管理器
      * @return 所有fragment
-     */
-    public static List<FragmentNode> getAllFragmentsInStack(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static List<FragmentNode> getAllFragmentsInStack(@NonNull final FragmentManager fragmentManager) {
         return getAllFragmentsIsInStack(fragmentManager, new ArrayList<FragmentNode>(), true);
     }
 
-    /**
+    */
+/**
      * 根据栈参数获取所有fragment
      * <p>需之前对fragment的操作都借助该工具类</p>
      *
@@ -742,8 +827,9 @@ public final class FragmentManager {
      * @param result          结果
      * @param isInStack       是否是栈中的
      * @return 栈中所有fragment
-     */
-    private static List<FragmentNode> getAllFragmentsIsInStack(@NonNull final android.support.v4.app.FragmentManager fragmentManager,
+     *//*
+
+    private static List<FragmentNode> getAllFragmentsIsInStack(@NonNull final FragmentManager fragmentManager,
         final List<FragmentNode> result,
         final boolean isInStack) {
         List<Fragment> fragments = fragmentManager.getFragments();
@@ -763,14 +849,16 @@ public final class FragmentManager {
         return result;
     }
 
-    /**
+    */
+/**
      * 获取目标fragment的前一个fragment
      *
      * @param destFragment 目标fragment
      * @return 目标fragment的前一个fragment
-     */
+     *//*
+
     public static Fragment getPreFragment(@NonNull final Fragment destFragment) {
-        android.support.v4.app.FragmentManager fragmentManager = destFragment.getFragmentManager();
+        FragmentManager fragmentManager = destFragment.getFragmentManager();
         if (fragmentManager == null) return null;
         List<Fragment> fragments = getFragments(fragmentManager);
         boolean flag = false;
@@ -786,41 +874,47 @@ public final class FragmentManager {
         return null;
     }
 
-    /**
+    */
+/**
      * 查找fragment
      *
      * @param fragmentManager fragment管理器
      * @param fragmentClass   fragment类
      * @return 查找到的fragment
-     */
-    public static Fragment findFragment(@NonNull final android.support.v4.app.FragmentManager fragmentManager, final Class<? extends Fragment> fragmentClass) {
+     *//*
+
+    public static Fragment findFragment(@NonNull final FragmentManager fragmentManager, final Class<? extends Fragment> fragmentClass) {
         List<Fragment> fragments = getFragments(fragmentManager);
         if (fragments.isEmpty()) return null;
         return fragmentManager.findFragmentByTag(fragmentClass.getName());
     }
 
-    /**
+    */
+/**
      * 处理fragment回退键
      * <p>如果fragment实现了OnBackClickListener接口，返回{@code true}: 表示已消费回退键事件，反之则没消费</p>
      * <p>具体示例见FragmentActivity</p>
      *
      * @param fragment fragment
      * @return 是否消费回退事件
-     */
+     *//*
+
 
     public static boolean dispatchBackPress(@NonNull final Fragment fragment) {
         return dispatchBackPress(fragment.getFragmentManager());
     }
 
-    /**
+    */
+/**
      * 处理fragment回退键
      * <p>如果fragment实现了OnBackClickListener接口，返回{@code true}: 表示已消费回退键事件，反之则没消费</p>
      * <p>具体示例见FragmentActivity</p>
      *
      * @param fragmentManager fragment管理器
      * @return 是否消费回退事件
-     */
-    public static boolean dispatchBackPress(@NonNull final android.support.v4.app.FragmentManager fragmentManager) {
+     *//*
+
+    public static boolean dispatchBackPress(@NonNull final FragmentManager fragmentManager) {
         List<Fragment> fragments = fragmentManager.getFragments();
         if (fragments == null || fragments.isEmpty()) return false;
         for (int i = fragments.size() - 1; i >= 0; --i) {
@@ -837,12 +931,14 @@ public final class FragmentManager {
         return false;
     }
 
-    /**
+    */
+/**
      * 设置背景色
      *
      * @param fragment fragment
      * @param color    背景色
-     */
+     *//*
+
     public static void setBackgroundColor(@NonNull final Fragment fragment, @ColorInt final int color) {
         View view = fragment.getView();
         if (view != null) {
@@ -850,12 +946,14 @@ public final class FragmentManager {
         }
     }
 
-    /**
+    */
+/**
      * 设置背景资源
      *
      * @param fragment fragment
      * @param resId    资源Id
-     */
+     *//*
+
     public static void setBackgroundResource(@NonNull final Fragment fragment, @DrawableRes final int resId) {
         View view = fragment.getView();
         if (view != null) {
@@ -863,12 +961,14 @@ public final class FragmentManager {
         }
     }
 
-    /**
+    */
+/**
      * 设置背景
      *
      * @param fragment   fragment
      * @param background 背景
-     */
+     *//*
+
     public static void setBackground(@NonNull final Fragment fragment, final Drawable background) {
         ViewCompat.setBackground(fragment.getView(), background);
     }
@@ -914,3 +1014,4 @@ public final class FragmentManager {
         boolean onBackClick();
     }
 }
+*/

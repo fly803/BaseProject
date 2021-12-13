@@ -3,7 +3,7 @@ def rxBindingVersion = "2.0.0"
 def retrofitVersion = "2.3.0"
 def stethoVersion = "1.5.0"
 //def butterKnifeVersion = "10.0.0"
-def butterKnifeVersion = "8.8.1"
+def butterKnifeVersion = "10.2.3"
 def leakCanaryVersion = "1.6.1"
 def blockCanaryVersion = "1.5.0"
 def dagger2Version = "2.14.1"
@@ -13,10 +13,10 @@ def kotlin_version = "1.2.30"
 
 ext {
     android = [
-            compileSdkVersion: 28,
+            compileSdkVersion: 30,
             applicationId    : "com.ivy.baseproject.test",
-            minSdkVersion    : 19,
-            targetSdkVersion : 28,
+            minSdkVersion    : 23,
+            targetSdkVersion : 30,
             versionCode      : 1,
             versionName      : "1.0"
             
@@ -48,7 +48,7 @@ ext {
     easyPermissions = "pub.devrel:easypermissions:1.2.0"
     //    implementation group: 'com.android.volley', name: 'volley', version: '1.1.0'
     volley = "com.android.volley:volley:1.1.0"//等效写法
-    kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+//    kotlin = "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
 
     /**
      *项目必备库
