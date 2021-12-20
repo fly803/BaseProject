@@ -13,10 +13,10 @@ def kotlin_version = "1.2.30"
 
 ext {
     android = [
-            compileSdkVersion: 30,
+            compileSdkVersion: 32,
             applicationId    : "com.ivy.baseproject.test",
             minSdkVersion    : 23,
-            targetSdkVersion : 30,
+            targetSdkVersion : 32,
             versionCode      : 1,
             versionName      : "1.0"
             
