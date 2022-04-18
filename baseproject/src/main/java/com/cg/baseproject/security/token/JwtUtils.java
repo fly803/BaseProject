@@ -1,7 +1,7 @@
-package com.cg.baseproject.encryption.token;
+package com.cg.baseproject.security.token;
 
 import org.apache.commons.codec.binary.Base64;
-import org.json.JSONObject;
+
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
